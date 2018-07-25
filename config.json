@@ -1,0 +1,59 @@
+{
+  "name": "emLogger - Logging Utility",
+
+  "namespace":"Stanford\\emLogger",
+
+  "description": "Logging utility used by other external modules",
+
+  "documentation": "README.md",
+
+  "versions": [
+    { "0.1": "Initial" }
+  ],
+
+  "authors": [
+    {
+      "name": "Andrew Martin",
+      "email": "andy123@stanford.edu",
+      "institution": "Stanford University"
+    },
+    {
+      "name": "Jae Lee",
+      "email": "jael@stanford.edu",
+      "institution": "Stanford University"
+    }
+  ],
+
+  "permissions": [
+  ],
+
+  "links": {
+    "control-center": [
+    ],
+    "project": [
+    ]
+  },
+
+  "system-settings": [
+    {
+      "key": "base-server-path",
+      "name": "<b>Base path on server where logs are written</b><br>(e.g. /var/log/ - include ending slash)",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "key": "log-json",
+      "name": "<b>Check to log in json format</b>",
+      "required": false,
+      "type": "checkbox"
+    },
+    {
+      "key": "log-tsv",
+      "name": "<b>Check to log in tab-separated-value (TSV) format</b>",
+      "required": false,
+      "default" : true,
+      "type": "checkbox"
+    }
+  ]
+
+}
