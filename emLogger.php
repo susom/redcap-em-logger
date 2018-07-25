@@ -132,7 +132,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
     } // log
 
     function write($filename, $data, $flags) {
-        if (is_writable($filename)) {
+        if (is_writable($filename) || is_writable(dirname($filename))) {
             file_put_contents($filename, $data, $flags);
         } else {
             throw new \Exception ("Unable to write emLogger to $filename - is the directory writable?");
