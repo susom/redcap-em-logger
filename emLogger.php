@@ -17,12 +17,20 @@ class emLogger extends \ExternalModules\AbstractExternalModule
         $this->ts_start = microtime(true);
     }
 
+
+    function isJson($string) {
+        json_decode($string);
+        return (json_last_error() == JSON_ERROR_NONE);
+    }
+
+
     /**
      * A utility logging function
      * @param        $file_prefix (will be combined with the system base-server-path to build a complete filename
      * @param        $args (must be a single variable - use an array to pass many variables at once)
      * @param string $type (logging level: INFO / DEBUG / ERROR)
      * @param null   $fix_backtrace (optional parameter to assist when nesting logging functions)
+     * @throws \Exception
      */
     function log($file_prefix, $args, $type = "INFO", $fix_backtrace = null) {
 
@@ -58,11 +66,41 @@ class emLogger extends \ExternalModules\AbstractExternalModule
         $file       = isset($bt[0]['file'])     ? $bt[0]['file']        : "";
         $line       = isset($bt[0]['line'])     ? $bt[0]['line']        : "";
 
+        // Convert into an array in the event someone passes a string or other variable type
+        if (!is_array($args)) $args = array($args);
+
         if ($this->log_json) {
+
+            // Add context to args
+            $args_detail = array();
+            $i = 1;
+            foreach ($args as $arg) {
+                $detail = array();
+
+                $type = gettype($arg);
+                if ($type == "string") {
+                    if ($this->isJson($arg)) {
+                        // check for json
+                        $type="json";
+                        $arg=json_decode($arg);
+                    }
+                }
+                $detail['type'] = $type;
+                $detail['value'] = $arg;
+
+                if (count($args) > 1) {
+                    $args_detail[$i] = $detail;
+                } else {
+                    $args_detail[] = $detail;
+                }
+                $i++;
+            }
+
             $entry = array(
                 "date" => $date,
                 "type" => $type,
                 "args" => $args,
+                "args2" => $args_detail,
                 "file" => $file,
                 "line" => $line,
                 "function" => $function,
@@ -80,9 +118,6 @@ class emLogger extends \ExternalModules\AbstractExternalModule
 
         if ($this->log_tsv) {
             $entries = array();
-
-            // Convert into an array in the event someone passes a string or other variable type
-            if (!is_array($args)) $args = array($args);
 
             $count = count($args);
             foreach ($args as $i => $message) {
