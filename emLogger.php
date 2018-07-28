@@ -77,22 +77,22 @@ class emLogger extends \ExternalModules\AbstractExternalModule
             foreach ($args as $arg) {
                 $detail = array();
 
-                $type = gettype($arg);
-                if ($type == "string") {
+                $arg_type = gettype($arg);
+                if ($arg_type == "string") {
                     if ($this->isJson($arg)) {
                         // check for json
-                        $type="json";
+                        $arg_type="json";
                         $arg=json_decode($arg);
                     }
                 }
-                $detail['type'] = $type;
+                $detail['type'] = $arg_type;
                 $detail['value'] = $arg;
 
                 if (count($args) > 1) {
-                    $args_detail[$i] = $detail;
-                } else {
-                    $args_detail[] = $detail;
+                    $detail['count'] = $i;
                 }
+
+                $args_detail[] = $detail;
                 $i++;
             }
 
@@ -146,10 +146,10 @@ class emLogger extends \ExternalModules\AbstractExternalModule
                 $entry = array(
                     "date"     => $date,
                     "ms"       => $runtime,
-                    "type"     => $type,
                     "file"     => basename($file, '.php'),
                     "line"     => $line,
                     "function" => $function,
+                    "type"     => $type,
                     "arg"      => "[" . ($i + 1) . "/" . $count . "]",
                     "obj"      => $obj,
                     "msg"      => $msg
