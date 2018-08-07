@@ -37,7 +37,7 @@
   "system-settings": [
     {
       "key": "base-server-path",
-      "name": "<b>Base path on server where logs are written</b><br>(e.g. /var/log/ - include ending slash)",
+      "name": "<b>Base path on server where logs are written</b><br>(e.g. /var/log/redcap/ - include ending slash)",
       "required": true,
       "type": "text"
     },
