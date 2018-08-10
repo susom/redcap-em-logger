@@ -26,7 +26,6 @@ function log($file_prefix, $args, $type = "INFO", $fix_backtrace = null)
 ```
 
 
-
 ### With External Modules
 
 It is useful to wrap this logging function around an external module's own primary class.  The following code should be added to every new external module to add logging capability.  These methods support an arbitrary number of arguments so you can log many variables in a single call:
