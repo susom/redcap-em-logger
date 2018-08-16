@@ -52,7 +52,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
 
         // If you do not specify, we 'guess' if we should fix the backtrace by looking at the name of the function 1 level up
         if (isset($bt[1]["function"])
-            && in_array($bt[1]['function'], array("log","debug","error"))
+            && in_array($bt[1]['function'], array("log","debug","error","emLog","emDebug","emError"))
             && is_null($fix_backtrace)) $fix_backtrace = true;
 
         if ($fix_backtrace) array_shift($bt);
