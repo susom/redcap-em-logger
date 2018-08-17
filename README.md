@@ -33,12 +33,12 @@ It is useful to wrap this logging function around an external module's own prima
 class myEM extends \ExternalModules\AbstractExternalModule {
 
 
-    function log() {
+    function emLog() {
         $emLogger = \ExternalModules\ExternalModules::getModuleInstance('em_logger');
         $emLogger->log($this->PREFIX, func_get_args(), "INFO");
     }
 
-    function debug() {
+    function emDebug() {
         // Check if debug enabled
         if ($this->getSystemSetting('enable-system-debug-logging') || $this->getProjectSetting('enable-project-debug-logging')) {
             $emLogger = \ExternalModules\ExternalModules::getModuleInstance('em_logger');
@@ -46,7 +46,7 @@ class myEM extends \ExternalModules\AbstractExternalModule {
         }
     }
 
-    function error() {
+    function emError() {
         $emLogger = \ExternalModules\ExternalModules::getModuleInstance('em_logger');
         $emLogger->log($this->PREFIX, func_get_args(), "ERROR");
     }
