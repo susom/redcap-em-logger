@@ -32,7 +32,11 @@ It is useful to wrap this logging function around an external module's own prima
 ```php
 class myEM extends \ExternalModules\AbstractExternalModule {
 
-
+    /**
+     *
+     * emLogging integration
+     *
+     */
     function emLog() {
         $emLogger = \ExternalModules\ExternalModules::getModuleInstance('em_logger');
         $emLogger->log($this->PREFIX, func_get_args(), "INFO");
@@ -50,8 +54,31 @@ class myEM extends \ExternalModules\AbstractExternalModule {
         $emLogger = \ExternalModules\ExternalModules::getModuleInstance('em_logger');
         $emLogger->log($this->PREFIX, func_get_args(), "ERROR");
     }
+    
 }
 ```
+
+In the config.json file then:
+```json
+  "system-settings": [
+    {
+      "key": "enable-system-debug-logging",
+      "name": "<b>Enable Debug Logging (system-wide)</b>",
+      "required": false,
+      "type": "checkbox"
+    }
+  ],
+
+  "project-settings": [
+    {
+      "key": "enable-project-debug-logging",
+      "name": "<b>Enable Debug Logging</b>",
+      "required": false,
+      "type": "checkbox"
+    }
+   ],
+```
+
 
 ### With Plugin or DET Scripts
 ```php
