@@ -1,6 +1,7 @@
 <?php
 namespace Stanford\emLogger;
 
+
 class emLogger extends \ExternalModules\AbstractExternalModule
 {
     private $log_json;
@@ -32,7 +33,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
      * @param null   $fix_backtrace (optional parameter to assist when nesting logging functions)
      * @throws \Exception
      */
-    function log($file_prefix, $args, $type = "INFO", $fix_backtrace = null) {
+    function emLog($file_prefix, $args, $type = "INFO", $fix_backtrace = null) {
 
         // FILENAME
         $filename = $this->base_server_path . $file_prefix;
@@ -97,14 +98,14 @@ class emLogger extends \ExternalModules\AbstractExternalModule
             }
 
             $entry = array(
-                "date" => $date,
-                "type" => $type,
-                "args" => $args,
-                "args2" => $args_detail,
-                "file" => $file,
-                "line" => $line,
-                "function" => $function,
-                "runtime" => $runtime
+                "date"      => $date,
+                "type"      => $type,
+                "args"      => $args_detail,
+                //"args1"     => $args,
+                "file"      => $file,
+                "line"      => $line,
+                "function"  => $function,
+                "runtime"   => $runtime
             );
 
             if ($type == "DEBUG") $entry['backtrace'] = $bt;
