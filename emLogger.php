@@ -71,7 +71,8 @@ class emLogger extends \ExternalModules\AbstractExternalModule
         $pid        = isset($_GET['pid'])       ? $_GET['pid']          : (empty($project_id) ? "-" : $project_id);
 
         // DETERMINE USERNAME
-        $username = \ExternalModules\ExternalModules::getUsername();
+        //$username = \ExternalModules\ExternalModules::getUsername();
+        $username = defined('USERID') ? USERID : "";
         if (empty($username)) $username = "-";
 
         // Convert into an array in the event someone passes a string or other variable type
