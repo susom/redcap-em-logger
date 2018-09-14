@@ -56,16 +56,23 @@ class emLogger extends \ExternalModules\AbstractExternalModule
             && in_array($bt[1]['function'], array("log","debug","error","emLog","emDebug","emError"))
             && is_null($fix_backtrace)) $fix_backtrace = true;
 
+        // PARSE BACKTRACE
         if ($fix_backtrace) array_shift($bt);
-
-        // DETERMINE TIME
-        $runtime = round ((microtime(true) - $this->ts_start) * 1000,1);
-
-        $date = date('Y-m-d H:i:s');
-
         $function   = isset($bt[1]['function']) ? $bt[1]['function']    : "";
         $file       = isset($bt[0]['file'])     ? $bt[0]['file']        : "";
         $line       = isset($bt[0]['line'])     ? $bt[0]['line']        : "";
+
+        // DETERMINE TIME
+        $runtime = round ((microtime(true) - $this->ts_start) * 1000,1);
+        $date = date('Y-m-d H:i:s');
+
+        // DETERMINE PROJECT ID
+        global $project_id;
+        $pid        = isset($_GET['pid'])       ? $_GET['pid']          : (empty($project_id) ? "-" : $project_id);
+
+        // DETERMINE USERNAME
+        $username = \ExternalModules\ExternalModules::getUsername();
+        if (empty($username)) $username = "-";
 
         // Convert into an array in the event someone passes a string or other variable type
         if (!is_array($args)) $args = array($args);
@@ -100,6 +107,8 @@ class emLogger extends \ExternalModules\AbstractExternalModule
             $entry = array(
                 "date"      => $date,
                 "type"      => $type,
+                "pid"       => $pid,
+                "username"  => $username,
                 "args"      => $args_detail,
                 //"args1"     => $args,
                 "file"      => $file,
@@ -147,6 +156,8 @@ class emLogger extends \ExternalModules\AbstractExternalModule
                 $entry = array(
                     "date"     => $date,
                     "ms"       => $runtime,
+                    "pid"      => $pid,
+                    "username" => $username,
                     "file"     => basename($file, '.php'),
                     "line"     => $line,
                     "function" => $function,
