@@ -9,7 +9,7 @@ A module that uses the emLogger should 'fail gracefully' - meaning that if you d
 Upon enabling this external module you must configure it with:
   * path where all logs will be stored (e.g. `/var/log/redcap/`)
   * turn on/off TSV logging
-  * turn on/off json logging
+  * turn on/off json logging - we use splunk and the json-level logging can be easily indexed and searched
 
 
 ## Usage
