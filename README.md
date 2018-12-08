@@ -1,64 +1,58 @@
 # emLogger Utility
 
-## Usage
+This is a utility logging external module.  It is intended to be enabled on your server and configured with a physical directory where the log files will be saved.  We use this on many of our external modules so we can easily track logs without clogging the REDCap logs.
 
-Add the following methods to new external modules to enable easy and consistent logging:
+A module that uses the emLogger should 'fail gracefully' - meaning that if you do not have this module enabled on your server, it should behave as it normally would but just not log.
+
+## Configuring
 
 Upon enabling this external module you must configure it with:
   * path where all logs will be stored (e.g. `/var/log/redcap/`)
   * turn on/off TSV logging
   * turn on/off json logging
 
-You must instantiate this class before it can be used.  This is most easily done using a helper method from the ExternalModules class as:
-```php
-$emLogger = \ExternalModules\ExternalModules::getModuleInstance('em_logger');
-```
-This instance is shared across all external modules.  Each time it is called you must provide the context information that tell it where and how to log.
-```php
-/**
- * A utility logging function
- * @param        $file_prefix (will be combined with the system base-server-path to build a complete filename
- * @param        $args (must be a single variable - use an array to pass many variables at once)
- * @param string $type (logging level: INFO / DEBUG / ERROR)
- * @param null   $fix_backtrace (optional parameter to assist when nesting logging functions)
- */
-function log($file_prefix, $args, $type = "INFO", $fix_backtrace = null)
-```
 
+## Usage
 
-### With External Modules
+This module is actually used by other external modules.  If the other module was already built to use this, there isn't much of anything you need to do.  In the other module there may be options to control the logging levels.
 
-It is useful to wrap this logging function around an external module's own primary class.  The following code should be added to every new external module to add logging capability.  These methods support an arbitrary number of arguments so you can log many variables in a single call:
+If you are building a new module and want to add emLogger to it, follow these directions:
+
+### Building External Modules to use EmLogger
+
+It is useful to wrap this logging function around an external module's own primary class.  Lately we have been doing that with a 'trait'.  
+* **Step 1** copy the `emLoggerTrait.php` file located in this module to your external module.
+* **Step 2** exit the `emLoggerTrait.php` file to fix the namespace
+* **Step 3** In your EM, add an include_once to load the trait.
+* **Step 4** As soon as your class is defined, add `use emLoggerTrait` (see below)
+
 ```php
+include_once "emLoggerTrait.php";
+
 class myEM extends \ExternalModules\AbstractExternalModule {
+    use emLoggerTrait
 
-    /**
-     *
-     * emLogging integration
-     *
-     */
-    function emLog() {
-        $emLogger = \ExternalModules\ExternalModules::getModuleInstance('em_logger');
-        $emLogger->emLog($this->PREFIX, func_get_args(), "INFO");
-    }
-
-    function emDebug() {
-        // Check if debug enabled
-        if ($this->getSystemSetting('enable-system-debug-logging') || (!empty($_GET['pid']) && $this->getProjectSetting('enable-project-debug-logging'))) {
-            $emLogger = \ExternalModules\ExternalModules::getModuleInstance('em_logger');
-            $emLogger->emLog($this->PREFIX, func_get_args(), "DEBUG");
-        }
-    }
-
-    function emError() {
-        $emLogger = \ExternalModules\ExternalModules::getModuleInstance('em_logger');
-        $emLogger->emLog($this->PREFIX, func_get_args(), "ERROR");
-    }
-    
+    // your normal EM class    
 }
 ```
 
-In the config.json file then:
+This will add three methods to your class:
+ 
+ `$this->emLog(...)`
+ `$this->emDebug(...)`
+ `$this->emError(...)`
+
+
+These methods support an arbitrary number of arguments so you can log many variables in a single call including objects and arrays, eg:
+
+```php
+$q = REDCap::getData('array',..);
+$this-emDebug("Loaded data", $q);`
+```
+
+
+emLog and emError are always written to log file.  If you wish to enable 'debug' logging (which is normally turned off) - you can add these options to your EM's config.json file so end-users can turn this level of logging on or off. For example, add these two system and project-level settings:
+
 ```json
   "system-settings": [
     {
@@ -79,11 +73,9 @@ In the config.json file then:
    ],
 ```
 
+The intention was to use emDebug for most logging when writing a new module.  When you move to production or release the module, these will not be turned on be default.  If there is an issue in the future, you can turn debug logging back on and you have all of your data...
 
-### With Plugin or DET Scripts
-```php
-// Assume you have redcap_connect.php previously included...
+### Future Ideas
 
-$emLogger = \ExternalModules\ExternalModules::getModuleInstance('em_logger');
-$emLogger->emLog("my_plugin", $array_or_object, "INFO");
-```
+* In the future, I've thought about added an email alert if any emError log entries are posted to notify the super user.  
+* Currently each EM is making its own instance of this - it really should be shared but haven't gotten that far...
