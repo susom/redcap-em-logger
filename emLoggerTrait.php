@@ -7,6 +7,28 @@ namespace Stanford\YOUR_NAMESPACE_HERE;
  * To use this on your project, simply add this trait to your EM project.  In your main EM class add:
  * include "emLoggerTrait.php" // before the class is defined.
  * use emLoggerTrait;          // inside the class
+
+ * INSERT THE FOLLOWING INTO THE CONFIG.JSON
+
+  "system-settings": [
+    {
+      "key": "enable-system-debug-logging",
+      "name": "<b>Enable Debug Logging (system-wide)</b><i>(Requires emLogger)</i>",
+      "required": false,
+      "type": "checkbox"
+    }
+  ],
+
+  "project-settings": [
+    {
+      "key": "enable-project-debug-logging",
+      "name": "<b>Enable Debug Logging</b><i>(Requires emLogger)</i>",
+      "required": false,
+      "type": "checkbox"
+    }
+   ],
+
+
  */
 trait emLoggerTrait
 {
