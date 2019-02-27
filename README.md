@@ -57,7 +57,7 @@ emLog and emError are always written to log file.  If you wish to enable 'debug'
   "system-settings": [
     {
       "key": "enable-system-debug-logging",
-      "name": "<b>Enable Debug Logging (system-wide)</b><i>(Requires emLogger)</i>",
+      "name": "<b>Enable Debug Logging (system-wide)</b> <i>(Requires emLogger)</i>",
       "required": false,
       "type": "checkbox"
     }
@@ -66,7 +66,7 @@ emLog and emError are always written to log file.  If you wish to enable 'debug'
   "project-settings": [
     {
       "key": "enable-project-debug-logging",
-      "name": "<b>Enable Debug Logging</b><i>(Requires emLogger)</i>",
+      "name": "<b>Enable Debug Logging</b> <i>(Requires emLogger)</i>",
       "required": false,
       "type": "checkbox"
     }

@@ -37,7 +37,7 @@
   "system-settings": [
     {
       "key": "instructions",
-      "name": "<div class='alert alert-warning'><b>You should leave the top two checkboxes (Enable module and Make Discoverable) UNCHECKED.<br>The logging features will still be available to other modules even if it is not enabled on a per-project basis</b><br/>You can leave both log options unchecked to deactivate any logging.</div>",
+      "name": "<div class='alert alert-warning'><b>You should leave the top two checkboxes (Enable module and Make Discoverable) UNCHECKED.<br>The logging features will still be available to other modules even if it is not enabled on a per-project basis</b><br/>You can leave both log options unchecked to deactivate any logging.  If you are expecting logs and not seeing then, make sure the module that is logging has debug logs enabled in the external module configuration page for that module</div>",
       "type": "descriptive"
     },
     {
@@ -48,7 +48,7 @@
     },
     {
       "key": "log-json",
-      "name": "<b>Check to log in json format</b>",
+      "name": "<b>Check to log in json format (includes backtrace info)</b>",
       "required": false,
       "type": "checkbox"
     },
