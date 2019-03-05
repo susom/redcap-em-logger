@@ -56,7 +56,6 @@
       "key": "log-tsv",
       "name": "<b>Check to log in tab-separated-value (TSV) format</b>",
       "required": false,
-      "default" : true,
       "type": "checkbox"
     }
   ]
