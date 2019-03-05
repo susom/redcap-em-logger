@@ -162,7 +162,6 @@ class emLogger extends \ExternalModules\AbstractExternalModule
                     "file"     => basename($file, '.php'),
                     "line"     => $line,
                     "function" => $function,
-                    "type"     => $type,
                     "arg"      => "[" . ($i + 1) . "/" . $count . "]",
                     "obj"      => $obj,
                     "msg"      => $msg
