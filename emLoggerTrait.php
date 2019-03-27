@@ -13,7 +13,7 @@ namespace Stanford\YOUR_NAMESPACE_HERE;
   "system-settings": [
     {
       "key": "enable-system-debug-logging",
-      "name": "<b>Enable Debug Logging (system-wide)</b><i>(Requires emLogger)</i>",
+      "name": "<b>Enable Debug Logging (system-wide)</b> <i>(Requires emLogger)</i>",
       "required": false,
       "type": "checkbox"
     }
@@ -22,7 +22,7 @@ namespace Stanford\YOUR_NAMESPACE_HERE;
   "project-settings": [
     {
       "key": "enable-project-debug-logging",
-      "name": "<b>Enable Debug Logging</b><i>(Requires emLogger)</i>",
+      "name": "<b>Enable Debug Logging</b> <i>(Requires emLogger)</i>",
       "required": false,
       "type": "checkbox"
     }
