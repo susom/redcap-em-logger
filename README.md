@@ -22,7 +22,7 @@ If you are building a new module and want to add emLogger to it, follow these di
 
 It is useful to wrap this logging function around an external module's own primary class.  Lately we have been doing that with a 'trait'.  
 * **Step 1** copy the `emLoggerTrait.php` file located in this module to your external module.
-* **Step 2** exit the `emLoggerTrait.php` file to fix the namespace
+* **Step 2** edit the `emLoggerTrait.php` file to fix the namespace
 * **Step 3** In your EM, add an include_once to load the trait.
 * **Step 4** As soon as your class is defined, add `use emLoggerTrait` (see below)
 
