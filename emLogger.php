@@ -156,6 +156,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
 
                 $entry = array(
                     "date"     => $date,
+                    "type"     => $type,
                     "ms"       => $runtime,
                     "pid"      => $pid,
                     "username" => $username,
