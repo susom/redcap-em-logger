@@ -1,20 +1,31 @@
 # emLogger Utility
 
-This is a utility logging external module.  It is intended to be enabled on your server and configured with a physical directory where the log files will be saved.  We use this on many of our external modules so we can easily track logs without clogging the REDCap logs.
+This is a utility logging external module.  It is intended to be enabled on your server and configured with a physical
+ directory where the log files will be saved.  We use this on many of our external modules so we can easily track logs
+  without clogging the REDCap logs.
 
-A module that uses the emLogger should 'fail gracefully' - meaning that if you do not have this module enabled on your server, it should behave as it normally would but just not log.
+A module that uses the emLogger should 'fail gracefully' - meaning that if you do not have this module enabled on your
+ server, it should behave as it normally would but just not log.
 
 ## Configuring
 
 Upon enabling this external module you must configure it with:
   * path where all logs will be stored (e.g. `/var/log/redcap/`)
   * turn on/off TSV logging
-  * turn on/off json logging - we use splunk and the json-level logging can be easily indexed and searched
+  * turn on/off json logging
 
+You must enable either TSV or JSON logging or else no logs will be created.
+
+### Single File Mode
+To support easy scraping of log files using fluentd with kubernetes, we added an option that aggregates all log entries
+into a single file with a new prefix attribute.  Optionally, if you use this mode, you can also enable a weekly cron
+task that will erase your logs on a weekly basis.
 
 ## Usage
 
-This module is actually used by other external modules.  If the other module was already built to use this, there isn't much of anything you need to do.  In the other module there may be options to control the logging levels.
+This module is used by other external modules (typically written at Stanford).  If the other module was already built
+ to use this, there isn't much of anything you need to do.  In the other modules should support configuration at either
+ the system or project level to control the logging output.
 
 If you are building a new module and want to add emLogger to it, follow these directions:
 
@@ -49,7 +60,6 @@ These methods support an arbitrary number of arguments so you can log many varia
 $q = REDCap::getData('array',..);
 $this-emDebug("Loaded data", $q);`
 ```
-
 
 emLog and emError are always written to log file.  If you wish to enable 'debug' logging (which is normally turned off) - you can add these options to your EM's config.json file so end-users can turn this level of logging on or off. For example, add these two system and project-level settings:
 

@@ -6,19 +6,35 @@ class emLogger extends \ExternalModules\AbstractExternalModule
 {
     private $log_json;
     private $log_tsv;
+    private $single_file;        // If set, all logs will output to a single file - emLogger.tsv or emLogger.json
     private $base_server_path;
     private $ts_start;
 
     function __construct()
     {
         parent::__construct();
-        $this->log_json = $this->getSystemSetting('log-json');
-        $this->log_tsv = $this->getSystemSetting('log-tsv');
+
+        $settings               = $this->getSystemSettings();
+	    $this->ts_start         = microtime(true);
+
+        $this->log_json         = $this->getSystemSetting('log-json');
+	    $this->log_tsv          = $this->getSystemSetting('log-tsv');
+	    $this->single_file      = $this->getSystemSetting('single-file');
         $this->base_server_path = $this->getSystemSetting('base-server-path');
-        $this->ts_start = microtime(true);
     }
 
 
+	public function redcap_module_save_configuration($project_id = null) {
+    	// Try saving
+		$this->emLog("emLogger", "Configuration Updated", "INFO", false);
+	}
+
+
+	/**
+	 * Is the payload string a valid JSON object
+	 * @param $string
+	 * @return bool
+	 */
     function isJson($string) {
         json_decode($string);
         return (json_last_error() == JSON_ERROR_NONE);
@@ -33,14 +49,19 @@ class emLogger extends \ExternalModules\AbstractExternalModule
      * @param null   $fix_backtrace (optional parameter to assist when nesting logging functions)
      * @throws \Exception
      */
-    function emLog($file_prefix, $args, $type = "INFO", $fix_backtrace = null) {
+    function emLog($file_prefix, $args, $type = "INFO", $fix_backtrace = null, $flags = FILE_APPEND) {
 
         // FILENAME
-        $filename = $this->base_server_path . $file_prefix;
+	    if ($this->single_file) {
+		    $filename = $this->base_server_path . "emLogger";
+	    } else {
+		    $filename = $this->base_server_path . $file_prefix;
+	    }
 
         // BACKTRACE (remove one from this logging class)
-        $bt = debug_backtrace();
+        $bt = debug_backtrace(2);
 
+	    // FIX START OF BACKTRACE
         /*  In cases where you call this log function from a parent object's log function, you really are interested
             in the backtrace from one level higher.  To make the logic work, we strip off the last backtrace array
             element.  If, on the other hand, you simply instantiate this and call it from a script, you will not need
@@ -49,15 +70,16 @@ class emLogger extends \ExternalModules\AbstractExternalModule
 
             To summarize, if you wrap this in a parent object, call it with methods 'log,debug, or error' and everything
             should work.
-        */
 
-        // If you do not specify, we 'guess' if we should fix the backtrace by looking at the name of the function 1 level up
+            If you do not specify the 4th argument, we 'guess' if we should fix the backtrace by looking at the name
+            of the function 1 level up
+        */
         if (isset($bt[1]["function"])
             && in_array($bt[1]['function'], array("log","debug","error","emLog","emDebug","emError"))
             && is_null($fix_backtrace)) $fix_backtrace = true;
-
-        // PARSE BACKTRACE
         if ($fix_backtrace) array_shift($bt);
+
+	    // PARSE BACKTRACE
         $function   = isset($bt[1]['function']) ? $bt[1]['function']    : "";
         $file       = isset($bt[0]['file'])     ? $bt[0]['file']        : "";
         $line       = isset($bt[0]['line'])     ? $bt[0]['line']        : "";
@@ -75,16 +97,17 @@ class emLogger extends \ExternalModules\AbstractExternalModule
         $username = defined('USERID') ? USERID : "";
         if (empty($username)) $username = "-";
 
+
+        // PARSE ARGUMENTS:
         // Convert into an array in the event someone passes a string or other variable type
         if (!is_array($args)) $args = array($args);
 
         if ($this->log_json) {
-
             // Add context to args
-            $args_detail = array();
+            $args_detail = [];
             $i = 1;
             foreach ($args as $arg) {
-                $detail = array();
+                $detail = [];
 
                 $arg_type = gettype($arg);
                 if ($arg_type == "string") {
@@ -111,21 +134,24 @@ class emLogger extends \ExternalModules\AbstractExternalModule
                 "pid"       => $pid,
                 "username"  => $username,
                 "args"      => $args_detail,
-                //"args1"     => $args,
                 "file"      => $file,
                 "line"      => $line,
                 "function"  => $function,
                 "runtime"   => $runtime
             );
 
-            if ($type == "DEBUG") $entry['backtrace'] = $bt;
+            // Add the prefix in single-file mode
+            if($this->single_file) $entry['prefix'] = $file_prefix;
 
-            $file_suffix = "_log.json";
+            if ($type == "ERROR") $entry['backtrace'] = $bt;
+
+            $file_suffix = ".json";
             $log = json_encode($entry) . "\n";
 
             // WRITE TO FILE
-            $this->write($filename . $file_suffix, $log, FILE_APPEND);
+            $this->write($filename . $file_suffix, $log, $flags);
         } //json
+
 
         if ($this->log_tsv) {
             $entries = array();
@@ -167,14 +193,15 @@ class emLogger extends \ExternalModules\AbstractExternalModule
                     "obj"      => $obj,
                     "msg"      => $msg
                 );
-                $entries[] = implode("\t", $entry);
 
+                if ($this->single_file) $entry = array("prefix" => $file_prefix) + $entry;
+                $entries[] = implode("\t", $entry);
             } // loop
             $file_suffix = ".log";
             $log = implode("\n", $entries) . "\n";
 
             // WRITE TO FILE
-            $this->write($filename . $file_suffix, $log, FILE_APPEND);
+            $this->write($filename . $file_suffix, $log, $flags);
         } // tsv
 
     } // log
@@ -185,6 +212,14 @@ class emLogger extends \ExternalModules\AbstractExternalModule
         } else {
             throw new \Exception ("Unable to write emLogger to $filename - is the directory writable?");
         }
+    }
+
+    public function truncateLogsCron($cron) {
+    	if ($this->single_file) {
+		    $this->emLog($this->PREFIX, "About to truncate log - to disable edit the emLogger configuration");
+		    sleep(30);  // Give the log parser a chance to detect this log entry...
+		    $this->emLog($this->PREFIX, "Logs Truncated - to disable edit the emLogger configuration","INFO",false,0);
+	    }
     }
 
 } // class
