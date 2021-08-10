@@ -2,7 +2,7 @@
 namespace YOUR_NAMESPACE_HERE;
 /** @var \YOUR_NAMESPACE_HERE\YOUR_EM_CLASS_NAME_HERE $this */
 
-
+// test comment.
 /**
  * This trait can be used with External Modules to enable the Stanford emLogger module
  *
