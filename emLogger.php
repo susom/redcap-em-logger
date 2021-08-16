@@ -1,6 +1,7 @@
 <?php
 namespace Stanford\emLogger;
 
+// test comment.
 
 class emLogger extends \ExternalModules\AbstractExternalModule
 {
@@ -15,26 +16,26 @@ class emLogger extends \ExternalModules\AbstractExternalModule
         parent::__construct();
 
         $settings               = $this->getSystemSettings();
-	    $this->ts_start         = microtime(true);
+        $this->ts_start         = microtime(true);
 
         $this->log_json         = $this->getSystemSetting('log-json');
-	    $this->log_tsv          = $this->getSystemSetting('log-tsv');
-	    $this->single_file      = $this->getSystemSetting('single-file');
+        $this->log_tsv          = $this->getSystemSetting('log-tsv');
+        $this->single_file      = $this->getSystemSetting('single-file');
         $this->base_server_path = $this->getSystemSetting('base-server-path');
     }
 
 
-	public function redcap_module_save_configuration($project_id = null) {
-    	// Try saving
-		$this->emLog("emLogger", "Configuration Updated", "INFO", false);
-	}
+    public function redcap_module_save_configuration($project_id = null) {
+        // Try saving
+        $this->emLog("emLogger", "Configuration Updated", "INFO", false);
+    }
 
 
-	/**
-	 * Is the payload string a valid JSON object
-	 * @param $string
-	 * @return bool
-	 */
+    /**
+     * Is the payload string a valid JSON object
+     * @param $string
+     * @return bool
+     */
     function isJson($string) {
         json_decode($string);
         return (json_last_error() == JSON_ERROR_NONE);
@@ -52,16 +53,16 @@ class emLogger extends \ExternalModules\AbstractExternalModule
     function emLog($file_prefix, $args, $type = "INFO", $fix_backtrace = null, $flags = FILE_APPEND) {
 
         // FILENAME
-	    if ($this->single_file) {
-		    $filename = $this->base_server_path . "emLogger";
-	    } else {
-		    $filename = $this->base_server_path . $file_prefix;
-	    }
+        if ($this->single_file) {
+            $filename = $this->base_server_path . "emLogger";
+        } else {
+            $filename = $this->base_server_path . $file_prefix;
+        }
 
         // BACKTRACE (remove one from this logging class)
         $bt = debug_backtrace(2);
 
-	    // FIX START OF BACKTRACE
+        // FIX START OF BACKTRACE
         /*  In cases where you call this log function from a parent object's log function, you really are interested
             in the backtrace from one level higher.  To make the logic work, we strip off the last backtrace array
             element.  If, on the other hand, you simply instantiate this and call it from a script, you will not need
@@ -79,7 +80,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
             && is_null($fix_backtrace)) $fix_backtrace = true;
         if ($fix_backtrace) array_shift($bt);
 
-	    // PARSE BACKTRACE
+        // PARSE BACKTRACE
         $function   = isset($bt[1]['function']) ? $bt[1]['function']    : "";
         $file       = isset($bt[0]['file'])     ? $bt[0]['file']        : "";
         $line       = isset($bt[0]['line'])     ? $bt[0]['line']        : "";
@@ -215,11 +216,11 @@ class emLogger extends \ExternalModules\AbstractExternalModule
     }
 
     public function truncateLogsCron($cron) {
-    	if ($this->single_file) {
-		    $this->emLog($this->PREFIX, "About to truncate log - to disable edit the emLogger configuration");
-		    sleep(30);  // Give the log parser a chance to detect this log entry...
-		    $this->emLog($this->PREFIX, "Logs Truncated - to disable edit the emLogger configuration","INFO",false,0);
-	    }
+        if ($this->single_file) {
+            $this->emLog($this->PREFIX, "About to truncate log - to disable edit the emLogger configuration");
+            sleep(30);  // Give the log parser a chance to detect this log entry...
+            $this->emLog($this->PREFIX, "Logs Truncated - to disable edit the emLogger configuration","INFO",false,0);
+        }
     }
 
 } // class
