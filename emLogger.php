@@ -1,7 +1,7 @@
 <?php
 namespace Stanford\emLogger;
 
-// test comment.
+// commit just to trigger travis build.
 
 class emLogger extends \ExternalModules\AbstractExternalModule
 {
