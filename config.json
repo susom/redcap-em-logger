@@ -20,6 +20,11 @@
       "name": "Jae Lee",
       "email": "jael@stanford.edu",
       "institution": "Stanford University"
+    },
+    {
+      "name": "Ihab Zeedia",
+      "email": "ihabz@stanford.edu",
+      "institution": "Stanford University"
     }
   ],
   "permissions": [
@@ -39,7 +44,7 @@
     },
     {
       "key": "gcp-project-id",
-      "name": "If this running on GCP instance. You can provide project id and emLogger will log directly into Stackdriver",
+      "name": "(Optional) Add GCP Project id that emLogger will write its logs into that Project StackDriver. <div><span class='text-lg badge badge-lg badge-danger'>REDCap instance MUST has permission <br>to access StackDriver via Service Account running on background.</span></div>",
       "required": false,
       "type": "text"
     },
