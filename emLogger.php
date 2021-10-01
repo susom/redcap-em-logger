@@ -264,7 +264,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
                     }
                 } elseif ($this->log_json) {
                     $entry = json_decode($data, true);
-                    $this->gcpLoggerResources['resources']['labels']['container_name'] = $name;
+                    $this->gcpLoggerResources['resource']['labels']['container_name'] = $name;
                     $this->gcpLoggerResources['severity'] = $entry['type'];
                     $logger = $this->gcpLogger->logger($name, $this->gcpLoggerResources);
                     $entry = $logger->entry($entry, $this->gcpLoggerResources);
