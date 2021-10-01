@@ -47,7 +47,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
                     ]
                 ]
             ];
-            $this->emLog('em-logger', ['hello' => 'world'], 'WARNING');
+            //$this->emLog('em-logger', ['hello' => 'world'], 'WARNING');
         }
 
     }
@@ -254,12 +254,14 @@ class emLogger extends \ExternalModules\AbstractExternalModule
                     foreach ($rows as $row) {
                         $entry = explode("\t", $row);
                         $this->gcpLoggerResources['severity'] = $entry[1];
+                        $this->gcpLoggerResources['resources']['labels']['container_name'] = $name;
                         $logger = $this->gcpLogger->logger($name, $this->gcpLoggerResources);
                         $e = $logger->entry($entry, $this->gcpLoggerResources);
                         $logger->write($e);
                     }
                 } elseif ($this->log_json) {
                     $entry = json_decode($data, true);
+                    $this->gcpLoggerResources['resources']['labels']['container_name'] = $name;
                     $this->gcpLoggerResources['severity'] = $entry['type'];
                     $logger = $this->gcpLogger->logger($name, $this->gcpLoggerResources);
                     $entry = $logger->entry($entry, $this->gcpLoggerResources);
