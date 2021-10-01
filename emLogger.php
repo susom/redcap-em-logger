@@ -1,6 +1,12 @@
 <?php
 namespace Stanford\emLogger;
 
+# Includes the autoloader for libraries installed with composer
+require __DIR__ . '/vendor/autoload.php';
+
+# Imports the Google Cloud client library
+use Google\Cloud\Logging\LoggingClient;
+
 // commit just to trigger travis build.
 
 class emLogger extends \ExternalModules\AbstractExternalModule
@@ -11,17 +17,39 @@ class emLogger extends \ExternalModules\AbstractExternalModule
     private $base_server_path;
     private $ts_start;
 
+    private $gcpLogger;
+    private $gcpLoggerResources;
+
     function __construct()
     {
         parent::__construct();
 
-        $settings               = $this->getSystemSettings();
-        $this->ts_start         = microtime(true);
+        $settings = $this->getSystemSettings();
+        $this->ts_start = microtime(true);
 
-        $this->log_json         = $this->getSystemSetting('log-json');
-        $this->log_tsv          = $this->getSystemSetting('log-tsv');
-        $this->single_file      = $this->getSystemSetting('single-file');
+        $this->log_json = $this->getSystemSetting('log-json');
+        $this->log_tsv = $this->getSystemSetting('log-tsv');
+        $this->single_file = $this->getSystemSetting('single-file');
         $this->base_server_path = $this->getSystemSetting('base-server-path');
+        if ($this->getSystemSetting('gcp-project-id') != '') {
+            $this->gcpLogger = new LoggingClient([
+                'projectId' => $this->getSystemSetting('gcp-project-id')
+            ]);
+
+            // TODO customize resource options.
+            $this->gcpLoggerResources = [
+                'severity' => '',
+                'resource' => [
+                    'type' => 'k8s_container',
+                    'labels' => [
+                        'cluster_name' => 'redcap-gke-dev-cluster',
+                        'container_name' => 'em-logger'
+                    ]
+                ]
+            ];
+            $this->emLog('em-logger', ['hello' => 'world'], 'WARNING');
+        }
+
     }
 
 
@@ -207,9 +235,37 @@ class emLogger extends \ExternalModules\AbstractExternalModule
 
     } // log
 
-    function write($filename, $data, $flags) {
+    public function getFilePrefix($filename)
+    {
+        $parts = explode('/', $filename);
+        $filename = explode('.', end($parts));
+        return $filename[0];
+    }
+
+    function write($filename, $data, $flags)
+    {
         if (is_writable($filename) || is_writable(dirname($filename))) {
             file_put_contents($filename, $data, $flags);
+            $name = $this->getFilePrefix($filename);
+            if ($this->getSystemSetting('gcp-project-id') != '') {
+                if ($this->log_tsv) {
+                    $rows = explode("\n", $data);
+
+                    foreach ($rows as $row) {
+                        $entry = explode("\t", $row);
+                        $this->gcpLoggerResources['severity'] = $entry[1];
+                        $logger = $this->gcpLogger->logger($name, $this->gcpLoggerResources);
+                        $e = $logger->entry($entry, $this->gcpLoggerResources);
+                        $logger->write($e);
+                    }
+                } elseif ($this->log_json) {
+                    $entry = json_decode($data);
+                    $this->gcpLoggerResources['severity'] = $entry['type'];
+                    $logger = $this->gcpLogger->logger($name, $this->gcpLoggerResources);
+                    $entry = $logger->entry($entry, $this->gcpLoggerResources);
+                    $logger->write($entry);
+                }
+            }
         } else {
             throw new \Exception ("Unable to write emLogger to $filename - is the directory writable?");
         }
