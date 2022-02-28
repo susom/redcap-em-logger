@@ -1,92 +1,81 @@
 {
-  "name": "emLogger - Logging Utility",
-
-  "namespace":"Stanford\\emLogger",
-
-  "description": "An optional logging utility used by many other external modules built at Stanford.  If configured, other modules will write out error, debugging and other log information to the file path specified in the config.",
-
-  "documentation": "README.md",
-
-  "versions": [
-    {
-      "0.1": "Initial",
-      "0.2": "5/4/2021 Added support for a single-file mode"
-    }
-  ],
-
-  "framework-version": 5,
-
-  "authors": [
-    {
-      "name": "Andrew Martin",
-      "email": "andy123@stanford.edu",
-      "institution": "Stanford University"
-    },
-    {
-      "name": "Jae Lee",
-      "email": "jael@stanford.edu",
-      "institution": "Stanford University"
-    }
-  ],
-
-  "permissions": [
-    "redcap_module_save_configuration"
-  ],
-
-  "links": {
-    "control-center": [
+    "name": "emLogger - Logging Utility",
+    "namespace": "Stanford\\emLogger",
+    "description": "An optional logging utility used by many other external modules built at Stanford.  If configured, other modules will write out error, debugging and other log information to the file path specified in the config.",
+    "documentation": "README.md",
+    "versions": [
+        {
+            "0.1": "Initial",
+            "0.2": "5/4/2021 Added support for a single-file mode"
+        }
     ],
-    "project": [
+    "framework-version": 5,
+    "authors": [
+        {
+            "name": "Andrew Martin",
+            "email": "andy123@stanford.edu",
+            "institution": "Stanford University"
+        },
+        {
+            "name": "Jae Lee",
+            "email": "jael@stanford.edu",
+            "institution": "Stanford University"
+        }
+    ],
+    "permissions": [
+        "redcap_module_save_configuration"
+    ],
+    "links": {
+        "control-center": [
+        ],
+        "project": [
+        ]
+    },
+    "system-settings": [
+        {
+            "key": "instructions",
+            "name": "<div class='alert alert-warning'><b>You should leave the top three checkboxes (Enable module and Make Discoverable and Allow users to enable) UNCHECKED.</b><br/>The logging features will still be available to other modules even if it is not enabled on a per-project basis<br/>You can leave both log options unchecked to deactivate any logging.  If you are expecting logs and not seeing then, make sure the module that is logging has debug logs enabled in the external module configuration page for that module</div>",
+            "type": "descriptive"
+        },
+        {
+            "key": "base-server-path",
+            "name": "<b>Base path on server where logs are written</b><br>(<i>e.g.</i> <code>/var/log/redcap/</code> - <u>don't forget to include ending slash</u>)",
+            "required": true,
+            "type": "text"
+        },
+        {
+            "key": "log-json",
+            "name": "<b>Check to log in json format</b><br><i>(emError logs will include a backtrace)",
+            "required": false,
+            "type": "checkbox"
+        },
+        {
+            "key": "log-tsv",
+            "name": "<b>Check to log in tab-separated-value (TSV) format</b>",
+            "required": false,
+            "type": "checkbox"
+        },
+        {
+            "key": "single-file",
+            "name": "<b>Single-File mode</b><br/>If checked, all logs will be output to a single with the module-name attribute included as a parameter.  This was added to support easy logging to kubernetes and splunk where the output file is processed and can be sorted by module in logging software",
+            "required": false,
+            "type": "checkbox"
+        },
+        {
+            "key": "single-file-cleanup",
+            "name": "<b>Enable Weekly Log File Clearing</b><br/>If checked and using single-file mode, a cron job will clear the single log file every Sunday a midnight to prevent it from growing too large.  This is designed for cases where you are shipping your logs off the server to another tool",
+            "required": false,
+            "type": "checkbox"
+        }
+    ],
+    "crons": [
+        {
+            "cron_name": "truncate_logs_cron",
+            "cron_description": "A weekly cron to clear out the log file every Sunday at midnight",
+            "method": "truncateLogsCron",
+            "cron_hour": 0,
+            "cron_minute": 0,
+            "cron_weekday": 0
+        }
     ]
-  },
-
-  "system-settings": [
-    {
-      "key": "instructions",
-      "name": "<div class='alert alert-warning'><b>You should leave the top three checkboxes (Enable module and Make Discoverable and Allow users to enable) UNCHECKED.</b><br/>The logging features will still be available to other modules even if it is not enabled on a per-project basis<br/>You can leave both log options unchecked to deactivate any logging.  If you are expecting logs and not seeing then, make sure the module that is logging has debug logs enabled in the external module configuration page for that module</div>",
-      "type": "descriptive"
-    },
-    {
-      "key": "base-server-path",
-      "name": "<b>Base path on server where logs are written</b><br>(<i>e.g.</i> <code>/var/log/redcap/</code> - <u>don't forget to include ending slash</u>)",
-      "required": true,
-      "type": "text"
-    },
-    {
-      "key": "log-json",
-      "name": "<b>Check to log in json format</b><br><i>(emError logs will include a backtrace)",
-      "required": false,
-      "type": "checkbox"
-    },
-    {
-      "key": "log-tsv",
-      "name": "<b>Check to log in tab-separated-value (TSV) format</b>",
-      "required": false,
-      "type": "checkbox"
-    },
-    {
-      "key": "single-file",
-      "name": "<b>Single-File mode</b><br/>If checked, all logs will be output to a single with the module-name attribute included as a parameter.  This was added to support easy logging to kubernetes and splunk where the output file is processed and can be sorted by module in logging software",
-      "required": false,
-      "type": "checkbox"
-    },
-    {
-      "key": "single-file-cleanup",
-      "name": "<b>Enable Weekly Log File Clearing</b><br/>If checked and using single-file mode, a cron job will clear the single log file every Sunday a midnight to prevent it from growing too large.  This is designed for cases where you are shipping your logs off the server to another tool",
-      "required": false,
-      "type": "checkbox"
-    }
-
-  ],
-
-  "crons": [
-    {
-      "cron_name": "truncate_logs_cron",
-      "cron_description": "A weekly cron to clear out the log file every Sunday at midnight",
-      "method": "truncateLogsCron",
-      "cron_hour": 0,
-      "cron_minute": 0,
-      "cron_weekday": 0
-    }
-  ]
 }

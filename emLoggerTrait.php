@@ -1,4 +1,5 @@
 <?php
+
 namespace YOUR_NAMESPACE_HERE;
 /** @var \YOUR_NAMESPACE_HERE\YOUR_EM_CLASS_NAME_HERE $this */
 
@@ -14,44 +15,43 @@ namespace YOUR_NAMESPACE_HERE;
  * 3) Before you declare your EM class, insert the command:  include "emLoggerTrait.php";
  * 4) Inside your class, before your first function, insert: use emLoggerTrait;
  * 5) (optional) Modify your config.json to include these two optional debug settings
-
-(OPTIONAL) INSERT THESE OPTIONS INTO THE CONFIG.JSON
-
-"system-settings": [
-
-{
-"key": "enable-system-debug-logging",
-"name": "<b>Enable Debug Logging (system-wide)</b><i>(optional)</i> Requires installation and configuration of emLogger",
-"required": false,
-"type": "checkbox"
-},
-
-],
-
-"project-settings": [
-
-{
-"key": "enable-project-debug-logging",
-"name": "<b>Enable Debug Logging</b><br><i>(optional)</i> Requires installation and configuration of emLogger",
-"required": false,
-"type": "checkbox"
-},
-
-],
-
+ *
+ * (OPTIONAL) INSERT THESE OPTIONS INTO THE CONFIG.JSON
+ *
+ * "system-settings": [
+ *
+ * {
+ * "key": "enable-system-debug-logging",
+ * "name": "<b>Enable Debug Logging (system-wide)</b><i>(optional)</i> Requires installation and configuration of emLogger",
+ * "required": false,
+ * "type": "checkbox"
+ * },
+ *
+ * ],
+ *
+ * "project-settings": [
+ *
+ * {
+ * "key": "enable-project-debug-logging",
+ * "name": "<b>Enable Debug Logging</b><br><i>(optional)</i> Requires installation and configuration of emLogger",
+ * "required": false,
+ * "type": "checkbox"
+ * },
+ *
+ * ],
  */
-
 trait emLoggerTrait
 {
     private $emLoggerEnabled = null;    // Cache logger enabled
-    private $emLoggerDebug   = null;    // Cache debug mode
+    private $emLoggerDebug = null;    // Cache debug mode
 
 
     /**
      * Obtain an instance of emLogger or false if not installed / active
      * @return bool|mixed
      */
-    function emLoggerInstance() {
+    function emLoggerInstance()
+    {
 
         // This is the first time used, see if it is enabled on server
         if (is_null($this->emLoggerEnabled)) {
@@ -78,11 +78,12 @@ trait emLoggerTrait
      * Determine if we are in debug mode either on system or project level and cache
      * @return bool
      */
-    function emLoggerDebugMode() {
+    function emLoggerDebugMode()
+    {
         // Set if debug mode once on the first log call
         if (is_null($this->emLoggerDebug)) {
-            $systemDebug         = $this->getSystemSetting('enable-system-debug-logging');
-            $projectDebug        = !empty($_GET['pid']) && $this->getProjectSetting('enable-project-debug-logging');
+            $systemDebug = $this->getSystemSetting('enable-system-debug-logging');
+            $projectDebug = !empty($_GET['pid']) && $this->getProjectSetting('enable-project-debug-logging');
             $this->emLoggerDebug = $systemDebug || $projectDebug;
         }
         return $this->emLoggerDebug;
@@ -93,7 +94,8 @@ trait emLoggerTrait
      * Do the logging
      * The reason we broke it into three functions was to reduce complexity with backtrace and the calling function
      */
-    function emLog() {
+    function emLog()
+    {
         if ($emLogger = $this->emLoggerInstance()) $emLogger->emLog($this->PREFIX, func_get_args(), "INFO");
     }
 
@@ -101,7 +103,8 @@ trait emLoggerTrait
     /**
      * Wrapper for logging an error
      */
-    function emError() {
+    function emError()
+    {
         if ($emLogger = $this->emLoggerInstance()) $emLogger->emLog($this->PREFIX, func_get_args(), "ERROR");
     }
 
@@ -109,8 +112,9 @@ trait emLoggerTrait
     /**
      * Wrapper for logging debug statements
      */
-    function emDebug() {
-        if ( $this->emLoggerDebugMode() && ($emLogger = $this->emLoggerInstance()) ) $emLogger->emLog($this->PREFIX, func_get_args(), "DEBUG");
+    function emDebug()
+    {
+        if ($this->emLoggerDebugMode() && ($emLogger = $this->emLoggerInstance())) $emLogger->emLog($this->PREFIX, func_get_args(), "DEBUG");
     }
 
 }
