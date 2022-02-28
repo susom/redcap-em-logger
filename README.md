@@ -31,10 +31,10 @@ If you are building a new module and want to add emLogger to it, follow these di
 
 ### Building External Modules to use EmLogger
 
-It is useful to wrap this logging function around an external module's own primary class.  Lately we have been doing that with a 'trait'.  
+It is useful to wrap this logging function around an external module's own primary class.  Lately we have been doing that with a 'trait'.
 * **Step 1** copy the `emLoggerTrait.php` file located in this module to your external module.
-* **Step 2** edit the `emLoggerTrait.php` file to fix the namespace
-* **Step 3** In your EM, add an include_once to load the trait.
+* **Step 2** edit the `emLoggerTrait.php` file to fix the namespace at the top of the file (first 2 lines)
+* **Step 3** In your EM, add an include_once to load the `emLoggerTrait.php` file into your module.
 * **Step 4** As soon as your class is defined, add `use emLoggerTrait` (see below)
 
 ```php
@@ -43,12 +43,12 @@ include_once "emLoggerTrait.php";
 class myEM extends \ExternalModules\AbstractExternalModule {
     use emLoggerTrait
 
-    // your normal EM class    
+    // your normal EM class
 }
 ```
 
 This will add three methods to your class:
- 
+
  `$this->emLog(...)`
  `$this->emDebug(...)`
  `$this->emError(...)`
@@ -58,12 +58,13 @@ These methods support an arbitrary number of arguments so you can log many varia
 
 ```php
 $q = REDCap::getData('array',..);
-$this-emDebug("Loaded data", $q);`
+$this->emDebug("Loaded data", $q);`
 ```
 
 emLog and emError are always written to log file.  If you wish to enable 'debug' logging (which is normally turned off) - you can add these options to your EM's config.json file so end-users can turn this level of logging on or off. For example, add these two system and project-level settings:
 
 ```json
+{
   "system-settings": [
     {
       "key": "enable-system-debug-logging",
@@ -72,7 +73,6 @@ emLog and emError are always written to log file.  If you wish to enable 'debug'
       "type": "checkbox"
     }
   ],
-
   "project-settings": [
     {
       "key": "enable-project-debug-logging",
@@ -80,12 +80,13 @@ emLog and emError are always written to log file.  If you wish to enable 'debug'
       "required": false,
       "type": "checkbox"
     }
-   ],
+  ]
+}
 ```
 
 The intention was to use emDebug for most logging when writing a new module.  When you move to production or release the module, these will not be turned on be default.  If there is an issue in the future, you can turn debug logging back on and you have all of your data...
 
 ### Future Ideas
 
-* In the future, I've thought about added an email alert if any emError log entries are posted to notify the super user.  
+* In the future, I've thought about added an email alert if any emError log entries are posted to notify the super user.
 * Currently each EM is making its own instance of this - it really should be shared but haven't gotten that far...

@@ -18,8 +18,11 @@ class emLogger extends \ExternalModules\AbstractExternalModule
     private $base_server_path;
     private $ts_start;
 
-    private $gcpLogger;
+    private $gcp_project_id;
+    private $gcpLogger;             // Google logger client if enabled
     private $gcpLoggerResources;
+
+    private $first_message = true;
 
     function __construct()
     {
@@ -28,13 +31,16 @@ class emLogger extends \ExternalModules\AbstractExternalModule
         $settings = $this->getSystemSettings();
         $this->ts_start = microtime(true);
 
-        $this->log_json = $this->getSystemSetting('log-json');
-        $this->log_tsv = $this->getSystemSetting('log-tsv');
-        $this->single_file = $this->getSystemSetting('single-file');
-        $this->base_server_path = $this->getSystemSetting('base-server-path');
-        if ($this->getSystemSetting('gcp-project-id') != '') {
+        $this->log_json = $settings['log-json']['system_value'];
+        $this->log_tsv = $settings['log-tsv']['system_value'];
+        $this->single_file = $settings['single-file']['system_value'];
+        $this->base_server_path = $settings['base-server-path']['system_value'];
+
+        $this->gcp_project_id = $settings['gcp-project-id'];
+
+        if (!empty($this->gcp_project_id)) {
             $this->gcpLogger = new LoggingClient([
-                'projectId' => $this->getSystemSetting('gcp-project-id')
+                'projectId' => $this->gcp_project_id
             ]);
 
             // TODO customize resource options.
@@ -48,9 +54,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
                     ]
                 ]
             ];
-            //$this->emLog('em-logger', ['hello' => 'world'], 'WARNING');
         }
-
     }
 
 
@@ -118,7 +122,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
         $line = isset($bt[0]['line']) ? $bt[0]['line'] : "";
 
         // DETERMINE TIME
-        $runtime = round((microtime(true) - $this->ts_start) * 1000, 1);
+        $runtime = round((microtime(true) - $this->ts_start) * 1000, 0);
         $date = date('Y-m-d H:i:s');
 
         // DETERMINE PROJECT ID
@@ -163,6 +167,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
 
             $entry = array(
                 "date" => $date,
+                "process" => getmypid(),
                 "type" => $type,
                 "pid" => $pid,
                 "username" => $username,
@@ -215,8 +220,10 @@ class emLogger extends \ExternalModules\AbstractExternalModule
 
                 $entry = array(
                     "date" => $date,
+                    "process" => getmypid(),
+                    "prefix" => $file_prefix,
                     "type" => $type,
-                    "ms" => $runtime,
+                    "ms" => sprintf('%4s', $runtime),
                     "pid" => $pid,
                     "username" => $username,
                     "file" => basename($file, '.php'),
@@ -227,11 +234,19 @@ class emLogger extends \ExternalModules\AbstractExternalModule
                     "msg" => $msg
                 );
 
-                if ($this->single_file) $entry = array("prefix" => $file_prefix) + $entry;
+                if (!$this->single_file) unset($entry["prefix"]);
                 $entries[] = implode("\t", $entry);
             } // loop
             $file_suffix = ".log";
-            $log = implode("\n", $entries) . "\n";
+
+            if ($this->first_message) {
+                $log = "\n";
+                $this->first_message = false;
+            } else {
+                $log = "";
+            }
+
+            $log .= implode("\n", $entries) . "\n";
 
             // WRITE TO FILE
             $this->write($filename . $file_suffix, $log, $flags);
@@ -239,6 +254,11 @@ class emLogger extends \ExternalModules\AbstractExternalModule
 
     } // log
 
+    /**
+     * Google Cloud logging options
+     * @param $filename
+     * @return mixed|string
+     */
     public function getFilePrefix($filename)
     {
         $parts = explode('/', $filename);
@@ -248,7 +268,15 @@ class emLogger extends \ExternalModules\AbstractExternalModule
 
     function write($filename, $data, $flags)
     {
-        if ($this->getSystemSetting('gcp-project-id') != '') {
+        // Default emLogger File output
+        if (is_writable($filename) || is_writable(dirname($filename))) {
+            file_put_contents($filename, $data, $flags);
+        } else {
+            throw new \Exception ("Unable to write emLogger to $filename - is the directory writable?");
+        }
+
+        // Try GCP Cloud option if enabled
+        if (!empty($this->gcp_project_id)) {
             try {
                 $name = $this->getFilePrefix($filename);
                 if ($this->log_tsv) {
@@ -274,15 +302,16 @@ class emLogger extends \ExternalModules\AbstractExternalModule
                 echo $e->getMessage();
             }
         }
-        if (is_writable($filename) || is_writable(dirname($filename))) {
-            file_put_contents($filename, $data, $flags);
-        } else {
-            throw new \Exception ("Unable to write emLogger to $filename - is the directory writable?");
-        }
-
-
     }
 
+
+    /**
+     * Feature to truncate large files if needed.
+     * TODO: Does this only apply to google loggins?
+     * @param $cron
+     * @return void
+     * @throws \Exception
+     */
     public function truncateLogsCron($cron)
     {
         if ($this->single_file) {
