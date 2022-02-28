@@ -6,7 +6,9 @@
   "versions": [
     {
       "0.1": "Initial",
-      "0.2": "5/4/2021 Added support for a single-file mode"
+      "0.2": "5/4/2021 Added support for a single-file mode",
+      "0.3": "9/1/2021 Added support for Google Cloud Project logging",
+      "0.4": "2/25/2022 Tweaked logging format and added process id"
     }
   ],
   "framework-version": 5,
@@ -43,16 +45,15 @@
       "type": "descriptive"
     },
     {
-      "key": "gcp-project-id",
-      "name": "(Optional) Add GCP Project id that emLogger will write its logs into that Project StackDriver. <div><span class='text-lg badge badge-lg badge-danger'>REDCap instance MUST has permission <br>to access StackDriver via Service Account running on background.</span></div>",
-      "required": false,
-      "type": "text"
-    },
-    {
       "key": "base-server-path",
       "name": "<b>Base path on server where logs are written</b><br>(<i>e.g.</i> <code>/var/log/redcap/</code> - <u>don't forget to include ending slash</u>)",
       "required": true,
       "type": "text"
+    },
+    {
+      "key": "mode-alert",
+      "name": "<b>You must select at least one of the two logging options below or else no logs will be written</b>",
+      "type": "descriptive"
     },
     {
       "key": "log-json",
@@ -68,15 +69,21 @@
     },
     {
       "key": "single-file",
-      "name": "<b>Single-File mode</b><br/>If checked, all logs will be output to a single with the module-name attribute included as a parameter.  This was added to support easy logging to kubernetes and splunk where the output file is processed and can be sorted by module in logging software",
+      "name": "<b>Single-File mode</b> <i>(optional)</i><br/>Normally, each External Module receives its own log file.  However, if you are shipping logs to another process it is easier to monitor just a single file.  If checked, a new column corresponding to the module name is added and all logged output goes into a single file called em_logger.log or em_logger.json",
       "required": false,
       "type": "checkbox"
     },
     {
       "key": "single-file-cleanup",
-      "name": "<b>Enable Weekly Log File Clearing</b><br/>If checked and using single-file mode, a cron job will clear the single log file every Sunday a midnight to prevent it from growing too large.  This is designed for cases where you are shipping your logs off the server to another tool",
+      "name": "<b>Enable Weekly Log File Clearing</b>  <i>(optional)</i><br/>If checked AND using single-file mode, a cron job will clear the single log file every Sunday a midnight to prevent it from growing too large.  This is designed for cases where you are shipping your logs off the server to another tool",
       "required": false,
       "type": "checkbox"
+    },
+    {
+      "key": "gcp-project-id",
+      "name": "<b>GCP Logging</b> <i>(optional--special use)</i><br/>Provide the Google Cloud Project Name and emLogger will write its logs into that StackDriver for that project.<br/>The service account running this server must have permission to access StackDriver account.",
+      "required": false,
+      "type": "text"
     }
   ],
   "crons": [
