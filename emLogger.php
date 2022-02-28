@@ -10,6 +10,8 @@ class emLogger extends \ExternalModules\AbstractExternalModule
     private $base_server_path;
     private $ts_start;
 
+    private $first_message = true;
+
     function __construct()
     {
         parent::__construct();
@@ -17,10 +19,10 @@ class emLogger extends \ExternalModules\AbstractExternalModule
         $settings               = $this->getSystemSettings();
 	    $this->ts_start         = microtime(true);
 
-        $this->log_json         = $this->getSystemSetting('log-json');
-	    $this->log_tsv          = $this->getSystemSetting('log-tsv');
-	    $this->single_file      = $this->getSystemSetting('single-file');
-        $this->base_server_path = $this->getSystemSetting('base-server-path');
+        $this->log_json         = $settings['log-json']['system_value'];
+        $this->log_tsv          = $settings['log-tsv']['system_value'];
+        $this->single_file      = $settings['single-file']['system_value'];
+        $this->base_server_path = $settings['base-server-path']['system_value'];
     }
 
 
@@ -85,7 +87,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
         $line       = isset($bt[0]['line'])     ? $bt[0]['line']        : "";
 
         // DETERMINE TIME
-        $runtime = round ((microtime(true) - $this->ts_start) * 1000,1);
+        $runtime = round ((microtime(true) - $this->ts_start) * 1000,0);
         $date = date('Y-m-d H:i:s');
 
         // DETERMINE PROJECT ID
@@ -130,6 +132,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
 
             $entry = array(
                 "date"      => $date,
+                "process"   => getmypid(),
                 "type"      => $type,
                 "pid"       => $pid,
                 "username"  => $username,
@@ -182,8 +185,11 @@ class emLogger extends \ExternalModules\AbstractExternalModule
 
                 $entry = array(
                     "date"     => $date,
+                    "process"  => getmypid(),
+                    "prefix"   => $file_prefix,
                     "type"     => $type,
-                    "ms"       => $runtime,
+                    // "ms"       => $runtime,
+                    "ms"       => sprintf( '%4s', $runtime),
                     "pid"      => $pid,
                     "username" => $username,
                     "file"     => basename($file, '.php'),
@@ -194,11 +200,19 @@ class emLogger extends \ExternalModules\AbstractExternalModule
                     "msg"      => $msg
                 );
 
-                if ($this->single_file) $entry = array("prefix" => $file_prefix) + $entry;
+                if (!$this->single_file) unset($entry["prefix"]);
                 $entries[] = implode("\t", $entry);
             } // loop
             $file_suffix = ".log";
-            $log = implode("\n", $entries) . "\n";
+
+            if ($this->first_message) {
+                $log = "\n";
+                $this->first_message=false;
+            } else {
+                $log = "";
+            }
+
+            $log .= implode("\n", $entries) . "\n";
 
             // WRITE TO FILE
             $this->write($filename . $file_suffix, $log, $flags);
