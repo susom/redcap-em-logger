@@ -179,7 +179,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
             $log = json_encode($entry) . "\n";
 
             // WRITE TO FILE
-            $this->write($filename . $file_suffix, $log, $flags);
+            $this->write($filename . $file_suffix, $log, $flags, $type);
         } //json
 
 
@@ -241,7 +241,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
             $log .= implode("\n", $entries) . "\n";
 
             // WRITE TO FILE
-            $this->write($filename . $file_suffix, $log, $flags);
+            $this->write($filename . $file_suffix, $log, $flags, $type);
         } // tsv
 
     } // log
@@ -258,7 +258,8 @@ class emLogger extends \ExternalModules\AbstractExternalModule
         return $filename[0];
     }
 
-    function write($filename, $data, $flags)
+
+    function write($filename, $data, $flags, $type = 'INFO')
     {
         // Default emLogger File output
         if (is_writable($filename) || is_writable(dirname($filename))) {
@@ -275,9 +276,17 @@ class emLogger extends \ExternalModules\AbstractExternalModule
                     $rows = explode("\n", $data);
 
                     foreach ($rows as $row) {
-                        $entry = explode("\t", $row);
-                        $this->gcpLoggerResources['severity'] = $entry[1];
-                        $this->gcpLoggerResources['resources']['labels']['container_name'] = $name;
+                        if (!$row) {
+                            continue;
+                        }
+                        if (is_string($row) && $this->isJson($row)) {
+                            $entry = json_decode($data, true);
+                        } else {
+                            $entry = $row;
+                        }
+
+                        $this->gcpLoggerResources['severity'] = $type;
+                        $this->gcpLoggerResources['resource']['labels']['container_name'] = $name;
                         $logger = $this->gcpLogger->logger($name, $this->gcpLoggerResources);
                         $e = $logger->entry($entry, $this->gcpLoggerResources);
                         $logger->write($e);
@@ -285,7 +294,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
                 } elseif ($this->log_json) {
                     $entry = json_decode($data, true);
                     $this->gcpLoggerResources['resource']['labels']['container_name'] = $name;
-                    $this->gcpLoggerResources['severity'] = $entry['type'];
+                    $this->gcpLoggerResources['severity'] = $type;
                     $logger = $this->gcpLogger->logger($name, $this->gcpLoggerResources);
                     $entry = $logger->entry($entry, $this->gcpLoggerResources);
                     $logger->write($entry);
