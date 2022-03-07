@@ -2,11 +2,7 @@
 
 namespace Stanford\emLogger;
 
-# Includes the autoloader for libraries installed with composer
-require __DIR__ . '/vendor/autoload.php';
 
-# Imports the Google Cloud client library
-use Google\Cloud\Logging\LoggingClient;
 
 // commit just to trigger travis build.
 
@@ -18,8 +14,6 @@ class emLogger extends \ExternalModules\AbstractExternalModule
     private $base_server_path;
     private $ts_start;
 
-    private $gcpLogger;
-    private $gcpLoggerResources;
 
     function __construct()
     {
@@ -32,24 +26,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
         $this->log_tsv = $this->getSystemSetting('log-tsv');
         $this->single_file = $this->getSystemSetting('single-file');
         $this->base_server_path = $this->getSystemSetting('base-server-path');
-        if ($this->getSystemSetting('gcp-project-id') != '') {
-            $this->gcpLogger = new LoggingClient([
-                'projectId' => $this->getSystemSetting('gcp-project-id')
-            ]);
 
-            // TODO customize resource options.
-            $this->gcpLoggerResources = [
-                'severity' => '',
-                'resource' => [
-                    'type' => 'k8s_container',
-                    'labels' => [
-                        'cluster_name' => 'redcap-gke-dev-cluster',
-                        'container_name' => 'em-logger'
-                    ]
-                ]
-            ];
-            //$this->emLog('em-logger', ['hello' => 'world'], 'WARNING');
-        }
 
     }
 
@@ -248,32 +225,6 @@ class emLogger extends \ExternalModules\AbstractExternalModule
 
     function write($filename, $data, $flags)
     {
-        if ($this->getSystemSetting('gcp-project-id') != '') {
-            try {
-                $name = $this->getFilePrefix($filename);
-                if ($this->log_tsv) {
-                    $rows = explode("\n", $data);
-
-                    foreach ($rows as $row) {
-                        $entry = explode("\t", $row);
-                        $this->gcpLoggerResources['severity'] = $entry[1];
-                        $this->gcpLoggerResources['resources']['labels']['container_name'] = $name;
-                        $logger = $this->gcpLogger->logger($name, $this->gcpLoggerResources);
-                        $e = $logger->entry($entry, $this->gcpLoggerResources);
-                        $logger->write($e);
-                    }
-                } elseif ($this->log_json) {
-                    $entry = json_decode($data, true);
-                    $this->gcpLoggerResources['resource']['labels']['container_name'] = $name;
-                    $this->gcpLoggerResources['severity'] = $entry['type'];
-                    $logger = $this->gcpLogger->logger($name, $this->gcpLoggerResources);
-                    $entry = $logger->entry($entry, $this->gcpLoggerResources);
-                    $logger->write($entry);
-                }
-            } catch (\Exception $e) {
-                echo $e->getMessage();
-            }
-        }
         if (is_writable($filename) || is_writable(dirname($filename))) {
             file_put_contents($filename, $data, $flags);
         } else {
