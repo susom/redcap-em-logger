@@ -19,6 +19,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
     private $ts_start;
 
     private $gcp_project_id;
+    private $gcp_logging_resources;
     private $gcpLogger;             // Google logger client if enabled
     private $gcpLoggerResources;
 
@@ -37,23 +38,14 @@ class emLogger extends \ExternalModules\AbstractExternalModule
         $this->base_server_path = $settings['base-server-path']['system_value'];
 
         $this->gcp_project_id = $settings['gcp-project-id'];
+        $this->gcp_logging_resources = json_decode($settings['gcp-logging-resources'], true);
 
-        if (!empty($this->gcp_project_id)) {
+        if (!empty($this->gcp_project_id) && !empty($this->gcp_logging_resources)) {
             $this->gcpLogger = new LoggingClient([
                 'projectId' => $this->gcp_project_id
             ]);
 
-            // TODO customize resource options.
-            $this->gcpLoggerResources = [
-                'severity' => '',
-                'resource' => [
-                    'type' => 'k8s_container',
-                    'labels' => [
-                        'cluster_name' => 'redcap-gke-dev-cluster',
-                        'container_name' => 'em-logger'
-                    ]
-                ]
-            ];
+            $this->gcpLoggerResources = $this->gcp_logging_resources;
         }
     }
 

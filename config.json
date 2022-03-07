@@ -78,10 +78,21 @@
             "type": "checkbox"
         },
         {
+            "key": "gcp-section",
+            "name": "<div class='alert alert-info'><b>GCP Configuration to log into GCP StackDrive instead local drive</b><br/></div>",
+            "type": "descriptive"
+        },
+        {
             "key": "gcp-project-id",
             "name": "<b>GCP Logging</b> <i>(optional--special use)</i><br/>Provide the Google Cloud Project Name and emLogger will write its logs into that StackDriver for that project.<br/>The service account running this server must have permission to access StackDriver account.",
             "required": false,
             "type": "text"
+        },
+        {
+            "key": "gcp-logging-resources",
+            "name": "<div class='alert alert-warning'><b>GCP Logging Resources</b> <i>(optional--special use)</i><br/>JSON object to define the Log Entries resources. This object will define type of service, default severity, etc..., for more on how to define your resources object click <a target='_blank' href='https://cloud.google.com/logging/docs/view/query-library-preview'>here</a></div>",
+            "required": false,
+            "type": "textarea"
         }
     ],
     "crons": [
