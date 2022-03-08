@@ -167,6 +167,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
                 "file" => $file,
                 "line" => $line,
                 "function" => $function,
+                "sourceIP" => $this->getIP(),
                 "runtime" => $runtime
             );
 
@@ -221,6 +222,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
                     "file" => basename($file, '.php'),
                     "line" => $line,
                     "function" => $function,
+                    "sourceIP" => $this->getIP(),
                     "arg" => "[" . ($i + 1) . "/" . $count . "]",
                     "obj" => $obj,
                     "msg" => $msg
@@ -258,6 +260,19 @@ class emLogger extends \ExternalModules\AbstractExternalModule
         return $filename[0];
     }
 
+    public function getIP()
+    {
+        if (!empty($_SERVER["HTTP_CLIENT_IP"])) {
+            //check for ip from share internet
+            $ip = $_SERVER["HTTP_CLIENT_IP"];
+        } elseif (!empty($_SERVER["HTTP_X_FORWARDED_FOR"])) {
+            // Check for the Proxy User
+            $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+        } else {
+            $ip = $_SERVER["REMOTE_ADDR"];
+        }
+        return $ip;
+    }
 
     function write($filename, $data, $flags, $type = 'INFO')
     {
@@ -287,6 +302,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
 
                         $this->gcpLoggerResources['severity'] = $type;
                         $this->gcpLoggerResources['resource']['labels']['container_name'] = $name;
+                        $this->gcpLoggerResources['resource']['labels']['source'] = $this->getIP();
                         $logger = $this->gcpLogger->logger($name, $this->gcpLoggerResources);
                         $e = $logger->entry($entry, $this->gcpLoggerResources);
                         $logger->write($e);
@@ -294,6 +310,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
                 } elseif ($this->log_json) {
                     $entry = json_decode($data, true);
                     $this->gcpLoggerResources['resource']['labels']['container_name'] = $name;
+                    $this->gcpLoggerResources['resource']['labels']['source'] = $this->getIP();
                     $this->gcpLoggerResources['severity'] = $type;
                     $logger = $this->gcpLogger->logger($name, $this->gcpLoggerResources);
                     $entry = $logger->entry($entry, $this->gcpLoggerResources);
