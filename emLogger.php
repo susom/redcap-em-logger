@@ -14,6 +14,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
     private $base_server_path;
     private $ts_start;
 
+    private $first_message = true;
 
     function __construct()
     {
@@ -140,6 +141,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
 
             $entry = array(
                 "date" => $date,
+                "process" => getmypid(),
                 "type" => $type,
                 "pid" => $pid,
                 "username" => $username,
@@ -192,8 +194,10 @@ class emLogger extends \ExternalModules\AbstractExternalModule
 
                 $entry = array(
                     "date" => $date,
+                    "process" => getmypid(),
+                    "prefix" => $file_prefix,
                     "type" => $type,
-                    "ms" => $runtime,
+                    "ms" => sprintf('%4s',$runtime),
                     "pid" => $pid,
                     "username" => $username,
                     "file" => basename($file, '.php'),
