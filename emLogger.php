@@ -168,7 +168,9 @@ class emLogger extends \ExternalModules\AbstractExternalModule
                 "line" => $line,
                 "function" => $function,
                 "sourceIP" => $this->getIP(),
-                "runtime" => $runtime
+                "runtime" => $runtime,
+                "desc" => "external_module",
+                "external_module_name" => $this->getFilePrefix($filename)
             );
 
             // Add the prefix in single-file mode
