@@ -32,14 +32,13 @@ class MapValue extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\Expr\V1alpha1\MapValue\Entry[]|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type \Google\Api\Expr\V1alpha1\MapValue\Entry[]|\Google\Protobuf\Internal\RepeatedField $entries
      *           The set of map entries.
      *           CEL has fewer restrictions on keys, so a protobuf map represenation
      *           cannot be used.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\Value::initOnce();
         parent::__construct($data);
     }

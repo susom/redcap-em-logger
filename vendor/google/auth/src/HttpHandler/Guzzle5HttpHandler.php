@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 namespace Google\Auth\HttpHandler;
 
 use Exception;
@@ -26,6 +25,9 @@ use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * @deprecated
+ */
 class Guzzle5HttpHandler
 {
     /**

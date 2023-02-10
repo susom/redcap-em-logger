@@ -19,6 +19,7 @@ namespace Google\Cloud\Core;
 
 use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\Cache\MemoryCacheItemPool;
+use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
@@ -78,20 +79,20 @@ trait RequestWrapperTrait
      * @param array $config {
      *     Configuration options.
      *
-     * @type CacheItemPoolInterface $authCache A cache for storing access
+     *     @type CacheItemPoolInterface $authCache A cache for storing access
      *           tokens. **Defaults to** a simple in memory implementation.
-     * @type array $authCacheOptions Cache configuration options.
-     * @type FetchAuthTokenInterface $credentialsFetcher A credentials
+     *     @type array $authCacheOptions Cache configuration options.
+     *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
      *           fetcher instance.
-     * @type array $keyFile The contents of the service account credentials
+     *     @type array $keyFile The contents of the service account credentials
      *           .json file retrieved from the Google Developer's Console.
      *           Ex: `json_decode(file_get_contents($path), true)`.
-     * @type float $requestTimeout Seconds to wait before timing out the
+     *     @type float $requestTimeout Seconds to wait before timing out the
      *           request. **Defaults to** `0` with REST and `60` with gRPC.
-     * @type int $retries Number of retries for a failed request.
+     *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
-     * @type array $scopes Scopes to be used for the request.
-     * @type string $quotaProject Specifies a user project to bill for
+     *     @type array $scopes Scopes to be used for the request.
+     *     @type string $quotaProject Specifies a user project to bill for
      *           access charges associated with the request.
      * }
      * @throws \InvalidArgumentException
@@ -164,17 +165,28 @@ trait RequestWrapperTrait
 
         if ($this->credentialsFetcher) {
             $fetcher = $this->credentialsFetcher;
-        } elseif ($this->keyFile) {
-            if ($this->quotaProject) {
-                $this->keyFile['quota_project_id'] = $this->quotaProject;
+        } else {
+            if ($this->keyFile) {
+                if ($this->quotaProject) {
+                    $this->keyFile['quota_project_id'] = $this->quotaProject;
+                }
+
+                $fetcher = CredentialsLoader::makeCredentials($this->scopes, $this->keyFile);
+            } else {
+                try {
+                    $fetcher = $this->getADC();
+                } catch (\DomainException $ex) {
+                    $fetcher = new AnonymousCredentials();
+                }
             }
 
-            $fetcher = CredentialsLoader::makeCredentials($this->scopes, $this->keyFile);
-        } else {
-            try {
-                $fetcher = $this->getADC();
-            } catch (\DomainException $ex) {
-                $fetcher = new AnonymousCredentials();
+            // Note: If authCache is set and keyFile is not set, the resulting
+            // credentials instance will be FetchAuthTokenCache, and we will be
+            // unable to enable "useJwtAccessWithScope". This is unlikely, as
+            // keyFile is automatically set in ClientTrait::configureAuthentication,
+            // and so should always exist when ServiceAccountCredentials are in use.
+            if ($fetcher instanceof ServiceAccountCredentials) {
+                $fetcher->useJwtAccessWithScope();
             }
         }
 

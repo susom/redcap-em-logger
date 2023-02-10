@@ -39,11 +39,12 @@ class JsonFormatter extends NormalizerFormatter
     /**
      * @param self::BATCH_MODE_* $batchMode
      */
-    public function __construct(int $batchMode = self::BATCH_MODE_JSON, bool $appendNewline = true, bool $ignoreEmptyContextAndExtra = false)
+    public function __construct(int $batchMode = self::BATCH_MODE_JSON, bool $appendNewline = true, bool $ignoreEmptyContextAndExtra = false, bool $includeStacktraces = false)
     {
         $this->batchMode = $batchMode;
         $this->appendNewline = $appendNewline;
         $this->ignoreEmptyContextAndExtra = $ignoreEmptyContextAndExtra;
+        $this->includeStacktraces = $includeStacktraces;
 
         parent::__construct();
     }
@@ -109,11 +110,13 @@ class JsonFormatter extends NormalizerFormatter
     }
 
     /**
-     * @return void
+     * @return self
      */
-    public function includeStacktraces(bool $include = true)
+    public function includeStacktraces(bool $include = true): self
     {
         $this->includeStacktraces = $include;
+
+        return $this;
     }
 
     /**
@@ -156,7 +159,7 @@ class JsonFormatter extends NormalizerFormatter
     protected function normalize($data, int $depth = 0)
     {
         if ($depth > $this->maxNormalizeDepth) {
-            return 'Over ' . $this->maxNormalizeDepth . ' levels deep, aborting normalization';
+            return 'Over '.$this->maxNormalizeDepth.' levels deep, aborting normalization';
         }
 
         if (is_array($data)) {
@@ -165,7 +168,7 @@ class JsonFormatter extends NormalizerFormatter
             $count = 1;
             foreach ($data as $key => $value) {
                 if ($count++ > $this->maxNormalizeItemCount) {
-                    $normalized['...'] = 'Over ' . $this->maxNormalizeItemCount . ' items (' . count($data) . ' total), aborting normalization';
+                    $normalized['...'] = 'Over '.$this->maxNormalizeItemCount.' items ('.count($data).' total), aborting normalization';
                     break;
                 }
 
@@ -175,12 +178,25 @@ class JsonFormatter extends NormalizerFormatter
             return $normalized;
         }
 
-        if ($data instanceof \DateTimeInterface) {
-            return $this->formatDate($data);
-        }
+        if (is_object($data)) {
+            if ($data instanceof \DateTimeInterface) {
+                return $this->formatDate($data);
+            }
 
-        if ($data instanceof Throwable) {
-            return $this->normalizeException($data, $depth);
+            if ($data instanceof Throwable) {
+                return $this->normalizeException($data, $depth);
+            }
+
+            // if the object has specific json serializability we want to make sure we skip the __toString treatment below
+            if ($data instanceof \JsonSerializable) {
+                return $data;
+            }
+
+            if (method_exists($data, '__toString')) {
+                return $data->__toString();
+            }
+
+            return $data;
         }
 
         if (is_resource($data)) {

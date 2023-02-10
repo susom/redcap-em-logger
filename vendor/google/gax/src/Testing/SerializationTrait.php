@@ -29,13 +29,19 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 namespace Google\ApiCore\Testing;
 
 use Google\Protobuf\Internal\Message;
 
+/**
+ * @internal
+ */
 trait SerializationTrait
 {
+    /**
+     * @param mixed $message
+     * @param mixed $deserialize
+     */
     protected function deserializeMessage($message, $deserialize)
     {
         if ($message === null) {

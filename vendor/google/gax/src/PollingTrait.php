@@ -32,6 +32,9 @@
 
 namespace Google\ApiCore;
 
+/**
+ * @internal
+ */
 trait PollingTrait
 {
     /**
@@ -40,10 +43,10 @@ trait PollingTrait
      * @param array $options {
      *                       Options for configuring the polling behaviour.
      *
-     * @type int $initialPollDelayMillis The initial polling interval to use, in milliseconds.
-     * @type int $pollDelayMultiplier Multiplier applied to the polling interval on each retry.
-     * @type int $maxPollDelayMillis The maximum polling interval to use, in milliseconds.
-     * @type int $totalPollTimeoutMillis The maximum amount of time to continue polling, in milliseconds.
+     *     @type int $initialPollDelayMillis The initial polling interval to use, in milliseconds.
+     *     @type int $pollDelayMultiplier Multiplier applied to the polling interval on each retry.
+     *     @type int $maxPollDelayMillis The maximum polling interval to use, in milliseconds.
+     *     @type int $totalPollTimeoutMillis The maximum amount of time to continue polling, in milliseconds.
      * }
      * @return bool
      */
@@ -65,7 +68,7 @@ trait PollingTrait
             if ($pollCallable()) {
                 return true;
             }
-            $currentPollDelayMillis = min([
+            $currentPollDelayMillis = (int) min([
                 $currentPollDelayMillis * $pollDelayMultiplier,
                 $maxPollDelayMillis
             ]);
@@ -85,9 +88,9 @@ trait PollingTrait
     /**
      * Protected to allow overriding for tests
      *
-     * @param float $millis
+     * @param int $millis
      */
-    protected function sleepMillis($millis)
+    protected function sleepMillis(int $millis)
     {
         usleep($millis * 1000);
     }

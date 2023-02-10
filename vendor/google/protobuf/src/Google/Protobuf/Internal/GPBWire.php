@@ -37,7 +37,7 @@ class GPBWire
 
     const TAG_TYPE_BITS = 3;
 
-    const WIRETYPE_VARINT = 0;
+    const WIRETYPE_VARINT  = 0;
     const WIRETYPE_FIXED64 = 1;
     const WIRETYPE_LENGTH_DELIMITED = 2;
     const WIRETYPE_START_GROUP = 3;
@@ -92,38 +92,38 @@ class GPBWire
         }
     }
 
-    // ZigZag Transform:  Encodes signed integers so that they can be effectively
-    // used with varint encoding.
-    //
-    // varint operates on unsigned integers, encoding smaller numbers into fewer
-    // bytes.  If you try to use it on a signed integer, it will treat this
-    // number as a very large unsigned integer, which means that even small
-    // signed numbers like -1 will take the maximum number of bytes (10) to
-    // encode.  zigZagEncode() maps signed integers to unsigned in such a way
-    // that those with a small absolute value will have smaller encoded values,
-    // making them appropriate for encoding using varint.
-    //
-    // int32 ->     uint32
-    // -------------------------
-    //           0 ->          0
-    //          -1 ->          1
-    //           1 ->          2
-    //          -2 ->          3
-    //         ... ->        ...
-    //  2147483647 -> 4294967294
-    // -2147483648 -> 4294967295
-    //
-    //        >> encode >>
-    //        << decode <<
-    public static function zigZagEncode32($int32)
-    {
-        if (PHP_INT_SIZE == 8) {
-            $trim_int32 = $int32 & 0xFFFFFFFF;
-            return (($trim_int32 << 1) ^ ($int32 << 32 >> 63)) & 0xFFFFFFFF;
-        } else {
-            return ($int32 << 1) ^ ($int32 >> 31);
-        }
-    }
+  // ZigZag Transform:  Encodes signed integers so that they can be effectively
+  // used with varint encoding.
+  //
+  // varint operates on unsigned integers, encoding smaller numbers into fewer
+  // bytes.  If you try to use it on a signed integer, it will treat this
+  // number as a very large unsigned integer, which means that even small
+  // signed numbers like -1 will take the maximum number of bytes (10) to
+  // encode.  zigZagEncode() maps signed integers to unsigned in such a way
+  // that those with a small absolute value will have smaller encoded values,
+  // making them appropriate for encoding using varint.
+  //
+  // int32 ->     uint32
+  // -------------------------
+  //           0 ->          0
+  //          -1 ->          1
+  //           1 ->          2
+  //          -2 ->          3
+  //         ... ->        ...
+  //  2147483647 -> 4294967294
+  // -2147483648 -> 4294967295
+  //
+  //        >> encode >>
+  //        << decode <<
+  public static function zigZagEncode32($int32)
+  {
+      if (PHP_INT_SIZE == 8) {
+          $trim_int32 = $int32 & 0xFFFFFFFF;
+          return (($trim_int32 << 1) ^ ($int32 << 32 >> 63)) & 0xFFFFFFFF;
+      } else {
+          return ($int32 << 1) ^ ($int32 >> 31);
+      }
+  }
 
     public static function zigZagDecode32($uint32)
     {
@@ -146,7 +146,7 @@ class GPBWire
                 return bcsub(bcmul(bcsub(0, $int64), 2), 1);
             }
         } else {
-            return ($int64 << 1) ^ ($int64 >> 63);
+            return ((int)$int64 << 1) ^ ((int)$int64 >> 63);
         }
     }
 
@@ -413,7 +413,7 @@ class GPBWire
                 return 5;
             }
         }
-        if ($value < (1 << 7)) {
+        if ($value < (1 <<  7)) {
             return 1;
         }
         if ($value < (1 << 14)) {
@@ -476,7 +476,7 @@ class GPBWire
             if ($value < 0) {
                 return 10;
             }
-            if ($value < (1 << 7)) {
+            if ($value < (1 <<  7)) {
                 return 1;
             }
             if ($value < (1 << 14)) {

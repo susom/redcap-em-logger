@@ -53,7 +53,7 @@ class NewRelicHandler extends AbstractProcessingHandler
      * {@inheritDoc}
      *
      * @param string|null $appName
-     * @param bool $explodeArrays
+     * @param bool        $explodeArrays
      * @param string|null $transactionName
      */
     public function __construct(
@@ -62,11 +62,10 @@ class NewRelicHandler extends AbstractProcessingHandler
         ?string $appName = null,
         bool $explodeArrays = false,
         ?string $transactionName = null
-    )
-    {
+    ) {
         parent::__construct($level, $bubble);
 
-        $this->appName = $appName;
+        $this->appName       = $appName;
         $this->explodeArrays = $explodeArrays;
         $this->transactionName = $transactionName;
     }
@@ -179,7 +178,7 @@ class NewRelicHandler extends AbstractProcessingHandler
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      */
     protected function setNewRelicParameter(string $key, $value): void
     {

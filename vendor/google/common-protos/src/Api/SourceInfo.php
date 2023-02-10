@@ -28,12 +28,11 @@ class SourceInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Protobuf\Any[]|\Google\Protobuf\Internal\RepeatedField $source_files
+     *     @type \Google\Protobuf\Any[]|\Google\Protobuf\Internal\RepeatedField $source_files
      *           All files used during config generation.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\SourceInfo::initOnce();
         parent::__construct($data);
     }

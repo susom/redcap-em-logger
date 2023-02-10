@@ -34,14 +34,13 @@ class FunctionType extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\Expr\V1alpha1\Type $result_type
+     *     @type \Google\Api\Expr\V1alpha1\Type $result_type
      *           Result type of the function.
-     * @type \Google\Api\Expr\V1alpha1\Type[]|\Google\Protobuf\Internal\RepeatedField $arg_types
+     *     @type \Google\Api\Expr\V1alpha1\Type[]|\Google\Protobuf\Internal\RepeatedField $arg_types
      *           Argument types of the function.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\Checked::initOnce();
         parent::__construct($data);
     }

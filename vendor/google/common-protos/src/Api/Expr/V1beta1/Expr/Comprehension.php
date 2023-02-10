@@ -88,28 +88,27 @@ class Comprehension extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $iter_var
+     *     @type string $iter_var
      *           The name of the iteration variable.
-     * @type \Google\Api\Expr\V1beta1\Expr $iter_range
+     *     @type \Google\Api\Expr\V1beta1\Expr $iter_range
      *           The range over which var iterates.
-     * @type string $accu_var
+     *     @type string $accu_var
      *           The name of the variable used for accumulation of the result.
-     * @type \Google\Api\Expr\V1beta1\Expr $accu_init
+     *     @type \Google\Api\Expr\V1beta1\Expr $accu_init
      *           The initial value of the accumulator.
-     * @type \Google\Api\Expr\V1beta1\Expr $loop_condition
+     *     @type \Google\Api\Expr\V1beta1\Expr $loop_condition
      *           An expression which can contain iter_var and accu_var.
      *           Returns false when the result has been computed and may be used as
      *           a hint to short-circuit the remainder of the comprehension.
-     * @type \Google\Api\Expr\V1beta1\Expr $loop_step
+     *     @type \Google\Api\Expr\V1beta1\Expr $loop_step
      *           An expression which can contain iter_var and accu_var.
      *           Computes the next value of accu_var.
-     * @type \Google\Api\Expr\V1beta1\Expr $result
+     *     @type \Google\Api\Expr\V1beta1\Expr $result
      *           An expression which can contain accu_var.
      *           Computes the result.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Beta1\Expr::initOnce();
         parent::__construct($data);
     }

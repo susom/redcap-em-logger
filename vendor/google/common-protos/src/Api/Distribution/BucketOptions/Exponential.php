@@ -46,16 +46,15 @@ class Exponential extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int $num_finite_buckets
+     *     @type int $num_finite_buckets
      *           Must be greater than 0.
-     * @type float $growth_factor
+     *     @type float $growth_factor
      *           Must be greater than 1.
-     * @type float $scale
+     *     @type float $scale
      *           Must be greater than 0.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Distribution::initOnce();
         parent::__construct($data);
     }

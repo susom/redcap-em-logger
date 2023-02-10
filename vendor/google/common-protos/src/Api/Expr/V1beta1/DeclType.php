@@ -43,17 +43,16 @@ class DeclType extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int $id
+     *     @type int $id
      *           The expression id of the declared type, if applicable.
-     * @type string $type
+     *     @type string $type
      *           The type name, e.g. 'int', 'my.type.Type' or 'T'
-     * @type \Google\Api\Expr\V1beta1\DeclType[]|\Google\Protobuf\Internal\RepeatedField $type_params
+     *     @type \Google\Api\Expr\V1beta1\DeclType[]|\Google\Protobuf\Internal\RepeatedField $type_params
      *           An ordered list of type parameters, e.g. `<string, int>`.
      *           Only applies to a subset of types, e.g. `map`, `list`.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Beta1\Decl::initOnce();
         parent::__construct($data);
     }

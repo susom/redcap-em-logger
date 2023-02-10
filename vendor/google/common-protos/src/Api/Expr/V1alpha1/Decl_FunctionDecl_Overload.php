@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Api\Expr\V1alpha1\Decl\FunctionDecl\Overload instead.
      * @deprecated
      */
-    class Decl_FunctionDecl_Overload
-    {
-    }
+    class Decl_FunctionDecl_Overload {}
 }
 class_exists(Decl\FunctionDecl\Overload::class);
 @trigger_error('Google\Api\Expr\V1alpha1\Decl_FunctionDecl_Overload is deprecated and will be removed in the next major release. Use Google\Api\Expr\V1alpha1\Decl\FunctionDecl\Overload instead', E_USER_DEPRECATED);

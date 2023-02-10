@@ -67,16 +67,16 @@ class GPBJsonWire
             $value_field = $map_entry->getFieldByNumber(2);
 
             switch ($key_field->getType()) {
-                case GPBType::STRING:
-                case GPBType::SFIXED64:
-                case GPBType::INT64:
-                case GPBType::SINT64:
-                case GPBType::FIXED64:
-                case GPBType::UINT64:
-                    $additional_quote = false;
-                    break;
-                default:
-                    $additional_quote = true;
+            case GPBType::STRING:
+            case GPBType::SFIXED64:
+            case GPBType::INT64:
+            case GPBType::SINT64:
+            case GPBType::FIXED64:
+            case GPBType::UINT64:
+                $additional_quote = false;
+                break;
+            default:
+                $additional_quote = true;
             }
 
             foreach ($values as $key => $value) {
@@ -162,7 +162,7 @@ class GPBJsonWire
                 if ($value < 0) {
                     $value = bcadd($value, "18446744073709551616");
                 }
-            // Intentional fall through.
+                // Intentional fall through.
             case GPBType::SFIXED64:
             case GPBType::INT64:
             case GPBType::SINT64:
@@ -253,26 +253,17 @@ class GPBJsonWire
 
     private static function jsonNiceEscape($c)
     {
-        switch ($c) {
-            case '"':
-                return "\\\"";
-            case '\\':
-                return "\\\\";
-            case '/':
-                return "\\/";
-            case '\b':
-                return "\\b";
-            case '\f':
-                return "\\f";
-            case '\n':
-                return "\\n";
-            case '\r':
-                return "\\r";
-            case '\t':
-                return "\\t";
-            default:
-                return NULL;
-        }
+      switch ($c) {
+          case '"':  return "\\\"";
+          case '\\': return "\\\\";
+          case '/': return "\\/";
+          case '\b': return "\\b";
+          case '\f': return "\\f";
+          case '\n': return "\\n";
+          case '\r': return "\\r";
+          case '\t': return "\\t";
+          default:   return NULL;
+      }
     }
 
     private static function isJsonEscaped($c)
@@ -301,9 +292,9 @@ class GPBJsonWire
                 }
                 $escaped_value .= $escape;
             } else {
-                if ($unescaped_run === "") {
-                    $unescaped_run .= $c;
-                }
+              if ($unescaped_run === "") {
+                $unescaped_run .= $c;
+              }
             }
         }
         $escaped_value .= $unescaped_run;

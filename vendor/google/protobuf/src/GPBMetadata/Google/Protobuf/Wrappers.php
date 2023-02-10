@@ -8,16 +8,15 @@ class Wrappers
 {
     public static $is_initialized = false;
 
-    public static function initOnce()
-    {
+    public static function initOnce() {
         $pool = \Google\Protobuf\Internal\DescriptorPool::getGeneratedPool();
 
         if (static::$is_initialized == true) {
-            return;
+          return;
         }
         $pool->internalAddGeneratedFile(
             '
-ï¿½
+Ç
 google/protobuf/wrappers.protogoogle.protobuf"
 DoubleValue
 value ("
@@ -33,18 +32,16 @@ Int64Value
 Int32Value
 value ("
 UInt32Value
-value (
-"
+value ("
 	BoolValue
 value ("
 StringValue
 value (	"
 
 BytesValue
-value (Bï¿½
-com.google.protobufB
-WrappersProtoPZ1google.golang.org/protobuf/types/known/wrapperspbï¿½ï¿½GPBï¿½Google.Protobuf.WellKnownTypesbproto3'
-            , true);
+value (Bƒ
+com.google.protobufBWrappersProtoPZ1google.golang.org/protobuf/types/known/wrapperspbø¢GPBªGoogle.Protobuf.WellKnownTypesbproto3'
+        , true);
 
         static::$is_initialized = true;
     }

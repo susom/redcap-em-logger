@@ -36,20 +36,18 @@ class EvalRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\Expr\V1alpha1\ParsedExpr $parsed_expr
+     *     @type \Google\Api\Expr\V1alpha1\ParsedExpr $parsed_expr
      *           Evaluate based on the parsed representation.
-     * @type \Google\Api\Expr\V1alpha1\CheckedExpr $checked_expr
+     *     @type \Google\Api\Expr\V1alpha1\CheckedExpr $checked_expr
      *           Evaluate based on the checked representation.
-     * @type array|\Google\Protobuf\Internal\MapField $bindings
+     *     @type array|\Google\Protobuf\Internal\MapField $bindings
      *           Bindings for the external variables.  The types SHOULD be compatible
      *           with the type environment in [CheckRequest][google.api.expr.v1alpha1.CheckRequest], if checked.
-     * @type string $container
-     *           SHOULD be the same container as used in [CheckRequest][google.api.expr.v1alpha1.CheckRequest], if
-     *     checked.
+     *     @type string $container
+     *           SHOULD be the same container as used in [CheckRequest][google.api.expr.v1alpha1.CheckRequest], if checked.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\ConformanceService::initOnce();
         parent::__construct($data);
     }

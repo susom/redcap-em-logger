@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Protobuf\Internal\FieldOptions\JSType instead.
      * @deprecated
      */
-    class FieldOptions_JSType
-    {
-    }
+    class FieldOptions_JSType {}
 }
 class_exists(FieldOptions\JSType::class);
 @trigger_error('Google\Protobuf\Internal\FieldOptions_JSType is deprecated and will be removed in the next major release. Use Google\Protobuf\Internal\FieldOptions\JSType instead', E_USER_DEPRECATED);

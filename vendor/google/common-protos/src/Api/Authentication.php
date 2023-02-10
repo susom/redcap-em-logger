@@ -46,15 +46,14 @@ class Authentication extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\AuthenticationRule[]|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Api\AuthenticationRule[]|\Google\Protobuf\Internal\RepeatedField $rules
      *           A list of authentication rules that apply to individual API methods.
      *           **NOTE:** All service configuration rules follow "last one wins" order.
-     * @type \Google\Api\AuthProvider[]|\Google\Protobuf\Internal\RepeatedField $providers
+     *     @type \Google\Api\AuthProvider[]|\Google\Protobuf\Internal\RepeatedField $providers
      *           Defines a set of authentication providers that a service supports.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Auth::initOnce();
         parent::__construct($data);
     }

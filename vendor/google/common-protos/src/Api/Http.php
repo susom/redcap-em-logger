@@ -41,10 +41,10 @@ class Http extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\HttpRule[]|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Api\HttpRule[]|\Google\Protobuf\Internal\RepeatedField $rules
      *           A list of HTTP configuration rules that apply to individual API methods.
      *           **NOTE:** All service configuration rules follow "last one wins" order.
-     * @type bool $fully_decode_reserved_expansion
+     *     @type bool $fully_decode_reserved_expansion
      *           When set to true, URL path parmeters will be fully URI-decoded except in
      *           cases of single segment matches in reserved expansion, where "%2F" will be
      *           left encoded.
@@ -52,8 +52,7 @@ class Http extends \Google\Protobuf\Internal\Message
      *           segment matches.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Http::initOnce();
         parent::__construct($data);
     }

@@ -19,13 +19,14 @@ namespace Google\Cloud\Core\Testing\System;
 
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Dataset;
+use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Topic;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Core\Testing\System\DeletionQueue;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * SystemTestCase can be extended to implement system tests
@@ -97,8 +98,9 @@ class SystemTestCase extends TestCase
      */
     public static function createBucket(StorageClient $client, $bucketName, array $options = [])
     {
-        $backoff = new ExponentialBackoff(8);
-
+        $backoff = new ExponentialBackoff(8, function ($ex) {
+            return !($ex instanceof BadRequestException);
+        });
         $bucket = $backoff->execute(function () use ($client, $bucketName, $options) {
             return $client->createBucket($bucketName, $options);
         });

@@ -19,8 +19,7 @@ class GetLogMetricRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the desired metric:
      *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      *
-     * Generated from protobuf field <code>string metric_name = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string metric_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $metric_name = '';
 
@@ -30,13 +29,12 @@ class GetLogMetricRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $metric_name
+     *     @type string $metric_name
      *           Required. The resource name of the desired metric:
      *               "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\LoggingMetrics::initOnce();
         parent::__construct($data);
     }
@@ -45,8 +43,7 @@ class GetLogMetricRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the desired metric:
      *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      *
-     * Generated from protobuf field <code>string metric_name = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string metric_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getMetricName()
@@ -58,8 +55,7 @@ class GetLogMetricRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the desired metric:
      *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      *
-     * Generated from protobuf field <code>string metric_name = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string metric_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

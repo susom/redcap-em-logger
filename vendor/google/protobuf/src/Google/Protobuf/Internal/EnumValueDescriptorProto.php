@@ -36,13 +36,12 @@ class EnumValueDescriptorProto extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $name
-     * @type int $number
-     * @type \Google\Protobuf\Internal\EnumValueOptions $options
+     *     @type string $name
+     *     @type int $number
+     *     @type \Google\Protobuf\Internal\EnumValueOptions $options
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Protobuf\Internal\Descriptor::initOnce();
         parent::__construct($data);
     }

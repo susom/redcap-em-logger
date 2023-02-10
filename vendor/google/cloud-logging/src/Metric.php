@@ -104,8 +104,7 @@ class Metric
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.metrics/delete projects.metrics delete
-     *     API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.metrics/delete projects.metrics delete API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.
@@ -113,8 +112,8 @@ class Metric
     public function delete(array $options = [])
     {
         $this->connection->deleteMetric($options + [
-                'metricName' => $this->formattedName
-            ]);
+            'metricName' => $this->formattedName
+        ]);
     }
 
     /**
@@ -129,15 +128,14 @@ class Metric
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.metrics/update projects.metrics update
-     *     API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.metrics/update projects.metrics update API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $metadata {
      *     The data to update.
      *
-     * @type string $description A description of the metric.
-     * @type string $filter An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters).
+     *     @type string $description A description of the metric.
+     *     @type string $filter An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters).
      * }
      * @param array $options [optional] Configuration Options.
      * @return array
@@ -148,8 +146,8 @@ class Metric
         $options += $this->info($options);
 
         return $this->info = $this->connection->updateMetric($options + [
-                'metricName' => $this->formattedName
-            ]);
+            'metricName' => $this->formattedName
+        ]);
     }
 
     /**
@@ -163,8 +161,7 @@ class Metric
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.metrics#resource-logmetric LogMetric
-     *     resource API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.metrics#resource-logmetric LogMetric resource API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.
@@ -190,8 +187,7 @@ class Metric
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.metrics/get projects.metrics get API
-     *     documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.metrics/get projects.metrics get API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.
@@ -200,8 +196,8 @@ class Metric
     public function reload(array $options = [])
     {
         return $this->info = $this->connection->getMetric($options + [
-                'metricName' => $this->formattedName
-            ]);
+            'metricName' => $this->formattedName
+        ]);
     }
 
     /**

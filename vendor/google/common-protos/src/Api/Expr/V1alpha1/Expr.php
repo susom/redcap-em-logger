@@ -42,28 +42,27 @@ class Expr extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int|string $id
+     *     @type int|string $id
      *           Required. An id assigned to this node by the parser which is unique in a
      *           given expression tree. This is used to associate type information and other
      *           attributes to a node in the parse tree.
-     * @type \Google\Api\Expr\V1alpha1\Constant $const_expr
+     *     @type \Google\Api\Expr\V1alpha1\Constant $const_expr
      *           A literal expression.
-     * @type \Google\Api\Expr\V1alpha1\Expr\Ident $ident_expr
+     *     @type \Google\Api\Expr\V1alpha1\Expr\Ident $ident_expr
      *           An identifier expression.
-     * @type \Google\Api\Expr\V1alpha1\Expr\Select $select_expr
+     *     @type \Google\Api\Expr\V1alpha1\Expr\Select $select_expr
      *           A field selection expression, e.g. `request.auth`.
-     * @type \Google\Api\Expr\V1alpha1\Expr\Call $call_expr
+     *     @type \Google\Api\Expr\V1alpha1\Expr\Call $call_expr
      *           A call expression, including calls to predefined functions and operators.
-     * @type \Google\Api\Expr\V1alpha1\Expr\CreateList $list_expr
+     *     @type \Google\Api\Expr\V1alpha1\Expr\CreateList $list_expr
      *           A list creation expression.
-     * @type \Google\Api\Expr\V1alpha1\Expr\CreateStruct $struct_expr
+     *     @type \Google\Api\Expr\V1alpha1\Expr\CreateStruct $struct_expr
      *           A map or message creation expression.
-     * @type \Google\Api\Expr\V1alpha1\Expr\Comprehension $comprehension_expr
+     *     @type \Google\Api\Expr\V1alpha1\Expr\Comprehension $comprehension_expr
      *           A comprehension expression.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\Syntax::initOnce();
         parent::__construct($data);
     }

@@ -29,13 +29,12 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 namespace Google\ApiCore;
 
 use Google\Rpc\Code;
 
 /**
- * ServerStream is the response object from a gRPC server streaming API call.
+ * ServerStream is the response object from a server streaming API call.
  */
 class ServerStream
 {
@@ -45,7 +44,7 @@ class ServerStream
     /**
      * ServerStream constructor.
      *
-     * @param \Grpc\ServerStreamingCall $serverStreamingCall The gRPC server streaming call object
+     * @param ServerStreamingCallInterface $serverStreamingCall The server streaming call object
      * @param array $streamingDescriptor
      */
     public function __construct($serverStreamingCall, array $streamingDescriptor = [])
@@ -60,8 +59,8 @@ class ServerStream
      * A generator which yields results from the server until the streaming call
      * completes. Throws an ApiException if the streaming call failed.
      *
-     * @return \Generator|mixed
      * @throws ApiException
+     * @return \Generator|mixed
      */
     public function readAll()
     {
@@ -77,16 +76,19 @@ class ServerStream
                 yield $response;
             }
         }
+
+        // Errors in the REST transport will be thrown from there and not reach
+        // this handling. Successful REST server-streams will have an OK status.
         $status = $this->call->getStatus();
-        if (!($status->code == Code::OK)) {
+        if ($status->code !== Code::OK) {
             throw ApiException::createFromStdClass($status);
         }
     }
 
     /**
-     * Return the underlying gRPC call object
+     * Return the underlying call object.
      *
-     * @return \Grpc\ServerStreamingCall|mixed
+     * @return ServerStreamingCallInterface
      */
     public function getServerStreamingCall()
     {

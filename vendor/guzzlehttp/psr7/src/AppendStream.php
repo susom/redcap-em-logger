@@ -45,7 +45,7 @@ final class AppendStream implements StreamInterface
             if (\PHP_VERSION_ID >= 70400) {
                 throw $e;
             }
-            trigger_error(sprintf('%s::__toString exception: %s', self::class, (string)$e), E_USER_ERROR);
+            trigger_error(sprintf('%s::__toString exception: %s', self::class, (string) $e), E_USER_ERROR);
             return '';
         }
     }
@@ -140,7 +140,7 @@ final class AppendStream implements StreamInterface
     {
         return !$this->streams ||
             ($this->current >= count($this->streams) - 1 &&
-                $this->streams[$this->current]->eof());
+             $this->streams[$this->current]->eof());
     }
 
     public function rewind(): void
@@ -191,7 +191,6 @@ final class AppendStream implements StreamInterface
         $progressToNext = false;
 
         while ($remaining > 0) {
-
             // Progress to the next stream if needed.
             if ($progressToNext || $this->streams[$this->current]->eof()) {
                 $progressToNext = false;
@@ -237,6 +236,11 @@ final class AppendStream implements StreamInterface
         throw new \RuntimeException('Cannot write to an AppendStream');
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @return mixed
+     */
     public function getMetadata($key = null)
     {
         return $key ? null : [];

@@ -25,7 +25,7 @@ class AnyBase extends \Google\Protobuf\Internal\Message
         // Get fully qualified name from type url.
         $url_prifix_len = strlen(GPBUtil::TYPE_URL_PREFIX);
         if (substr($this->type_url, 0, $url_prifix_len) !=
-            GPBUtil::TYPE_URL_PREFIX) {
+                GPBUtil::TYPE_URL_PREFIX) {
             throw new \Exception(
                 "Type url needs to be type.googleapis.com/fully-qulified");
         }
@@ -36,8 +36,8 @@ class AnyBase extends \Google\Protobuf\Internal\Message
         $pool = \Google\Protobuf\Internal\DescriptorPool::getGeneratedPool();
         $desc = $pool->getDescriptorByProtoName($fully_qualifed_name);
         if (is_null($desc)) {
-            throw new \Exception("Class " . $fully_qualifed_name
-                . " hasn't been added to descriptor pool");
+            throw new \Exception("Class ".$fully_qualifed_name
+                                     ." hasn't been added to descriptor pool");
         }
         $klass = $desc->getClass();
         $msg = new $klass();
@@ -56,7 +56,7 @@ class AnyBase extends \Google\Protobuf\Internal\Message
     {
         if (!$msg instanceof Message) {
             trigger_error("Given parameter is not a message instance.",
-                E_USER_ERROR);
+                          E_USER_ERROR);
             return;
         }
 

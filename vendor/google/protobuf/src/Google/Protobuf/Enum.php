@@ -52,20 +52,19 @@ class Enum extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $name
+     *     @type string $name
      *           Enum type name.
-     * @type \Google\Protobuf\EnumValue[]|\Google\Protobuf\Internal\RepeatedField $enumvalue
+     *     @type array<\Google\Protobuf\EnumValue>|\Google\Protobuf\Internal\RepeatedField $enumvalue
      *           Enum value definitions.
-     * @type \Google\Protobuf\Option[]|\Google\Protobuf\Internal\RepeatedField $options
+     *     @type array<\Google\Protobuf\Option>|\Google\Protobuf\Internal\RepeatedField $options
      *           Protocol buffer options.
-     * @type \Google\Protobuf\SourceContext $source_context
+     *     @type \Google\Protobuf\SourceContext $source_context
      *           The source context.
-     * @type int $syntax
+     *     @type int $syntax
      *           The source syntax.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Protobuf\Type::initOnce();
         parent::__construct($data);
     }
@@ -111,7 +110,7 @@ class Enum extends \Google\Protobuf\Internal\Message
      * Enum value definitions.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.EnumValue enumvalue = 2;</code>
-     * @param \Google\Protobuf\EnumValue[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Protobuf\EnumValue>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEnumvalue($var)
@@ -137,7 +136,7 @@ class Enum extends \Google\Protobuf\Internal\Message
      * Protocol buffer options.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Option options = 3;</code>
-     * @param \Google\Protobuf\Option[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Protobuf\Option>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOptions($var)

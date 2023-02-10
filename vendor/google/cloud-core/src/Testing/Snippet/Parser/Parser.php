@@ -17,8 +17,9 @@
 
 namespace Google\Cloud\Core\Testing\Snippet\Parser;
 
+use Google\Cloud\Core\Testing\Snippet\Coverage\Scanner;
+use Google\Cloud\Core\Testing\Reflection\ReflectionHandlerFactory;
 use DOMDocument;
-use Google\Cloud\Core\Testing\DocBlockStripSpaces;
 use Parsedown;
 use ReflectionClass;
 use ReflectionMethod;
@@ -37,6 +38,13 @@ use phpDocumentor\Reflection\DocBlock;
 class Parser
 {
     const SNIPPET_NAME_REGEX = '/\/\/\s?\[snippet\=(\w{0,})\]/';
+
+    private $reflection;
+
+    public function __construct()
+    {
+        $this->reflection = ReflectionHandlerFactory::create();
+    }
 
     /**
      * Get a snippet from a class.
@@ -134,7 +142,11 @@ class Parser
             $class = new ReflectionClass($class);
         }
 
-        $doc = new DocBlock($class);
+        if (!$class->getDocComment()) {
+            return [];
+        }
+
+        $doc = $this->reflection->createDocBlock($class);
 
         $magic = [];
         if ($doc->getTags()) {
@@ -147,7 +159,7 @@ class Parser
             foreach ($methods as $method) {
                 $magicExamples = $this->examples(
                     $method['doc'],
-                    $class->getName() . '::' . $method['name'],
+                    $class->getName() .'::'. $method['name'],
                     $class->getFileName(),
                     $class->getStartLine()
                 );
@@ -191,14 +203,18 @@ class Parser
             return [];
         }
 
-        $doc = new DocBlock($method);
+        if (!$method->getDocComment()) {
+            return [];
+        }
+
+        $doc = $this->reflection->createDocBlock($method);
 
         $parent = $method->getDeclaringClass();
         $class = $parent->getName();
 
         return $this->examples(
             $doc,
-            $class . '::' . $method->getName(),
+            $class .'::'. $method->getName(),
             $method->getFileName(),
             $method->getStartLine()
         );
@@ -245,7 +261,7 @@ class Parser
      */
     public function examples(DocBlock $docBlock, $fullyQualifiedName, $file, $line, array $magicMethods = [])
     {
-        $text = $docBlock->getText();
+        $text = $this->reflection->getDocBlockText($docBlock);
         $parts = [];
 
         if (strpos($text, 'Example:' . PHP_EOL . '```') !== false) {
@@ -323,7 +339,8 @@ class Parser
                 continue;
             }
 
-            $doc = new DocBlockStripSpaces(substr($method->getDescription(), 1, -1));
+            $class = substr($method->getDescription(), 1, -1);
+            $doc = $this->reflection->createDocBlock($class);
 
             $res[] = [
                 'name' => $method->getMethodName(),

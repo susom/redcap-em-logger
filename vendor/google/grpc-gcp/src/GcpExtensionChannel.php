@@ -16,7 +16,6 @@
  * limitations under the License.
  *
  */
-
 namespace Grpc\Gcp;
 
 /**
@@ -120,7 +119,7 @@ class GcpExtensionChannel
     {
         $channel_ref = null;
         if (array_key_exists($affinity_key, $this->affinity_key_to_channel_ref)) {
-            $channel_ref = $this->affinity_key_to_channel_ref[$affinity_key];
+            $channel_ref =  $this->affinity_key_to_channel_ref[$affinity_key];
             $channel_ref->affinityRefDecr();
         }
         unset($this->affinity_key_to_channel_ref[$affinity_key]);
@@ -234,7 +233,7 @@ class GcpExtensionChannel
     /**
      * Watch the connectivity state of the channel until it changed
      *
-     * @param int $last_state The previous connectivity state of the channel
+     * @param int     $last_state   The previous connectivity state of the channel
      * @param Timeval $deadline_obj The deadline this function should wait until
      *
      * @return bool If the connectivity state changes from last_state

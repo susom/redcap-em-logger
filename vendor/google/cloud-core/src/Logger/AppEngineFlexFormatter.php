@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 namespace Google\Cloud\Core\Logger;
 
 use Monolog\Formatter\LineFormatter;
@@ -23,6 +22,7 @@ use Monolog\Formatter\LineFormatter;
  * Monolog 1.x formatter for formatting logs on App Engine flexible environment.
  *
  * If you are using Monolog 2.x, use {@see \Google\Cloud\Core\Logger\AppEngineFlexFormatterV2} instead.
+ * If you are using Monolog 3.x, use {@see \Google\Cloud\Core\Logger\AppEngineFlexFormatterV3} instead.
  */
 class AppEngineFlexFormatter extends LineFormatter
 {

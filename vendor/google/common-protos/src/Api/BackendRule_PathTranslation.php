@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Api\BackendRule\PathTranslation instead.
      * @deprecated
      */
-    class BackendRule_PathTranslation
-    {
-    }
+    class BackendRule_PathTranslation {}
 }
 class_exists(BackendRule\PathTranslation::class);
 @trigger_error('Google\Api\BackendRule_PathTranslation is deprecated and will be removed in the next major release. Use Google\Api\BackendRule\PathTranslation instead', E_USER_DEPRECATED);

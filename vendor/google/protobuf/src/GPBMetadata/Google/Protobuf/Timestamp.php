@@ -8,22 +8,21 @@ class Timestamp
 {
     public static $is_initialized = false;
 
-    public static function initOnce()
-    {
+    public static function initOnce() {
         $pool = \Google\Protobuf\Internal\DescriptorPool::getGeneratedPool();
 
         if (static::$is_initialized == true) {
-            return;
+          return;
         }
         $pool->internalAddGeneratedFile(
             '
-ï¿½
+ï
 google/protobuf/timestamp.protogoogle.protobuf"+
 	Timestamp
 seconds (
-nanos (Bï¿½
-com.google.protobufBTimestampProtoPZ2google.golang.org/protobuf/types/known/timestamppbï¿½ï¿½GPBï¿½Google.Protobuf.WellKnownTypesbproto3'
-            , true);
+nanos (B…
+com.google.protobufBTimestampProtoPZ2google.golang.org/protobuf/types/known/timestamppbø¢GPBªGoogle.Protobuf.WellKnownTypesbproto3'
+        , true);
 
         static::$is_initialized = true;
     }

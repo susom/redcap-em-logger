@@ -7,9 +7,7 @@ namespace Google\Cloud\Logging\V2\LogSink;
 use UnexpectedValueException;
 
 /**
- * Available log entry formats. Log entries can be written to
- * Logging in either format and can be exported in either format.
- * Version 2 is the preferred format.
+ * Deprecated. This is unused.
  *
  * Protobuf type <code>google.logging.v2.LogSink.VersionFormat</code>
  */
@@ -44,7 +42,7 @@ class VersionFormat
     {
         if (!isset(self::$valueToName[$value])) {
             throw new UnexpectedValueException(sprintf(
-                'Enum %s has no name defined for value %s', __CLASS__, $value));
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
         }
         return self::$valueToName[$value];
     }
@@ -55,7 +53,7 @@ class VersionFormat
         $const = __CLASS__ . '::' . strtoupper($name);
         if (!defined($const)) {
             throw new UnexpectedValueException(sprintf(
-                'Enum %s has no value defined for name %s', __CLASS__, $name));
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
         }
         return constant($const);
     }

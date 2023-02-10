@@ -63,7 +63,7 @@ class CheckedExpr extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type array|\Google\Protobuf\Internal\MapField $reference_map
+     *     @type array|\Google\Protobuf\Internal\MapField $reference_map
      *           A map from expression ids to resolved references.
      *           The following entries are in this table:
      *           - An Ident or Select expression is represented here if it resolves to a
@@ -77,21 +77,20 @@ class CheckedExpr extends \Google\Protobuf\Internal\Message
      *             called.
      *           - Every CreateStruct expression for a message has an entry, identifying
      *             the message.
-     * @type array|\Google\Protobuf\Internal\MapField $type_map
+     *     @type array|\Google\Protobuf\Internal\MapField $type_map
      *           A map from expression ids to types.
      *           Every expression node which has a type different than DYN has a mapping
      *           here. If an expression has type DYN, it is omitted from this map to save
      *           space.
-     * @type \Google\Api\Expr\V1alpha1\SourceInfo $source_info
+     *     @type \Google\Api\Expr\V1alpha1\SourceInfo $source_info
      *           The source info derived from input that generated the parsed `expr` and
      *           any optimizations made during the type-checking pass.
-     * @type \Google\Api\Expr\V1alpha1\Expr $expr
+     *     @type \Google\Api\Expr\V1alpha1\Expr $expr
      *           The checked expression. Semantically equivalent to the parsed `expr`, but
      *           may have structural differences.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\Checked::initOnce();
         parent::__construct($data);
     }

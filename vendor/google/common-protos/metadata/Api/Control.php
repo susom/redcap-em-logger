@@ -8,12 +8,11 @@ class Control
 {
     public static $is_initialized = false;
 
-    public static function initOnce()
-    {
+    public static function initOnce() {
         $pool = \Google\Protobuf\Internal\DescriptorPool::getGeneratedPool();
 
         if (static::$is_initialized == true) {
-            return;
+          return;
         }
         $pool->internalAddGeneratedFile(hex2bin(
             "0abe010a18676f6f676c652f6170692f636f6e74726f6c2e70726f746f12" .

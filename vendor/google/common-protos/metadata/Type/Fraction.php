@@ -8,12 +8,11 @@ class Fraction
 {
     public static $is_initialized = false;
 
-    public static function initOnce()
-    {
+    public static function initOnce() {
         $pool = \Google\Protobuf\Internal\DescriptorPool::getGeneratedPool();
 
         if (static::$is_initialized == true) {
-            return;
+          return;
         }
         $pool->internalAddGeneratedFile(hex2bin(
             "0acd010a1a676f6f676c652f747970652f6672616374696f6e2e70726f74" .

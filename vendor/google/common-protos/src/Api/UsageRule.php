@@ -63,22 +63,21 @@ class UsageRule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $selector
+     *     @type string $selector
      *           Selects the methods to which this rule applies. Use '*' to indicate all
      *           methods in all APIs.
      *           Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
-     * @type bool $allow_unregistered_calls
+     *     @type bool $allow_unregistered_calls
      *           If true, the selected method allows unregistered calls, e.g. calls
      *           that don't identify any user or application.
-     * @type bool $skip_service_control
+     *     @type bool $skip_service_control
      *           If true, the selected method should skip service control and the control
      *           plane features, such as quota and billing, will not be available.
      *           This flag is used by Google Cloud Endpoints to bypass checks for internal
      *           methods, such as service health check methods.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Usage::initOnce();
         parent::__construct($data);
     }

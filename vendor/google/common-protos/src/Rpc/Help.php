@@ -31,12 +31,11 @@ class Help extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Rpc\Help\Link[]|\Google\Protobuf\Internal\RepeatedField $links
+     *     @type \Google\Rpc\Help\Link[]|\Google\Protobuf\Internal\RepeatedField $links
      *           URL(s) pointing to additional information on handling the current error.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Rpc\ErrorDetails::initOnce();
         parent::__construct($data);
     }

@@ -34,14 +34,13 @@ class EnumValue extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $type
+     *     @type string $type
      *           The fully qualified name of the enum type.
-     * @type int $value
+     *     @type int $value
      *           The value of the enum.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Beta1\Value::initOnce();
         parent::__construct($data);
     }

@@ -8,12 +8,11 @@ class Timeofday
 {
     public static $is_initialized = false;
 
-    public static function initOnce()
-    {
+    public static function initOnce() {
         $pool = \Google\Protobuf\Internal\DescriptorPool::getGeneratedPool();
 
         if (static::$is_initialized == true) {
-            return;
+          return;
         }
         $pool->internalAddGeneratedFile(hex2bin(
             "0aed010a1b676f6f676c652f747970652f74696d656f666461792e70726f" .

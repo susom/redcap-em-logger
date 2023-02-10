@@ -42,7 +42,7 @@ class IdempotencyLevel
     {
         if (!isset(self::$valueToName[$value])) {
             throw new UnexpectedValueException(sprintf(
-                'Enum %s has no name defined for value %s', __CLASS__, $value));
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
         }
         return self::$valueToName[$value];
     }
@@ -53,7 +53,7 @@ class IdempotencyLevel
         $const = __CLASS__ . '::' . strtoupper($name);
         if (!defined($const)) {
             throw new UnexpectedValueException(sprintf(
-                'Enum %s has no value defined for name %s', __CLASS__, $name));
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
         }
         return constant($const);
     }

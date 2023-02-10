@@ -46,22 +46,21 @@ class MetricDescriptorMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int $launch_stage
+     *     @type int $launch_stage
      *           Deprecated. Please use the MetricDescriptor.launch_stage instead.
      *           The launch stage of the metric definition.
-     * @type \Google\Protobuf\Duration $sample_period
+     *     @type \Google\Protobuf\Duration $sample_period
      *           The sampling period of metric data points. For metrics which are written
      *           periodically, consecutive data points are stored at this time interval,
      *           excluding data loss due to errors. Metrics with a higher granularity have
      *           a smaller sampling period.
-     * @type \Google\Protobuf\Duration $ingest_delay
+     *     @type \Google\Protobuf\Duration $ingest_delay
      *           The delay of data points caused by ingestion. Data points older than this
      *           age are guaranteed to be ingested and available to be read, excluding
      *           data loss due to errors.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Metric::initOnce();
         parent::__construct($data);
     }

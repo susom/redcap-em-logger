@@ -29,7 +29,6 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 namespace Google\ApiCore\Middleware;
 
 use Google\ApiCore\Call;
@@ -39,8 +38,8 @@ use Google\ApiCore\PageStreamingDescriptor;
 use Google\Protobuf\Internal\Message;
 
 /**
- * Middleware which wraps the response in an PagedListResponses object.
- */
+* Middleware which wraps the response in an PagedListResponses object.
+*/
 class PagedMiddleware
 {
     /** @var callable */
@@ -54,10 +53,9 @@ class PagedMiddleware
      * @param PageStreamingDescriptor $descriptor
      */
     public function __construct(
-        callable                $nextHandler,
+        callable $nextHandler,
         PageStreamingDescriptor $descriptor
-    )
-    {
+    ) {
         $this->nextHandler = $nextHandler;
         $this->descriptor = $descriptor;
     }

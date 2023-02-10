@@ -12,23 +12,22 @@ Probes to test ListDocuments grpc call from Firestore stub.
     metrics: A dict of metrics.
 */
 
-function document($client, &$metrics)
-{
-    global $_PARENT_RESOURCE;
+function document($client, &$metrics){
+	global $_PARENT_RESOURCE;
+	
+	$list_document_request = new Google\Cloud\Firestore\V1beta1\ListDocumentsRequest();
+	$list_document_request->setParent($_PARENT_RESOURCE);
+	$time_start = microtime_float();
 
-    $list_document_request = new Google\Cloud\Firestore\V1beta1\ListDocumentsRequest();
-    $list_document_request->setParent($_PARENT_RESOURCE);
-    $time_start = microtime_float();
+	$client->ListDocuments($list_document_request);
 
-    $client->ListDocuments($list_document_request);
-
-    $lantency = (microtime_float() - $time_start) * 1000;
-    $metrics['list_documents_latency_ms'] = $lantency;
+	$lantency = (microtime_float()- $time_start) * 1000;
+	$metrics['list_documents_latency_ms'] = $lantency;
 
 }
 
 $probFunctions = [
-    'documents' => 'document'
+	'documents' => 'document'
 ];
 
 return $probFunctions;

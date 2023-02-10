@@ -153,17 +153,17 @@ class PostalAddress extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int $revision
+     *     @type int $revision
      *           The schema revision of the `PostalAddress`. This must be set to 0, which is
      *           the latest revision.
      *           All new revisions **must** be backward compatible with old revisions.
-     * @type string $region_code
+     *     @type string $region_code
      *           Required. CLDR region code of the country/region of the address. This
      *           is never inferred and it is up to the user to ensure the value is
      *           correct. See http://cldr.unicode.org/ and
      *           http://www.unicode.org/cldr/charts/30/supplemental/territory_information.html
      *           for details. Example: "CH" for Switzerland.
-     * @type string $language_code
+     *     @type string $language_code
      *           Optional. BCP-47 language code of the contents of this address (if
      *           known). This is often the UI language of the input form or is expected
      *           to match one of the languages used in the address' country/region, or their
@@ -174,18 +174,18 @@ class PostalAddress extends \Google\Protobuf\Internal\Message
      *           If this value is not known, it should be omitted (rather than specifying a
      *           possibly incorrect default).
      *           Examples: "zh-Hant", "ja", "ja-Latn", "en".
-     * @type string $postal_code
+     *     @type string $postal_code
      *           Optional. Postal code of the address. Not all countries use or require
      *           postal codes to be present, but where they are used, they may trigger
      *           additional validation with other parts of the address (e.g. state/zip
      *           validation in the U.S.A.).
-     * @type string $sorting_code
+     *     @type string $sorting_code
      *           Optional. Additional, country-specific, sorting code. This is not used
      *           in most regions. Where it is used, the value is either a string like
      *           "CEDEX", optionally followed by a number (e.g. "CEDEX 7"), or just a number
      *           alone, representing the "sector code" (Jamaica), "delivery area indicator"
      *           (Malawi) or "post office indicator" (e.g. Côte d'Ivoire).
-     * @type string $administrative_area
+     *     @type string $administrative_area
      *           Optional. Highest administrative subdivision which is used for postal
      *           addresses of a country or region.
      *           For example, this can be a state, a province, an oblast, or a prefecture.
@@ -193,15 +193,15 @@ class PostalAddress extends \Google\Protobuf\Internal\Message
      *           community (e.g. "Barcelona" and not "Catalonia").
      *           Many countries don't use an administrative area in postal addresses. E.g.
      *           in Switzerland this should be left unpopulated.
-     * @type string $locality
+     *     @type string $locality
      *           Optional. Generally refers to the city/town portion of the address.
      *           Examples: US city, IT comune, UK post town.
      *           In regions of the world where localities are not well defined or do not fit
      *           into this structure well, leave locality empty and use address_lines.
-     * @type string $sublocality
+     *     @type string $sublocality
      *           Optional. Sublocality of the address.
      *           For example, this can be neighborhoods, boroughs, districts.
-     * @type string[]|\Google\Protobuf\Internal\RepeatedField $address_lines
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $address_lines
      *           Unstructured address lines describing the lower levels of an address.
      *           Because values in address_lines do not have type information and may
      *           sometimes contain multiple values in a single field (e.g.
@@ -221,16 +221,15 @@ class PostalAddress extends \Google\Protobuf\Internal\Message
      *           then geocoding is the recommended way to handle completely unstructured
      *           addresses (as opposed to guessing which parts of the address should be
      *           localities or administrative areas).
-     * @type string[]|\Google\Protobuf\Internal\RepeatedField $recipients
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $recipients
      *           Optional. The recipient at the address.
      *           This field may, under certain circumstances, contain multiline information.
      *           For example, it might contain "care of" information.
-     * @type string $organization
+     *     @type string $organization
      *           Optional. The name of the organization at the address.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Type\PostalAddress::initOnce();
         parent::__construct($data);
     }

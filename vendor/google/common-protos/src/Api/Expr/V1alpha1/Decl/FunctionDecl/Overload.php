@@ -81,12 +81,12 @@ class Overload extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $overload_id
+     *     @type string $overload_id
      *           Required. Globally unique overload name of the function which reflects
      *           the function name and argument types.
-     *           This will be used by a [Reference][google.api.expr.v1alpha1.Reference] to indicate the `overload_id`
-     *     that was resolved for the function `name`.
-     * @type \Google\Api\Expr\V1alpha1\Type[]|\Google\Protobuf\Internal\RepeatedField $params
+     *           This will be used by a [Reference][google.api.expr.v1alpha1.Reference] to indicate the `overload_id` that
+     *           was resolved for the function `name`.
+     *     @type \Google\Api\Expr\V1alpha1\Type[]|\Google\Protobuf\Internal\RepeatedField $params
      *           List of function parameter [Type][google.api.expr.v1alpha1.Type] values.
      *           Param types are disjoint after generic type parameters have been
      *           replaced with the type `DYN`. Since the `DYN` type is compatible with
@@ -95,24 +95,23 @@ class Overload extends \Google\Protobuf\Internal\Message
      *           `map<string, string>` is not disjoint from `map<K, V>`.
      *           When the `result_type` of a function is a generic type param, the
      *           type param name also appears as the `type` of on at least one params.
-     * @type string[]|\Google\Protobuf\Internal\RepeatedField $type_params
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $type_params
      *           The type param names associated with the function declaration.
      *           For example, `function ex<K,V>(K key, map<K, V> map) : V` would yield
      *           the type params of `K, V`.
-     * @type \Google\Api\Expr\V1alpha1\Type $result_type
+     *     @type \Google\Api\Expr\V1alpha1\Type $result_type
      *           Required. The result type of the function. For example, the operator
      *           `string.isEmpty()` would have `result_type` of `kind: BOOL`.
-     * @type bool $is_instance_function
+     *     @type bool $is_instance_function
      *           Whether the function is to be used in a method call-style `x.f(...)`
      *           of a function call-style `f(x, ...)`.
      *           For methods, the first parameter declaration, `params[0]` is the
      *           expected type of the target receiver.
-     * @type string $doc
+     *     @type string $doc
      *           Documentation string for the overload.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\Checked::initOnce();
         parent::__construct($data);
     }

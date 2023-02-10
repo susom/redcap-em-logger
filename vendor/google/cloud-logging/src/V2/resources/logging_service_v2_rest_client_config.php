@@ -32,19 +32,10 @@ return [
                     ],
                 ],
             ],
-            'WriteLogEntries' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/entries:write',
-                'body' => '*',
-            ],
             'ListLogEntries' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/entries:list',
                 'body' => '*',
-            ],
-            'ListMonitoredResourceDescriptors' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/monitoredResourceDescriptors',
             ],
             'ListLogs' => [
                 'method' => 'get',
@@ -75,6 +66,16 @@ return [
                     ],
                 ],
             ],
+            'ListMonitoredResourceDescriptors' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/monitoredResourceDescriptors',
+            ],
+            'WriteLogEntries' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/entries:write',
+                'body' => '*',
+            ],
         ],
     ],
+    'numericEnums' => true,
 ];

@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Api\Expr\V1alpha1\Decl\FunctionDecl instead.
      * @deprecated
      */
-    class Decl_FunctionDecl
-    {
-    }
+    class Decl_FunctionDecl {}
 }
 class_exists(Decl\FunctionDecl::class);
 @trigger_error('Google\Api\Expr\V1alpha1\Decl_FunctionDecl is deprecated and will be removed in the next major release. Use Google\Api\Expr\V1alpha1\Decl\FunctionDecl instead', E_USER_DEPRECATED);

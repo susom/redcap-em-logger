@@ -72,7 +72,8 @@ trait GrpcTrait
         $requestOptions = $this->pluckArray([
             'grpcOptions',
             'retries',
-            'requestTimeout'
+            'requestTimeout',
+            'grpcRetryFunction'
         ], $args[count($args) - 1]);
 
         try {
@@ -266,8 +267,8 @@ trait GrpcTrait
         list ($dt, $nanos) = $this->parseTimeString($value);
 
         return [
-            'seconds' => (int)$dt->format('U'),
-            'nanos' => (int)$nanos
+            'seconds' => (int) $dt->format('U'),
+            'nanos' => (int) $nanos
         ];
     }
 
@@ -285,7 +286,7 @@ trait GrpcTrait
                 $seconds = $d[0];
                 $nanos = 0;
             } else {
-                $seconds = (int)$d[0];
+                $seconds = (int) $d[0];
                 $nanos = $this->convertFractionToNanoSeconds($d[1]);
             }
         } elseif ($value instanceof Duration) {

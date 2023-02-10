@@ -8,12 +8,11 @@ class PostalAddress
 {
     public static $is_initialized = false;
 
-    public static function initOnce()
-    {
+    public static function initOnce() {
         $pool = \Google\Protobuf\Internal\DescriptorPool::getGeneratedPool();
 
         if (static::$is_initialized == true) {
-            return;
+          return;
         }
         $pool->internalAddGeneratedFile(hex2bin(
             "0ab1030a20676f6f676c652f747970652f706f7374616c5f616464726573" .

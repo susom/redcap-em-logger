@@ -40,16 +40,15 @@ class FunctionDecl extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\Expr\V1beta1\IdentDecl[]|\Google\Protobuf\Internal\RepeatedField $args
+     *     @type \Google\Api\Expr\V1beta1\IdentDecl[]|\Google\Protobuf\Internal\RepeatedField $args
      *           The function arguments.
-     * @type \Google\Api\Expr\V1beta1\DeclType $return_type
+     *     @type \Google\Api\Expr\V1beta1\DeclType $return_type
      *           Optional declared return type.
-     * @type bool $receiver_function
+     *     @type bool $receiver_function
      *           If the first argument of the function is the receiver.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Beta1\Decl::initOnce();
         parent::__construct($data);
     }

@@ -49,11 +49,11 @@ class AuthRequirement extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $provider_id
+     *     @type string $provider_id
      *           [id][google.api.AuthProvider.id] from authentication provider.
      *           Example:
      *               provider_id: bookstore_auth
-     * @type string $audiences
+     *     @type string $audiences
      *           NOTE: This will be deprecated soon, once AuthProvider.audiences is
      *           implemented and accepted in all the runtime components.
      *           The list of JWT
@@ -69,8 +69,7 @@ class AuthRequirement extends \Google\Protobuf\Internal\Message
      *                          bookstore_web.apps.googleusercontent.com
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Auth::initOnce();
         parent::__construct($data);
     }

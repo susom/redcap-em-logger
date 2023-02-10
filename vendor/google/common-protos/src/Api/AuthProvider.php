@@ -77,17 +77,17 @@ class AuthProvider extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $id
+     *     @type string $id
      *           The unique identifier of the auth provider. It will be referred to by
      *           `AuthRequirement.provider_id`.
      *           Example: "bookstore_auth".
-     * @type string $issuer
+     *     @type string $issuer
      *           Identifies the principal that issued the JWT. See
      *           https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.1
      *           Usually a URL or an email address.
      *           Example: https://securetoken.google.com
      *           Example: 1234567-compute&#64;developer.gserviceaccount.com
-     * @type string $jwks_uri
+     *     @type string $jwks_uri
      *           URL of the provider's public key set to validate signature of the JWT. See
      *           [OpenID Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata).
      *           Optional if the key set document:
@@ -96,7 +96,7 @@ class AuthProvider extends \Google\Protobuf\Internal\Message
      *              of the issuer.
      *            - can be inferred from the email domain of the issuer (e.g. a Google service account).
      *           Example: https://www.googleapis.com/oauth2/v1/certs
-     * @type string $audiences
+     *     @type string $audiences
      *           The list of JWT
      *           [audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3).
      *           that are allowed to access. A JWT containing any of these audiences will
@@ -108,13 +108,12 @@ class AuthProvider extends \Google\Protobuf\Internal\Message
      *           Example:
      *               audiences: bookstore_android.apps.googleusercontent.com,
      *                          bookstore_web.apps.googleusercontent.com
-     * @type string $authorization_url
+     *     @type string $authorization_url
      *           Redirect URL if JWT token is required but no present or is expired.
      *           Implement authorizationUrl of securityDefinitions in OpenAPI spec.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Auth::initOnce();
         parent::__construct($data);
     }

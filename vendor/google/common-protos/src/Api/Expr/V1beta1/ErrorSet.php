@@ -29,12 +29,11 @@ class ErrorSet extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $errors
      *           The errors in the set.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Beta1\PBEval::initOnce();
         parent::__construct($data);
     }

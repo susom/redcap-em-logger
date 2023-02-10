@@ -25,7 +25,7 @@ final class Utils
         }
 
         foreach ($data as $k => $v) {
-            if (!in_array(strtolower($k), $keys)) {
+            if (!is_string($k) || !in_array(strtolower($k), $keys)) {
                 $result[$k] = $v;
             }
         }
@@ -38,8 +38,8 @@ final class Utils
      * of bytes have been read.
      *
      * @param StreamInterface $source Stream to read from
-     * @param StreamInterface $dest Stream to write to
-     * @param int $maxLen Maximum number of bytes to read. Pass -1
+     * @param StreamInterface $dest   Stream to write to
+     * @param int             $maxLen Maximum number of bytes to read. Pass -1
      *                                to read the entire stream.
      *
      * @throws \RuntimeException on error.
@@ -73,7 +73,7 @@ final class Utils
      * bytes have been read.
      *
      * @param StreamInterface $stream Stream to read
-     * @param int $maxLen Maximum number of bytes to read. Pass -1
+     * @param int             $maxLen Maximum number of bytes to read. Pass -1
      *                                to read the entire stream.
      *
      * @throws \RuntimeException on error.
@@ -112,9 +112,9 @@ final class Utils
      * This method reads the entire stream to calculate a rolling hash, based
      * on PHP's `hash_init` functions.
      *
-     * @param StreamInterface $stream Stream to calculate the hash for
-     * @param string $algo Hash algorithm (e.g. md5, crc32, etc)
-     * @param bool $rawOutput Whether or not to use raw output
+     * @param StreamInterface $stream    Stream to calculate the hash for
+     * @param string          $algo      Hash algorithm (e.g. md5, crc32, etc)
+     * @param bool            $rawOutput Whether or not to use raw output
      *
      * @throws \RuntimeException on error.
      */
@@ -131,7 +131,7 @@ final class Utils
             hash_update($ctx, $stream->read(1048576));
         }
 
-        $out = hash_final($ctx, (bool)$rawOutput);
+        $out = hash_final($ctx, $rawOutput);
         $stream->seek($pos);
 
         return $out;
@@ -153,7 +153,7 @@ final class Utils
      * - version: (string) Set the protocol version.
      *
      * @param RequestInterface $request Request to clone and modify.
-     * @param array $changes Changes to apply.
+     * @param array            $changes Changes to apply.
      */
     public static function modifyRequest(RequestInterface $request, array $changes): RequestInterface
     {
@@ -203,10 +203,10 @@ final class Utils
                 $changes['version'] ?? $request->getProtocolVersion(),
                 $request->getServerParams()
             ))
-                ->withParsedBody($request->getParsedBody())
-                ->withQueryParams($request->getQueryParams())
-                ->withCookieParams($request->getCookieParams())
-                ->withUploadedFiles($request->getUploadedFiles());
+            ->withParsedBody($request->getParsedBody())
+            ->withQueryParams($request->getQueryParams())
+            ->withCookieParams($request->getCookieParams())
+            ->withUploadedFiles($request->getUploadedFiles());
 
             foreach ($request->getAttributes() as $key => $value) {
                 $new = $new->withAttribute($key, $value);
@@ -227,8 +227,8 @@ final class Utils
     /**
      * Read a line from the stream up to the maximum allowed buffer length.
      *
-     * @param StreamInterface $stream Stream to read from
-     * @param int|null $maxLength Maximum buffer length
+     * @param StreamInterface $stream    Stream to read from
+     * @param int|null        $maxLength Maximum buffer length
      */
     public static function readLine(StreamInterface $stream, ?int $maxLength = null): string
     {
@@ -279,7 +279,7 @@ final class Utils
      *   buffered and used in subsequent reads.
      *
      * @param resource|string|int|float|bool|StreamInterface|callable|\Iterator|null $resource Entity body data
-     * @param array{size?: int, metadata?: array} $options Additional options
+     * @param array{size?: int, metadata?: array}                                    $options  Additional options
      *
      * @throws \InvalidArgumentException if the $resource arg is not valid.
      */
@@ -288,7 +288,7 @@ final class Utils
         if (is_scalar($resource)) {
             $stream = self::tryFopen('php://temp', 'r+');
             if ($resource !== '') {
-                fwrite($stream, (string)$resource);
+                fwrite($stream, (string) $resource);
                 fseek($stream, 0);
             }
             return new Stream($stream, $options);
@@ -304,7 +304,7 @@ final class Utils
                 /** @var resource $resource */
                 if ((\stream_get_meta_data($resource)['uri'] ?? '') === 'php://input') {
                     $stream = self::tryFopen('php://temp', 'w+');
-                    fwrite($stream, stream_get_contents($resource));
+                    stream_copy_to_stream($resource, $stream);
                     fseek($stream, 0);
                     $resource = $stream;
                 }
@@ -323,7 +323,7 @@ final class Utils
                         return $result;
                     }, $options);
                 } elseif (method_exists($resource, '__toString')) {
-                    return self::streamFor((string)$resource, $options);
+                    return self::streamFor((string) $resource, $options);
                 }
                 break;
             case 'NULL':
@@ -344,7 +344,7 @@ final class Utils
      * error handler that checks for errors and throws an exception instead.
      *
      * @param string $filename File to open
-     * @param string $mode Mode used to open the file
+     * @param string $mode     Mode used to open the file
      *
      * @return resource
      *
@@ -384,6 +384,53 @@ final class Utils
         }
 
         return $handle;
+    }
+
+    /**
+     * Safely gets the contents of a given stream.
+     *
+     * When stream_get_contents fails, PHP normally raises a warning. This
+     * function adds an error handler that checks for errors and throws an
+     * exception instead.
+     *
+     * @param resource $stream
+     *
+     * @throws \RuntimeException if the stream cannot be read
+     */
+    public static function tryGetContents($stream): string
+    {
+        $ex = null;
+        set_error_handler(static function (int $errno, string $errstr) use (&$ex): bool {
+            $ex = new \RuntimeException(sprintf(
+                'Unable to read stream contents: %s',
+                $errstr
+            ));
+
+            return true;
+        });
+
+        try {
+            /** @var string|false $contents */
+            $contents = stream_get_contents($stream);
+
+            if ($contents === false) {
+                $ex = new \RuntimeException('Unable to read stream contents');
+            }
+        } catch (\Throwable $e) {
+            $ex = new \RuntimeException(sprintf(
+                'Unable to read stream contents: %s',
+                $e->getMessage()
+            ), 0, $e);
+        }
+
+        restore_error_handler();
+
+        if ($ex) {
+            /** @var $ex \RuntimeException */
+            throw $ex;
+        }
+
+        return $contents;
     }
 
     /**

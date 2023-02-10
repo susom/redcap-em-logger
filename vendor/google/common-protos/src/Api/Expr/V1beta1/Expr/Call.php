@@ -42,17 +42,16 @@ class Call extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\Expr\V1beta1\Expr $target
+     *     @type \Google\Api\Expr\V1beta1\Expr $target
      *           The target of an method call-style expression. For example, `x` in
      *           `x.f()`.
-     * @type string $function
+     *     @type string $function
      *           Required. The name of the function or method being called.
-     * @type \Google\Api\Expr\V1beta1\Expr[]|\Google\Protobuf\Internal\RepeatedField $args
+     *     @type \Google\Api\Expr\V1beta1\Expr[]|\Google\Protobuf\Internal\RepeatedField $args
      *           The arguments.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Beta1\Expr::initOnce();
         parent::__construct($data);
     }

@@ -26,20 +26,19 @@ class Request implements RequestInterface
     private $uri;
 
     /**
-     * @param string $method HTTP method
-     * @param string|UriInterface $uri URI
-     * @param array<string, string|string[]> $headers Request headers
-     * @param string|resource|StreamInterface|null $body Request body
-     * @param string $version Protocol version
+     * @param string                               $method  HTTP method
+     * @param string|UriInterface                  $uri     URI
+     * @param array<string, string|string[]>       $headers Request headers
+     * @param string|resource|StreamInterface|null $body    Request body
+     * @param string                               $version Protocol version
      */
     public function __construct(
         string $method,
-               $uri,
-        array  $headers = [],
-               $body = null,
+        $uri,
+        array $headers = [],
+        $body = null,
         string $version = '1.1'
-    )
-    {
+    ) {
         $this->assertMethod($method);
         if (!($uri instanceof UriInterface)) {
             $uri = new Uri($uri);
@@ -152,7 +151,7 @@ class Request implements RequestInterface
     private function assertMethod($method): void
     {
         if (!is_string($method) || $method === '') {
-            throw new \InvalidArgumentException('Method must be a non-empty string.');
+            throw new InvalidArgumentException('Method must be a non-empty string.');
         }
     }
 }

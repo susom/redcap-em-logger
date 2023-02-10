@@ -37,17 +37,16 @@ class EvalResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\Expr\V1alpha1\ExprValue $result
+     *     @type \Google\Api\Expr\V1alpha1\ExprValue $result
      *           The execution result, or unset if execution couldn't start.
-     * @type \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $issues
+     *     @type \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $issues
      *           Any number of issues with [StatusDetails][] as the details.
      *           Note that CEL execution errors are reified into [ExprValue][google.api.expr.v1alpha1.ExprValue].
      *           Nevertheless, we'll allow out-of-band issues to be raised,
      *           which also makes the replies more regular.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\ConformanceService::initOnce();
         parent::__construct($data);
     }

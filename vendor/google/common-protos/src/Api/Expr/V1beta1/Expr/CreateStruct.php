@@ -38,15 +38,14 @@ class CreateStruct extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $type
+     *     @type string $type
      *           The type name of the message to be created, empty when creating map
      *           literals.
-     * @type \Google\Api\Expr\V1beta1\Expr\CreateStruct\Entry[]|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type \Google\Api\Expr\V1beta1\Expr\CreateStruct\Entry[]|\Google\Protobuf\Internal\RepeatedField $entries
      *           The entries in the creation expression.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Beta1\Expr::initOnce();
         parent::__construct($data);
     }

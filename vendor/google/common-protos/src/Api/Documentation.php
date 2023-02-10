@@ -115,17 +115,17 @@ class Documentation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $summary
+     *     @type string $summary
      *           A short summary of what the service does. Can only be provided by
      *           plain text.
-     * @type \Google\Api\Page[]|\Google\Protobuf\Internal\RepeatedField $pages
+     *     @type \Google\Api\Page[]|\Google\Protobuf\Internal\RepeatedField $pages
      *           The top level pages for the documentation set.
-     * @type \Google\Api\DocumentationRule[]|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Api\DocumentationRule[]|\Google\Protobuf\Internal\RepeatedField $rules
      *           A list of documentation rules that apply to individual API elements.
      *           **NOTE:** All service configuration rules follow "last one wins" order.
-     * @type string $documentation_root_url
+     *     @type string $documentation_root_url
      *           The URL to the root of documentation.
-     * @type string $overview
+     *     @type string $overview
      *           Declares a single overview page. For example:
      *           <pre><code>documentation:
      *             summary: ...
@@ -141,8 +141,7 @@ class Documentation extends \Google\Protobuf\Internal\Message
      *           Note: you cannot specify both `overview` field and `pages` field.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Documentation::initOnce();
         parent::__construct($data);
     }

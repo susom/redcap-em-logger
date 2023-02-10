@@ -61,26 +61,26 @@ class BackendRule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $selector
+     *     @type string $selector
      *           Selects the methods to which this rule applies.
      *           Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
-     * @type string $address
+     *     @type string $address
      *           The address of the API backend.
-     * @type float $deadline
+     *     @type float $deadline
      *           The number of seconds to wait for a response from a request. The default
      *           varies based on the request protocol and deployment environment.
-     * @type float $min_deadline
+     *     @type float $min_deadline
      *           Minimum deadline in seconds needed for this method. Calls having deadline
      *           value lower than this will be rejected.
-     * @type float $operation_deadline
+     *     @type float $operation_deadline
      *           The number of seconds to wait for the completion of a long running
      *           operation. The default is no deadline.
-     * @type int $path_translation
-     * @type string $jwt_audience
+     *     @type int $path_translation
+     *     @type string $jwt_audience
      *           The JWT audience is used when generating a JWT ID token for the backend.
      *           This ID token will be added in the HTTP "authorization" header, and sent
      *           to the backend.
-     * @type bool $disable_auth
+     *     @type bool $disable_auth
      *           When disable_auth is false,  a JWT ID token will be generated with the
      *           value from [BackendRule.address][google.api.BackendRule.address] as jwt_audience, overrode to the HTTP
      *           "Authorization" request header and sent to the backend.
@@ -90,8 +90,7 @@ class BackendRule extends \Google\Protobuf\Internal\Message
      *           field must be set to true to preserve the header.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Backend::initOnce();
         parent::__construct($data);
     }

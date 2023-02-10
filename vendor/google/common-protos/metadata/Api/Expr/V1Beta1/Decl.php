@@ -8,12 +8,11 @@ class Decl
 {
     public static $is_initialized = false;
 
-    public static function initOnce()
-    {
+    public static function initOnce() {
         $pool = \Google\Protobuf\Internal\DescriptorPool::getGeneratedPool();
 
         if (static::$is_initialized == true) {
-            return;
+          return;
         }
         \GPBMetadata\Google\Api\Expr\V1Beta1\Expr::initOnce();
         $pool->internalAddGeneratedFile(hex2bin(

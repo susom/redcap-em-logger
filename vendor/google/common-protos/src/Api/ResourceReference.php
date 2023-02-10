@@ -49,7 +49,7 @@ class ResourceReference extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $type
+     *     @type string $type
      *           The resource type that the annotated field references.
      *           Example:
      *               message Subscription {
@@ -57,7 +57,7 @@ class ResourceReference extends \Google\Protobuf\Internal\Message
      *                   type: "pubsub.googleapis.com/Topic"
      *                 }];
      *               }
-     * @type string $child_type
+     *     @type string $child_type
      *           The resource type of a child collection that the annotated field
      *           references. This is useful for annotating the `parent` field that
      *           doesn't have a fixed resource type.
@@ -69,8 +69,7 @@ class ResourceReference extends \Google\Protobuf\Internal\Message
      *             }
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Resource::initOnce();
         parent::__construct($data);
     }

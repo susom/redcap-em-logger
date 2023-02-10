@@ -53,7 +53,7 @@ class SystemParameters extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\SystemParameterRule[]|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Api\SystemParameterRule[]|\Google\Protobuf\Internal\RepeatedField $rules
      *           Define system parameters.
      *           The parameters defined here will override the default parameters
      *           implemented by the system. If this field is missing from the service
@@ -78,8 +78,7 @@ class SystemParameters extends \Google\Protobuf\Internal\Message
      *           **NOTE:** All service configuration rules follow "last one wins" order.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\SystemParameter::initOnce();
         parent::__construct($data);
     }

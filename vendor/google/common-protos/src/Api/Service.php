@@ -174,11 +174,9 @@ class Service extends \Google\Protobuf\Internal\Message
     private $metrics;
     /**
      * Defines the monitored resources used by this service. This is required
-     * by the [Service.monitoring][google.api.Service.monitoring] and [Service.logging][google.api.Service.logging]
-     * configurations.
+     * by the [Service.monitoring][google.api.Service.monitoring] and [Service.logging][google.api.Service.logging] configurations.
      *
-     * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor monitored_resources =
-     * 25;</code>
+     * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor monitored_resources = 25;</code>
      */
     private $monitored_resources;
     /**
@@ -218,29 +216,29 @@ class Service extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Protobuf\UInt32Value $config_version
+     *     @type \Google\Protobuf\UInt32Value $config_version
      *           The semantic version of the service configuration. The config version
      *           affects the interpretation of the service configuration. For example,
      *           certain features are enabled by default for certain config versions.
      *           The latest config version is `3`.
-     * @type string $name
+     *     @type string $name
      *           The DNS address at which this service is available,
      *           e.g. `calendar.googleapis.com`.
-     * @type string $id
+     *     @type string $id
      *           A unique ID for a specific instance of this message, typically assigned
      *           by the client for tracking purpose. If empty, the server may choose to
      *           generate one instead.
-     * @type string $title
+     *     @type string $title
      *           The product title for this service.
-     * @type string $producer_project_id
+     *     @type string $producer_project_id
      *           The Google project that owns this service.
-     * @type \Google\Protobuf\Api[]|\Google\Protobuf\Internal\RepeatedField $apis
+     *     @type \Google\Protobuf\Api[]|\Google\Protobuf\Internal\RepeatedField $apis
      *           A list of API interfaces exported by this service. Only the `name` field
      *           of the [google.protobuf.Api][google.protobuf.Api] needs to be provided by the configuration
      *           author, as the remaining fields will be derived from the IDL during the
      *           normalization process. It is an error to specify an API interface here
      *           which cannot be resolved against the associated IDL files.
-     * @type \Google\Protobuf\Type[]|\Google\Protobuf\Internal\RepeatedField $types
+     *     @type \Google\Protobuf\Type[]|\Google\Protobuf\Internal\RepeatedField $types
      *           A list of all proto message types included in this API service.
      *           Types referenced directly or indirectly by the `apis` are
      *           automatically included.  Messages which are not referenced but
@@ -248,55 +246,53 @@ class Service extends \Google\Protobuf\Internal\Message
      *           should be listed here by name. Example:
      *               types:
      *               - name: google.protobuf.Int32
-     * @type \Google\Protobuf\Enum[]|\Google\Protobuf\Internal\RepeatedField $enums
+     *     @type \Google\Protobuf\Enum[]|\Google\Protobuf\Internal\RepeatedField $enums
      *           A list of all enum types included in this API service.  Enums
      *           referenced directly or indirectly by the `apis` are automatically
      *           included.  Enums which are not referenced but shall be included
      *           should be listed here by name. Example:
      *               enums:
      *               - name: google.someapi.v1.SomeEnum
-     * @type \Google\Api\Documentation $documentation
+     *     @type \Google\Api\Documentation $documentation
      *           Additional API documentation.
-     * @type \Google\Api\Backend $backend
+     *     @type \Google\Api\Backend $backend
      *           API backend configuration.
-     * @type \Google\Api\Http $http
+     *     @type \Google\Api\Http $http
      *           HTTP configuration.
-     * @type \Google\Api\Quota $quota
+     *     @type \Google\Api\Quota $quota
      *           Quota configuration.
-     * @type \Google\Api\Authentication $authentication
+     *     @type \Google\Api\Authentication $authentication
      *           Auth configuration.
-     * @type \Google\Api\Context $context
+     *     @type \Google\Api\Context $context
      *           Context configuration.
-     * @type \Google\Api\Usage $usage
+     *     @type \Google\Api\Usage $usage
      *           Configuration controlling usage of this service.
-     * @type \Google\Api\Endpoint[]|\Google\Protobuf\Internal\RepeatedField $endpoints
+     *     @type \Google\Api\Endpoint[]|\Google\Protobuf\Internal\RepeatedField $endpoints
      *           Configuration for network endpoints.  If this is empty, then an endpoint
      *           with the same name as the service is automatically generated to service all
      *           defined APIs.
-     * @type \Google\Api\Control $control
+     *     @type \Google\Api\Control $control
      *           Configuration for the service control plane.
-     * @type \Google\Api\LogDescriptor[]|\Google\Protobuf\Internal\RepeatedField $logs
+     *     @type \Google\Api\LogDescriptor[]|\Google\Protobuf\Internal\RepeatedField $logs
      *           Defines the logs used by this service.
-     * @type \Google\Api\MetricDescriptor[]|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type \Google\Api\MetricDescriptor[]|\Google\Protobuf\Internal\RepeatedField $metrics
      *           Defines the metrics used by this service.
-     * @type \Google\Api\MonitoredResourceDescriptor[]|\Google\Protobuf\Internal\RepeatedField $monitored_resources
+     *     @type \Google\Api\MonitoredResourceDescriptor[]|\Google\Protobuf\Internal\RepeatedField $monitored_resources
      *           Defines the monitored resources used by this service. This is required
-     *           by the [Service.monitoring][google.api.Service.monitoring] and
-     *     [Service.logging][google.api.Service.logging] configurations.
-     * @type \Google\Api\Billing $billing
+     *           by the [Service.monitoring][google.api.Service.monitoring] and [Service.logging][google.api.Service.logging] configurations.
+     *     @type \Google\Api\Billing $billing
      *           Billing configuration.
-     * @type \Google\Api\Logging $logging
+     *     @type \Google\Api\Logging $logging
      *           Logging configuration.
-     * @type \Google\Api\Monitoring $monitoring
+     *     @type \Google\Api\Monitoring $monitoring
      *           Monitoring configuration.
-     * @type \Google\Api\SystemParameters $system_parameters
+     *     @type \Google\Api\SystemParameters $system_parameters
      *           System parameter configuration.
-     * @type \Google\Api\SourceInfo $source_info
+     *     @type \Google\Api\SourceInfo $source_info
      *           Output only. The source information for this configuration if available.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Service::initOnce();
         parent::__construct($data);
     }
@@ -317,6 +313,7 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Returns the unboxed value from <code>getConfigVersion()</code>
+
      * The semantic version of the service configuration. The config version
      * affects the interpretation of the service configuration. For example,
      * certain features are enabled by default for certain config versions.
@@ -351,6 +348,7 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\UInt32Value object.
+
      * The semantic version of the service configuration. The config version
      * affects the interpretation of the service configuration. For example,
      * certain features are enabled by default for certain config versions.
@@ -876,11 +874,9 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Defines the monitored resources used by this service. This is required
-     * by the [Service.monitoring][google.api.Service.monitoring] and [Service.logging][google.api.Service.logging]
-     * configurations.
+     * by the [Service.monitoring][google.api.Service.monitoring] and [Service.logging][google.api.Service.logging] configurations.
      *
-     * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor monitored_resources =
-     * 25;</code>
+     * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor monitored_resources = 25;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getMonitoredResources()
@@ -890,11 +886,9 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Defines the monitored resources used by this service. This is required
-     * by the [Service.monitoring][google.api.Service.monitoring] and [Service.logging][google.api.Service.logging]
-     * configurations.
+     * by the [Service.monitoring][google.api.Service.monitoring] and [Service.logging][google.api.Service.logging] configurations.
      *
-     * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor monitored_resources =
-     * 25;</code>
+     * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor monitored_resources = 25;</code>
      * @param \Google\Api\MonitoredResourceDescriptor[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

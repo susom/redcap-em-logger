@@ -4,12 +4,12 @@
 
 namespace Google\ApiCore\Testing;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Generated from protobuf message <code>google.apicore.testing.MockRequestBody</code>
+ *
+ * @internal
  */
 class MockRequestBody extends \Google\Protobuf\Internal\Message
 {
@@ -73,26 +73,25 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $name
-     * @type int|string $number
-     * @type string[]|\Google\Protobuf\Internal\RepeatedField $repeated_field
-     * @type \Google\ApiCore\Testing\MockRequestBody $nested_message
-     * @type \Google\Protobuf\BytesValue $bytes_value
-     * @type \Google\Protobuf\Duration $duration_value
-     * @type \Google\Protobuf\FieldMask $field_mask
-     * @type \Google\Protobuf\Int64Value $int64_value
-     * @type \Google\Protobuf\ListValue $list_value
-     * @type \Google\Protobuf\StringValue $string_value
-     * @type \Google\Protobuf\Struct $struct_value
-     * @type \Google\Protobuf\Timestamp $timestamp_value
-     * @type \Google\Protobuf\Value $value_value
-     * @type string $field_1
-     * @type string $field_2
-     * @type string $field_3
+     *     @type string $name
+     *     @type int|string $number
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $repeated_field
+     *     @type \Google\ApiCore\Testing\MockRequestBody $nested_message
+     *     @type \Google\Protobuf\BytesValue $bytes_value
+     *     @type \Google\Protobuf\Duration $duration_value
+     *     @type \Google\Protobuf\FieldMask $field_mask
+     *     @type \Google\Protobuf\Int64Value $int64_value
+     *     @type \Google\Protobuf\ListValue $list_value
+     *     @type \Google\Protobuf\StringValue $string_value
+     *     @type \Google\Protobuf\Struct $struct_value
+     *     @type \Google\Protobuf\Timestamp $timestamp_value
+     *     @type \Google\Protobuf\Value $value_value
+     *     @type string $field_1
+     *     @type string $field_2
+     *     @type string $field_3
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\ApiCore\Testing\Mocks::initOnce();
         parent::__construct($data);
     }
@@ -216,6 +215,7 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
 
     /**
      * Returns the unboxed value from <code>getBytesValue()</code>
+
      * Generated from protobuf field <code>.google.protobuf.BytesValue bytes_value = 5;</code>
      * @return string|null
      */
@@ -239,6 +239,7 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
 
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BytesValue object.
+
      * Generated from protobuf field <code>.google.protobuf.BytesValue bytes_value = 5;</code>
      * @param string|null $var
      * @return $this
@@ -246,8 +247,7 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
     public function setBytesValueUnwrapped($var)
     {
         $this->writeWrapperValue("bytes_value", $var);
-        return $this;
-    }
+        return $this;}
 
     /**
      * Generated from protobuf field <code>.google.protobuf.Duration duration_value = 6;</code>
@@ -334,6 +334,7 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
 
     /**
      * Returns the unboxed value from <code>getInt64Value()</code>
+
      * Generated from protobuf field <code>.google.protobuf.Int64Value int64_value = 8;</code>
      * @return int|string|null
      */
@@ -357,6 +358,7 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
 
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\Int64Value object.
+
      * Generated from protobuf field <code>.google.protobuf.Int64Value int64_value = 8;</code>
      * @param int|string|null $var
      * @return $this
@@ -364,8 +366,7 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
     public function setInt64ValueUnwrapped($var)
     {
         $this->writeWrapperValue("int64_value", $var);
-        return $this;
-    }
+        return $this;}
 
     /**
      * Generated from protobuf field <code>.google.protobuf.ListValue list_value = 9;</code>
@@ -420,6 +421,7 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
 
     /**
      * Returns the unboxed value from <code>getStringValue()</code>
+
      * Generated from protobuf field <code>.google.protobuf.StringValue string_value = 10;</code>
      * @return string|null
      */
@@ -443,6 +445,7 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
 
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\StringValue object.
+
      * Generated from protobuf field <code>.google.protobuf.StringValue string_value = 10;</code>
      * @param string|null $var
      * @return $this
@@ -450,8 +453,7 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
     public function setStringValueUnwrapped($var)
     {
         $this->writeWrapperValue("string_value", $var);
-        return $this;
-    }
+        return $this;}
 
     /**
      * Generated from protobuf field <code>.google.protobuf.Struct struct_value = 11;</code>

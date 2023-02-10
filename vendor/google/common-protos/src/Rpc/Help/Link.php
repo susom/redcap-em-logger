@@ -20,13 +20,13 @@ class Link extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 1;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * The URL of the link.
      *
      * Generated from protobuf field <code>string url = 2;</code>
      */
-    private $url = '';
+    protected $url = '';
 
     /**
      * Constructor.
@@ -34,14 +34,13 @@ class Link extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $description
+     *     @type string $description
      *           Describes what the link offers.
-     * @type string $url
+     *     @type string $url
      *           The URL of the link.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Rpc\ErrorDetails::initOnce();
         parent::__construct($data);
     }

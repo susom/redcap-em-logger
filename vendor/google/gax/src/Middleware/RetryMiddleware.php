@@ -29,7 +29,6 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 namespace Google\ApiCore\Middleware;
 
 use Google\ApiCore\ApiException;
@@ -53,11 +52,10 @@ class RetryMiddleware
     private $deadlineMs;
 
     public function __construct(
-        callable      $nextHandler,
+        callable $nextHandler,
         RetrySettings $retrySettings,
-                      $deadlineMs = null
-    )
-    {
+        $deadlineMs = null
+    ) {
         $this->nextHandler = $nextHandler;
         $this->retrySettings = $retrySettings;
         $this->deadlineMs = $deadlineMs;
@@ -108,7 +106,7 @@ class RetryMiddleware
      * @return PromiseInterface
      * @throws ApiException
      */
-    private function retry(Call $call, array $options, $status)
+    private function retry(Call $call, array $options, string $status)
     {
         $delayMult = $this->retrySettings->getRetryDelayMultiplier();
         $maxDelayMs = $this->retrySettings->getMaxRetryDelayMillis();

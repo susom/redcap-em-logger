@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Rpc\BadRequest\FieldViolation instead.
      * @deprecated
      */
-    class BadRequest_FieldViolation
-    {
-    }
+    class BadRequest_FieldViolation {}
 }
 class_exists(BadRequest\FieldViolation::class);
 @trigger_error('Google\Rpc\BadRequest_FieldViolation is deprecated and will be removed in the next major release. Use Google\Rpc\BadRequest\FieldViolation instead', E_USER_DEPRECATED);

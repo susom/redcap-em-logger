@@ -34,12 +34,11 @@ class Struct extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type array|\Google\Protobuf\Internal\MapField $fields
+     *     @type array|\Google\Protobuf\Internal\MapField $fields
      *           Unordered map of dynamically typed values.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         parent::__construct($data);
     }

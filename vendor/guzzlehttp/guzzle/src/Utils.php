@@ -79,20 +79,22 @@ final class Utils
      *
      * The returned handler is not wrapped by any default middlewares.
      *
-     * @return callable(\Psr\Http\Message\RequestInterface, array): \GuzzleHttp\Promise\PromiseInterface Returns the
-     *     best handler for the given system.
      * @throws \RuntimeException if no viable Handler is available.
      *
+     * @return callable(\Psr\Http\Message\RequestInterface, array): \GuzzleHttp\Promise\PromiseInterface Returns the best handler for the given system.
      */
     public static function chooseHandler(): callable
     {
         $handler = null;
-        if (\function_exists('curl_multi_exec') && \function_exists('curl_exec')) {
-            $handler = Proxy::wrapSync(new CurlMultiHandler(), new CurlHandler());
-        } elseif (\function_exists('curl_exec')) {
-            $handler = new CurlHandler();
-        } elseif (\function_exists('curl_multi_exec')) {
-            $handler = new CurlMultiHandler();
+
+        if (\defined('CURLOPT_CUSTOMREQUEST')) {
+            if (\function_exists('curl_multi_exec') && \function_exists('curl_exec')) {
+                $handler = Proxy::wrapSync(new CurlMultiHandler(), new CurlHandler());
+            } elseif (\function_exists('curl_exec')) {
+                $handler = new CurlHandler();
+            } elseif (\function_exists('curl_multi_exec')) {
+                $handler = new CurlMultiHandler();
+            }
         }
 
         if (\ini_get('allow_url_fopen')) {
@@ -127,8 +129,7 @@ final class Utils
      *
      * @throws \RuntimeException if no bundle can be found.
      *
-     * @deprecated Utils::defaultCaBundle will be removed in guzzlehttp/guzzle:8.0. This method is not needed in PHP
-     *     5.6+.
+     * @deprecated Utils::defaultCaBundle will be removed in guzzlehttp/guzzle:8.0. This method is not needed in PHP 5.6+.
      */
     public static function defaultCaBundle(): string
     {
@@ -215,7 +216,7 @@ EOT
      * 3. The area starts with "." and the area is the last part of the host. e.g.
      *    '.mit.edu' will match any host that ends with '.mit.edu'.
      *
-     * @param string $host Host to check against the patterns.
+     * @param string   $host         Host to check against the patterns.
      * @param string[] $noProxyArray An array of host patterns.
      *
      * @throws InvalidArgumentException
@@ -227,20 +228,20 @@ EOT
         }
 
         // Strip port if present.
-        if (\strpos($host, ':')) {
-            /** @var string[] $hostParts will never be false because of the checks above */
-            $hostParts = \explode(':', $host, 2);
-            $host = $hostParts[0];
-        }
+        [$host] = \explode(':', $host, 2);
 
         foreach ($noProxyArray as $area) {
             // Always match on wildcards.
             if ($area === '*') {
                 return true;
-            } elseif (empty($area)) {
+            }
+
+            if (empty($area)) {
                 // Don't match on empty values.
                 continue;
-            } elseif ($area === $host) {
+            }
+
+            if ($area === $host) {
                 // Exact matches.
                 return true;
             }
@@ -258,11 +259,11 @@ EOT
     /**
      * Wrapper for json_decode that throws when an error occurs.
      *
-     * @param string $json JSON data to parse
-     * @param bool $assoc When true, returned objects will be converted
+     * @param string $json    JSON data to parse
+     * @param bool   $assoc   When true, returned objects will be converted
      *                        into associative arrays.
-     * @param int $depth User specified recursion depth.
-     * @param int $options Bitmask of JSON decode options.
+     * @param int    $depth   User specified recursion depth.
+     * @param int    $options Bitmask of JSON decode options.
      *
      * @return object|array|string|int|float|bool|null
      *
@@ -283,9 +284,9 @@ EOT
     /**
      * Wrapper for JSON encoding that throws when an error occurs.
      *
-     * @param mixed $value The value being encoded
-     * @param int $options JSON encode option bitmask
-     * @param int $depth Set the maximum depth. Must be greater than zero.
+     * @param mixed $value   The value being encoded
+     * @param int   $options JSON encode option bitmask
+     * @param int   $depth   Set the maximum depth. Must be greater than zero.
      *
      * @throws InvalidArgumentException if the JSON cannot be encoded.
      *
@@ -312,7 +313,7 @@ EOT
      */
     public static function currentTime(): float
     {
-        return (float)\function_exists('hrtime') ? \hrtime(true) / 1e9 : \microtime(true);
+        return (float) \function_exists('hrtime') ? \hrtime(true) / 1e9 : \microtime(true);
     }
 
     /**
@@ -327,7 +328,7 @@ EOT
             if ($asciiHost === false) {
                 $errorBitSet = $info['errors'] ?? 0;
 
-                $errorConstants = array_filter(array_keys(get_defined_constants()), static function ($name) {
+                $errorConstants = array_filter(array_keys(get_defined_constants()), static function (string $name): bool {
                     return substr($name, 0, 11) === 'IDNA_ERROR_';
                 });
 
@@ -360,11 +361,11 @@ EOT
     public static function getenv(string $name): ?string
     {
         if (isset($_SERVER[$name])) {
-            return (string)$_SERVER[$name];
+            return (string) $_SERVER[$name];
         }
 
         if (\PHP_SAPI === 'cli' && ($value = \getenv($name)) !== false && $value !== null) {
-            return (string)$value;
+            return (string) $value;
         }
 
         return null;

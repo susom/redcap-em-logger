@@ -8,22 +8,21 @@ class Any
 {
     public static $is_initialized = false;
 
-    public static function initOnce()
-    {
+    public static function initOnce() {
         $pool = \Google\Protobuf\Internal\DescriptorPool::getGeneratedPool();
 
         if (static::$is_initialized == true) {
-            return;
+          return;
         }
         $pool->internalAddGeneratedFile(
             '
-ï¿½
+Ô
 google/protobuf/any.protogoogle.protobuf"&
 Any
 type_url (	
 value (Bv
-com.google.protobufBAnyProtoPZ,google.golang.org/protobuf/types/known/anypbï¿½GPBï¿½Google.Protobuf.WellKnownTypesbproto3'
-            , true);
+com.google.protobufBAnyProtoPZ,google.golang.org/protobuf/types/known/anypb¢GPBªGoogle.Protobuf.WellKnownTypesbproto3'
+        , true);
 
         static::$is_initialized = true;
     }

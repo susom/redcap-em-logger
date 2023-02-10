@@ -16,7 +16,6 @@
  * limitations under the License.
  *
  */
-
 namespace Grpc\Gcp;
 
 /**
@@ -30,7 +29,6 @@ class CreatedByDeserializeCheck implements \Serializable
 {
     // TODO(ddyihai): remove it once the serialzer handler for \Grpc\Channel is implemented.
     private $data;
-
     public function __construct()
     {
         $this->data = 1;
@@ -45,11 +43,27 @@ class CreatedByDeserializeCheck implements \Serializable
     }
 
     /**
+     * @return string
+     */
+    public function __serialize()
+    {
+        return $this->serialize();
+    }
+
+    /**
      * @param string $data
      */
     public function unserialize($data)
     {
         $this->data = 1;
+    }
+
+    /**
+     * @param string $data
+     */
+    public function __unserialize($data)
+    {
+       $this->unserialize($data);
     }
 
     /**

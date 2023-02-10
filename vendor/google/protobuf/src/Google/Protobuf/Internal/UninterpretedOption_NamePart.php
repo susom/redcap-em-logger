@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Protobuf\Internal\UninterpretedOption\NamePart instead.
      * @deprecated
      */
-    class UninterpretedOption_NamePart
-    {
-    }
+    class UninterpretedOption_NamePart {}
 }
 class_exists(UninterpretedOption\NamePart::class);
 @trigger_error('Google\Protobuf\Internal\UninterpretedOption_NamePart is deprecated and will be removed in the next major release. Use Google\Protobuf\Internal\UninterpretedOption\NamePart instead', E_USER_DEPRECATED);

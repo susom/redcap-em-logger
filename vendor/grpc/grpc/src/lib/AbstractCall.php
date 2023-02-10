@@ -36,17 +36,17 @@ abstract class AbstractCall
     /**
      * Create a new Call wrapper object.
      *
-     * @param Channel $channel The channel to communicate on
-     * @param string $method The method to call on the
+     * @param Channel  $channel     The channel to communicate on
+     * @param string   $method      The method to call on the
      *                              remote server
      * @param callback $deserialize A callback function to deserialize
      *                              the response
-     * @param array $options Call options (optional)
+     * @param array    $options     Call options (optional)
      */
     public function __construct(Channel $channel,
-                                        $method,
-                                        $deserialize,
-                                array   $options = [])
+                                $method,
+                                $deserialize,
+                                array $options = [])
     {
         if (array_key_exists('timeout', $options) &&
             is_numeric($timeout = $options['timeout'])

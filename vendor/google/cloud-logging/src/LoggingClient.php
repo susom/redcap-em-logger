@@ -70,7 +70,7 @@ class LoggingClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.22.0';
+    const VERSION = '1.25.1';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/logging.admin';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/logging.read';
@@ -98,35 +98,35 @@ class LoggingClient
      * @param array $options [optional] {
      *     Configuration options.
      *
-     * @type string $apiEndpoint A hostname with optional port to use in
+     *     @type string $apiEndpoint A hostname with optional port to use in
      *           place of the service's default endpoint.
-     * @type string $messageKey The key in the `jsonPayload` used to contain
+     *     @type string $messageKey The key in the `jsonPayload` used to contain
      *           the logged message. **Defaults to** `message`.
-     * @type array $resource The
+     *     @type array $resource The
      *           [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/v2/MonitoredResource)
      *           to associate log entries with. **Defaults to** type global.
-     * @type array $labels A set of user-defined (key, value) data that
+     *     @type array $labels A set of user-defined (key, value) data that
      *           provides additional information about the log entry.
-     * @type MetadataProviderInterface $metadataProvider **Defaults to** An
+     *     @type MetadataProviderInterface $metadataProvider **Defaults to** An
      *           automatically chosen provider, based on detected environment
      *           settings.
-     * @type bool $debugOutput Whether or not to output debug information.
+     *     @type bool $debugOutput Whether or not to output debug information.
      *           Please note debug output currently only applies in CLI based
      *           applications. **Defaults to** `false`.
-     * @type array $batchOptions A set of options for a BatchJob.
+     *     @type array $batchOptions A set of options for a BatchJob.
      *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
      *           more details.
      *           **Defaults to** ['batchSize' => 1000,
      *                            'callPeriod' => 2.0,
      *                            'numWorkers' => 2].
-     * @type array $clientConfig Configuration options for the Logging client
+     *     @type array $clientConfig Configuration options for the Logging client
      *           used to handle processing of batch items. For valid options
      *           please see
      *           {@see \Google\Cloud\Logging\LoggingClient::__construct()}.
-     * @type BatchRunner $batchRunner A BatchRunner object. Mainly used for
+     *     @type BatchRunner $batchRunner A BatchRunner object. Mainly used for
      *           the tests to inject a mock. **Defaults to** a newly created
      *           BatchRunner.
-     * @type ClosureSerializerInterface $closureSerializer An implementation
+     *     @type ClosureSerializerInterface $closureSerializer An implementation
      *           responsible for serializing closures used in the
      *           `$clientConfig`. This is especially important when using the
      *           batch daemon. **Defaults to**
@@ -155,31 +155,31 @@ class LoggingClient
      * @param array $config [optional] {
      *     Configuration options.
      *
-     * @type string $projectId The project ID from the Google Developer's
+     *     @type string $projectId The project ID from the Google Developer's
      *           Console.
-     * @type CacheItemPoolInterface $authCache A cache for storing access
+     *     @type CacheItemPoolInterface $authCache A cache for storing access
      *           tokens. **Defaults to** a simple in memory implementation.
-     * @type array $authCacheOptions Cache configuration options.
-     * @type callable $authHttpHandler A handler used to deliver Psr7
+     *     @type array $authCacheOptions Cache configuration options.
+     *     @type callable $authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
-     * @type FetchAuthTokenInterface $credentialsFetcher A credentials
+     *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
      *           fetcher instance.
-     * @type callable $httpHandler A handler used to deliver Psr7 requests.
+     *     @type callable $httpHandler A handler used to deliver Psr7 requests.
      *           Only valid for requests sent over REST.
-     * @type array $keyFile The contents of the service account credentials
+     *     @type array $keyFile The contents of the service account credentials
      *           .json file retrieved from the Google Developer's Console.
      *           Ex: `json_decode(file_get_contents($path), true)`.
-     * @type string $keyFilePath The full path to your service account
+     *     @type string $keyFilePath The full path to your service account
      *           credentials .json file retrieved from the Google Developers
      *           Console.
-     * @type float $requestTimeout Seconds to wait before timing out the
+     *     @type float $requestTimeout Seconds to wait before timing out the
      *           request. **Defaults to** `0` with REST and `60` with gRPC.
-     * @type int $retries Number of retries for a failed request.
+     *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
-     * @type array $scopes Scopes to be used for the request.
-     * @type string $quotaProject Specifies a user project to bill for
+     *     @type array $scopes Scopes to be used for the request.
+     *     @type string $quotaProject Specifies a user project to bill for
      *           access charges associated with the request.
-     * @type string $transport The transport type used for requests. May be
+     *     @type string $transport The transport type used for requests. May be
      *           either `grpc` or `rest`. **Defaults to** `grpc` if gRPC support
      *           is detected on the system.
      * }
@@ -209,8 +209,7 @@ class LoggingClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks/create projects.sinks create API
-     *     documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks/create projects.sinks create API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param string $name The name of the sink.
@@ -220,8 +219,8 @@ class LoggingClient
      * @param array $options [optional] {
      *     Configuration options.
      *
-     * @type string $filter An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters).
-     * @type string $outputVersionFormat The log entry version to use for
+     *     @type string $filter An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters).
+     *     @type string $outputVersionFormat The log entry version to use for
      *           this sink's exported log entries. This version does not have
      *           to correspond to the version of the log entry when it was
      *           written to Stackdriver Logging. May be either `V1` or `V2`.
@@ -231,12 +230,12 @@ class LoggingClient
      */
     public function createSink($name, $destination, array $options = [])
     {
-        $response = $this->connection->createSink($options + [
-                'parent' => $this->formattedProjectName,
-                'name' => $name,
-                'destination' => $destination,
-                'outputVersionFormat' => 'VERSION_FORMAT_UNSPECIFIED'
-            ]);
+        $response =  $this->connection->createSink($options + [
+            'parent' => $this->formattedProjectName,
+            'name' => $name,
+            'destination' => $destination,
+            'outputVersionFormat' => 'VERSION_FORMAT_UNSPECIFIED'
+        ]);
 
         return new Sink($this->connection, $name, $this->projectId, $response);
     }
@@ -273,18 +272,17 @@ class LoggingClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks/list projects.sinks list API
-     *     documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks/list projects.sinks list API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] {
      *     Configuration options.
      *
-     * @type int $pageSize The maximum number of results to return per
+     *     @type int $pageSize The maximum number of results to return per
      *           request.
-     * @type int $resultLimit Limit the number of results returned in total.
+     *     @type int $resultLimit Limit the number of results returned in total.
      *           **Defaults to** `0` (return all results).
-     * @type string $pageToken A previously-returned page token used to
+     *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      * }
      * @return ItemIterator<Sink>
@@ -320,8 +318,7 @@ class LoggingClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.metrics/create projects.metrics create
-     *     API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.metrics/create projects.metrics create API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param string $name The name of the metric.
@@ -329,17 +326,17 @@ class LoggingClient
      * @param array $options [optional] {
      *     Configuration Options.
      *
-     * @type string $description A description of the metric.
+     *     @type string $description A description of the metric.
      * }
      * @return Metric
      */
     public function createMetric($name, $filter, array $options = [])
     {
-        $response = $this->connection->createMetric($options + [
-                'parent' => $this->formattedProjectName,
-                'name' => $name,
-                'filter' => $filter
-            ]);
+        $response =  $this->connection->createMetric($options + [
+            'parent' => $this->formattedProjectName,
+            'name' => $name,
+            'filter' => $filter
+        ]);
 
         return new Metric($this->connection, $name, $this->projectId, $response);
     }
@@ -376,18 +373,17 @@ class LoggingClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.metrics/list projects.metrics list API
-     *     documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.metrics/list projects.metrics list API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] {
      *     Configuration options.
      *
-     * @type int $pageSize The maximum number of results to return per
+     *     @type int $pageSize The maximum number of results to return per
      *           request.
-     * @type int $resultLimit Limit the number of results returned in total.
+     *     @type int $resultLimit Limit the number of results returned in total.
      *           **Defaults to** `0` (return all results).
-     * @type string $pageToken A previously-returned page token used to
+     *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      * }
      * @return ItemIterator<Metric>
@@ -441,22 +437,22 @@ class LoggingClient
      * @param array $options [optional] {
      *     Configuration options.
      *
-     * @type string[] $projectIds A list of projectIds to fetch
+     *     @type string[] $projectIds A list of projectIds to fetch
      *           entries from in addition to entries found in the project bound
      *           to this client.
-     * @type string[] $resourceNames One or more cloud resources from which
+     *     @type string[] $resourceNames One or more cloud resources from which
      *           to retrieve log entries. Projects listed in projectIds are
      *           added to this list.
      *           Example: "projects/my-project-1A", "projects/1234567890".
-     * @type string $filter An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters).
-     * @type string $orderBy How the results should be sorted. Presently,
+     *     @type string $filter An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters).
+     *     @type string $orderBy How the results should be sorted. Presently,
      *           the only permitted values are `timestamp asc` and
      *           `timestamp desc`. **Defaults to** `"timestamp asc"`.
-     * @type int $pageSize The maximum number of results to return per
+     *     @type int $pageSize The maximum number of results to return per
      *           request.
-     * @type int $resultLimit Limit the number of results returned in total.
+     *     @type int $resultLimit Limit the number of results returned in total.
      *           **Defaults to** `0` (return all results).
-     * @type string $pageToken A previously-returned page token used to
+     *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      * }
      * @return ItemIterator<Entry>
@@ -467,7 +463,7 @@ class LoggingClient
         $resourceNames = ['projects/' . $this->projectId];
         if (isset($options['projectIds'])) {
             foreach ($options['projectIds'] as $projectId) {
-                $resourceNames[] = 'projects/' . $projectId;
+                  $resourceNames[] = 'projects/' . $projectId;
             }
             unset($options['projectIds']);
         }
@@ -512,25 +508,25 @@ class LoggingClient
      * @param array $options [optional] {
      *     Configuration options.
      *
-     * @type string $messageKey The key in the `jsonPayload` used to contain
+     *     @type string $messageKey The key in the `jsonPayload` used to contain
      *           the logged message. **Defaults to** `message`.
-     * @type array $resource The
+     *     @type array $resource The
      *           [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/v2/MonitoredResource)
      *           to associate log entries with. **Defaults to** type global.
-     * @type array $labels A set of user-defined (key, value) data that
+     *     @type array $labels A set of user-defined (key, value) data that
      *           provides additional information about the log entry.
-     * @type MetadataProviderInterface $metadataProvider **Defaults to** An
+     *     @type MetadataProviderInterface $metadataProvider **Defaults to** An
      *           automatically chosen provider, based on detected environment
      *           settings.
-     * @type bool $batchEnabled Determines whether or not to use background
+     *     @type bool $batchEnabled Determines whether or not to use background
      *           batching. **Defaults to** `false`.
-     * @type bool $debugOutput Whether or not to output debug information.
+     *     @type bool $debugOutput Whether or not to output debug information.
      *           Please note debug output currently only applies in CLI based
      *           applications. **Defaults to** `false`. Applies only when
      *           `batchEnabled` is set to `true`.
-     * @type resource $debugOutputResource A resource to output debug output
+     *     @type resource $debugOutputResource A resource to output debug output
      *           to. Applies only when `batchEnabled` is set to `true`.
-     * @type array $batchOptions A set of options for a BatchJob.
+     *     @type array $batchOptions A set of options for a BatchJob.
      *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
      *           more details.
      *           **Defaults to** ['batchSize' => 1000,
@@ -538,16 +534,16 @@ class LoggingClient
      *                            'numWorkers' => 2]. Applies only when
      *           `batchEnabled` is set to `true`. Note that this option is
      *           currently considered **experimental** and is subject to change.
-     * @type array $clientConfig Configuration options for the Logging client
+     *     @type array $clientConfig Configuration options for the Logging client
      *           used to handle processing of batch items. For valid options
      *           please see
      *           {@see \Google\Cloud\Logging\LoggingClient::__construct()}.
      *           **Defaults to** the options provided to the current client.
      *           Applies only when `batchEnabled` is set to `true`.
-     * @type BatchRunner $batchRunner A BatchRunner object. Mainly used for
+     *     @type BatchRunner $batchRunner A BatchRunner object. Mainly used for
      *           the tests to inject a mock. **Defaults to** a newly created
      *           BatchRunner. Applies only when `batchEnabled` is set to `true`.
-     * @type ClosureSerializerInterface $closureSerializer An implementation
+     *     @type ClosureSerializerInterface $closureSerializer An implementation
      *           responsible for serializing closures used in the
      *           `$clientConfig`. This is especially important when using the
      *           batch daemon. **Defaults to**
@@ -597,10 +593,10 @@ class LoggingClient
      * @param array $options [optional] {
      *     Configuration options.
      *
-     * @type array $resource The
+     *     @type array $resource The
      *           [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/v2/MonitoredResource)
      *           to associate log entries with. **Defaults to** type global.
-     * @type array $labels A set of user-defined (key, value) data that
+     *     @type array $labels A set of user-defined (key, value) data that
      *           provides additional information about the log entry.
      * }
      * @return Logger

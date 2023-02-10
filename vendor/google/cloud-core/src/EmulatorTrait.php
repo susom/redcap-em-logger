@@ -44,10 +44,10 @@ trait EmulatorTrait
                         'credentials' => \Grpc\ChannelCredentials::createInsecure()
                     ]
                 ]
-            ]
+            ],
+            'credentials' => new InsecureCredentialsWrapper(),
         ];
     }
-
     /**
      * Retrieve a valid base uri for a service emulator.
      *

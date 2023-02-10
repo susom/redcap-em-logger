@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Protobuf\Internal\DescriptorProto\ReservedRange instead.
      * @deprecated
      */
-    class DescriptorProto_ReservedRange
-    {
-    }
+    class DescriptorProto_ReservedRange {}
 }
 class_exists(DescriptorProto\ReservedRange::class);
 @trigger_error('Google\Protobuf\Internal\DescriptorProto_ReservedRange is deprecated and will be removed in the next major release. Use Google\Protobuf\Internal\DescriptorProto\ReservedRange instead', E_USER_DEPRECATED);

@@ -40,8 +40,7 @@ class MapEntry extends Message
     public $key;
     public $value;
 
-    public function __construct($desc)
-    {
+    public function __construct($desc) {
         parent::__construct($desc);
         // For MapEntry, getValue should always return a valid value. Thus, we
         // need to create a default instance value if the value type is
@@ -54,23 +53,19 @@ class MapEntry extends Message
         }
     }
 
-    public function setKey($key)
-    {
-        $this->key = $key;
+    public function setKey($key) {
+      $this->key = $key;
     }
 
-    public function getKey()
-    {
-        return $this->key;
+    public function getKey() {
+      return $this->key;
     }
 
-    public function setValue($value)
-    {
-        $this->value = $value;
+    public function setValue($value) {
+      $this->value = $value;
     }
 
-    public function getValue()
-    {
-        return $this->value;
+    public function getValue() {
+      return $this->value;
     }
 }

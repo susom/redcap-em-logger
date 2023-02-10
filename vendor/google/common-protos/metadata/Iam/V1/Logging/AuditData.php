@@ -8,12 +8,11 @@ class AuditData
 {
     public static $is_initialized = false;
 
-    public static function initOnce()
-    {
+    public static function initOnce() {
         $pool = \Google\Protobuf\Internal\DescriptorPool::getGeneratedPool();
 
         if (static::$is_initialized == true) {
-            return;
+          return;
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Iam\V1\Policy::initOnce();

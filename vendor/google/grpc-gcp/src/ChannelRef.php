@@ -16,7 +16,6 @@
  * limitations under the License.
  *
  */
-
 namespace Grpc\Gcp;
 
 /**
@@ -36,7 +35,7 @@ class ChannelRef
     private $has_deserialized;
     private $real_channel;
 
-    public function __construct($target, $channel_id, $opts, $affinity_ref = 0, $active_stream_ref = 0)
+    public function __construct($target, $channel_id, $opts, $affinity_ref=0, $active_stream_ref=0)
     {
         $this->target = $target;
         $this->channel_id = $channel_id;
@@ -76,27 +75,22 @@ class ChannelRef
     {
         return $this->affinity_ref;
     }
-
     public function getActiveStreamRef()
     {
         return $this->active_stream_ref;
     }
-
     public function affinityRefIncr()
     {
         $this->affinity_ref += 1;
     }
-
     public function affinityRefDecr()
     {
         $this->affinity_ref -= 1;
     }
-
     public function activeStreamRefIncr()
     {
         $this->active_stream_ref += 1;
     }
-
     public function activeStreamRefDecr()
     {
         $this->active_stream_ref -= 1;

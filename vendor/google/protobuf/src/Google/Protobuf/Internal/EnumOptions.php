@@ -34,8 +34,7 @@ class EnumOptions extends \Google\Protobuf\Internal\Message
     /**
      * The parser stores options it doesn't recognize here. See above.
      *
-     * Generated from protobuf field <code>repeated .google.protobuf.UninterpretedOption uninterpreted_option =
-     * 999;</code>
+     * Generated from protobuf field <code>repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;</code>
      */
     private $uninterpreted_option;
 
@@ -45,20 +44,19 @@ class EnumOptions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type bool $allow_alias
+     *     @type bool $allow_alias
      *           Set this option to true to allow mapping different tag names to the same
      *           value.
-     * @type bool $deprecated
+     *     @type bool $deprecated
      *           Is this enum deprecated?
      *           Depending on the target platform, this can emit Deprecated annotations
      *           for the enum, or it will be completely ignored; in the very least, this
      *           is a formalization for deprecating enums.
-     * @type \Google\Protobuf\Internal\UninterpretedOption[]|\Google\Protobuf\Internal\RepeatedField
-     *     $uninterpreted_option The parser stores options it doesn't recognize here. See above.
+     *     @type array<\Google\Protobuf\Internal\UninterpretedOption>|\Google\Protobuf\Internal\RepeatedField $uninterpreted_option
+     *           The parser stores options it doesn't recognize here. See above.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Protobuf\Internal\Descriptor::initOnce();
         parent::__construct($data);
     }
@@ -146,8 +144,7 @@ class EnumOptions extends \Google\Protobuf\Internal\Message
     /**
      * The parser stores options it doesn't recognize here. See above.
      *
-     * Generated from protobuf field <code>repeated .google.protobuf.UninterpretedOption uninterpreted_option =
-     * 999;</code>
+     * Generated from protobuf field <code>repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getUninterpretedOption()
@@ -158,9 +155,8 @@ class EnumOptions extends \Google\Protobuf\Internal\Message
     /**
      * The parser stores options it doesn't recognize here. See above.
      *
-     * Generated from protobuf field <code>repeated .google.protobuf.UninterpretedOption uninterpreted_option =
-     * 999;</code>
-     * @param \Google\Protobuf\Internal\UninterpretedOption[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;</code>
+     * @param array<\Google\Protobuf\Internal\UninterpretedOption>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUninterpretedOption($var)

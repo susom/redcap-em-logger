@@ -29,10 +29,10 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 namespace Google\ApiCore;
 
 use Google\Rpc\Code;
+use Grpc\ClientStreamingCall;
 
 /**
  * ClientStream is the response object from a gRPC client streaming API call.
@@ -44,11 +44,13 @@ class ClientStream
     /**
      * ClientStream constructor.
      *
-     * @param \Grpc\ClientStreamingCall $clientStreamingCall The gRPC client streaming call object
+     * @param ClientStreamingCall $clientStreamingCall The gRPC client streaming call object
      * @param array $streamingDescriptor
      */
-    public function __construct($clientStreamingCall, array $streamingDescriptor = [])
-    {
+    public function __construct(  // @phpstan-ignore-line
+        ClientStreamingCall $clientStreamingCall,
+        array $streamingDescriptor = []
+    ) {
         $this->call = $clientStreamingCall;
     }
 
@@ -65,8 +67,8 @@ class ClientStream
     /**
      * Read the response from the server, completing the streaming call.
      *
-     * @return mixed The response object from the server
      * @throws ApiException
+     * @return mixed The response object from the server
      */
     public function readResponse()
     {
@@ -85,7 +87,7 @@ class ClientStream
      * @param mixed[] $requests An iterator of request objects to write to the server
      * @return mixed The response object from the server
      */
-    public function writeAllAndReadResponse($requests)
+    public function writeAllAndReadResponse(array $requests)
     {
         foreach ($requests as $request) {
             $this->write($request);

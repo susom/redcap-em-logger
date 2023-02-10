@@ -36,13 +36,12 @@ class ServiceDescriptorProto extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $name
-     * @type \Google\Protobuf\Internal\MethodDescriptorProto[]|\Google\Protobuf\Internal\RepeatedField $method
-     * @type \Google\Protobuf\Internal\ServiceOptions $options
+     *     @type string $name
+     *     @type array<\Google\Protobuf\Internal\MethodDescriptorProto>|\Google\Protobuf\Internal\RepeatedField $method
+     *     @type \Google\Protobuf\Internal\ServiceOptions $options
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Protobuf\Internal\Descriptor::initOnce();
         parent::__construct($data);
     }
@@ -90,7 +89,7 @@ class ServiceDescriptorProto extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.protobuf.MethodDescriptorProto method = 2;</code>
-     * @param \Google\Protobuf\Internal\MethodDescriptorProto[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Protobuf\Internal\MethodDescriptorProto>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMethod($var)

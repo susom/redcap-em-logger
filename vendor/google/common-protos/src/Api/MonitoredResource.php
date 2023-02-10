@@ -49,18 +49,17 @@ class MonitoredResource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $type
+     *     @type string $type
      *           Required. The monitored resource type. This field must match
      *           the `type` field of a [MonitoredResourceDescriptor][google.api.MonitoredResourceDescriptor] object. For
      *           example, the type of a Compute Engine VM instance is `gce_instance`.
-     * @type array|\Google\Protobuf\Internal\MapField $labels
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Required. Values for all of the labels listed in the associated monitored
      *           resource descriptor. For example, Compute Engine VM instances use the
      *           labels `"project_id"`, `"instance_id"`, and `"zone"`.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\MonitoredResource::initOnce();
         parent::__construct($data);
     }

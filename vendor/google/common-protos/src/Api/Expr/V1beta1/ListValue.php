@@ -30,12 +30,11 @@ class ListValue extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\Expr\V1beta1\Value[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type \Google\Api\Expr\V1beta1\Value[]|\Google\Protobuf\Internal\RepeatedField $values
      *           The ordered values in the list.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Beta1\Value::initOnce();
         parent::__construct($data);
     }

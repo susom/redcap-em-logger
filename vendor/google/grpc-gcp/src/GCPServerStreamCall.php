@@ -16,7 +16,6 @@
  * limitations under the License.
  *
  */
-
 namespace Grpc\Gcp;
 
 /**
@@ -37,10 +36,10 @@ class GCPServerStreamCall extends GcpBaseCall
     /**
      * Pick a channel and start the call.
      *
-     * @param mixed $data The data to send
+     * @param mixed $data     The data to send
      * @param array $metadata Metadata to send with the call, if applicable
      *                        (optional)
-     * @param array $options An array of options, possible keys:
+     * @param array $options  An array of options, possible keys:
      *                        'flags' => a number (optional)
      */
     public function start($argument, $metadata, $options)

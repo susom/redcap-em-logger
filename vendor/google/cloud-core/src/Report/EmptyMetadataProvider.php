@@ -20,6 +20,7 @@ namespace Google\Cloud\Core\Report;
 /**
  * An empty MetadataProvider.
  */
+
 class EmptyMetadataProvider implements MetadataProviderInterface
 {
     /**

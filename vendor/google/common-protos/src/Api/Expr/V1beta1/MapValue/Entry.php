@@ -36,16 +36,15 @@ class Entry extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\Expr\V1beta1\Value $key
+     *     @type \Google\Api\Expr\V1beta1\Value $key
      *           The key.
      *           Must be unique with in the map.
      *           Currently only boolean, int, uint, and string values can be keys.
-     * @type \Google\Api\Expr\V1beta1\Value $value
+     *     @type \Google\Api\Expr\V1beta1\Value $value
      *           The value.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Beta1\Value::initOnce();
         parent::__construct($data);
     }

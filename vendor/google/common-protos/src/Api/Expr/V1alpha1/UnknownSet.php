@@ -29,12 +29,11 @@ class UnknownSet extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int[]|string[]|\Google\Protobuf\Internal\RepeatedField $exprs
+     *     @type int[]|string[]|\Google\Protobuf\Internal\RepeatedField $exprs
      *           The ids of the expressions with unknown values.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\PBEval::initOnce();
         parent::__construct($data);
     }

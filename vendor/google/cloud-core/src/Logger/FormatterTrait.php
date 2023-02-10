@@ -14,8 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 namespace Google\Cloud\Core\Logger;
+
+use Monolog\LogRecord;
 
 /**
  * Shared trait to enrich and format a record with
@@ -23,15 +24,24 @@ namespace Google\Cloud\Core\Logger;
  */
 trait FormatterTrait
 {
-    protected function formatPayload(array $record, $message)
+    /**
+     * @param array|LogRecord $record
+     * @param string $message
+     * @return string
+     */
+    protected function formatPayload($record, $message)
     {
+        if ($record instanceof LogRecord) {
+            $record = $record->toArray();
+        }
+
         list($usec, $sec) = explode(' ', microtime());
-        $usec = (int)(((float)$usec) * 1000000000);
+        $usec = (int)(((float)$usec)*1000000000);
         $sec = (int)$sec;
 
         $payload = [
             'message' => $message,
-            'timestamp' => ['seconds' => $sec, 'nanos' => $usec],
+            'timestamp'=> ['seconds' => $sec, 'nanos' => $usec],
             'thread' => '',
             'severity' => $record['level_name'],
         ];

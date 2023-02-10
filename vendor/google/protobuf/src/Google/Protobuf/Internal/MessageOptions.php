@@ -78,8 +78,7 @@ class MessageOptions extends \Google\Protobuf\Internal\Message
     /**
      * The parser stores options it doesn't recognize here. See above.
      *
-     * Generated from protobuf field <code>repeated .google.protobuf.UninterpretedOption uninterpreted_option =
-     * 999;</code>
+     * Generated from protobuf field <code>repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;</code>
      */
     private $uninterpreted_option;
 
@@ -89,7 +88,7 @@ class MessageOptions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type bool $message_set_wire_format
+     *     @type bool $message_set_wire_format
      *           Set true to use the old proto1 MessageSet wire format for extensions.
      *           This is provided for backwards-compatibility with the MessageSet wire
      *           format.  You should not use this for any other reason:  It's less
@@ -105,16 +104,16 @@ class MessageOptions extends \Google\Protobuf\Internal\Message
      *           be int32s, enums, or repeated messages.
      *           Because this is an option, the above two restrictions are not enforced by
      *           the protocol compiler.
-     * @type bool $no_standard_descriptor_accessor
+     *     @type bool $no_standard_descriptor_accessor
      *           Disables the generation of the standard "descriptor()" accessor, which can
      *           conflict with a field of the same name.  This is meant to make migration
      *           from proto1 easier; new code should avoid fields named "descriptor".
-     * @type bool $deprecated
+     *     @type bool $deprecated
      *           Is this message deprecated?
      *           Depending on the target platform, this can emit Deprecated annotations
      *           for the message, or it will be completely ignored; in the very least,
      *           this is a formalization for deprecating messages.
-     * @type bool $map_entry
+     *     @type bool $map_entry
      *           Whether the message is an automatically generated map entry type for the
      *           maps field.
      *           For maps fields:
@@ -133,12 +132,11 @@ class MessageOptions extends \Google\Protobuf\Internal\Message
      *           NOTE: Do not set the option in .proto files. Always use the maps syntax
      *           instead. The option should only be implicitly set by the proto compiler
      *           parser.
-     * @type \Google\Protobuf\Internal\UninterpretedOption[]|\Google\Protobuf\Internal\RepeatedField
-     *     $uninterpreted_option The parser stores options it doesn't recognize here. See above.
+     *     @type array<\Google\Protobuf\Internal\UninterpretedOption>|\Google\Protobuf\Internal\RepeatedField $uninterpreted_option
+     *           The parser stores options it doesn't recognize here. See above.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Protobuf\Internal\Descriptor::initOnce();
         parent::__construct($data);
     }
@@ -362,8 +360,7 @@ class MessageOptions extends \Google\Protobuf\Internal\Message
     /**
      * The parser stores options it doesn't recognize here. See above.
      *
-     * Generated from protobuf field <code>repeated .google.protobuf.UninterpretedOption uninterpreted_option =
-     * 999;</code>
+     * Generated from protobuf field <code>repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getUninterpretedOption()
@@ -374,9 +371,8 @@ class MessageOptions extends \Google\Protobuf\Internal\Message
     /**
      * The parser stores options it doesn't recognize here. See above.
      *
-     * Generated from protobuf field <code>repeated .google.protobuf.UninterpretedOption uninterpreted_option =
-     * 999;</code>
-     * @param \Google\Protobuf\Internal\UninterpretedOption[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;</code>
+     * @param array<\Google\Protobuf\Internal\UninterpretedOption>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUninterpretedOption($var)

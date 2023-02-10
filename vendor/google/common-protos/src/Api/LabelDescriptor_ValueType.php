@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Api\LabelDescriptor\ValueType instead.
      * @deprecated
      */
-    class LabelDescriptor_ValueType
-    {
-    }
+    class LabelDescriptor_ValueType {}
 }
 class_exists(LabelDescriptor\ValueType::class);
 @trigger_error('Google\Api\LabelDescriptor_ValueType is deprecated and will be removed in the next major release. Use Google\Api\LabelDescriptor\ValueType instead', E_USER_DEPRECATED);

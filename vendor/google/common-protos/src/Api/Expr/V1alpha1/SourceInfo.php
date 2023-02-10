@@ -65,22 +65,22 @@ class SourceInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $syntax_version
+     *     @type string $syntax_version
      *           The syntax version of the source, e.g. `cel1`.
-     * @type string $location
+     *     @type string $location
      *           The location name. All position information attached to an expression is
      *           relative to this location.
      *           The location could be a file, UI element, or similar. For example,
      *           `acme/app/AnvilPolicy.cel`.
-     * @type int[]|\Google\Protobuf\Internal\RepeatedField $line_offsets
+     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $line_offsets
      *           Monotonically increasing list of character offsets where newlines appear.
      *           The line number of a given position is the index `i` where for a given
      *           `id` the `line_offsets[i] < id_positions[id] < line_offsets[i+1]`. The
      *           column may be derivd from `id_positions[id] - line_offsets[i]`.
-     * @type array|\Google\Protobuf\Internal\MapField $positions
+     *     @type array|\Google\Protobuf\Internal\MapField $positions
      *           A map from the parse node id (e.g. `Expr.id`) to the character offset
      *           within source.
-     * @type array|\Google\Protobuf\Internal\MapField $macro_calls
+     *     @type array|\Google\Protobuf\Internal\MapField $macro_calls
      *           A map from the parse node id where a macro replacement was made to the
      *           call `Expr` that resulted in a macro expansion.
      *           For example, `has(value.field)` is a function call that is replaced by a
@@ -90,8 +90,7 @@ class SourceInfo extends \Google\Protobuf\Internal\Message
      *           value is the call `Expr` that was replaced.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\Syntax::initOnce();
         parent::__construct($data);
     }

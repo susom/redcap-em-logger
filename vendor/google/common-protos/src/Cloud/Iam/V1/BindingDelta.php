@@ -52,23 +52,22 @@ class BindingDelta extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int $action
+     *     @type int $action
      *           The action that was performed on a Binding.
      *           Required
-     * @type string $role
+     *     @type string $role
      *           Role that is assigned to `members`.
      *           For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      *           Required
-     * @type string $member
+     *     @type string $member
      *           A single identity requesting access for a Cloud Platform resource.
      *           Follows the same format of Binding.members.
      *           Required
-     * @type \Google\Type\Expr $condition
+     *     @type \Google\Type\Expr $condition
      *           The condition that is associated with this binding.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Iam\V1\Policy::initOnce();
         parent::__construct($data);
     }

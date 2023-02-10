@@ -50,22 +50,21 @@ class Annotation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int[]|\Google\Protobuf\Internal\RepeatedField $path
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $path
      *           Identifies the element in the original source .proto file. This field
      *           is formatted the same as SourceCodeInfo.Location.path.
-     * @type string $source_file
+     *     @type string $source_file
      *           Identifies the filesystem path to the original source .proto.
-     * @type int $begin
+     *     @type int $begin
      *           Identifies the starting offset in bytes in the generated code
      *           that relates to the identified object.
-     * @type int $end
+     *     @type int $end
      *           Identifies the ending offset in bytes in the generated code that
      *           relates to the identified offset. The end offset should be one past
      *           the last relevant byte (so the length of the text = end - begin).
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Protobuf\Internal\Descriptor::initOnce();
         parent::__construct($data);
     }
@@ -87,7 +86,7 @@ class Annotation extends \Google\Protobuf\Internal\Message
      * is formatted the same as SourceCodeInfo.Location.path.
      *
      * Generated from protobuf field <code>repeated int32 path = 1 [packed = true];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPath($var)

@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Api\Expr\V1alpha1\Expr\Call instead.
      * @deprecated
      */
-    class Expr_Call
-    {
-    }
+    class Expr_Call {}
 }
 class_exists(Expr\Call::class);
 @trigger_error('Google\Api\Expr\V1alpha1\Expr_Call is deprecated and will be removed in the next major release. Use Google\Api\Expr\V1alpha1\Expr\Call instead', E_USER_DEPRECATED);

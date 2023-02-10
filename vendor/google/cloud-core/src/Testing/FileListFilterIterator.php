@@ -45,8 +45,7 @@ class FileListFilterIterator extends \FilterIterator
         array $fileTypes,
         array $testPaths,
         array $excludes
-    )
-    {
+    ) {
         $this->projectRootPath = $projectRootPath;
         $this->fileTypes = $fileTypes;
         $this->testPaths = $testPaths;
@@ -63,6 +62,7 @@ class FileListFilterIterator extends \FilterIterator
      * @experimental
      * @internal
      */
+    #[\ReturnTypeWillChange]
     public function accept()
     {
         /** @var \SplFileInfo */

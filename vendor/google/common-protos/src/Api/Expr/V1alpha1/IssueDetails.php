@@ -42,16 +42,15 @@ class IssueDetails extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int $severity
+     *     @type int $severity
      *           The severity of the issue.
-     * @type \Google\Api\Expr\V1alpha1\SourcePosition $position
+     *     @type \Google\Api\Expr\V1alpha1\SourcePosition $position
      *           Position in the source, if known.
-     * @type int|string $id
+     *     @type int|string $id
      *           Expression ID from [Expr][google.api.expr.v1alpha1.Expr], 0 if unknown.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\ConformanceService::initOnce();
         parent::__construct($data);
     }

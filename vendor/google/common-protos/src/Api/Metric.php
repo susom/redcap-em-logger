@@ -37,16 +37,15 @@ class Metric extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $type
+     *     @type string $type
      *           An existing metric type, see [google.api.MetricDescriptor][google.api.MetricDescriptor].
      *           For example, `custom.googleapis.com/invoice/paid/amount`.
-     * @type array|\Google\Protobuf\Internal\MapField $labels
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           The set of label values that uniquely identify this metric. All
      *           labels listed in the `MetricDescriptor` must be assigned values.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Metric::initOnce();
         parent::__construct($data);
     }

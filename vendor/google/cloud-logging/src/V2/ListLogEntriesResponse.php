@@ -44,11 +44,11 @@ class ListLogEntriesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Cloud\Logging\V2\LogEntry[]|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type array<\Google\Cloud\Logging\V2\LogEntry>|\Google\Protobuf\Internal\RepeatedField $entries
      *           A list of log entries.  If `entries` is empty, `nextPageToken` may still be
      *           returned, indicating that more entries may exist.  See `nextPageToken` for
      *           more information.
-     * @type string $next_page_token
+     *     @type string $next_page_token
      *           If there might be more results than those appearing in this response, then
      *           `nextPageToken` is included.  To get the next set of results, call this
      *           method again using the value of `nextPageToken` as `pageToken`.
@@ -60,8 +60,7 @@ class ListLogEntriesResponse extends \Google\Protobuf\Internal\Message
      *           or resource type, or to narrow the time range of the search.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\Logging::initOnce();
         parent::__construct($data);
     }
@@ -85,7 +84,7 @@ class ListLogEntriesResponse extends \Google\Protobuf\Internal\Message
      * more information.
      *
      * Generated from protobuf field <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
-     * @param \Google\Cloud\Logging\V2\LogEntry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Logging\V2\LogEntry>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntries($var)

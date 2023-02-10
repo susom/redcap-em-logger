@@ -30,12 +30,11 @@ class AuditData extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Cloud\Iam\V1\PolicyDelta $policy_delta
+     *     @type \Google\Cloud\Iam\V1\PolicyDelta $policy_delta
      *           Policy delta between the original policy and the newly set policy.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Iam\V1\Logging\AuditData::initOnce();
         parent::__construct($data);
     }

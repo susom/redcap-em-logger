@@ -34,14 +34,13 @@ class ParseResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\Expr\V1alpha1\ParsedExpr $parsed_expr
+     *     @type \Google\Api\Expr\V1alpha1\ParsedExpr $parsed_expr
      *           The parsed representation, or unset if parsing failed.
-     * @type \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $issues
+     *     @type \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $issues
      *           Any number of issues with [StatusDetails][] as the details.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\ConformanceService::initOnce();
         parent::__construct($data);
     }

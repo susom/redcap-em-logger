@@ -37,16 +37,15 @@ class EvalState extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\Expr\V1beta1\ExprValue[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type \Google\Api\Expr\V1beta1\ExprValue[]|\Google\Protobuf\Internal\RepeatedField $values
      *           The unique values referenced in this message.
-     * @type \Google\Api\Expr\V1beta1\EvalState\Result[]|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type \Google\Api\Expr\V1beta1\EvalState\Result[]|\Google\Protobuf\Internal\RepeatedField $results
      *           An ordered list of results.
      *           Tracks the flow of evaluation through the expression.
      *           May be sparse.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Beta1\PBEval::initOnce();
         parent::__construct($data);
     }

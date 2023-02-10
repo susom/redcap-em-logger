@@ -37,9 +37,9 @@ use Google\Protobuf\FieldMask;
 use Google\Protobuf\Internal\GPBType;
 use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\MapField;
+use function bccomp;
 
-function camel2underscore($input)
-{
+function camel2underscore($input) {
     preg_match_all(
         '!([A-Z][A-Z0-9]*(?=$|[A-Z][a-z0-9])|[A-Za-z][a-z0-9]+)!',
         $input,
@@ -67,14 +67,14 @@ class GPBUtil
         $high = bcdiv($value, 4294967296);
         $low = bcmod($value, 4294967296);
         if (bccomp($high, 2147483647) > 0) {
-            $high = (int)bcsub($high, 4294967296);
+            $high = (int) bcsub($high, 4294967296);
         } else {
-            $high = (int)$high;
+            $high = (int) $high;
         }
         if (bccomp($low, 2147483647) > 0) {
-            $low = (int)bcsub($low, 4294967296);
+            $low = (int) bcsub($low, 4294967296);
         } else {
-            $low = (int)$low;
+            $low = (int) $low;
         }
 
         if ($isNeg) {
@@ -106,7 +106,7 @@ class GPBUtil
 
     public static function checkEnum(&$var)
     {
-        static::checkInt32($var);
+      static::checkInt32($var);
     }
 
     public static function checkInt32(&$var)
@@ -128,7 +128,7 @@ class GPBUtil
                 if (bccomp($var, 0x7FFFFFFF) > 0) {
                     $var = bcsub($var, "4294967296");
                 }
-                $var = (int)$var;
+                $var = (int) $var;
             }
         } else {
             throw new \Exception("Expect integer.");
@@ -144,7 +144,7 @@ class GPBUtil
                 if (is_float($var) ||
                     is_integer($var) ||
                     (is_string($var) &&
-                        bccomp($var, "9223372036854774784") < 0)) {
+                         bccomp($var, "9223372036854774784") < 0)) {
                     $var = number_format($var, 0, ".", "");
                 }
             }
@@ -274,22 +274,23 @@ class GPBUtil
         }
 
         $reserved_words = array(
-            "abstract" => 0, "and" => 0, "array" => 0, "as" => 0, "break" => 0,
-            "callable" => 0, "case" => 0, "catch" => 0, "class" => 0, "clone" => 0,
-            "const" => 0, "continue" => 0, "declare" => 0, "default" => 0, "die" => 0,
-            "do" => 0, "echo" => 0, "else" => 0, "elseif" => 0, "empty" => 0,
-            "enddeclare" => 0, "endfor" => 0, "endforeach" => 0, "endif" => 0,
-            "endswitch" => 0, "endwhile" => 0, "eval" => 0, "exit" => 0, "extends" => 0,
-            "final" => 0, "finally" => 0, "fn" => 0, "for" => 0, "foreach" => 0,
-            "function" => 0, "global" => 0, "goto" => 0, "if" => 0, "implements" => 0,
-            "include" => 0, "include_once" => 0, "instanceof" => 0, "insteadof" => 0,
-            "interface" => 0, "isset" => 0, "list" => 0, "match" => 0, "namespace" => 0,
-            "new" => 0, "or" => 0, "print" => 0, "private" => 0, "protected" => 0,
-            "public" => 0, "require" => 0, "require_once" => 0, "return" => 0,
-            "static" => 0, "switch" => 0, "throw" => 0, "trait" => 0, "try" => 0,
-            "unset" => 0, "use" => 0, "var" => 0, "while" => 0, "xor" => 0, "yield" => 0,
-            "int" => 0, "float" => 0, "bool" => 0, "string" => 0, "true" => 0, "false" => 0,
-            "null" => 0, "void" => 0, "iterable" => 0
+            "abstract"=>0, "and"=>0, "array"=>0, "as"=>0, "break"=>0,
+            "callable"=>0, "case"=>0, "catch"=>0, "class"=>0, "clone"=>0,
+            "const"=>0, "continue"=>0, "declare"=>0, "default"=>0, "die"=>0,
+            "do"=>0, "echo"=>0, "else"=>0, "elseif"=>0, "empty"=>0,
+            "enddeclare"=>0, "endfor"=>0, "endforeach"=>0, "endif"=>0,
+            "endswitch"=>0, "endwhile"=>0, "eval"=>0, "exit"=>0, "extends"=>0,
+            "final"=>0, "finally"=>0, "fn"=>0, "for"=>0, "foreach"=>0,
+            "function"=>0, "global"=>0, "goto"=>0, "if"=>0, "implements"=>0,
+            "include"=>0, "include_once"=>0, "instanceof"=>0, "insteadof"=>0,
+            "interface"=>0, "isset"=>0, "list"=>0, "match"=>0, "namespace"=>0,
+            "new"=>0, "or"=>0, "parent"=>0, "print"=>0, "private"=>0,
+            "protected"=>0,"public"=>0, "readonly" => 0,"require"=>0,
+            "require_once"=>0,"return"=>0, "self"=>0, "static"=>0, "switch"=>0,
+            "throw"=>0,"trait"=>0, "try"=>0,"unset"=>0, "use"=>0, "var"=>0,
+            "while"=>0,"xor"=>0, "yield"=>0, "int"=>0, "float"=>0, "bool"=>0,
+            "string"=>0,"true"=>0, "false"=>0, "null"=>0, "void"=>0,
+            "iterable"=>0
         );
 
         if (array_key_exists(strtolower($classname), $reserved_words)) {
@@ -301,6 +302,27 @@ class GPBUtil
         }
 
         return "";
+    }
+
+    private static function getPreviouslyUnreservedClassNamePrefix(
+        $classname,
+        $file_proto)
+    {
+        $previously_unreserved_words = array(
+            "readonly"=>0
+        );
+
+        if (array_key_exists(strtolower($classname), $previously_unreserved_words)) {
+            $option = $file_proto->getOptions();
+            $prefix = is_null($option) ? "" : $option->getPhpClassPrefix();
+            if ($prefix !== "") {
+                return $prefix;
+            }
+
+            return "";
+        }
+
+        return self::getClassNamePrefix($classname, $file_proto);
     }
 
     public static function getLegacyClassNameWithoutPackage(
@@ -322,6 +344,17 @@ class GPBUtil
         return implode('\\', $parts);
     }
 
+    private static function getPreviouslyUnreservedClassNameWithoutPackage(
+        $name,
+        $file_proto)
+    {
+        $parts = explode('.', $name);
+        foreach ($parts as $i => $part) {
+            $parts[$i] = static::getPreviouslyUnreservedClassNamePrefix($parts[$i], $file_proto) . $parts[$i];
+        }
+        return implode('\\', $parts);
+    }
+
     public static function getFullClassName(
         $proto,
         $containing,
@@ -329,7 +362,8 @@ class GPBUtil
         &$message_name_without_package,
         &$classname,
         &$legacy_classname,
-        &$fullname)
+        &$fullname,
+        &$previous_classname)
     {
         // Full name needs to start with '.'.
         $message_name_without_package = $proto->getName();
@@ -350,6 +384,9 @@ class GPBUtil
         $legacy_class_name_without_package =
             static::getLegacyClassNameWithoutPackage(
                 $message_name_without_package, $file_proto);
+        $previous_class_name_without_package =
+            static::getPreviouslyUnreservedClassNameWithoutPackage(
+                $message_name_without_package, $file_proto);
 
         $option = $file_proto->getOptions();
         if (!is_null($option) && $option->hasPhpNamespace()) {
@@ -358,10 +395,13 @@ class GPBUtil
                 $classname = $namespace . "\\" . $class_name_without_package;
                 $legacy_classname =
                     $namespace . "\\" . $legacy_class_name_without_package;
+                $previous_classname =
+                    $namespace . "\\" . $previous_class_name_without_package;
                 return;
             } else {
                 $classname = $class_name_without_package;
                 $legacy_classname = $legacy_class_name_without_package;
+                $previous_classname = $previous_class_name_without_package;
                 return;
             }
         }
@@ -369,18 +409,24 @@ class GPBUtil
         if ($package === "") {
             $classname = $class_name_without_package;
             $legacy_classname = $legacy_class_name_without_package;
+            $previous_classname = $previous_class_name_without_package;
         } else {
             $parts = array_map('ucwords', explode('.', $package));
             foreach ($parts as $i => $part) {
-                $parts[$i] = self::getClassNamePrefix($part, $file_proto) . $part;
+                $parts[$i] = self::getClassNamePrefix($part, $file_proto).$part;
             }
             $classname =
                 implode('\\', $parts) .
-                "\\" . self::getClassNamePrefix($class_name_without_package, $file_proto) .
+                "\\".self::getClassNamePrefix($class_name_without_package,$file_proto).
                 $class_name_without_package;
             $legacy_classname =
-                implode('\\', array_map('ucwords', explode('.', $package))) .
-                "\\" . $legacy_class_name_without_package;
+                implode('\\', array_map('ucwords', explode('.', $package))).
+                "\\".$legacy_class_name_without_package;
+            $previous_classname =
+                implode('\\', array_map('ucwords', explode('.', $package))).
+                "\\".self::getPreviouslyUnreservedClassNamePrefix(
+                    $previous_class_name_without_package, $file_proto).
+                    $previous_class_name_without_package;
         }
     }
 
@@ -392,7 +438,7 @@ class GPBUtil
             $low = ~$low;
             $low++;
             if (!$low) {
-                $high = (int)($high + 1);
+                $high = (int) ($high + 1);
             }
         }
         $result = bcadd(bcmul($high, 4294967296), $low);
@@ -400,7 +446,7 @@ class GPBUtil
             $result = bcadd($result, 4294967296);
         }
         if ($isNeg) {
-            $result = bcsub(0, $result);
+          $result = bcsub(0, $result);
         }
         return $result;
     }
@@ -442,7 +488,7 @@ class GPBUtil
                 // remove the nanoseconds and preceding period from the timestamp
                 $date = substr($timestamp, 0, $periodIndex);
                 $timezone = substr($timestamp, $periodIndex + $nanosecondsLength + 1);
-                $timestamp = $date . $timezone;
+                $timestamp = $date.$timezone;
             }
         }
 
@@ -461,30 +507,30 @@ class GPBUtil
     public static function formatTimestamp($value)
     {
         if (bccomp($value->getSeconds(), "253402300800") != -1) {
-            throw new GPBDecodeException("Duration number too large.");
+          throw new GPBDecodeException("Duration number too large.");
         }
         if (bccomp($value->getSeconds(), "-62135596801") != 1) {
-            throw new GPBDecodeException("Duration number too small.");
+          throw new GPBDecodeException("Duration number too small.");
         }
         $nanoseconds = static::getNanosecondsForTimestamp($value->getNanos());
         if (!empty($nanoseconds)) {
-            $nanoseconds = "." . $nanoseconds;
+            $nanoseconds = ".".$nanoseconds;
         }
-        $date = new \DateTime('@' . $value->getSeconds(), new \DateTimeZone("UTC"));
-        return $date->format("Y-m-d\TH:i:s" . $nanoseconds . "\Z");
+        $date = new \DateTime('@'.$value->getSeconds(), new \DateTimeZone("UTC"));
+        return $date->format("Y-m-d\TH:i:s".$nanoseconds."\Z");
     }
 
     public static function parseDuration($value)
     {
         if (strlen($value) < 2 || substr($value, -1) !== "s") {
-            throw new GPBDecodeException("Missing s after duration string");
+          throw new GPBDecodeException("Missing s after duration string");
         }
         $number = substr($value, 0, -1);
         if (bccomp($number, "315576000001") != -1) {
-            throw new GPBDecodeException("Duration number too large.");
+          throw new GPBDecodeException("Duration number too large.");
         }
         if (bccomp($number, "-315576000001") != 1) {
-            throw new GPBDecodeException("Duration number too small.");
+          throw new GPBDecodeException("Duration number too small.");
         }
         $pos = strrpos($number, ".");
         if ($pos !== false) {
@@ -515,7 +561,7 @@ class GPBUtil
 
         $nanos = $value->getNanos();
         if ($nanos === 0) {
-            return (string)$value->getSeconds();
+            return (string) $value->getSeconds();
         }
 
         if ($nanos % 1000000 === 0) {
@@ -538,9 +584,9 @@ class GPBUtil
         }
         $path_strings = explode(",", $paths_string);
         $paths = $field_mask->getPaths();
-        foreach ($path_strings as &$path_string) {
+        foreach($path_strings as &$path_string) {
             $field_strings = explode(".", $path_string);
-            foreach ($field_strings as &$field_string) {
+            foreach($field_strings as &$field_string) {
                 $field_string = camel2underscore($field_string);
             }
             $path_string = implode(".", $field_strings);
@@ -552,26 +598,26 @@ class GPBUtil
     public static function formatFieldMask($field_mask)
     {
         $converted_paths = [];
-        foreach ($field_mask->getPaths() as $path) {
+        foreach($field_mask->getPaths() as $path) {
             $fields = explode('.', $path);
             $converted_path = [];
             foreach ($fields as $field) {
                 $segments = explode('_', $field);
                 $start = true;
                 $converted_segments = "";
-                foreach ($segments as $segment) {
-                    if (!$start) {
-                        $converted = ucfirst($segment);
-                    } else {
-                        $converted = $segment;
-                        $start = false;
-                    }
-                    $converted_segments .= $converted;
+                foreach($segments as $segment) {
+                  if (!$start) {
+                    $converted = ucfirst($segment);
+                  } else {
+                    $converted = $segment;
+                    $start = false;
+                  }
+                  $converted_segments .= $converted;
                 }
-                $converted_path [] = $converted_segments;
+                $converted_path []= $converted_segments;
             }
             $converted_path = implode(".", $converted_path);
-            $converted_paths [] = $converted_path;
+            $converted_paths []= $converted_path;
         }
         return implode(",", $converted_paths);
     }
@@ -592,26 +638,26 @@ class GPBUtil
 
     public static function hasSpecialJsonMapping($msg)
     {
-        return is_a($msg, 'Google\Protobuf\Any') ||
-            is_a($msg, "Google\Protobuf\ListValue") ||
-            is_a($msg, "Google\Protobuf\Struct") ||
-            is_a($msg, "Google\Protobuf\Value") ||
-            is_a($msg, "Google\Protobuf\Duration") ||
-            is_a($msg, "Google\Protobuf\Timestamp") ||
-            is_a($msg, "Google\Protobuf\FieldMask") ||
-            static::hasJsonValue($msg);
+        return is_a($msg, 'Google\Protobuf\Any')         ||
+               is_a($msg, "Google\Protobuf\ListValue")   ||
+               is_a($msg, "Google\Protobuf\Struct")      ||
+               is_a($msg, "Google\Protobuf\Value")       ||
+               is_a($msg, "Google\Protobuf\Duration")    ||
+               is_a($msg, "Google\Protobuf\Timestamp")   ||
+               is_a($msg, "Google\Protobuf\FieldMask")   ||
+               static::hasJsonValue($msg);
     }
 
     public static function hasJsonValue($msg)
     {
         return is_a($msg, "Google\Protobuf\DoubleValue") ||
-            is_a($msg, "Google\Protobuf\FloatValue") ||
-            is_a($msg, "Google\Protobuf\Int64Value") ||
-            is_a($msg, "Google\Protobuf\UInt64Value") ||
-            is_a($msg, "Google\Protobuf\Int32Value") ||
-            is_a($msg, "Google\Protobuf\UInt32Value") ||
-            is_a($msg, "Google\Protobuf\BoolValue") ||
-            is_a($msg, "Google\Protobuf\StringValue") ||
-            is_a($msg, "Google\Protobuf\BytesValue");
+               is_a($msg, "Google\Protobuf\FloatValue")  ||
+               is_a($msg, "Google\Protobuf\Int64Value")  ||
+               is_a($msg, "Google\Protobuf\UInt64Value") ||
+               is_a($msg, "Google\Protobuf\Int32Value")  ||
+               is_a($msg, "Google\Protobuf\UInt32Value") ||
+               is_a($msg, "Google\Protobuf\BoolValue")   ||
+               is_a($msg, "Google\Protobuf\StringValue") ||
+               is_a($msg, "Google\Protobuf\BytesValue");
     }
 }

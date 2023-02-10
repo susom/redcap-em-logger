@@ -111,7 +111,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int $version
+     *     @type int $version
      *           Specifies the format of the policy.
      *           Valid values are 0, 1, and 3. Requests specifying an invalid value will be
      *           rejected.
@@ -123,11 +123,11 @@ class Policy extends \Google\Protobuf\Internal\Message
      *           leave the field unset.
      *           If no etag is provided in the call to `setIamPolicy`, version compliance
      *           checks against the stored policy is skipped.
-     * @type \Google\Cloud\Iam\V1\Binding[]|\Google\Protobuf\Internal\RepeatedField $bindings
+     *     @type \Google\Cloud\Iam\V1\Binding[]|\Google\Protobuf\Internal\RepeatedField $bindings
      *           Associates a list of `members` to a `role`. Optionally may specify a
      *           `condition` that determines when binding is in effect.
      *           `bindings` with no members will result in an error.
-     * @type string $etag
+     *     @type string $etag
      *           `etag` is used for optimistic concurrency control as a way to help
      *           prevent simultaneous updates of a policy from overwriting each other.
      *           It is strongly suggested that systems make use of the `etag` in the
@@ -141,8 +141,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      *           meet the requirements for modifying the stored policy.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Iam\V1\Policy::initOnce();
         parent::__construct($data);
     }

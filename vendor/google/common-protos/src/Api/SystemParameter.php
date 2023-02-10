@@ -44,18 +44,17 @@ class SystemParameter extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $name
+     *     @type string $name
      *           Define the name of the parameter, such as "api_key" . It is case sensitive.
-     * @type string $http_header
+     *     @type string $http_header
      *           Define the HTTP header name to use for the parameter. It is case
      *           insensitive.
-     * @type string $url_query_parameter
+     *     @type string $url_query_parameter
      *           Define the URL query parameter name to use for the parameter. It is case
      *           sensitive.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\SystemParameter::initOnce();
         parent::__construct($data);
     }

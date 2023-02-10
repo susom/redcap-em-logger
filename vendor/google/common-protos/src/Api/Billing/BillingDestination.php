@@ -37,16 +37,15 @@ class BillingDestination extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $monitored_resource
+     *     @type string $monitored_resource
      *           The monitored resource type. The type must be defined in
      *           [Service.monitored_resources][google.api.Service.monitored_resources] section.
-     * @type string[]|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $metrics
      *           Names of the metrics to report to this billing destination.
      *           Each name must be defined in [Service.metrics][google.api.Service.metrics] section.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Billing::initOnce();
         parent::__construct($data);
     }

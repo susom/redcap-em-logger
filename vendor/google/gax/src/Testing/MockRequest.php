@@ -4,12 +4,13 @@
 
 namespace Google\ApiCore\Testing;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use GPBMetadata\ApiCore\Testing\Mocks;
 
 /**
  * Generated from protobuf message <code>google.apicore.testing.MockRequest</code>
+ *
+ * @internal
  */
 class MockRequest extends \Google\Protobuf\Internal\Message
 {
@@ -28,13 +29,12 @@ class MockRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $page_token
-     * @type int|string $page_size
+     *     @type string $page_token
+     *     @type int|string $page_size
      * }
      */
-    public function __construct($data = NULL)
-    {
-        \GPBMetadata\ApiCore\Testing\Mocks::initOnce();
+    public function __construct($data = NULL) {
+        Mocks::initOnce();
         parent::__construct($data);
     }
 

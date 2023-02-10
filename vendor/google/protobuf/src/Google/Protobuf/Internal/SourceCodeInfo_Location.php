@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Protobuf\Internal\SourceCodeInfo\Location instead.
      * @deprecated
      */
-    class SourceCodeInfo_Location
-    {
-    }
+    class SourceCodeInfo_Location {}
 }
 class_exists(SourceCodeInfo\Location::class);
 @trigger_error('Google\Protobuf\Internal\SourceCodeInfo_Location is deprecated and will be removed in the next major release. Use Google\Protobuf\Internal\SourceCodeInfo\Location instead', E_USER_DEPRECATED);

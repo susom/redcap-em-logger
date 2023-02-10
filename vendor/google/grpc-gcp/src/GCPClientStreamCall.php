@@ -16,7 +16,6 @@
  * limitations under the License.
  *
  */
-
 namespace Grpc\Gcp;
 
 /**
@@ -29,11 +28,10 @@ class GCPClientStreamCall extends GcpBaseCall
     {
         $channel_ref = $this->_rpcPreProcess($data);
         $this->real_call = new \Grpc\ClientStreamingCall($channel_ref->getRealChannel(
-            $this->gcp_channel->credentials), $this->method, $this->deserialize, $this->options);
+          $this->gcp_channel->credentials), $this->method, $this->deserialize, $this->options);
         $this->real_call->start($this->metadata_rpc);
         return $this->real_call;
     }
-
     /**
      * Pick a channel and start the call.
      *
@@ -51,8 +49,8 @@ class GCPClientStreamCall extends GcpBaseCall
      * Write a single message to the server. This cannot be called after
      * wait is called.
      *
-     * @param ByteBuffer $data The data to write
-     * @param array $options An array of options, possible keys:
+     * @param ByteBuffer $data    The data to write
+     * @param array      $options An array of options, possible keys:
      *                            'flags' => a number (optional)
      */
     public function write($data, array $options = [])

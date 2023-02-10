@@ -76,21 +76,21 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $name
+     *     @type string $name
      *           The canonical name of this endpoint.
-     * @type string[]|\Google\Protobuf\Internal\RepeatedField $aliases
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $aliases
      *           DEPRECATED: This field is no longer supported. Instead of using aliases,
      *           please specify multiple [google.api.Endpoint][google.api.Endpoint] for each of the intended
      *           aliases.
      *           Additional names that this endpoint will be hosted on.
-     * @type string[]|\Google\Protobuf\Internal\RepeatedField $features
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $features
      *           The list of features enabled on this endpoint.
-     * @type string $target
+     *     @type string $target
      *           The specification of an Internet routable address of API frontend that will
      *           handle requests to this [API Endpoint](https://cloud.google.com/apis/design/glossary).
      *           It should be either a valid IPv4 address or a fully-qualified domain name.
      *           For example, "8.8.8.8" or "myservice.appspot.com".
-     * @type bool $allow_cors
+     *     @type bool $allow_cors
      *           Allowing
      *           [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing), aka
      *           cross-domain traffic, would allow the backends served from this endpoint to
@@ -99,8 +99,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           allowed to proceed.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Endpoint::initOnce();
         parent::__construct($data);
     }

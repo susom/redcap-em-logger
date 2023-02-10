@@ -25,6 +25,7 @@ namespace Grpc;
  *
  * DO NOT USE in production.
  */
+
 class ServerCallReader
 {
     public function __construct($call, string $request_type)

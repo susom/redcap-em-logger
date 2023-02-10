@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Api\Distribution\BucketOptions\Linear instead.
      * @deprecated
      */
-    class Distribution_BucketOptions_Linear
-    {
-    }
+    class Distribution_BucketOptions_Linear {}
 }
 class_exists(Distribution\BucketOptions\Linear::class);
 @trigger_error('Google\Api\Distribution_BucketOptions_Linear is deprecated and will be removed in the next major release. Use Google\Api\Distribution\BucketOptions\Linear instead', E_USER_DEPRECATED);

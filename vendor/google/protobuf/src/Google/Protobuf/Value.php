@@ -27,22 +27,21 @@ class Value extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int $null_value
+     *     @type int $null_value
      *           Represents a null value.
-     * @type float $number_value
+     *     @type float $number_value
      *           Represents a double value.
-     * @type string $string_value
+     *     @type string $string_value
      *           Represents a string value.
-     * @type bool $bool_value
+     *     @type bool $bool_value
      *           Represents a boolean value.
-     * @type \Google\Protobuf\Struct $struct_value
+     *     @type \Google\Protobuf\Struct $struct_value
      *           Represents a structured value.
-     * @type \Google\Protobuf\ListValue $list_value
+     *     @type \Google\Protobuf\ListValue $list_value
      *           Represents a repeated `Value`.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         parent::__construct($data);
     }

@@ -29,7 +29,6 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 namespace Google\ApiCore;
 
 use Generator;
@@ -91,8 +90,7 @@ class PagedListResponse implements IteratorAggregate
      */
     public function __construct(
         Page $firstPage
-    )
-    {
+    ) {
         $this->firstPage = $firstPage;
     }
 
@@ -123,6 +121,7 @@ class PagedListResponse implements IteratorAggregate
      * @return Generator
      * @throws ValidationException
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         foreach ($this->iteratePages() as $page) {
@@ -165,11 +164,11 @@ class PagedListResponse implements IteratorAggregate
      * original API call. It is also an error if the collectionSize parameter
      * is less than the page size that has been set.
      *
-     * @param $collectionSize int
-     * @return FixedSizeCollection
+     * @param int $collectionSize
      * @throws ValidationException if a FixedSizeCollection of the specified size cannot be constructed
+     * @return FixedSizeCollection
      */
-    public function expandToFixedSizeCollection($collectionSize)
+    public function expandToFixedSizeCollection(int $collectionSize)
     {
         return $this->getPage()->expandToFixedSizeCollection($collectionSize);
     }
@@ -187,11 +186,11 @@ class PagedListResponse implements IteratorAggregate
      * original API call. It is also an error if the collectionSize parameter
      * is less than the page size that has been set.
      *
-     * @param $collectionSize int
-     * @return Generator|FixedSizeCollection[]
+     * @param int $collectionSize
      * @throws ValidationException if a FixedSizeCollection of the specified size cannot be constructed
+     * @return Generator|FixedSizeCollection[]
      */
-    public function iterateFixedSizeCollections($collectionSize)
+    public function iterateFixedSizeCollections(int $collectionSize)
     {
         return $this->expandToFixedSizeCollection($collectionSize)->iterateCollections();
     }

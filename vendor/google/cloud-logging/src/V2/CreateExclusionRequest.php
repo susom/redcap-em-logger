@@ -21,17 +21,18 @@ class CreateExclusionRequest extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]"
      *     "folders/[FOLDER_ID]"
-     * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
+     * For examples:
+     *   `"projects/my-logging-project"`
+     *   `"organizations/123456789"`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * Required. The new exclusion, whose `name` parameter is an exclusion name
      * that is not already used in the parent resource.
      *
-     * Generated from protobuf field <code>.google.logging.v2.LogExclusion exclusion = 2;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogExclusion exclusion = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $exclusion = null;
 
@@ -41,20 +42,21 @@ class CreateExclusionRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $parent
+     *     @type string $parent
      *           Required. The parent resource in which to create the exclusion:
      *               "projects/[PROJECT_ID]"
      *               "organizations/[ORGANIZATION_ID]"
      *               "billingAccounts/[BILLING_ACCOUNT_ID]"
      *               "folders/[FOLDER_ID]"
-     *           Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
-     * @type \Google\Cloud\Logging\V2\LogExclusion $exclusion
+     *           For examples:
+     *             `"projects/my-logging-project"`
+     *             `"organizations/123456789"`
+     *     @type \Google\Cloud\Logging\V2\LogExclusion $exclusion
      *           Required. The new exclusion, whose `name` parameter is an exclusion name
      *           that is not already used in the parent resource.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\LoggingConfig::initOnce();
         parent::__construct($data);
     }
@@ -65,10 +67,11 @@ class CreateExclusionRequest extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]"
      *     "folders/[FOLDER_ID]"
-     * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
+     * For examples:
+     *   `"projects/my-logging-project"`
+     *   `"organizations/123456789"`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -82,10 +85,11 @@ class CreateExclusionRequest extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]"
      *     "folders/[FOLDER_ID]"
-     * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
+     * For examples:
+     *   `"projects/my-logging-project"`
+     *   `"organizations/123456789"`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -101,19 +105,29 @@ class CreateExclusionRequest extends \Google\Protobuf\Internal\Message
      * Required. The new exclusion, whose `name` parameter is an exclusion name
      * that is not already used in the parent resource.
      *
-     * Generated from protobuf field <code>.google.logging.v2.LogExclusion exclusion = 2;</code>
-     * @return \Google\Cloud\Logging\V2\LogExclusion
+     * Generated from protobuf field <code>.google.logging.v2.LogExclusion exclusion = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Logging\V2\LogExclusion|null
      */
     public function getExclusion()
     {
         return $this->exclusion;
     }
 
+    public function hasExclusion()
+    {
+        return isset($this->exclusion);
+    }
+
+    public function clearExclusion()
+    {
+        unset($this->exclusion);
+    }
+
     /**
      * Required. The new exclusion, whose `name` parameter is an exclusion name
      * that is not already used in the parent resource.
      *
-     * Generated from protobuf field <code>.google.logging.v2.LogExclusion exclusion = 2;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogExclusion exclusion = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Logging\V2\LogExclusion $var
      * @return $this
      */

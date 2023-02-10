@@ -33,14 +33,16 @@
 namespace Google\ApiCore\Testing;
 
 use Google\Protobuf\Internal\Message;
-use Google\Rpc\Status;
 use UnderflowException;
+use stdClass;
 
 /**
  * The MockStubTrait is used by generated mock stub classes which extent \Grpc\BaseStub
  * (https://github.com/grpc/grpc/blob/master/src/php/lib/Grpc/BaseStub.php)
  * It provides functionality to add responses, get received calls, and overrides the _simpleRequest
  * method so that the elements of $responses are returned instead of making a call to the API.
+ *
+ * @internal
  */
 trait MockStubTrait
 {
@@ -50,7 +52,7 @@ trait MockStubTrait
     private $callObjects = [];
     private $deserialize;
 
-    public function __construct($deserialize = null)
+    public function __construct(callable $deserialize = null)
     {
         $this->deserialize = $deserialize;
     }
@@ -72,8 +74,7 @@ trait MockStubTrait
         $deserialize,
         array $metadata = [],
         array $options = []
-    )
-    {
+    ) {
         $this->receivedFuncCalls[] = new ReceivedRequest($method, $argument, $deserialize, $metadata, $options);
         if (count($this->responses) < 1) {
             throw new UnderflowException("ran out of responses");
@@ -89,11 +90,11 @@ trait MockStubTrait
      * (https://github.com/grpc/grpc/blob/master/src/php/lib/Grpc/BaseStub.php)
      * Returns a MockClientStreamingCall object that will return the first item from $responses
      *
-     * @param string $method The name of the method to call
+     * @param string   $method      The name of the method to call
      * @param callable $deserialize A function that deserializes the responses
-     * @param array $metadata A metadata map to send to the server
+     * @param array    $metadata    A metadata map to send to the server
      *                              (optional)
-     * @param array $options An array of options (optional)
+     * @param array    $options     An array of options (optional)
      *
      * @return MockClientStreamingCall The active call object
      */
@@ -102,8 +103,7 @@ trait MockStubTrait
         $deserialize,
         array $metadata = [],
         array $options = []
-    )
-    {
+    ) {
         $this->receivedFuncCalls[] = new ReceivedRequest($method, null, $deserialize, $metadata, $options);
         if (count($this->responses) < 1) {
             throw new UnderflowException("ran out of responses");
@@ -120,12 +120,12 @@ trait MockStubTrait
      * Returns a MockServerStreamingCall object that will stream items from $responses, and return
      * a final status of $serverStreamingStatus.
      *
-     * @param string $method The name of the method to call
-     * @param \Google\Protobuf\Internal\Message $argument The argument to the method
+     * @param string   $method      The name of the method to call
+     * @param \Google\Protobuf\Internal\Message    $argument    The argument to the method
      * @param callable $deserialize A function that deserializes the responses
-     * @param array $metadata A metadata map to send to the server
+     * @param array    $metadata    A metadata map to send to the server
      *                              (optional)
-     * @param array $options An array of options (optional)
+     * @param array    $options     An array of options (optional)
      *
      * @return MockServerStreamingCall The active call object
      */
@@ -135,8 +135,7 @@ trait MockStubTrait
         $deserialize,
         array $metadata = [],
         array $options = []
-    )
-    {
+    ) {
 
         if (is_a($argument, '\Google\Protobuf\Internal\Message')) {
             /** @var Message $newArgument */
@@ -145,7 +144,7 @@ trait MockStubTrait
             $argument = $newArgument;
         }
         $this->receivedFuncCalls[] = new ReceivedRequest($method, $argument, $deserialize, $metadata, $options);
-        $responses = MockStubTrait::stripStatusFromResponses($this->responses);
+        $responses = self::stripStatusFromResponses($this->responses);
         $this->responses = [];
         $call = new MockServerStreamingCall($responses, $deserialize, $this->serverStreamingStatus);
         $this->callObjects[] = $call;
@@ -158,11 +157,11 @@ trait MockStubTrait
      * Returns a MockBidiStreamingCall object that will stream items from $responses, and return
      * a final status of $serverStreamingStatus.
      *
-     * @param string $method The name of the method to call
+     * @param string   $method      The name of the method to call
      * @param callable $deserialize A function that deserializes the responses
-     * @param array $metadata A metadata map to send to the server
+     * @param array    $metadata    A metadata map to send to the server
      *                              (optional)
-     * @param array $options An array of options (optional)
+     * @param array    $options     An array of options (optional)
      *
      * @return MockBidiStreamingCall The active call object
      */
@@ -171,11 +170,10 @@ trait MockStubTrait
         $deserialize,
         array $metadata = [],
         array $options = []
-    )
-    {
+    ) {
 
         $this->receivedFuncCalls[] = new ReceivedRequest($method, null, $deserialize, $metadata, $options);
-        $responses = MockStubTrait::stripStatusFromResponses($this->responses);
+        $responses = self::stripStatusFromResponses($this->responses);
         $this->responses = [];
         $call = new MockBidiStreamingCall($responses, $deserialize, $this->serverStreamingStatus);
         $this->callObjects[] = $call;
@@ -196,9 +194,9 @@ trait MockStubTrait
      * Add a response object, and an optional status, to the list of responses to be returned via
      * _simpleRequest.
      * @param \Google\Protobuf\Internal\Message $response
-     * @param Status $status
+     * @param stdClass $status
      */
-    public function addResponse($response, $status = null)
+    public function addResponse($response, stdClass $status = null)
     {
         if (!$this->deserialize && $response) {
             $this->deserialize = [get_class($response), 'decode'];
@@ -213,9 +211,9 @@ trait MockStubTrait
     /**
      * Set the status object to be used when creating streaming calls.
      *
-     * @param Status $status
+     * @param stdClass $status
      */
-    public function setStreamingStatus($status)
+    public function setStreamingStatus(stdClass $status)
     {
         $this->serverStreamingStatus = $status;
     }
@@ -261,13 +259,13 @@ trait MockStubTrait
 
     /**
      * @param mixed $responseObject
-     * @param $status
+     * @param stdClass|null $status
      * @param callable $deserialize
      * @return static An instance of the current class type.
      */
-    public static function create($responseObject, $status = null, $deserialize = null)
+    public static function create($responseObject, stdClass $status = null, callable $deserialize = null)
     {
-        $stub = new static($deserialize);
+        $stub = new static($deserialize); // @phpstan-ignore-line
         $stub->addResponse($responseObject, $status);
         return $stub;
     }
@@ -276,12 +274,12 @@ trait MockStubTrait
      * Creates a sequence such that the responses are returned in order.
      * @param mixed[] $sequence
      * @param callable $deserialize
-     * @param Status $finalStatus
+     * @param stdClass $finalStatus
      * @return static An instance of the current class type.
      */
-    public static function createWithResponseSequence($sequence, $deserialize = null, $finalStatus = null)
+    public static function createWithResponseSequence(array $sequence, callable $deserialize = null, stdClass $finalStatus = null)
     {
-        $stub = new static($deserialize);
+        $stub = new static($deserialize); // @phpstan-ignore-line
         foreach ($sequence as $elem) {
             if (count($elem) == 1) {
                 list($resp, $status) = [$elem, null];

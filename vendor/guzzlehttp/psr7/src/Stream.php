@@ -42,7 +42,7 @@ class Stream implements StreamInterface
      * - metadata: (array) Any additional metadata to return when the metadata
      *   of the stream is accessed.
      *
-     * @param resource $stream Stream resource to wrap.
+     * @param resource                            $stream  Stream resource to wrap.
      * @param array{size?: int, metadata?: array} $options Associative array of options.
      *
      * @throws \InvalidArgumentException if the stream is not a stream resource
@@ -85,7 +85,7 @@ class Stream implements StreamInterface
             if (\PHP_VERSION_ID >= 70400) {
                 throw $e;
             }
-            trigger_error(sprintf('%s::__toString exception: %s', self::class, (string)$e), E_USER_ERROR);
+            trigger_error(sprintf('%s::__toString exception: %s', self::class, (string) $e), E_USER_ERROR);
             return '';
         }
     }
@@ -96,13 +96,11 @@ class Stream implements StreamInterface
             throw new \RuntimeException('Stream is detached');
         }
 
-        $contents = stream_get_contents($this->stream);
-
-        if ($contents === false) {
-            throw new \RuntimeException('Unable to read stream contents');
+        if (!$this->readable) {
+            throw new \RuntimeException('Cannot read from non-readable stream');
         }
 
-        return $contents;
+        return Utils::tryGetContents($this->stream);
     }
 
     public function close(): void
@@ -199,7 +197,7 @@ class Stream implements StreamInterface
 
     public function seek($offset, $whence = SEEK_SET): void
     {
-        $whence = (int)$whence;
+        $whence = (int) $whence;
 
         if (!isset($this->stream)) {
             throw new \RuntimeException('Stream is detached');
@@ -229,7 +227,12 @@ class Stream implements StreamInterface
             return '';
         }
 
-        $string = fread($this->stream, $length);
+        try {
+            $string = fread($this->stream, $length);
+        } catch (\Exception $e) {
+            throw new \RuntimeException('Unable to read from stream', 0, $e);
+        }
+
         if (false === $string) {
             throw new \RuntimeException('Unable to read from stream');
         }
@@ -257,6 +260,11 @@ class Stream implements StreamInterface
         return $result;
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @return mixed
+     */
     public function getMetadata($key = null)
     {
         if (!isset($this->stream)) {

@@ -85,11 +85,11 @@ class Duration extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int|string $seconds
+     *     @type int|string $seconds
      *           Signed seconds of the span of time. Must be from -315,576,000,000
      *           to +315,576,000,000 inclusive. Note: these bounds are computed from:
      *           60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-     * @type int $nanos
+     *     @type int $nanos
      *           Signed fractions of a second at nanosecond resolution of the span
      *           of time. Durations less than one second are represented with a 0
      *           `seconds` field and a positive or negative `nanos` field. For durations
@@ -98,8 +98,7 @@ class Duration extends \Google\Protobuf\Internal\Message
      *           to +999,999,999 inclusive.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         parent::__construct($data);
     }

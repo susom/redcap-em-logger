@@ -67,13 +67,19 @@ use Google\Protobuf\Internal\GPBUtil;
  * This enables a HTTP JSON to RPC mapping as below:
  * HTTP | RPC
  * -----|-----
- * `GET /v1/messages/123456?revision=2&sub.subfield=foo` | `GetMessage(message_id: "123456" revision: 2 sub:
- * SubMessage(subfield: "foo"))` Note that fields which are mapped to HTTP parameters must have a primitive type or a
- * repeated primitive type. Message types are not allowed. In the case of a repeated type, the parameter can be
- * repeated in the URL, as in `...?param=A&param=B`. For HTTP method kinds which allow a request body, the `body` field
- * specifies the mapping. Consider a REST update method on the message resource collection: service Messaging { rpc
- * UpdateMessage(UpdateMessageRequest) returns (Message) { option (google.api.http) = { put:
- * "/v1/messages/{message_id}" body: "message"
+ * `GET /v1/messages/123456?revision=2&sub.subfield=foo` | `GetMessage(message_id: "123456" revision: 2 sub: SubMessage(subfield: "foo"))`
+ * Note that fields which are mapped to HTTP parameters must have a
+ * primitive type or a repeated primitive type. Message types are not
+ * allowed. In the case of a repeated type, the parameter can be
+ * repeated in the URL, as in `...?param=A&param=B`.
+ * For HTTP method kinds which allow a request body, the `body` field
+ * specifies the mapping. Consider a REST update method on the
+ * message resource collection:
+ *     service Messaging {
+ *       rpc UpdateMessage(UpdateMessageRequest) returns (Message) {
+ *         option (google.api.http) = {
+ *           put: "/v1/messages/{message_id}"
+ *           body: "message"
  *         };
  *       }
  *     }
@@ -222,41 +228,40 @@ class HttpRule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $selector
+     *     @type string $selector
      *           Selects methods to which this rule applies.
      *           Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
-     * @type string $get
+     *     @type string $get
      *           Used for listing and getting information about resources.
-     * @type string $put
+     *     @type string $put
      *           Used for updating a resource.
-     * @type string $post
+     *     @type string $post
      *           Used for creating a resource.
-     * @type string $delete
+     *     @type string $delete
      *           Used for deleting a resource.
-     * @type string $patch
+     *     @type string $patch
      *           Used for updating a resource.
-     * @type \Google\Api\CustomHttpPattern $custom
+     *     @type \Google\Api\CustomHttpPattern $custom
      *           The custom pattern is used for specifying an HTTP method that is not
      *           included in the `pattern` field, such as HEAD, or "*" to leave the
      *           HTTP method unspecified for this rule. The wild-card rule is useful
      *           for services that provide content to Web (HTML) clients.
-     * @type string $body
+     *     @type string $body
      *           The name of the request field whose value is mapped to the HTTP body, or
      *           `*` for mapping all fields not captured by the path pattern to the HTTP
      *           body. NOTE: the referred field must not be a repeated field and must be
      *           present at the top-level of request message type.
-     * @type string $response_body
+     *     @type string $response_body
      *           Optional. The name of the response field whose value is mapped to the HTTP
      *           body of response. Other response fields are ignored. When
      *           not set, the response message will be used as HTTP body of response.
-     * @type \Google\Api\HttpRule[]|\Google\Protobuf\Internal\RepeatedField $additional_bindings
+     *     @type \Google\Api\HttpRule[]|\Google\Protobuf\Internal\RepeatedField $additional_bindings
      *           Additional HTTP bindings for the selector. Nested bindings must
      *           not contain an `additional_bindings` field themselves (that is,
      *           the nesting may only be one level deep).
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Http::initOnce();
         parent::__construct($data);
     }

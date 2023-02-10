@@ -33,8 +33,7 @@ class Interceptor
         $continuation,
         array $metadata = [],
         array $options = []
-    )
-    {
+    ) {
         return $continuation($method, $argument, $deserialize, $metadata, $options);
     }
 
@@ -44,8 +43,7 @@ class Interceptor
         $continuation,
         array $metadata = [],
         array $options = []
-    )
-    {
+    ) {
         return $continuation($method, $deserialize, $metadata, $options);
     }
 
@@ -56,8 +54,7 @@ class Interceptor
         $continuation,
         array $metadata = [],
         array $options = []
-    )
-    {
+    ) {
         return $continuation($method, $argument, $deserialize, $metadata, $options);
     }
 
@@ -67,8 +64,7 @@ class Interceptor
         $continuation,
         array $metadata = [],
         array $options = []
-    )
-    {
+    ) {
         return $continuation($method, $deserialize, $metadata, $options);
     }
 
@@ -87,7 +83,7 @@ class Interceptor
                 $channel = new Internal\InterceptorChannel($channel, $interceptors[$i]);
             }
         } else {
-            $channel = new Internal\InterceptorChannel($channel, $interceptors);
+            $channel =  new Internal\InterceptorChannel($channel, $interceptors);
         }
         return $channel;
     }

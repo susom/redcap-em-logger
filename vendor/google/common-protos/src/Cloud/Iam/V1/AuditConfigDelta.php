@@ -55,26 +55,25 @@ class AuditConfigDelta extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int $action
+     *     @type int $action
      *           The action that was performed on an audit configuration in a policy.
      *           Required
-     * @type string $service
+     *     @type string $service
      *           Specifies a service that was configured for Cloud Audit Logging.
      *           For example, `storage.googleapis.com`, `cloudsql.googleapis.com`.
      *           `allServices` is a special value that covers all services.
      *           Required
-     * @type string $exempted_member
+     *     @type string $exempted_member
      *           A single identity that is exempted from "data access" audit
      *           logging for the `service` specified above.
      *           Follows the same format of Binding.members.
-     * @type string $log_type
+     *     @type string $log_type
      *           Specifies the log_type that was be enabled. ADMIN_ACTIVITY is always
      *           enabled, and cannot be configured.
      *           Required
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Iam\V1\Policy::initOnce();
         parent::__construct($data);
     }

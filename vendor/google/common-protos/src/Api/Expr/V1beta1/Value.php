@@ -25,34 +25,33 @@ class Value extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int $null_value
+     *     @type int $null_value
      *           Null value.
-     * @type bool $bool_value
+     *     @type bool $bool_value
      *           Boolean value.
-     * @type int|string $int64_value
+     *     @type int|string $int64_value
      *           Signed integer value.
-     * @type int|string $uint64_value
+     *     @type int|string $uint64_value
      *           Unsigned integer value.
-     * @type float $double_value
+     *     @type float $double_value
      *           Floating point value.
-     * @type string $string_value
+     *     @type string $string_value
      *           UTF-8 string value.
-     * @type string $bytes_value
+     *     @type string $bytes_value
      *           Byte string value.
-     * @type \Google\Api\Expr\V1beta1\EnumValue $enum_value
+     *     @type \Google\Api\Expr\V1beta1\EnumValue $enum_value
      *           An enum value.
-     * @type \Google\Protobuf\Any $object_value
+     *     @type \Google\Protobuf\Any $object_value
      *           The proto message backing an object value.
-     * @type \Google\Api\Expr\V1beta1\MapValue $map_value
+     *     @type \Google\Api\Expr\V1beta1\MapValue $map_value
      *           Map value.
-     * @type \Google\Api\Expr\V1beta1\ListValue $list_value
+     *     @type \Google\Api\Expr\V1beta1\ListValue $list_value
      *           List value.
-     * @type string $type_value
+     *     @type string $type_value
      *           A Type value represented by the fully qualified name of the type.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Beta1\Value::initOnce();
         parent::__construct($data);
     }

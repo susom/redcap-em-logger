@@ -29,15 +29,14 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 namespace Google\ApiCore\Middleware;
 
-use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Call;
+use Google\ApiCore\CredentialsWrapper;
 
 /**
- * Middleware which adds a CredentialsWrapper object to the call options.
- */
+* Middleware which adds a CredentialsWrapper object to the call options.
+*/
 class CredentialsWrapperMiddleware
 {
     /** @var callable */
@@ -47,10 +46,9 @@ class CredentialsWrapperMiddleware
     private $credentialsWrapper;
 
     public function __construct(
-        callable           $nextHandler,
+        callable $nextHandler,
         CredentialsWrapper $credentialsWrapper
-    )
-    {
+    ) {
         $this->nextHandler = $nextHandler;
         $this->credentialsWrapper = $credentialsWrapper;
     }

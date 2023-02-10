@@ -47,23 +47,22 @@ class SourceInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $location
+     *     @type string $location
      *           The location name. All position information attached to an expression is
      *           relative to this location.
      *           The location could be a file, UI element, or similar. For example,
      *           `acme/app/AnvilPolicy.cel`.
-     * @type int[]|\Google\Protobuf\Internal\RepeatedField $line_offsets
+     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $line_offsets
      *           Monotonically increasing list of character offsets where newlines appear.
      *           The line number of a given position is the index `i` where for a given
      *           `id` the `line_offsets[i] < id_positions[id] < line_offsets[i+1]`. The
      *           column may be derivd from `id_positions[id] - line_offsets[i]`.
-     * @type array|\Google\Protobuf\Internal\MapField $positions
+     *     @type array|\Google\Protobuf\Internal\MapField $positions
      *           A map from the parse node id (e.g. `Expr.id`) to the character offset
      *           within source.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Beta1\Source::initOnce();
         parent::__construct($data);
     }

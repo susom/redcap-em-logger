@@ -34,14 +34,13 @@ class MapType extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\Expr\V1alpha1\Type $key_type
+     *     @type \Google\Api\Expr\V1alpha1\Type $key_type
      *           The type of the key.
-     * @type \Google\Api\Expr\V1alpha1\Type $value_type
+     *     @type \Google\Api\Expr\V1alpha1\Type $value_type
      *           The type of the value.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\Checked::initOnce();
         parent::__construct($data);
     }

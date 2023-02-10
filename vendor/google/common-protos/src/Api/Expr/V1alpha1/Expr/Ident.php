@@ -30,14 +30,13 @@ class Ident extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $name
+     *     @type string $name
      *           Required. Holds a single, unqualified identifier, possibly preceded by a
      *           '.'.
      *           Qualified names are represented by the [Expr.Select][google.api.expr.v1alpha1.Expr.Select] expression.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\Syntax::initOnce();
         parent::__construct($data);
     }

@@ -23,8 +23,6 @@ use Google\Cloud\Core\Batch\ClosureSerializerInterface;
 use Google\Cloud\Core\Report\MetadataProviderInterface;
 use Google\Cloud\Core\Report\MetadataProviderUtils;
 use Google\Cloud\Core\Timestamp;
-use Monolog\Formatter\NormalizerFormatter;
-use Monolog\Processor\PsrLogMessageProcessor;
 use Psr\Log\InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 
@@ -90,40 +88,45 @@ class PsrLogger implements LoggerInterface, \Serializable
     private $logName;
 
     /**
+     * @var LogMessageProcessorInterface
+     */
+    private $logMessageProcessor;
+
+    /**
      * @param Logger $logger The logger used to write entries.
      * @param string $messageKey The key in the `jsonPayload` used to contain
      *        the logged message. **Defaults to** `message`.
      * @param array $options [optional] {
      *     Configuration options.
      *
-     * @type MetadataProviderInterface $metadataProvider **Defaults to** An
+     *     @type MetadataProviderInterface $metadataProvider **Defaults to** An
      *           automatically chosen provider, based on detected environment
      *           settings.
-     * @type bool $batchEnabled Determines whether or not to use background
+     *     @type bool $batchEnabled Determines whether or not to use background
      *           batching. **Defaults to** `false`. Note that this option is
      *           currently considered **experimental** and is subject to change.
-     * @type resource $debugOutputResource A resource to output debug output
+     *     @type resource $debugOutputResource A resource to output debug output
      *           to.
-     * @type bool $debugOutput Whether or not to output debug information.
+     *     @type bool $debugOutput Whether or not to output debug information.
      *           Please note debug output currently only applies in CLI based
      *           applications. **Defaults to** `false`. Applies only when
      *           `batchEnabled` is set to `true`.
-     * @type array $batchOptions A set of options for a BatchJob.
+     *     @type array $batchOptions A set of options for a BatchJob.
      *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
      *           more details.
      *           **Defaults to** ['batchSize' => 1000,
      *                            'callPeriod' => 2.0,
      *                            'numWorkers' => 2]. Applies only when
      *           `batchEnabled` is set to `true`.
-     * @type array $clientConfig Configuration options for the Logging client
+     *     @type array $clientConfig Configuration options for the Logging client
      *           used to handle processing of batch items. For valid options
      *           please see
      *           {@see \Google\Cloud\Logging\LoggingClient::__construct()}.
      *           Applies only when `batchEnabled` is set to `true`.
-     * @type BatchRunner $batchRunner A BatchRunner object. Mainly used for
+     *     @type BatchRunner $batchRunner A BatchRunner object. Mainly used for
      *           the tests to inject a mock. **Defaults to** a newly created
      *           BatchRunner. Applies only when `batchEnabled` is set to `true`.
-     * @type ClosureSerializerInterface $closureSerializer An implementation
+     *     @type ClosureSerializerInterface $closureSerializer An implementation
      *           responsible for serializing closures used in the
      *           `$clientConfig`. This is especially important when using the
      *           batch daemon. **Defaults to**
@@ -133,12 +136,12 @@ class PsrLogger implements LoggerInterface, \Serializable
      */
     public function __construct(
         Logger $logger,
-               $messageKey = null,
-        array  $options = []
-    )
-    {
+        $messageKey = null,
+        array $options = []
+    ) {
         $this->logger = $logger;
         $this->logName = $logger->name();
+        $this->logMessageProcessor = LogMessageProcessorFactory::build();
         $this->messageKey = $messageKey ?: 'message';
         $this->metadataProvider = isset($options['metadataProvider'])
             ? $options['metadataProvider']
@@ -147,9 +150,9 @@ class PsrLogger implements LoggerInterface, \Serializable
         if (isset($options['batchEnabled']) && $options['batchEnabled'] === true) {
             $this->batchEnabled = true;
             $this->setCommonBatchProperties($options + [
-                    'identifier' => sprintf(self::ID_TEMPLATE, $this->logger->name()),
-                    'batchMethod' => 'writeBatch'
-                ]);
+                'identifier' => sprintf(self::ID_TEMPLATE, $this->logger->name()),
+                'batchMethod' => 'writeBatch'
+            ]);
         }
     }
 
@@ -164,6 +167,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      * @param string $message The message to log.
      * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
+     * @return void
      */
     public function emergency($message, array $context = [])
     {
@@ -181,6 +185,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      * @param string $message The message to log.
      * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
+     * @return void
      */
     public function alert($message, array $context = [])
     {
@@ -198,6 +203,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      * @param string $message The message to log.
      * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
+     * @return void
      */
     public function critical($message, array $context = [])
     {
@@ -215,6 +221,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      * @param string $message The message to log.
      * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
+     * @return void
      */
     public function error($message, array $context = [])
     {
@@ -232,6 +239,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      * @param string $message The message to log.
      * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
+     * @return void
      */
     public function warning($message, array $context = [])
     {
@@ -249,6 +257,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      * @param string $message The message to log.
      * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
+     * @return void
      */
     public function notice($message, array $context = [])
     {
@@ -266,6 +275,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      * @param string $message The message to log.
      * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
+     * @return void
      */
     public function info($message, array $context = [])
     {
@@ -283,6 +293,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      * @param string $message The message to log.
      * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
+     * @return void
      */
     public function debug($message, array $context = [])
     {
@@ -331,25 +342,25 @@ class PsrLogger implements LoggerInterface, \Serializable
      *     that the key `stackdriverOptions` is reserved for logging Google
      *     Stackdriver specific data.
      *
-     * @type array $stackdriverOptions ['resource'] The
+     *     @type array $stackdriverOptions['resource'] The
      *           [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/v2/MonitoredResource)
      *           to associate this log entry with. **Defaults to** type global.
-     * @type array $stackdriverOptions ['httpRequest'] Information about the
+     *     @type array $stackdriverOptions['httpRequest'] Information about the
      *           HTTP request associated with this log entry, if applicable.
      *           Please see
      *           [the API docs](https://cloud.google.com/logging/docs/api/reference/rest/v2/LogEntry#httprequest)
      *           for more information.
-     * @type array $stackdriverOptions ['labels'] A set of user-defined
+     *     @type array $stackdriverOptions['labels'] A set of user-defined
      *           (key, value) data that provides additional information about
      *           the log entry.
-     * @type array $stackdriverOptions ['operation'] Additional information
+     *     @type array $stackdriverOptions['operation'] Additional information
      *           about a potentially long-running operation with which a log
      *           entry is associated. Please see
      *           [the API docs](https://cloud.google.com/logging/docs/api/reference/rest/v2/LogEntry#logentryoperation)
      *           for more information.
-     * @type string $stackdriverOptions ['insertId'] A unique identifier for
+     *     @type string $stackdriverOptions['insertId'] A unique identifier for
      *           the log entry.
-     * @type \DateTimeInterface|Timestamp|string|null $stackdriverOptions ['timestamp'] The
+     *     @type \DateTimeInterface|Timestamp|string|null $stackdriverOptions['timestamp'] The
      *           timestamp associated with this entry. If providing a string it
      *           must be in RFC3339 UTC "Zulu" format. Example:
      *           "2014-10-02T15:01:23.045123456Z". If explicitly set to `null`
@@ -358,6 +369,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      *           the current time, generated by the client with microsecond
      *           precision.
      * }
+     * @return void
      * @throws InvalidArgumentException
      */
     public function log($level, $message, array $context = [])
@@ -367,7 +379,7 @@ class PsrLogger implements LoggerInterface, \Serializable
 
         if (isset($context['exception'])
             && ($context['exception'] instanceof \Exception || $context['exception'] instanceof \Throwable)) {
-            $context['exception'] = (string)$context['exception'];
+            $context['exception'] = (string) $context['exception'];
         }
 
         if (isset($context['stackdriverOptions'])) {
@@ -375,12 +387,7 @@ class PsrLogger implements LoggerInterface, \Serializable
             unset($context['stackdriverOptions']);
         }
 
-        $formatter = new NormalizerFormatter();
-        $processor = new PsrLogMessageProcessor();
-        $processedData = $processor([
-            'message' => (string)$message,
-            'context' => $formatter->format($context)
-        ]);
+        $processedData = $this->logMessageProcessor->processLogMessage($message, $context);
         $jsonPayload = [$this->messageKey => $processedData['message']];
 
         // Adding labels for log request correlation.
@@ -388,8 +395,8 @@ class PsrLogger implements LoggerInterface, \Serializable
         if (!empty($labels)) {
             $options['labels'] =
                 (isset($options['labels'])
-                    ? $options['labels']
-                    : []) + $labels;
+                 ? $options['labels']
+                 : []) + $labels;
             // Copy over the value for 'appengine.googleapis.com/trace_id' to
             // `trace` option too.
             if (isset($labels['appengine.googleapis.com/trace_id'])) {
@@ -402,8 +409,8 @@ class PsrLogger implements LoggerInterface, \Serializable
         if (!empty($resource)) {
             $options['resource'] =
                 (isset($options['resource'])
-                    ? $options['resource']
-                    : []) + $resource;
+                 ? $options['resource']
+                 : []) + $resource;
         }
         $entry = $this->logger->entry(
             $jsonPayload + $processedData['context'],
@@ -432,25 +439,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      */
     public function serialize()
     {
-        $debugOutputResource = null;
-        if (is_resource($this->debugOutputResource)) {
-            $metadata = stream_get_meta_data($this->debugOutputResource);
-            $debugOutputResource = [
-                'uri' => $metadata['uri'],
-                'mode' => $metadata['mode']
-            ];
-        }
-
-        return serialize([
-            $this->messageKey,
-            $this->batchEnabled,
-            $this->metadataProvider,
-            $this->debugOutput,
-            $this->clientConfig,
-            $this->batchMethod,
-            $this->logName,
-            $debugOutputResource
-        ]);
+        return serialize($this->__serialize());
     }
 
     /**
@@ -461,6 +450,34 @@ class PsrLogger implements LoggerInterface, \Serializable
      */
     public function unserialize($data)
     {
+        $this->__unserialize(unserialize($data));
+    }
+
+    public function __serialize()
+    {
+        $debugOutputResource = null;
+        if (is_resource($this->debugOutputResource)) {
+            $metadata = stream_get_meta_data($this->debugOutputResource);
+            $debugOutputResource = [
+                'uri' => $metadata['uri'],
+                'mode' => $metadata['mode']
+            ];
+        }
+
+        return [
+            $this->messageKey,
+            $this->batchEnabled,
+            $this->metadataProvider,
+            $this->debugOutput,
+            $this->clientConfig,
+            $this->batchMethod,
+            $this->logName,
+            $debugOutputResource
+        ];
+    }
+
+    public function __unserialize(array $data)
+    {
         list(
             $this->messageKey,
             $this->batchEnabled,
@@ -470,7 +487,7 @@ class PsrLogger implements LoggerInterface, \Serializable
             $this->batchMethod,
             $this->logName,
             $debugOutputResource
-            ) = unserialize($data);
+        ) = $data;
 
         if (is_array($debugOutputResource)) {
             $this->debugOutputResource = fopen(
@@ -505,7 +522,7 @@ class PsrLogger implements LoggerInterface, \Serializable
     private function validateLogLevel($level)
     {
         $map = Logger::getLogLevelMap();
-        $level = (string)$level;
+        $level = (string) $level;
 
         if (isset($map[$level]) || isset(array_flip($map)[strtoupper($level)])) {
             return true;

@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Api\Expr\V1alpha1\Expr\Select instead.
      * @deprecated
      */
-    class Expr_Select
-    {
-    }
+    class Expr_Select {}
 }
 class_exists(Expr\Select::class);
 @trigger_error('Google\Api\Expr\V1alpha1\Expr_Select is deprecated and will be removed in the next major release. Use Google\Api\Expr\V1alpha1\Expr\Select instead', E_USER_DEPRECATED);

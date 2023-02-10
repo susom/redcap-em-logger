@@ -31,11 +31,12 @@ class RetryMiddleware
     private $delay;
 
     /**
-     * @param callable $decider Function that accepts the number of retries,
-     *                                                                         a request, [response], and [exception]
-     *     and returns true if the request is to be retried.
+     * @param callable                                            $decider     Function that accepts the number of retries,
+     *                                                                         a request, [response], and [exception] and
+     *                                                                         returns true if the request is to be
+     *                                                                         retried.
      * @param callable(RequestInterface, array): PromiseInterface $nextHandler Next handler to invoke.
-     * @param null|callable(int): int $delay Function that accepts the number of retries
+     * @param (callable(int): int)|null                           $delay       Function that accepts the number of retries
      *                                                                         and returns the number of
      *                                                                         milliseconds to delay.
      */
@@ -53,7 +54,7 @@ class RetryMiddleware
      */
     public static function exponentialDelay(int $retries): int
     {
-        return (int)\pow(2, $retries - 1) * 1000;
+        return (int) \pow(2, $retries - 1) * 1000;
     }
 
     public function __invoke(RequestInterface $request, array $options): PromiseInterface
@@ -108,7 +109,7 @@ class RetryMiddleware
 
     private function doRetry(RequestInterface $request, array $options, ResponseInterface $response = null): PromiseInterface
     {
-        $options['delay'] = ($this->delay)(++$options['retries'], $response);
+        $options['delay'] = ($this->delay)(++$options['retries'], $response, $request);
 
         return $this($request, $options);
     }

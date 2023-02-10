@@ -61,8 +61,8 @@ class BidiStreamingCall extends AbstractCall
      * Write a single message to the server. This cannot be called after
      * writesDone is called.
      *
-     * @param ByteBuffer $data The data to write
-     * @param array $options An array of options, possible keys:
+     * @param ByteBuffer $data    The data to write
+     * @param array      $options An array of options, possible keys:
      *                            'flags' => a number (optional)
      */
     public function write($data, array $options = [])

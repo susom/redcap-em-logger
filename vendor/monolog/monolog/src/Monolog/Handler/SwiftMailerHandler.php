@@ -12,6 +12,7 @@
 namespace Monolog\Handler;
 
 use Monolog\Logger;
+use Monolog\Utils;
 use Monolog\Formatter\FormatterInterface;
 use Monolog\Formatter\LineFormatter;
 use Swift_Message;
@@ -23,6 +24,7 @@ use Swift;
  * @author Gyula Sallai
  *
  * @phpstan-import-type Record from \Monolog\Logger
+ * @deprecated Since Monolog 2.6. Use SymfonyMailerHandler instead.
  */
 class SwiftMailerHandler extends MailHandler
 {
@@ -34,12 +36,14 @@ class SwiftMailerHandler extends MailHandler
     /**
      * @psalm-param Swift_Message|callable(string, Record[]): Swift_Message $message
      *
-     * @param \Swift_Mailer $mailer The mailer to use
+     * @param \Swift_Mailer          $mailer  The mailer to use
      * @param callable|Swift_Message $message An example message for real messages, only the body will be replaced
      */
     public function __construct(\Swift_Mailer $mailer, $message, $level = Logger::ERROR, bool $bubble = true)
     {
         parent::__construct($level, $bubble);
+
+        @trigger_error('The SwiftMailerHandler is deprecated since Monolog 2.6. Use SymfonyMailerHandler instead.', E_USER_DEPRECATED);
 
         $this->mailer = $mailer;
         $this->messageTemplate = $message;
@@ -66,8 +70,8 @@ class SwiftMailerHandler extends MailHandler
     /**
      * Creates instance of Swift_Message to be sent
      *
-     * @param string $content formatted email body to be sent
-     * @param array $records Log records that formed the content
+     * @param  string        $content formatted email body to be sent
+     * @param  array         $records Log records that formed the content
      * @return Swift_Message
      *
      * @phpstan-param Record[] $records
@@ -83,7 +87,8 @@ class SwiftMailerHandler extends MailHandler
         }
 
         if (!$message instanceof Swift_Message) {
-            throw new \InvalidArgumentException('Could not resolve message as instance of Swift_Message or a callable returning it');
+            $record = reset($records);
+            throw new \InvalidArgumentException('Could not resolve message as instance of Swift_Message or a callable returning it' . ($record ? Utils::getRecordMessageForException($record) : ''));
         }
 
         if ($records) {

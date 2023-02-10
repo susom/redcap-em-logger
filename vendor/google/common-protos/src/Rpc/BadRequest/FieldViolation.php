@@ -22,13 +22,13 @@ class FieldViolation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string field = 1;</code>
      */
-    private $field = '';
+    protected $field = '';
     /**
      * A description of why the request element is bad.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * Constructor.
@@ -36,16 +36,15 @@ class FieldViolation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $field
+     *     @type string $field
      *           A path leading to a field in the request body. The value will be a
      *           sequence of dot-separated identifiers that identify a protocol buffer
      *           field. E.g., "field_violations.field" would identify this field.
-     * @type string $description
+     *     @type string $description
      *           A description of why the request element is bad.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Rpc\ErrorDetails::initOnce();
         parent::__construct($data);
     }

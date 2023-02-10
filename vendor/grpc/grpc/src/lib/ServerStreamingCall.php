@@ -28,10 +28,10 @@ class ServerStreamingCall extends AbstractCall
     /**
      * Start the call.
      *
-     * @param mixed $data The data to send
+     * @param mixed $data     The data to send
      * @param array $metadata Metadata to send with the call, if applicable
      *                        (optional)
-     * @param array $options An array of options, possible keys:
+     * @param array $options  An array of options, possible keys:
      *                        'flags' => a number (optional)
      */
     public function start($data, array $metadata = [], array $options = [])

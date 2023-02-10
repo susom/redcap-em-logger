@@ -38,14 +38,13 @@ class ReservedRange extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int $start
+     *     @type int $start
      *           Inclusive.
-     * @type int $end
+     *     @type int $end
      *           Exclusive.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Protobuf\Internal\Descriptor::initOnce();
         parent::__construct($data);
     }

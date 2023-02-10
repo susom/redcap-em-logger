@@ -29,7 +29,6 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 namespace Google\ApiCore;
 
 use DomainException;
@@ -41,10 +40,10 @@ use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetQuotaProjectInterface;
-use Google\Auth\UpdateMetadataInterface;
 use Google\Auth\HttpHandler\Guzzle5HttpHandler;
 use Google\Auth\HttpHandler\Guzzle6HttpHandler;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
+use Google\Auth\UpdateMetadataInterface;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
@@ -57,6 +56,9 @@ class CredentialsWrapper
     /** @var FetchAuthTokenInterface $credentialsFetcher */
     private $credentialsFetcher;
     private $authHttpHandler;
+
+    /** @var int */
+    private static $eagerRefreshThresholdSeconds = 10;
 
     /**
      * CredentialsWrapper constructor.
@@ -79,28 +81,28 @@ class CredentialsWrapper
      * @param array $args {
      *     An array of optional arguments.
      *
-     * @type string|array $keyFile
+     *     @type string|array $keyFile
      *           Credentials to be used. Accepts either a path to a credentials file, or a decoded
      *           credentials file as a PHP array. If this is not specified, application default
      *           credentials will be used.
-     * @type string[] $scopes
+     *     @type string[] $scopes
      *           A string array of scopes to use when acquiring credentials.
-     * @type callable $authHttpHandler
+     *     @type callable $authHttpHandler
      *           A handler used to deliver PSR-7 requests specifically
      *           for authentication. Should match a signature of
      *           `function (RequestInterface $request, array $options) : ResponseInterface`.
-     * @type bool $enableCaching
+     *     @type bool $enableCaching
      *           Enable caching of access tokens. Defaults to true.
-     * @type CacheItemPoolInterface $authCache
+     *     @type CacheItemPoolInterface $authCache
      *           A cache for storing access tokens. Defaults to a simple in memory implementation.
-     * @type array $authCacheOptions
+     *     @type array $authCacheOptions
      *           Cache configuration options.
-     * @type string $quotaProject
+     *     @type string $quotaProject
      *           Specifies a user project to bill for access charges associated with the request.
-     * @type string[] $defaultScopes
+     *     @type string[] $defaultScopes
      *           A string array of default scopes to use when acquiring
      *           credentials.
-     * @type bool $useJwtAccessWithScope
+     *     @type bool $useJwtAccessWithScope
      *           Ensures service account credentials use JWT Access (also known as self-signed
      *           JWTs), even when user-defined scopes are supplied.
      * }
@@ -110,16 +112,17 @@ class CredentialsWrapper
     public static function build(array $args = [])
     {
         $args += [
-            'keyFile' => null,
-            'scopes' => null,
-            'authHttpHandler' => null,
-            'enableCaching' => true,
-            'authCache' => null,
-            'authCacheOptions' => [],
-            'quotaProject' => null,
-            'defaultScopes' => null,
+            'keyFile'           => null,
+            'scopes'            => null,
+            'authHttpHandler'   => null,
+            'enableCaching'     => true,
+            'authCache'         => null,
+            'authCacheOptions'  => [],
+            'quotaProject'      => null,
+            'defaultScopes'     => null,
             'useJwtAccessWithScope' => true,
         ];
+
         $keyFile = $args['keyFile'];
         $authHttpHandler = $args['authHttpHandler'] ?: self::buildHttpHandlerFactory();
 
@@ -127,11 +130,14 @@ class CredentialsWrapper
             $loader = self::buildApplicationDefaultCredentials(
                 $args['scopes'],
                 $authHttpHandler,
-                null,
-                null,
+                $args['authCacheOptions'],
+                $args['authCache'],
                 $args['quotaProject'],
                 $args['defaultScopes']
             );
+            if ($loader instanceof FetchAuthTokenCache) {
+                $loader = $loader->getFetcher();
+            }
         } else {
             if (is_string($keyFile)) {
                 if (!file_exists($keyFile)) {
@@ -177,11 +183,12 @@ class CredentialsWrapper
         if ($this->credentialsFetcher instanceof GetQuotaProjectInterface) {
             return $this->credentialsFetcher->getQuotaProject();
         }
+        return null;
     }
 
     /**
-     * @return string Bearer string containing access token.
      * @deprecated
+     * @return string Bearer string containing access token.
      */
     public function getBearerString()
     {
@@ -244,18 +251,17 @@ class CredentialsWrapper
      * @param CacheItemPoolInterface $authCache
      * @param string $quotaProject
      * @param array $defaultScopes
-     * @return CredentialsLoader
+     * @return FetchAuthTokenInterface
      * @throws ValidationException
      */
     private static function buildApplicationDefaultCredentials(
-        array                  $scopes = null,
-        callable               $authHttpHandler = null,
-        array                  $authCacheOptions = null,
+        array $scopes = null,
+        callable $authHttpHandler = null,
+        array $authCacheOptions = null,
         CacheItemPoolInterface $authCache = null,
-                               $quotaProject = null,
-        array                  $defaultScopes = null
-    )
-    {
+        $quotaProject = null,
+        array $defaultScopes = null
+    ) {
         try {
             return ApplicationDefaultCredentials::getCredentials(
                 $scopes,
@@ -270,7 +276,7 @@ class CredentialsWrapper
         }
     }
 
-    private static function getToken(FetchAuthTokenInterface $credentialsFetcher, $authHttpHandler)
+    private static function getToken(FetchAuthTokenInterface $credentialsFetcher, callable $authHttpHandler)
     {
         $token = $credentialsFetcher->getLastReceivedToken();
         if (self::isExpired($token)) {
@@ -282,16 +288,22 @@ class CredentialsWrapper
         return $token['access_token'];
     }
 
+    /**
+     * @param mixed $token
+     */
     private static function isValid($token)
     {
         return is_array($token)
             && array_key_exists('access_token', $token);
     }
 
+    /**
+     * @param mixed $token
+     */
     private static function isExpired($token)
     {
         return !(self::isValid($token)
             && array_key_exists('expires_at', $token)
-            && $token['expires_at'] > time());
+            && $token['expires_at'] > time() + self::$eagerRefreshThresholdSeconds);
     }
 }

@@ -25,15 +25,13 @@ class MethodOptions extends \Google\Protobuf\Internal\Message
      */
     protected $deprecated = null;
     /**
-     * Generated from protobuf field <code>optional .google.protobuf.MethodOptions.IdempotencyLevel idempotency_level =
-     * 34 [default = IDEMPOTENCY_UNKNOWN];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.MethodOptions.IdempotencyLevel idempotency_level = 34 [default = IDEMPOTENCY_UNKNOWN];</code>
      */
     protected $idempotency_level = null;
     /**
      * The parser stores options it doesn't recognize here. See above.
      *
-     * Generated from protobuf field <code>repeated .google.protobuf.UninterpretedOption uninterpreted_option =
-     * 999;</code>
+     * Generated from protobuf field <code>repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;</code>
      */
     private $uninterpreted_option;
 
@@ -43,18 +41,17 @@ class MethodOptions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type bool $deprecated
+     *     @type bool $deprecated
      *           Is this method deprecated?
      *           Depending on the target platform, this can emit Deprecated annotations
      *           for the method, or it will be completely ignored; in the very least,
      *           this is a formalization for deprecating methods.
-     * @type int $idempotency_level
-     * @type \Google\Protobuf\Internal\UninterpretedOption[]|\Google\Protobuf\Internal\RepeatedField
-     *     $uninterpreted_option The parser stores options it doesn't recognize here. See above.
+     *     @type int $idempotency_level
+     *     @type array<\Google\Protobuf\Internal\UninterpretedOption>|\Google\Protobuf\Internal\RepeatedField $uninterpreted_option
+     *           The parser stores options it doesn't recognize here. See above.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Protobuf\Internal\Descriptor::initOnce();
         parent::__construct($data);
     }
@@ -102,8 +99,7 @@ class MethodOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>optional .google.protobuf.MethodOptions.IdempotencyLevel idempotency_level =
-     * 34 [default = IDEMPOTENCY_UNKNOWN];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.MethodOptions.IdempotencyLevel idempotency_level = 34 [default = IDEMPOTENCY_UNKNOWN];</code>
      * @return int
      */
     public function getIdempotencyLevel()
@@ -122,8 +118,7 @@ class MethodOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>optional .google.protobuf.MethodOptions.IdempotencyLevel idempotency_level =
-     * 34 [default = IDEMPOTENCY_UNKNOWN];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.MethodOptions.IdempotencyLevel idempotency_level = 34 [default = IDEMPOTENCY_UNKNOWN];</code>
      * @param int $var
      * @return $this
      */
@@ -138,8 +133,7 @@ class MethodOptions extends \Google\Protobuf\Internal\Message
     /**
      * The parser stores options it doesn't recognize here. See above.
      *
-     * Generated from protobuf field <code>repeated .google.protobuf.UninterpretedOption uninterpreted_option =
-     * 999;</code>
+     * Generated from protobuf field <code>repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getUninterpretedOption()
@@ -150,9 +144,8 @@ class MethodOptions extends \Google\Protobuf\Internal\Message
     /**
      * The parser stores options it doesn't recognize here. See above.
      *
-     * Generated from protobuf field <code>repeated .google.protobuf.UninterpretedOption uninterpreted_option =
-     * 999;</code>
-     * @param \Google\Protobuf\Internal\UninterpretedOption[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;</code>
+     * @param array<\Google\Protobuf\Internal\UninterpretedOption>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUninterpretedOption($var)

@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Api\Distribution\Exemplar instead.
      * @deprecated
      */
-    class Distribution_Exemplar
-    {
-    }
+    class Distribution_Exemplar {}
 }
 class_exists(Distribution\Exemplar::class);
 @trigger_error('Google\Api\Distribution_Exemplar is deprecated and will be removed in the next major release. Use Google\Api\Distribution\Exemplar instead', E_USER_DEPRECATED);

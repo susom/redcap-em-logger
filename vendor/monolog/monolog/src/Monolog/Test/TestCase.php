@@ -22,9 +22,20 @@ use Monolog\Formatter\FormatterInterface;
  *
  * @phpstan-import-type Record from \Monolog\Logger
  * @phpstan-import-type Level from \Monolog\Logger
+ *
+ * @internal feel free to reuse this to test your own handlers, this is marked internal to avoid issues with PHPStorm https://github.com/Seldaek/monolog/issues/1677
  */
 class TestCase extends \PHPUnit\Framework\TestCase
 {
+    public function tearDown(): void
+    {
+        parent::tearDown();
+
+        if (isset($this->handler)) {
+            unset($this->handler);
+        }
+    }
+
     /**
      * @param mixed[] $context
      *
@@ -36,7 +47,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     protected function getRecord(int $level = Logger::WARNING, string $message = 'test', array $context = []): array
     {
         return [
-            'message' => (string)$message,
+            'message' => (string) $message,
             'context' => $context,
             'level' => $level,
             'level_name' => Logger::getLevelName($level),

@@ -20,14 +20,14 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
      * Optional. Source file name. Depending on the runtime environment, this
      * might be a simple name or a fully-qualified name.
      *
-     * Generated from protobuf field <code>string file = 1;</code>
+     * Generated from protobuf field <code>string file = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $file = '';
     /**
      * Optional. Line within the source file. 1-based; 0 indicates no line number
      * available.
      *
-     * Generated from protobuf field <code>int64 line = 2;</code>
+     * Generated from protobuf field <code>int64 line = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $line = 0;
     /**
@@ -38,7 +38,7 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
      * `qual.if.ied.Class.method` (Java), `dir/package.func` (Go), `function`
      * (Python).
      *
-     * Generated from protobuf field <code>string function = 3;</code>
+     * Generated from protobuf field <code>string function = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $function = '';
 
@@ -48,13 +48,13 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $file
+     *     @type string $file
      *           Optional. Source file name. Depending on the runtime environment, this
      *           might be a simple name or a fully-qualified name.
-     * @type int|string $line
+     *     @type int|string $line
      *           Optional. Line within the source file. 1-based; 0 indicates no line number
      *           available.
-     * @type string $function
+     *     @type string $function
      *           Optional. Human-readable name of the function or method being invoked, with
      *           optional context such as the class or package name. This information may be
      *           used in contexts such as the logs viewer, where a file and line number are
@@ -63,8 +63,7 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
      *           (Python).
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\LogEntry::initOnce();
         parent::__construct($data);
     }
@@ -73,7 +72,7 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
      * Optional. Source file name. Depending on the runtime environment, this
      * might be a simple name or a fully-qualified name.
      *
-     * Generated from protobuf field <code>string file = 1;</code>
+     * Generated from protobuf field <code>string file = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFile()
@@ -85,7 +84,7 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
      * Optional. Source file name. Depending on the runtime environment, this
      * might be a simple name or a fully-qualified name.
      *
-     * Generated from protobuf field <code>string file = 1;</code>
+     * Generated from protobuf field <code>string file = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -101,7 +100,7 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
      * Optional. Line within the source file. 1-based; 0 indicates no line number
      * available.
      *
-     * Generated from protobuf field <code>int64 line = 2;</code>
+     * Generated from protobuf field <code>int64 line = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
      */
     public function getLine()
@@ -113,7 +112,7 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
      * Optional. Line within the source file. 1-based; 0 indicates no line number
      * available.
      *
-     * Generated from protobuf field <code>int64 line = 2;</code>
+     * Generated from protobuf field <code>int64 line = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
      * @return $this
      */
@@ -133,7 +132,7 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
      * `qual.if.ied.Class.method` (Java), `dir/package.func` (Go), `function`
      * (Python).
      *
-     * Generated from protobuf field <code>string function = 3;</code>
+     * Generated from protobuf field <code>string function = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFunction()
@@ -149,7 +148,7 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
      * `qual.if.ied.Class.method` (Java), `dir/package.func` (Go), `function`
      * (Python).
      *
-     * Generated from protobuf field <code>string function = 3;</code>
+     * Generated from protobuf field <code>string function = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

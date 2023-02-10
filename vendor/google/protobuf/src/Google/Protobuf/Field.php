@@ -84,32 +84,31 @@ class Field extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int $kind
+     *     @type int $kind
      *           The field type.
-     * @type int $cardinality
+     *     @type int $cardinality
      *           The field cardinality.
-     * @type int $number
+     *     @type int $number
      *           The field number.
-     * @type string $name
+     *     @type string $name
      *           The field name.
-     * @type string $type_url
+     *     @type string $type_url
      *           The field type URL, without the scheme, for message or enumeration
      *           types. Example: `"type.googleapis.com/google.protobuf.Timestamp"`.
-     * @type int $oneof_index
+     *     @type int $oneof_index
      *           The index of the field type in `Type.oneofs`, for message or enumeration
      *           types. The first type has index 1; zero means the type is not in the list.
-     * @type bool $packed
+     *     @type bool $packed
      *           Whether to use alternative packed wire representation.
-     * @type \Google\Protobuf\Option[]|\Google\Protobuf\Internal\RepeatedField $options
+     *     @type array<\Google\Protobuf\Option>|\Google\Protobuf\Internal\RepeatedField $options
      *           The protocol buffer options.
-     * @type string $json_name
+     *     @type string $json_name
      *           The field JSON name.
-     * @type string $default_value
+     *     @type string $default_value
      *           The string value of the default value of this field. Proto2 syntax only.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Protobuf\Type::initOnce();
         parent::__construct($data);
     }
@@ -315,7 +314,7 @@ class Field extends \Google\Protobuf\Internal\Message
      * The protocol buffer options.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Option options = 9;</code>
-     * @param \Google\Protobuf\Option[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Protobuf\Option>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOptions($var)

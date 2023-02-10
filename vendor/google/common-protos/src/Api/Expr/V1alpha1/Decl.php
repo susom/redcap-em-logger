@@ -21,9 +21,9 @@ class Decl extends \Google\Protobuf\Internal\Message
      * The fully qualified name of the declaration.
      * Declarations are organized in containers and this represents the full path
      * to the declaration in its container, as in `google.api.expr.Decl`.
-     * Declarations used as [FunctionDecl.Overload][google.api.expr.v1alpha1.Decl.FunctionDecl.Overload] parameters may
-     * or may not have a name depending on whether the overload is function declaration or a function definition
-     * containing a result [Expr][google.api.expr.v1alpha1.Expr].
+     * Declarations used as [FunctionDecl.Overload][google.api.expr.v1alpha1.Decl.FunctionDecl.Overload] parameters may or may not
+     * have a name depending on whether the overload is function declaration or a
+     * function definition containing a result [Expr][google.api.expr.v1alpha1.Expr].
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -36,21 +36,20 @@ class Decl extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $name
+     *     @type string $name
      *           The fully qualified name of the declaration.
      *           Declarations are organized in containers and this represents the full path
      *           to the declaration in its container, as in `google.api.expr.Decl`.
-     *           Declarations used as [FunctionDecl.Overload][google.api.expr.v1alpha1.Decl.FunctionDecl.Overload]
-     *     parameters may or may not have a name depending on whether the overload is function declaration or a
-     *     function definition containing a result [Expr][google.api.expr.v1alpha1.Expr].
-     * @type \Google\Api\Expr\V1alpha1\Decl\IdentDecl $ident
+     *           Declarations used as [FunctionDecl.Overload][google.api.expr.v1alpha1.Decl.FunctionDecl.Overload] parameters may or may not
+     *           have a name depending on whether the overload is function declaration or a
+     *           function definition containing a result [Expr][google.api.expr.v1alpha1.Expr].
+     *     @type \Google\Api\Expr\V1alpha1\Decl\IdentDecl $ident
      *           Identifier declaration.
-     * @type \Google\Api\Expr\V1alpha1\Decl\FunctionDecl $function
+     *     @type \Google\Api\Expr\V1alpha1\Decl\FunctionDecl $function
      *           Function declaration.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\Checked::initOnce();
         parent::__construct($data);
     }
@@ -59,9 +58,9 @@ class Decl extends \Google\Protobuf\Internal\Message
      * The fully qualified name of the declaration.
      * Declarations are organized in containers and this represents the full path
      * to the declaration in its container, as in `google.api.expr.Decl`.
-     * Declarations used as [FunctionDecl.Overload][google.api.expr.v1alpha1.Decl.FunctionDecl.Overload] parameters may
-     * or may not have a name depending on whether the overload is function declaration or a function definition
-     * containing a result [Expr][google.api.expr.v1alpha1.Expr].
+     * Declarations used as [FunctionDecl.Overload][google.api.expr.v1alpha1.Decl.FunctionDecl.Overload] parameters may or may not
+     * have a name depending on whether the overload is function declaration or a
+     * function definition containing a result [Expr][google.api.expr.v1alpha1.Expr].
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -75,9 +74,9 @@ class Decl extends \Google\Protobuf\Internal\Message
      * The fully qualified name of the declaration.
      * Declarations are organized in containers and this represents the full path
      * to the declaration in its container, as in `google.api.expr.Decl`.
-     * Declarations used as [FunctionDecl.Overload][google.api.expr.v1alpha1.Decl.FunctionDecl.Overload] parameters may
-     * or may not have a name depending on whether the overload is function declaration or a function definition
-     * containing a result [Expr][google.api.expr.v1alpha1.Expr].
+     * Declarations used as [FunctionDecl.Overload][google.api.expr.v1alpha1.Decl.FunctionDecl.Overload] parameters may or may not
+     * have a name depending on whether the overload is function declaration or a
+     * function definition containing a result [Expr][google.api.expr.v1alpha1.Expr].
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

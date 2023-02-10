@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Api\Distribution\BucketOptions\Exponential instead.
      * @deprecated
      */
-    class Distribution_BucketOptions_Exponential
-    {
-    }
+    class Distribution_BucketOptions_Exponential {}
 }
 class_exists(Distribution\BucketOptions\Exponential::class);
 @trigger_error('Google\Api\Distribution_BucketOptions_Exponential is deprecated and will be removed in the next major release. Use Google\Api\Distribution\BucketOptions\Exponential instead', E_USER_DEPRECATED);

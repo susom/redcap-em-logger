@@ -156,13 +156,13 @@ class Color extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type float $red
+     *     @type float $red
      *           The amount of red in the color as a value in the interval [0, 1].
-     * @type float $green
+     *     @type float $green
      *           The amount of green in the color as a value in the interval [0, 1].
-     * @type float $blue
+     *     @type float $blue
      *           The amount of blue in the color as a value in the interval [0, 1].
-     * @type \Google\Protobuf\FloatValue $alpha
+     *     @type \Google\Protobuf\FloatValue $alpha
      *           The fraction of this color that should be applied to the pixel. That is,
      *           the final pixel color is defined by the equation:
      *             pixel color = alpha * (this color) + (1.0 - alpha) * (background color)
@@ -174,8 +174,7 @@ class Color extends \Google\Protobuf\Internal\Message
      *           (as if the alpha value had been explicitly given with a value of 1.0).
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Type\Color::initOnce();
         parent::__construct($data);
     }
@@ -279,6 +278,7 @@ class Color extends \Google\Protobuf\Internal\Message
 
     /**
      * Returns the unboxed value from <code>getAlpha()</code>
+
      * The fraction of this color that should be applied to the pixel. That is,
      * the final pixel color is defined by the equation:
      *   pixel color = alpha * (this color) + (1.0 - alpha) * (background color)
@@ -323,6 +323,7 @@ class Color extends \Google\Protobuf\Internal\Message
 
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\FloatValue object.
+
      * The fraction of this color that should be applied to the pixel. That is,
      * the final pixel color is defined by the equation:
      *   pixel color = alpha * (this color) + (1.0 - alpha) * (background color)

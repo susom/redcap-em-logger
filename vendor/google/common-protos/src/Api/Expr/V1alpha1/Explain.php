@@ -40,19 +40,18 @@ class Explain extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\Expr\V1alpha1\Value[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type \Google\Api\Expr\V1alpha1\Value[]|\Google\Protobuf\Internal\RepeatedField $values
      *           All of the observed values.
      *           The field value_index is an index in the values list.
      *           Separating values from steps is needed to remove redundant values.
-     * @type \Google\Api\Expr\V1alpha1\Explain\ExprStep[]|\Google\Protobuf\Internal\RepeatedField $expr_steps
+     *     @type \Google\Api\Expr\V1alpha1\Explain\ExprStep[]|\Google\Protobuf\Internal\RepeatedField $expr_steps
      *           List of steps.
      *           Repeated evaluations of the same expression generate new ExprStep
      *           instances. The order of such ExprStep instances matches the order of
      *           elements returned by Comprehension.iter_range.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\Explain::initOnce();
         parent::__construct($data);
     }

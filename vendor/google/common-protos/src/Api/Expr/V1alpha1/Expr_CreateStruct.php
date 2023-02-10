@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Api\Expr\V1alpha1\Expr\CreateStruct instead.
      * @deprecated
      */
-    class Expr_CreateStruct
-    {
-    }
+    class Expr_CreateStruct {}
 }
 class_exists(Expr\CreateStruct::class);
 @trigger_error('Google\Api\Expr\V1alpha1\Expr_CreateStruct is deprecated and will be removed in the next major release. Use Google\Api\Expr\V1alpha1\Expr\CreateStruct instead', E_USER_DEPRECATED);

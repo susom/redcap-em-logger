@@ -8,21 +8,20 @@ class GPBEmpty
 {
     public static $is_initialized = false;
 
-    public static function initOnce()
-    {
+    public static function initOnce() {
         $pool = \Google\Protobuf\Internal\DescriptorPool::getGeneratedPool();
 
         if (static::$is_initialized == true) {
-            return;
+          return;
         }
         $pool->internalAddGeneratedFile(
             '
-ï¿½
+¾
 google/protobuf/empty.protogoogle.protobuf"
 EmptyB}
 com.google.protobufB
-EmptyProtoPZ.google.golang.org/protobuf/types/known/emptypbï¿½ï¿½GPBï¿½Google.Protobuf.WellKnownTypesbproto3'
-            , true);
+EmptyProtoPZ.google.golang.org/protobuf/types/known/emptypbø¢GPBªGoogle.Protobuf.WellKnownTypesbproto3'
+        , true);
 
         static::$is_initialized = true;
     }

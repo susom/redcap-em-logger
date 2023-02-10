@@ -29,7 +29,6 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 namespace Google\ApiCore\Transport;
 
 use Google\ApiCore\ApiException;
@@ -62,10 +61,9 @@ class GrpcFallbackTransport implements TransportInterface
      * @param callable $httpHandler A handler used to deliver PSR-7 requests.
      */
     public function __construct(
-        $baseUri,
+        string $baseUri,
         callable $httpHandler
-    )
-    {
+    ) {
         $this->baseUri = $baseUri;
         $this->httpHandler = $httpHandler;
         $this->transportName = 'grpc-fallback';
@@ -79,15 +77,15 @@ class GrpcFallbackTransport implements TransportInterface
      * @param array $config {
      *    Config options used to construct the grpc-fallback transport.
      *
-     * @type callable $httpHandler A handler used to deliver PSR-7 requests.
+     *    @type callable $httpHandler A handler used to deliver PSR-7 requests.
      * }
      * @return GrpcFallbackTransport
      * @throws ValidationException
      */
-    public static function build($apiEndpoint, array $config = [])
+    public static function build(string $apiEndpoint, array $config = [])
     {
         $config += [
-            'httpHandler' => null,
+            'httpHandler'  => null,
             'clientCertSource' => null,
         ];
         list($baseUri, $port) = self::normalizeServiceAddress($apiEndpoint);
@@ -181,7 +179,7 @@ class GrpcFallbackTransport implements TransportInterface
         }
 
         if ($this->clientCertSource) {
-            list($cert, $key) = self::loadClientCertSource();
+            list($cert, $key) = self::loadClientCertSource($this->clientCertSource);
             $callOptions['cert'] = $cert;
             $callOptions['key'] = $key;
         }
@@ -197,7 +195,7 @@ class GrpcFallbackTransport implements TransportInterface
     {
         if ($ex instanceof RequestException && $ex->hasResponse()) {
             $res = $ex->getResponse();
-            $body = (string)$res->getBody();
+            $body = (string) $res->getBody();
             $status = new Status();
             try {
                 $status->mergeFromString($body);

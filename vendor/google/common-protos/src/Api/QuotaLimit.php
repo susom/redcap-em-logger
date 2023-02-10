@@ -178,7 +178,7 @@ class QuotaLimit extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $name
+     *     @type string $name
      *           Name of the quota limit. The name is used to refer to the limit when
      *           overriding the default limit on per-consumer basis.
      *           For group-based quota limits, the name must be unique within the quota
@@ -193,11 +193,11 @@ class QuotaLimit extends \Google\Protobuf\Internal\Message
      *           immutable. You can use the display_name field to provide a user-friendly
      *           name for the limit. The display name can be evolved over time without
      *           affecting the identity of the limit.
-     * @type string $description
+     *     @type string $description
      *           Optional. User-visible, extended description for this quota limit.
      *           Should be used only when more context is needed to understand this limit
      *           than provided by the limit's display name (see: `display_name`).
-     * @type int|string $default_limit
+     *     @type int|string $default_limit
      *           Default number of tokens that can be consumed during the specified
      *           duration. This is the number of tokens assigned when a client
      *           application developer activates the service for his/her project.
@@ -206,7 +206,7 @@ class QuotaLimit extends \Google\Protobuf\Internal\Message
      *           Similarly, a value of -1 will indicate an unlimited quota. No other
      *           negative values are allowed.
      *           Used by group-based quotas only.
-     * @type int|string $max_limit
+     *     @type int|string $max_limit
      *           Maximum number of tokens that can be consumed during the specified
      *           duration. Client application developers can override the default limit up
      *           to this maximum. If specified, this value cannot be set to a value less
@@ -214,7 +214,7 @@ class QuotaLimit extends \Google\Protobuf\Internal\Message
      *           To allow clients to apply overrides with no upper bound, set this to -1,
      *           indicating unlimited maximum quota.
      *           Used by group-based quotas only.
-     * @type int|string $free_tier
+     *     @type int|string $free_tier
      *           Free tier value displayed in the Developers Console for this limit.
      *           The free tier is the number of tokens that will be subtracted from the
      *           billed amount when billing is enabled.
@@ -222,18 +222,18 @@ class QuotaLimit extends \Google\Protobuf\Internal\Message
      *           group; it is invalid on any other limit. If this field is not set, it
      *           defaults to 0, indicating that there is no free tier for this service.
      *           Used by group-based quotas only.
-     * @type string $duration
+     *     @type string $duration
      *           Duration of this limit in textual notation. Example: "100s", "24h", "1d".
      *           For duration longer than a day, only multiple of days is supported. We
      *           support only "100s" and "1d" for now. Additional support will be added in
      *           the future. "0" indicates indefinite duration.
      *           Used by group-based quotas only.
-     * @type string $metric
+     *     @type string $metric
      *           The name of the metric this quota limit applies to. The quota limits with
      *           the same metric will be checked together during runtime. The metric must be
      *           defined within the service config.
      *           Used by metric-based quotas only.
-     * @type string $unit
+     *     @type string $unit
      *           Specify the unit of the quota limit. It uses the same syntax as
      *           [Metric.unit][]. The supported unit kinds are determined by the quota
      *           backend system.
@@ -261,7 +261,7 @@ class QuotaLimit extends \Google\Protobuf\Internal\Message
      *           Note: the order of unit components is insignificant.
      *           The "1" at the beginning is required to follow the metric unit syntax.
      *           Used by metric-based quotas only.
-     * @type array|\Google\Protobuf\Internal\MapField $values
+     *     @type array|\Google\Protobuf\Internal\MapField $values
      *           Tiered limit values. Also allows for regional or zone overrides for these
      *           values if "/{region}" or "/{zone}" is specified in the unit field.
      *           Currently supported tiers from low to high:
@@ -287,15 +287,14 @@ class QuotaLimit extends \Google\Protobuf\Internal\Message
      *           the tier set for default limit values. Same rule applies for zone overrides
      *           tier as well.
      *           Used by metric-based quotas only.
-     * @type string $display_name
+     *     @type string $display_name
      *           User-visible display name for this limit.
      *           Optional. If not set, the UI will provide a default display name based on
      *           the quota configuration. This field can be used to override the default
      *           display name generated from the configuration.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Quota::initOnce();
         parent::__construct($data);
     }

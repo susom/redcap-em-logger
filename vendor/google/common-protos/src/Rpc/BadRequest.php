@@ -29,12 +29,11 @@ class BadRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Rpc\BadRequest\FieldViolation[]|\Google\Protobuf\Internal\RepeatedField $field_violations
+     *     @type \Google\Rpc\BadRequest\FieldViolation[]|\Google\Protobuf\Internal\RepeatedField $field_violations
      *           Describes all violations in a client request.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Rpc\ErrorDetails::initOnce();
         parent::__construct($data);
     }

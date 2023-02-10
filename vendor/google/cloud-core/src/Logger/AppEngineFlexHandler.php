@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 namespace Google\Cloud\Core\Logger;
 
 use Monolog\Formatter\FormatterInterface;
@@ -25,6 +24,8 @@ use Monolog\Logger;
  * Monolog 1.x handler for logging on App Engine flexible environment.
  *
  * If you are using Monolog 2.x, use {@see \Google\Cloud\Core\Logger\AppEngineFlexHandlerV2} instead.
+ * If you are using Monolog 3.x, use {@see \Google\Cloud\Core\Logger\AppEngineFlexHandlerV3} instead.
+ * @internal
  */
 class AppEngineFlexHandler extends StreamHandler
 {
@@ -45,8 +46,7 @@ class AppEngineFlexHandler extends StreamHandler
         $filePermission = 0640,
         $useLocking = false,
         $stream = null
-    )
-    {
+    ) {
         if ($stream === null) {
             $pid = getmypid();
             $stream = "file:///var/log/app_engine/app.$pid.json";

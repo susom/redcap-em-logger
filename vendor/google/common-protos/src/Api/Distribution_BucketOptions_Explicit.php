@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Api\Distribution\BucketOptions\Explicit instead.
      * @deprecated
      */
-    class Distribution_BucketOptions_Explicit
-    {
-    }
+    class Distribution_BucketOptions_Explicit {}
 }
 class_exists(Distribution\BucketOptions\Explicit::class);
 @trigger_error('Google\Api\Distribution_BucketOptions_Explicit is deprecated and will be removed in the next major release. Use Google\Api\Distribution\BucketOptions\Explicit instead', E_USER_DEPRECATED);

@@ -48,7 +48,7 @@ class MonitoredResourceMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Protobuf\Struct $system_labels
+     *     @type \Google\Protobuf\Struct $system_labels
      *           Output only. Values for predefined system metadata labels.
      *           System labels are a kind of metadata extracted by Google Stackdriver.
      *           Stackdriver determines what system labels are useful and how to obtain
@@ -59,12 +59,11 @@ class MonitoredResourceMetadata extends \Google\Protobuf\Internal\Message
      *               { "name": "my-test-instance",
      *                 "security_group": ["a", "b", "c"],
      *                 "spot_instance": false }
-     * @type array|\Google\Protobuf\Internal\MapField $user_labels
+     *     @type array|\Google\Protobuf\Internal\MapField $user_labels
      *           Output only. A map of user-defined metadata labels.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\MonitoredResource::initOnce();
         parent::__construct($data);
     }

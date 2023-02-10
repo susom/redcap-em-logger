@@ -181,9 +181,9 @@ class MetricDescriptor extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $name
+     *     @type string $name
      *           The resource name of the metric descriptor.
-     * @type string $type
+     *     @type string $type
      *           The metric type, including its DNS name prefix. The type is not
      *           URL-encoded.  All user-defined metric types have the DNS name
      *           `custom.googleapis.com` or `external.googleapis.com`.  Metric types should
@@ -191,20 +191,20 @@ class MetricDescriptor extends \Google\Protobuf\Internal\Message
      *               "custom.googleapis.com/invoice/paid/amount"
      *               "external.googleapis.com/prometheus/up"
      *               "appengine.googleapis.com/http/server/response_latencies"
-     * @type \Google\Api\LabelDescriptor[]|\Google\Protobuf\Internal\RepeatedField $labels
+     *     @type \Google\Api\LabelDescriptor[]|\Google\Protobuf\Internal\RepeatedField $labels
      *           The set of labels that can be used to describe a specific
      *           instance of this metric type. For example, the
      *           `appengine.googleapis.com/http/server/response_latencies` metric
      *           type has a label for the HTTP response code, `response_code`, so
      *           you can look at latencies for successful responses or just
      *           for responses that failed.
-     * @type int $metric_kind
+     *     @type int $metric_kind
      *           Whether the metric records instantaneous values, changes to a value, etc.
      *           Some combinations of `metric_kind` and `value_type` might not be supported.
-     * @type int $value_type
+     *     @type int $value_type
      *           Whether the measurement is an integer, a floating-point number, etc.
      *           Some combinations of `metric_kind` and `value_type` might not be supported.
-     * @type string $unit
+     *     @type string $unit
      *           The units in which the metric value is reported. It is only applicable
      *           if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The `unit`
      *           defines the representation of the stored metric values.
@@ -287,21 +287,20 @@ class MetricDescriptor extends \Google\Protobuf\Internal\Message
      *           * `10^2.%` indicates a metric contains a ratio, typically in the range
      *              0..1, that will be multiplied by 100 and displayed as a percentage
      *              (so a metric value `0.03` means "3 percent").
-     * @type string $description
+     *     @type string $description
      *           A detailed description of the metric, which can be used in documentation.
-     * @type string $display_name
+     *     @type string $display_name
      *           A concise name for the metric, which can be displayed in user interfaces.
      *           Use sentence case without an ending period, for example "Request count".
      *           This field is optional but it is recommended to be set for any metrics
      *           associated with user-visible concepts, such as Quota.
-     * @type \Google\Api\MetricDescriptor\MetricDescriptorMetadata $metadata
+     *     @type \Google\Api\MetricDescriptor\MetricDescriptorMetadata $metadata
      *           Optional. Metadata which can be used to guide usage of the metric.
-     * @type int $launch_stage
+     *     @type int $launch_stage
      *           Optional. The launch stage of the metric definition.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Metric::initOnce();
         parent::__construct($data);
     }

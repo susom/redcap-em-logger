@@ -46,22 +46,21 @@ class Reference extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $name
+     *     @type string $name
      *           The fully qualified name of the declaration.
-     * @type string[]|\Google\Protobuf\Internal\RepeatedField $overload_id
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $overload_id
      *           For references to functions, this is a list of `Overload.overload_id`
      *           values which match according to typing rules.
      *           If the list has more than one element, overload resolution among the
      *           presented candidates must happen at runtime because of dynamic types. The
      *           type checker attempts to narrow down this list as much as possible.
      *           Empty if this is not a reference to a [Decl.FunctionDecl][google.api.expr.v1alpha1.Decl.FunctionDecl].
-     * @type \Google\Api\Expr\V1alpha1\Constant $value
+     *     @type \Google\Api\Expr\V1alpha1\Constant $value
      *           For references to constants, this may contain the value of the
      *           constant if known at compile time.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\Checked::initOnce();
         parent::__construct($data);
     }

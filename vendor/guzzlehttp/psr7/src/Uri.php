@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GuzzleHttp\Psr7;
 
+use GuzzleHttp\Psr7\Exception\MalformedUriException;
 use Psr\Http\Message\UriInterface;
 
 /**
@@ -13,7 +14,7 @@ use Psr\Http\Message\UriInterface;
  * @author Tobias Schultze
  * @author Matthew Weier O'Phinney
  */
-class Uri implements UriInterface
+class Uri implements UriInterface, \JsonSerializable
 {
     /**
      * Absolute http and https URIs require a host per RFC 7230 Section 2.7
@@ -24,7 +25,7 @@ class Uri implements UriInterface
     private const HTTP_DEFAULT_HOST = 'localhost';
 
     private const DEFAULT_PORTS = [
-        'http' => 80,
+        'http'  => 80,
         'https' => 443,
         'ftp' => 21,
         'gopher' => 70,
@@ -81,12 +82,11 @@ class Uri implements UriInterface
         if ($uri !== '') {
             $parts = self::parse($uri);
             if ($parts === false) {
-                throw new \InvalidArgumentException("Unable to parse URI: $uri");
+                throw new MalformedUriException("Unable to parse URI: $uri");
             }
             $this->applyParts($parts);
         }
     }
-
     /**
      * UTF-8 aware \parse_url() replacement.
      *
@@ -174,6 +174,10 @@ class Uri implements UriInterface
 
         if ($authority != '' || $scheme === 'file') {
             $uri .= '//' . $authority;
+        }
+
+        if ($authority != '' && $path != '' && $path[0] != '/') {
+            $path = '/' . $path;
         }
 
         $uri .= $path;
@@ -269,7 +273,7 @@ class Uri implements UriInterface
      * component, identical to the base URI. When no base URI is given, only an empty
      * URI reference (apart from its fragment) is considered a same-document reference.
      *
-     * @param UriInterface $uri The URI to check
+     * @param UriInterface      $uri  The URI to check
      * @param UriInterface|null $base An optional base URI to compare against
      *
      * @link https://tools.ietf.org/html/rfc3986#section-4.4
@@ -295,7 +299,7 @@ class Uri implements UriInterface
      * removed.
      *
      * @param UriInterface $uri URI to use as a base.
-     * @param string $key Query string key to remove.
+     * @param string       $key Query string key to remove.
      */
     public static function withoutQueryValue(UriInterface $uri, string $key): UriInterface
     {
@@ -313,9 +317,9 @@ class Uri implements UriInterface
      * A value of null will set the query string key without a value, e.g. "key"
      * instead of "key=value".
      *
-     * @param UriInterface $uri URI to use as a base.
-     * @param string $key Key to set.
-     * @param string|null $value Value to set
+     * @param UriInterface $uri   URI to use as a base.
+     * @param string       $key   Key to set.
+     * @param string|null  $value Value to set
      */
     public static function withQueryValue(UriInterface $uri, string $key, ?string $value): UriInterface
     {
@@ -331,7 +335,7 @@ class Uri implements UriInterface
      *
      * It has the same behavior as withQueryValue() but for an associative array of key => value.
      *
-     * @param UriInterface $uri URI to use as a base.
+     * @param UriInterface               $uri           URI to use as a base.
      * @param array<string, string|null> $keyValueArray Associative array of key and values
      */
     public static function withQueryValues(UriInterface $uri, array $keyValueArray): UriInterface
@@ -339,7 +343,7 @@ class Uri implements UriInterface
         $result = self::getFilteredQueryString($uri, array_keys($keyValueArray));
 
         foreach ($keyValueArray as $key => $value) {
-            $result[] = self::generateQueryString((string)$key, $value !== null ? (string)$value : null);
+            $result[] = self::generateQueryString((string) $key, $value !== null ? (string) $value : null);
         }
 
         return $uri->withQuery(implode('&', $result));
@@ -350,7 +354,7 @@ class Uri implements UriInterface
      *
      * @link http://php.net/manual/en/function.parse-url.php
      *
-     * @throws \InvalidArgumentException If the components do not form a valid URI.
+     * @throws MalformedUriException If the components do not form a valid URI.
      */
     public static function fromParts(array $parts): UriInterface
     {
@@ -525,6 +529,11 @@ class Uri implements UriInterface
         return $new;
     }
 
+    public function jsonSerialize(): string
+    {
+        return $this->__toString();
+    }
+
     /**
      * Apply parse_url parts to a URI.
      *
@@ -617,7 +626,7 @@ class Uri implements UriInterface
             return null;
         }
 
-        $port = (int)$port;
+        $port = (int) $port;
         if (0 > $port || 0xffff < $port) {
             throw new \InvalidArgumentException(
                 sprintf('Invalid port: %d. Must be between 0 and 65535', $port)
@@ -721,13 +730,11 @@ class Uri implements UriInterface
 
         if ($this->getAuthority() === '') {
             if (0 === strpos($this->path, '//')) {
-                throw new \InvalidArgumentException('The path of a URI without an authority must not start with two slashes "//"');
+                throw new MalformedUriException('The path of a URI without an authority must not start with two slashes "//"');
             }
             if ($this->scheme === '' && false !== strpos(explode('/', $this->path, 2)[0], ':')) {
-                throw new \InvalidArgumentException('A relative URI must not have a path beginning with a segment containing a colon');
+                throw new MalformedUriException('A relative URI must not have a path beginning with a segment containing a colon');
             }
-        } elseif (isset($this->path[0]) && $this->path[0] !== '/') {
-            throw new \InvalidArgumentException('The path of a URI with an authority must start with a slash "/" or be empty');
         }
     }
 }

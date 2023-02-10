@@ -47,8 +47,7 @@ class Logging extends \Google\Protobuf\Internal\Message
      * different monitored resource type. A log can be used in at most
      * one producer destination.
      *
-     * Generated from protobuf field <code>repeated .google.api.Logging.LoggingDestination producer_destinations =
-     * 1;</code>
+     * Generated from protobuf field <code>repeated .google.api.Logging.LoggingDestination producer_destinations = 1;</code>
      */
     private $producer_destinations;
     /**
@@ -57,8 +56,7 @@ class Logging extends \Google\Protobuf\Internal\Message
      * different monitored resource type. A log can be used in at most
      * one consumer destination.
      *
-     * Generated from protobuf field <code>repeated .google.api.Logging.LoggingDestination consumer_destinations =
-     * 2;</code>
+     * Generated from protobuf field <code>repeated .google.api.Logging.LoggingDestination consumer_destinations = 2;</code>
      */
     private $consumer_destinations;
 
@@ -68,20 +66,19 @@ class Logging extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\Logging\LoggingDestination[]|\Google\Protobuf\Internal\RepeatedField $producer_destinations
+     *     @type \Google\Api\Logging\LoggingDestination[]|\Google\Protobuf\Internal\RepeatedField $producer_destinations
      *           Logging configurations for sending logs to the producer project.
      *           There can be multiple producer destinations, each one must have a
      *           different monitored resource type. A log can be used in at most
      *           one producer destination.
-     * @type \Google\Api\Logging\LoggingDestination[]|\Google\Protobuf\Internal\RepeatedField $consumer_destinations
+     *     @type \Google\Api\Logging\LoggingDestination[]|\Google\Protobuf\Internal\RepeatedField $consumer_destinations
      *           Logging configurations for sending logs to the consumer project.
      *           There can be multiple consumer destinations, each one must have a
      *           different monitored resource type. A log can be used in at most
      *           one consumer destination.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Logging::initOnce();
         parent::__construct($data);
     }
@@ -92,8 +89,7 @@ class Logging extends \Google\Protobuf\Internal\Message
      * different monitored resource type. A log can be used in at most
      * one producer destination.
      *
-     * Generated from protobuf field <code>repeated .google.api.Logging.LoggingDestination producer_destinations =
-     * 1;</code>
+     * Generated from protobuf field <code>repeated .google.api.Logging.LoggingDestination producer_destinations = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getProducerDestinations()
@@ -107,8 +103,7 @@ class Logging extends \Google\Protobuf\Internal\Message
      * different monitored resource type. A log can be used in at most
      * one producer destination.
      *
-     * Generated from protobuf field <code>repeated .google.api.Logging.LoggingDestination producer_destinations =
-     * 1;</code>
+     * Generated from protobuf field <code>repeated .google.api.Logging.LoggingDestination producer_destinations = 1;</code>
      * @param \Google\Api\Logging\LoggingDestination[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -126,8 +121,7 @@ class Logging extends \Google\Protobuf\Internal\Message
      * different monitored resource type. A log can be used in at most
      * one consumer destination.
      *
-     * Generated from protobuf field <code>repeated .google.api.Logging.LoggingDestination consumer_destinations =
-     * 2;</code>
+     * Generated from protobuf field <code>repeated .google.api.Logging.LoggingDestination consumer_destinations = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getConsumerDestinations()
@@ -141,8 +135,7 @@ class Logging extends \Google\Protobuf\Internal\Message
      * different monitored resource type. A log can be used in at most
      * one consumer destination.
      *
-     * Generated from protobuf field <code>repeated .google.api.Logging.LoggingDestination consumer_destinations =
-     * 2;</code>
+     * Generated from protobuf field <code>repeated .google.api.Logging.LoggingDestination consumer_destinations = 2;</code>
      * @param \Google\Api\Logging\LoggingDestination[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

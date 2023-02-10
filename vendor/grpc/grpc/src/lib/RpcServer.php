@@ -43,7 +43,7 @@ class RpcServer extends Server
     /**
      * Add a service to this server
      *
-     * @param Object $service The service to be added
+     * @param Object   $service      The service to be added
      */
     public function handle($service)
     {
@@ -105,9 +105,8 @@ class RpcServer extends Server
         MethodDescriptor $method_desc,
         ServerCallReader $server_reader,
         ServerCallWriter $server_writer,
-        ServerContext    $context
-    )
-    {
+        ServerContext $context
+    ) {
         // Dispatch to actual server logic
         switch ($method_desc->call_type) {
             case MethodDescriptor::UNARY_CALL:

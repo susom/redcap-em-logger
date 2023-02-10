@@ -58,22 +58,21 @@ class Type extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $name
+     *     @type string $name
      *           The fully qualified message name.
-     * @type \Google\Protobuf\Field[]|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type array<\Google\Protobuf\Field>|\Google\Protobuf\Internal\RepeatedField $fields
      *           The list of fields.
-     * @type string[]|\Google\Protobuf\Internal\RepeatedField $oneofs
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $oneofs
      *           The list of types appearing in `oneof` definitions in this type.
-     * @type \Google\Protobuf\Option[]|\Google\Protobuf\Internal\RepeatedField $options
+     *     @type array<\Google\Protobuf\Option>|\Google\Protobuf\Internal\RepeatedField $options
      *           The protocol buffer options.
-     * @type \Google\Protobuf\SourceContext $source_context
+     *     @type \Google\Protobuf\SourceContext $source_context
      *           The source context.
-     * @type int $syntax
+     *     @type int $syntax
      *           The source syntax.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Protobuf\Type::initOnce();
         parent::__construct($data);
     }
@@ -119,7 +118,7 @@ class Type extends \Google\Protobuf\Internal\Message
      * The list of fields.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Field fields = 2;</code>
-     * @param \Google\Protobuf\Field[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Protobuf\Field>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFields($var)
@@ -145,7 +144,7 @@ class Type extends \Google\Protobuf\Internal\Message
      * The list of types appearing in `oneof` definitions in this type.
      *
      * Generated from protobuf field <code>repeated string oneofs = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOneofs($var)
@@ -171,7 +170,7 @@ class Type extends \Google\Protobuf\Internal\Message
      * The protocol buffer options.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Option options = 4;</code>
-     * @param \Google\Protobuf\Option[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Protobuf\Option>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOptions($var)

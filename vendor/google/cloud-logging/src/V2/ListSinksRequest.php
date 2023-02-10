@@ -22,8 +22,7 @@ class ListSinksRequest extends \Google\Protobuf\Internal\Message
      *     "billingAccounts/[BILLING_ACCOUNT_ID]"
      *     "folders/[FOLDER_ID]"
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -32,7 +31,7 @@ class ListSinksRequest extends \Google\Protobuf\Internal\Message
      * `nextPageToken` from the previous response. The values of other method
      * parameters should be identical to those in the previous call.
      *
-     * Generated from protobuf field <code>string page_token = 2;</code>
+     * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
     /**
@@ -40,7 +39,7 @@ class ListSinksRequest extends \Google\Protobuf\Internal\Message
      * Non-positive values are ignored. The presence of `nextPageToken` in the
      * response indicates that more results might be available.
      *
-     * Generated from protobuf field <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
 
@@ -50,25 +49,24 @@ class ListSinksRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $parent
+     *     @type string $parent
      *           Required. The parent resource whose sinks are to be listed:
      *               "projects/[PROJECT_ID]"
      *               "organizations/[ORGANIZATION_ID]"
      *               "billingAccounts/[BILLING_ACCOUNT_ID]"
      *               "folders/[FOLDER_ID]"
-     * @type string $page_token
+     *     @type string $page_token
      *           Optional. If present, then retrieve the next batch of results from the
      *           preceding call to this method. `pageToken` must be the value of
      *           `nextPageToken` from the previous response. The values of other method
      *           parameters should be identical to those in the previous call.
-     * @type int $page_size
+     *     @type int $page_size
      *           Optional. The maximum number of results to return from this request.
      *           Non-positive values are ignored. The presence of `nextPageToken` in the
      *           response indicates that more results might be available.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\LoggingConfig::initOnce();
         parent::__construct($data);
     }
@@ -80,8 +78,7 @@ class ListSinksRequest extends \Google\Protobuf\Internal\Message
      *     "billingAccounts/[BILLING_ACCOUNT_ID]"
      *     "folders/[FOLDER_ID]"
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -96,8 +93,7 @@ class ListSinksRequest extends \Google\Protobuf\Internal\Message
      *     "billingAccounts/[BILLING_ACCOUNT_ID]"
      *     "folders/[FOLDER_ID]"
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -115,7 +111,7 @@ class ListSinksRequest extends \Google\Protobuf\Internal\Message
      * `nextPageToken` from the previous response. The values of other method
      * parameters should be identical to those in the previous call.
      *
-     * Generated from protobuf field <code>string page_token = 2;</code>
+     * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -129,7 +125,7 @@ class ListSinksRequest extends \Google\Protobuf\Internal\Message
      * `nextPageToken` from the previous response. The values of other method
      * parameters should be identical to those in the previous call.
      *
-     * Generated from protobuf field <code>string page_token = 2;</code>
+     * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -146,7 +142,7 @@ class ListSinksRequest extends \Google\Protobuf\Internal\Message
      * Non-positive values are ignored. The presence of `nextPageToken` in the
      * response indicates that more results might be available.
      *
-     * Generated from protobuf field <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -159,7 +155,7 @@ class ListSinksRequest extends \Google\Protobuf\Internal\Message
      * Non-positive values are ignored. The presence of `nextPageToken` in the
      * response indicates that more results might be available.
      *
-     * Generated from protobuf field <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

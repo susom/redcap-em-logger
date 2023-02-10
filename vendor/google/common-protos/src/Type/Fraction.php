@@ -35,15 +35,14 @@ class Fraction extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int|string $numerator
+     *     @type int|string $numerator
      *           The portion of the denominator in the faction, e.g. 2 in 2/3.
-     * @type int|string $denominator
+     *     @type int|string $denominator
      *           The value by which the numerator is divided, e.g. 3 in 2/3. Must be
      *           positive.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Type\Fraction::initOnce();
         parent::__construct($data);
     }

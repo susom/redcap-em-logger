@@ -94,7 +94,6 @@ interface ConnectionInterface
      * @return array
      */
     public function deleteMetric(array $args = []);
-
     /**
      * @param array $args
      * @return array

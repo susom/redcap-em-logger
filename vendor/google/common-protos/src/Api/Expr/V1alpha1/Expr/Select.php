@@ -45,21 +45,20 @@ class Select extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\Expr\V1alpha1\Expr $operand
+     *     @type \Google\Api\Expr\V1alpha1\Expr $operand
      *           Required. The target of the selection expression.
      *           For example, in the select expression `request.auth`, the `request`
      *           portion of the expression is the `operand`.
-     * @type string $field
+     *     @type string $field
      *           Required. The name of the field to select.
      *           For example, in the select expression `request.auth`, the `auth` portion
      *           of the expression would be the `field`.
-     * @type bool $test_only
+     *     @type bool $test_only
      *           Whether the select is to be interpreted as a field presence test.
      *           This results from the macro `has(request.auth)`.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\Syntax::initOnce();
         parent::__construct($data);
     }

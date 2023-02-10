@@ -19,8 +19,7 @@ class GetIamPolicyRequest extends \Google\Protobuf\Internal\Message
      * REQUIRED: The resource for which the policy is being requested.
      * See the operation documentation for the appropriate value for this field.
      *
-     * Generated from protobuf field <code>string resource = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string resource = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $resource = '';
     /**
@@ -37,16 +36,15 @@ class GetIamPolicyRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $resource
+     *     @type string $resource
      *           REQUIRED: The resource for which the policy is being requested.
      *           See the operation documentation for the appropriate value for this field.
-     * @type \Google\Cloud\Iam\V1\GetPolicyOptions $options
+     *     @type \Google\Cloud\Iam\V1\GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`. This field is only used by Cloud IAM.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Iam\V1\IamPolicy::initOnce();
         parent::__construct($data);
     }
@@ -55,8 +53,7 @@ class GetIamPolicyRequest extends \Google\Protobuf\Internal\Message
      * REQUIRED: The resource for which the policy is being requested.
      * See the operation documentation for the appropriate value for this field.
      *
-     * Generated from protobuf field <code>string resource = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string resource = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getResource()
@@ -68,8 +65,7 @@ class GetIamPolicyRequest extends \Google\Protobuf\Internal\Message
      * REQUIRED: The resource for which the policy is being requested.
      * See the operation documentation for the appropriate value for this field.
      *
-     * Generated from protobuf field <code>string resource = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string resource = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

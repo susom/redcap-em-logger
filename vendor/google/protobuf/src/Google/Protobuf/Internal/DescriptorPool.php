@@ -60,7 +60,7 @@ class DescriptorPool
         $files = new FileDescriptorSet();
         $files->mergeFromString($data);
 
-        foreach ($files->getFile() as $file_proto) {
+        foreach($files->getFile() as $file_proto) {
             $file = FileDescriptor::buildFromProto($file_proto);
 
             foreach ($file->getMessageType() as $desc) {
@@ -96,6 +96,7 @@ class DescriptorPool
             $descriptor->getClass();
         $this->class_to_desc[$descriptor->getClass()] = $descriptor;
         $this->class_to_desc[$descriptor->getLegacyClass()] = $descriptor;
+        $this->class_to_desc[$descriptor->getPreviouslyUnreservedClass()] = $descriptor;
         foreach ($descriptor->getNestedType() as $nested_type) {
             $this->addDescriptor($nested_type);
         }
@@ -136,7 +137,7 @@ class DescriptorPool
             $klass = $this->proto_to_class[$proto];
             return $this->class_to_desc[$klass];
         } else {
-            return null;
+          return null;
         }
     }
 
@@ -153,20 +154,20 @@ class DescriptorPool
                 case GPBType::MESSAGE:
                     $proto = $field->getMessageType();
                     if ($proto[0] == '.') {
-                        $proto = substr($proto, 1);
+                      $proto = substr($proto, 1);
                     }
                     $subdesc = $this->getDescriptorByProtoName($proto);
                     if (is_null($subdesc)) {
                         trigger_error(
                             'proto not added: ' . $proto
-                            . " for " . $desc->getFullName(), E_ERROR);
+                            . " for " . $desc->getFullName(), E_USER_ERROR);
                     }
                     $field->setMessageType($subdesc);
                     break;
                 case GPBType::ENUM:
                     $proto = $field->getEnumType();
                     if ($proto[0] == '.') {
-                        $proto = substr($proto, 1);
+                      $proto = substr($proto, 1);
                     }
                     $field->setEnumType(
                         $this->getEnumDescriptorByProtoName($proto));

@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Api\Logging\LoggingDestination instead.
      * @deprecated
      */
-    class Logging_LoggingDestination
-    {
-    }
+    class Logging_LoggingDestination {}
 }
 class_exists(Logging\LoggingDestination::class);
 @trigger_error('Google\Api\Logging_LoggingDestination is deprecated and will be removed in the next major release. Use Google\Api\Logging\LoggingDestination instead', E_USER_DEPRECATED);

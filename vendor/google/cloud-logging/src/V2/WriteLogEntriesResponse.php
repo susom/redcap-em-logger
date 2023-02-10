@@ -10,7 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Result returned from WriteLogEntries.
- * empty
  *
  * Generated from protobuf message <code>google.logging.v2.WriteLogEntriesResponse</code>
  */
@@ -25,8 +24,7 @@ class WriteLogEntriesResponse extends \Google\Protobuf\Internal\Message
      *
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\Logging::initOnce();
         parent::__construct($data);
     }

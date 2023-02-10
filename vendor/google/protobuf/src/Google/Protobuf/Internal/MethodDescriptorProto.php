@@ -55,20 +55,19 @@ class MethodDescriptorProto extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $name
-     * @type string $input_type
+     *     @type string $name
+     *     @type string $input_type
      *           Input and output type names.  These are resolved in the same way as
      *           FieldDescriptorProto.type_name, but must refer to a message type.
-     * @type string $output_type
-     * @type \Google\Protobuf\Internal\MethodOptions $options
-     * @type bool $client_streaming
+     *     @type string $output_type
+     *     @type \Google\Protobuf\Internal\MethodOptions $options
+     *     @type bool $client_streaming
      *           Identifies if client streams multiple client messages
-     * @type bool $server_streaming
+     *     @type bool $server_streaming
      *           Identifies if server streams multiple server messages
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Protobuf\Internal\Descriptor::initOnce();
         parent::__construct($data);
     }

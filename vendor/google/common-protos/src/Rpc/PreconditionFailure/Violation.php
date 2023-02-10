@@ -22,7 +22,7 @@ class Violation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * The subject, relative to the type, that failed.
      * For example, "google.com/cloud" relative to the "TOS" type would indicate
@@ -30,7 +30,7 @@ class Violation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subject = 2;</code>
      */
-    private $subject = '';
+    protected $subject = '';
     /**
      * A description of how the precondition failed. Developers can use this
      * description to understand how to fix the failure.
@@ -38,7 +38,7 @@ class Violation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * Constructor.
@@ -46,22 +46,21 @@ class Violation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $type
+     *     @type string $type
      *           The type of PreconditionFailure. We recommend using a service-specific
      *           enum type to define the supported precondition violation subjects. For
      *           example, "TOS" for "Terms of Service violation".
-     * @type string $subject
+     *     @type string $subject
      *           The subject, relative to the type, that failed.
      *           For example, "google.com/cloud" relative to the "TOS" type would indicate
      *           which terms of service is being referenced.
-     * @type string $description
+     *     @type string $description
      *           A description of how the precondition failed. Developers can use this
      *           description to understand how to fix the failure.
      *           For example: "Terms of service not accepted".
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Rpc\ErrorDetails::initOnce();
         parent::__construct($data);
     }

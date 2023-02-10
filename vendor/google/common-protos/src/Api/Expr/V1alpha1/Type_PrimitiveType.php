@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Api\Expr\V1alpha1\Type\PrimitiveType instead.
      * @deprecated
      */
-    class Type_PrimitiveType
-    {
-    }
+    class Type_PrimitiveType {}
 }
 class_exists(Type\PrimitiveType::class);
 @trigger_error('Google\Api\Expr\V1alpha1\Type_PrimitiveType is deprecated and will be removed in the next major release. Use Google\Api\Expr\V1alpha1\Type\PrimitiveType instead', E_USER_DEPRECATED);

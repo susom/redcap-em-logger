@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Api\Expr\V1alpha1\Decl\IdentDecl instead.
      * @deprecated
      */
-    class Decl_IdentDecl
-    {
-    }
+    class Decl_IdentDecl {}
 }
 class_exists(Decl\IdentDecl::class);
 @trigger_error('Google\Api\Expr\V1alpha1\Decl_IdentDecl is deprecated and will be removed in the next major release. Use Google\Api\Expr\V1alpha1\Decl\IdentDecl instead', E_USER_DEPRECATED);

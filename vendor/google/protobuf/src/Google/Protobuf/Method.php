@@ -64,24 +64,23 @@ class Method extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $name
+     *     @type string $name
      *           The simple name of this method.
-     * @type string $request_type_url
+     *     @type string $request_type_url
      *           A URL of the input message type.
-     * @type bool $request_streaming
+     *     @type bool $request_streaming
      *           If true, the request is streamed.
-     * @type string $response_type_url
+     *     @type string $response_type_url
      *           The URL of the output message type.
-     * @type bool $response_streaming
+     *     @type bool $response_streaming
      *           If true, the response is streamed.
-     * @type \Google\Protobuf\Option[]|\Google\Protobuf\Internal\RepeatedField $options
+     *     @type array<\Google\Protobuf\Option>|\Google\Protobuf\Internal\RepeatedField $options
      *           Any metadata attached to the method.
-     * @type int $syntax
+     *     @type int $syntax
      *           The source syntax of this method.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Protobuf\Api::initOnce();
         parent::__construct($data);
     }
@@ -231,7 +230,7 @@ class Method extends \Google\Protobuf\Internal\Message
      * Any metadata attached to the method.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Option options = 6;</code>
-     * @param \Google\Protobuf\Option[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Protobuf\Option>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOptions($var)

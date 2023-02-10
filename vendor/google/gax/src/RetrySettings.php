@@ -29,7 +29,6 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 namespace Google\ApiCore;
 
 /**
@@ -61,7 +60,7 @@ namespace Google\ApiCore;
  * ```
  *
  * It is also possible to create a new RetrySettings object from an existing
- * object using the {@see Google\ApiCore\RetrySettings::with()} method.
+ * object using the {@see \Google\ApiCore\RetrySettings::with()} method.
  *
  * Example modifying an existing RetrySettings object using `with()`:
  * ```
@@ -77,8 +76,8 @@ namespace Google\ApiCore;
  * [google-cloud-php](https://github.com/googleapis/google-cloud-php).
  * The examples below make use of the
  * [GroupServiceClient](https://googleapis.github.io/google-cloud-php/#/docs/google-cloud/monitoring/v3/groupserviceclient)
- * from the [Monitoring V3 API](https://github.com/googleapis/google-cloud-php/tree/master/src/Monitoring/V3), but they
- * can be applied to other APIs in the
+ * from the [Monitoring V3 API](https://github.com/googleapis/google-cloud-php/tree/master/src/Monitoring/V3),
+ * but they can be applied to other APIs in the
  * [google-cloud-php](https://github.com/googleapis/google-cloud-php) repository.
  *
  * It is possible to specify the retry behavior to be used by an RPC via the
@@ -126,8 +125,8 @@ namespace Google\ApiCore;
  * constructing a client object using the 'retrySettingsArray'. The examples
  * below again make use of the
  * [GroupServiceClient](https://googleapis.github.io/google-cloud-php/#/docs/google-cloud/monitoring/v3/groupserviceclient)
- * from the [Monitoring V3 API](https://github.com/googleapis/google-cloud-php/tree/master/src/Monitoring/V3), but they
- * can be applied to other APIs in the
+ * from the [Monitoring V3 API](https://github.com/googleapis/google-cloud-php/tree/master/src/Monitoring/V3),
+ * but they can be applied to other APIs in the
  * [google-cloud-php](https://github.com/googleapis/google-cloud-php) repository.
  *
  * The GroupServiceClient object accepts an optional `retrySettingsArray`
@@ -176,8 +175,8 @@ namespace Google\ApiCore;
  * To configure the use of a logical timeout, where a logical timeout is the
  * duration a method is given to complete one or more RPC attempts, with each
  * attempt using only the time remaining in the logical timeout, use
- * {@see Google\ApiCore\RetrySettings::logicalTimeout()} combined with
- * {@see Google\ApiCore\RetrySettings::with()}.
+ * {@see \Google\ApiCore\RetrySettings::logicalTimeout()} combined with
+ * {@see \Google\ApiCore\RetrySettings::with()}.
  *
  * ```
  * $timeoutSettings = RetrySettings::logicalTimeout(30000);
@@ -189,7 +188,7 @@ namespace Google\ApiCore;
  * ]);
  * ```
  *
- * {@see Google\ApiCore\RetrySettings::logicalTimeout()} can also be used on a
+ * {@see \Google\ApiCore\RetrySettings::logicalTimeout()} can also be used on a
  * method call independent of a RetrySettings instance.
  *
  * ```
@@ -226,22 +225,22 @@ class RetrySettings
      *     $retriesEnabled and $noRetriesRpcTimeoutMillis, which are optional and have defaults
      *     determined based on the other settings provided.
      *
-     * @type bool $retriesEnabled Optional. Enables retries. If not specified, the value is
+     *     @type bool    $retriesEnabled Optional. Enables retries. If not specified, the value is
      *                   determined using the $retryableCodes setting. If $retryableCodes is empty,
      *                   then $retriesEnabled is set to false; otherwise, it is set to true.
-     * @type int $noRetriesRpcTimeoutMillis Optional. The timeout of the rpc call to be used
+     *     @type int     $noRetriesRpcTimeoutMillis Optional. The timeout of the rpc call to be used
      *                   if $retriesEnabled is false, in milliseconds. It not specified, the value
      *                   of $initialRpcTimeoutMillis is used.
-     * @type array $retryableCodes The Status codes that are retryable. Each status should be
+     *     @type array   $retryableCodes The Status codes that are retryable. Each status should be
      *                   either one of the string constants defined on {@see \Google\ApiCore\ApiStatus}
      *                   or an integer constant defined on {@see \Google\Rpc\Code}.
-     * @type int $initialRetryDelayMillis The initial delay of retry in milliseconds.
-     * @type int $retryDelayMultiplier The exponential multiplier of retry delay.
-     * @type int $maxRetryDelayMillis The max delay of retry in milliseconds.
-     * @type int $initialRpcTimeoutMillis The initial timeout of rpc call in milliseconds.
-     * @type int $rpcTimeoutMultiplier The exponential multiplier of rpc timeout.
-     * @type int $maxRpcTimeoutMillis The max timeout of rpc call in milliseconds.
-     * @type int $totalTimeoutMillis The max accumulative timeout in total.
+     *     @type int     $initialRetryDelayMillis The initial delay of retry in milliseconds.
+     *     @type int     $retryDelayMultiplier The exponential multiplier of retry delay.
+     *     @type int     $maxRetryDelayMillis The max delay of retry in milliseconds.
+     *     @type int     $initialRpcTimeoutMillis The initial timeout of rpc call in milliseconds.
+     *     @type int     $rpcTimeoutMultiplier The exponential multiplier of rpc timeout.
+     *     @type int     $maxRpcTimeoutMillis The max timeout of rpc call in milliseconds.
+     *     @type int     $totalTimeoutMillis The max accumulative timeout in total.
      * }
      */
     public function __construct(array $settings)
@@ -282,15 +281,14 @@ class RetrySettings
      *     An array parsed from the standard API client config file.
      * @param bool $disableRetries
      *     Disable retries in all loaded RetrySettings objects. Defaults to false.
-     * @return RetrySettings[] $retrySettings
      * @throws ValidationException
+     * @return RetrySettings[] $retrySettings
      */
     public static function load(
-        $serviceName,
-        $clientConfig,
-        $disableRetries = false
-    )
-    {
+        string $serviceName,
+        array $clientConfig,
+        bool $disableRetries = false
+    ) {
         $serviceRetrySettings = [];
 
         $serviceConfig = $clientConfig['interfaces'][$serviceName];
@@ -322,9 +320,9 @@ class RetrySettings
                 }
 
                 $retryParameters = self::convertArrayFromSnakeCase($retryParams[$retryParamsName]) + [
-                        'retryableCodes' => $retryCodes[$retryCodesName],
-                        'noRetriesRpcTimeoutMillis' => $timeoutMillis,
-                    ];
+                    'retryableCodes' => $retryCodes[$retryCodesName],
+                    'noRetriesRpcTimeoutMillis' => $timeoutMillis,
+                ];
                 if ($disableRetries) {
                     $retryParameters['retriesEnabled'] = false;
                 }
@@ -382,13 +380,13 @@ class RetrySettings
     }
 
     /**
-     * Creates an associative array of the {@see Google\ApiCore\RetrySettings} timeout fields configured
+     * Creates an associative array of the {@see \Google\ApiCore\RetrySettings} timeout fields configured
      * with the given timeout specified in the $timeout parameter interpreted as a logical timeout.
      *
      * @param int $timeout The timeout in milliseconds to be used as a logical call timeout.
      * @return array
      */
-    public static function logicalTimeout($timeout)
+    public static function logicalTimeout(int $timeout)
     {
         return [
             'initialRpcTimeoutMillis' => $timeout,
@@ -491,7 +489,7 @@ class RetrySettings
         return $this->totalTimeoutMillis;
     }
 
-    private static function convertArrayFromSnakeCase($settings)
+    private static function convertArrayFromSnakeCase(array $settings)
     {
         $camelCaseSettings = [];
         foreach ($settings as $key => $value) {

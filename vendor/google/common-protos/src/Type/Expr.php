@@ -56,25 +56,24 @@ class Expr extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $expression
+     *     @type string $expression
      *           Textual representation of an expression in
      *           Common Expression Language syntax.
      *           The application context of the containing message determines which
      *           well-known feature set of CEL is supported.
-     * @type string $title
+     *     @type string $title
      *           An optional title for the expression, i.e. a short string describing
      *           its purpose. This can be used e.g. in UIs which allow to enter the
      *           expression.
-     * @type string $description
+     *     @type string $description
      *           An optional description of the expression. This is a longer text which
      *           describes the expression, e.g. when hovered over it in a UI.
-     * @type string $location
+     *     @type string $location
      *           An optional string indicating the location of the expression for error
      *           reporting, e.g. a file name and a position in the file.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Type\Expr::initOnce();
         parent::__construct($data);
     }

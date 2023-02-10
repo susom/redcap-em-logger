@@ -15,7 +15,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 namespace Google\Cloud\Core\Compute;
 
 use Google\Cloud\Core\Compute\Metadata\Readers\HttpHandlerReader;
@@ -68,9 +67,9 @@ class Metadata
     /**
      * Replace the default reader implementation
      *
-     * @param ReaderInterface $reader The reader implementation
      * @deprecated If a custom reader implementation is desired, provide it at
      *     construction.
+     * @param ReaderInterface $reader The reader implementation
      */
     public function setReader(ReaderInterface $reader)
     {
@@ -143,7 +142,7 @@ class Metadata
      */
     public function getProjectMetadata($key)
     {
-        $path = 'project/attributes/' . $key;
+        $path = 'project/attributes/'.$key;
         return $this->get($path);
     }
 
@@ -160,7 +159,7 @@ class Metadata
      */
     public function getInstanceMetadata($key)
     {
-        $path = 'instance/attributes/' . $key;
+        $path = 'instance/attributes/'.$key;
         return $this->get($path);
     }
 }

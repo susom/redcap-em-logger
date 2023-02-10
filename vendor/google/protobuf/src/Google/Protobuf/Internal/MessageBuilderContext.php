@@ -52,7 +52,7 @@ class MessageBuilderContext
     }
 
     private function getFieldDescriptor($name, $label, $type,
-                                        $number, $type_name = null)
+                                      $number, $type_name = null)
     {
         $field = new FieldDescriptor();
         $field->setName($name);
@@ -67,14 +67,14 @@ class MessageBuilderContext
         // So we use the type name as place holder and will replace it with the
         // actual descriptor in cross building.
         switch ($type) {
-            case GPBType::MESSAGE:
-                $field->setMessageType($type_name);
-                break;
-            case GPBType::ENUM:
-                $field->setEnumType($type_name);
-                break;
-            default:
-                break;
+        case GPBType::MESSAGE:
+          $field->setMessageType($type_name);
+          break;
+        case GPBType::ENUM:
+          $field->setEnumType($type_name);
+          break;
+        default:
+          break;
         }
 
         return $field;

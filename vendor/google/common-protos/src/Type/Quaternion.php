@@ -88,18 +88,17 @@ class Quaternion extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type float $x
+     *     @type float $x
      *           The x component.
-     * @type float $y
+     *     @type float $y
      *           The y component.
-     * @type float $z
+     *     @type float $z
      *           The z component.
-     * @type float $w
+     *     @type float $w
      *           The scalar component.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Type\Quaternion::initOnce();
         parent::__construct($data);
     }

@@ -35,14 +35,13 @@ class TimeZone extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $id
+     *     @type string $id
      *           IANA Time Zone Database time zone, e.g. "America/New_York".
-     * @type string $version
+     *     @type string $version
      *           Optional. IANA Time Zone Database version number, e.g. "2019a".
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Type\Datetime::initOnce();
         parent::__construct($data);
     }

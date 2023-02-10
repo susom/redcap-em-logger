@@ -41,11 +41,11 @@ class SystemParameterRule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $selector
+     *     @type string $selector
      *           Selects the methods to which this rule applies. Use '*' to indicate all
      *           methods in all APIs.
      *           Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
-     * @type \Google\Api\SystemParameter[]|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type \Google\Api\SystemParameter[]|\Google\Protobuf\Internal\RepeatedField $parameters
      *           Define parameters. Multiple names may be defined for a parameter.
      *           For a given method call, only one of them should be used. If multiple
      *           names are used the behavior is implementation-dependent.
@@ -53,8 +53,7 @@ class SystemParameterRule extends \Google\Protobuf\Internal\Message
      *           parameter-dependent.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\SystemParameter::initOnce();
         parent::__construct($data);
     }

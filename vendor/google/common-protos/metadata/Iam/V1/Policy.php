@@ -8,12 +8,11 @@ class Policy
 {
     public static $is_initialized = false;
 
-    public static function initOnce()
-    {
+    public static function initOnce() {
         $pool = \Google\Protobuf\Internal\DescriptorPool::getGeneratedPool();
 
         if (static::$is_initialized == true) {
-            return;
+          return;
         }
         \GPBMetadata\Google\Type\Expr::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();

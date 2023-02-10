@@ -53,19 +53,18 @@ class AuthenticationRule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $selector
+     *     @type string $selector
      *           Selects the methods to which this rule applies.
      *           Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
-     * @type \Google\Api\OAuthRequirements $oauth
+     *     @type \Google\Api\OAuthRequirements $oauth
      *           The requirements for OAuth credentials.
-     * @type bool $allow_without_credential
+     *     @type bool $allow_without_credential
      *           If true, the service accepts API keys without any other credential.
-     * @type \Google\Api\AuthRequirement[]|\Google\Protobuf\Internal\RepeatedField $requirements
+     *     @type \Google\Api\AuthRequirement[]|\Google\Protobuf\Internal\RepeatedField $requirements
      *           Requirements for additional authentication providers.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Auth::initOnce();
         parent::__construct($data);
     }

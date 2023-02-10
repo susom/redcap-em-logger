@@ -85,20 +85,19 @@ class Response implements ResponseInterface
     private $statusCode;
 
     /**
-     * @param int $status Status code
-     * @param array<string, string|string[]> $headers Response headers
-     * @param string|resource|StreamInterface|null $body Response body
-     * @param string $version Protocol version
-     * @param string|null $reason Reason phrase (when empty a default will be used based on the status code)
+     * @param int                                  $status  Status code
+     * @param array<string, string|string[]>       $headers Response headers
+     * @param string|resource|StreamInterface|null $body    Response body
+     * @param string                               $version Protocol version
+     * @param string|null                          $reason  Reason phrase (when empty a default will be used based on the status code)
      */
     public function __construct(
-        int    $status = 200,
-        array  $headers = [],
-               $body = null,
+        int $status = 200,
+        array $headers = [],
+        $body = null,
         string $version = '1.1',
         string $reason = null
-    )
-    {
+    ) {
         $this->assertStatusCodeRange($status);
 
         $this->statusCode = $status;
@@ -111,7 +110,7 @@ class Response implements ResponseInterface
         if ($reason == '' && isset(self::PHRASES[$this->statusCode])) {
             $this->reasonPhrase = self::PHRASES[$this->statusCode];
         } else {
-            $this->reasonPhrase = (string)$reason;
+            $this->reasonPhrase = (string) $reason;
         }
 
         $this->protocol = $version;
@@ -130,7 +129,7 @@ class Response implements ResponseInterface
     public function withStatus($code, $reasonPhrase = ''): ResponseInterface
     {
         $this->assertStatusCodeIsInteger($code);
-        $code = (int)$code;
+        $code = (int) $code;
         $this->assertStatusCodeRange($code);
 
         $new = clone $this;
@@ -138,7 +137,7 @@ class Response implements ResponseInterface
         if ($reasonPhrase == '' && isset(self::PHRASES[$new->statusCode])) {
             $reasonPhrase = self::PHRASES[$new->statusCode];
         }
-        $new->reasonPhrase = (string)$reasonPhrase;
+        $new->reasonPhrase = (string) $reasonPhrase;
         return $new;
     }
 

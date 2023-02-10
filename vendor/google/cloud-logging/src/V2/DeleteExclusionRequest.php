@@ -21,10 +21,10 @@ class DeleteExclusionRequest extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
      *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
+     * For example:
+     *   `"projects/my-project/exclusions/my-exclusion"`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -34,17 +34,17 @@ class DeleteExclusionRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $name
+     *     @type string $name
      *           Required. The resource name of an existing exclusion to delete:
      *               "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
      *               "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
      *               "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
      *               "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *           Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
+     *           For example:
+     *             `"projects/my-project/exclusions/my-exclusion"`
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\LoggingConfig::initOnce();
         parent::__construct($data);
     }
@@ -55,10 +55,10 @@ class DeleteExclusionRequest extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
      *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
+     * For example:
+     *   `"projects/my-project/exclusions/my-exclusion"`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -72,10 +72,10 @@ class DeleteExclusionRequest extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
      *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
+     * For example:
+     *   `"projects/my-project/exclusions/my-exclusion"`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

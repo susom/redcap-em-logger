@@ -34,14 +34,13 @@ class ExprStep extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int|string $id
+     *     @type int|string $id
      *           ID of corresponding Expr node.
-     * @type int $value_index
+     *     @type int $value_index
      *           Index of the value in the values list.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\Explain::initOnce();
         parent::__construct($data);
     }

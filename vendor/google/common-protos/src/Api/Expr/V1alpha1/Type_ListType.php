@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Api\Expr\V1alpha1\Type\ListType instead.
      * @deprecated
      */
-    class Type_ListType
-    {
-    }
+    class Type_ListType {}
 }
 class_exists(Type\ListType::class);
 @trigger_error('Google\Api\Expr\V1alpha1\Type_ListType is deprecated and will be removed in the next major release. Use Google\Api\Expr\V1alpha1\Type\ListType instead', E_USER_DEPRECATED);

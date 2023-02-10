@@ -8,12 +8,11 @@ class ConfigChange
 {
     public static $is_initialized = false;
 
-    public static function initOnce()
-    {
+    public static function initOnce() {
         $pool = \Google\Protobuf\Internal\DescriptorPool::getGeneratedPool();
 
         if (static::$is_initialized == true) {
-            return;
+          return;
         }
         $pool->internalAddGeneratedFile(hex2bin(
             "0ab1030a1e676f6f676c652f6170692f636f6e6669675f6368616e67652e" .

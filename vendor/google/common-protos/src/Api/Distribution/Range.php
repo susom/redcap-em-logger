@@ -34,14 +34,13 @@ class Range extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type float $min
+     *     @type float $min
      *           The minimum of the population values.
-     * @type float $max
+     *     @type float $max
      *           The maximum of the population values.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Distribution::initOnce();
         parent::__construct($data);
     }

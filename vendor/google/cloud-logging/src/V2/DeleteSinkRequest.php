@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteSinkRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The full resource name of the sink to delete, including the
-     * parent resource and the sink identifier:
+     * Required. The full resource name of the sink to delete, including the parent
+     * resource and the sink identifier:
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
      *     "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     * Example: `"projects/my-project-id/sinks/my-sink-id"`.
+     * For example:
+     *   `"projects/my-project/sinks/my-sink"`
      *
-     * Generated from protobuf field <code>string sink_name = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string sink_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $sink_name = '';
 
@@ -35,33 +35,33 @@ class DeleteSinkRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $sink_name
-     *           Required. The full resource name of the sink to delete, including the
-     *           parent resource and the sink identifier:
+     *     @type string $sink_name
+     *           Required. The full resource name of the sink to delete, including the parent
+     *           resource and the sink identifier:
      *               "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *               "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
      *               "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
      *               "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *           Example: `"projects/my-project-id/sinks/my-sink-id"`.
+     *           For example:
+     *             `"projects/my-project/sinks/my-sink"`
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\LoggingConfig::initOnce();
         parent::__construct($data);
     }
 
     /**
-     * Required. The full resource name of the sink to delete, including the
-     * parent resource and the sink identifier:
+     * Required. The full resource name of the sink to delete, including the parent
+     * resource and the sink identifier:
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
      *     "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     * Example: `"projects/my-project-id/sinks/my-sink-id"`.
+     * For example:
+     *   `"projects/my-project/sinks/my-sink"`
      *
-     * Generated from protobuf field <code>string sink_name = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string sink_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSinkName()
@@ -70,16 +70,16 @@ class DeleteSinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The full resource name of the sink to delete, including the
-     * parent resource and the sink identifier:
+     * Required. The full resource name of the sink to delete, including the parent
+     * resource and the sink identifier:
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
      *     "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     * Example: `"projects/my-project-id/sinks/my-sink-id"`.
+     * For example:
+     *   `"projects/my-project/sinks/my-sink"`
      *
-     * Generated from protobuf field <code>string sink_name = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string sink_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Api\Expr\V1alpha1\Type\AbstractType instead.
      * @deprecated
      */
-    class Type_AbstractType
-    {
-    }
+    class Type_AbstractType {}
 }
 class_exists(Type\AbstractType::class);
 @trigger_error('Google\Api\Expr\V1alpha1\Type_AbstractType is deprecated and will be removed in the next major release. Use Google\Api\Expr\V1alpha1\Type\AbstractType instead', E_USER_DEPRECATED);

@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 namespace Google\Auth\Cache;
 
 use Psr\Cache\CacheItemInterface;
@@ -37,7 +36,9 @@ class SysVCacheItemPool implements CacheItemPoolInterface
 
     const DEFAULT_PERM = 0600;
 
-    /** @var int */
+    /**
+     * @var int
+     */
     private $sysvKey;
 
     /**
@@ -51,11 +52,11 @@ class SysVCacheItemPool implements CacheItemPoolInterface
     private $deferredItems;
 
     /**
-     * @var array
+     * @var array<mixed>
      */
     private $options;
 
-    /*
+    /**
      * @var bool
      */
     private $hasLoadedItems = false;
@@ -63,51 +64,57 @@ class SysVCacheItemPool implements CacheItemPoolInterface
     /**
      * Create a SystemV shared memory based CacheItemPool.
      *
-     * @param array $options [optional] Configuration options.
-     * @param int $options .variableKey The variable key for getting the data from
-     *        the shared memory. **Defaults to** 1.
-     * @param $options .proj string The project identifier for ftok. This needs to
-     *        be a one character string. **Defaults to** 'A'.
-     * @param $options .memsize int The memory size in bytes for shm_attach.
-     *        **Defaults to** 10000.
-     * @param $options .perm int The permission for shm_attach. **Defaults to**
-     *        0600.
+     * @param array<mixed> $options {
+     *     [optional] Configuration options.
+     *
+     *     @type int    $variableKey The variable key for getting the data from the shared memory. **Defaults to** 1.
+     *     @type string $proj        The project identifier for ftok. This needs to be a one character string.
+     *                               **Defaults to** 'A'.
+     *     @type int    $memsize     The memory size in bytes for shm_attach. **Defaults to** 10000.
+     *     @type int    $perm        The permission for shm_attach. **Defaults to** 0600.
+     * }
      */
     public function __construct($options = [])
     {
-        if (!extension_loaded('sysvshm')) {
+        if (! extension_loaded('sysvshm')) {
             throw new \RuntimeException(
                 'sysvshm extension is required to use this ItemPool'
             );
         }
         $this->options = $options + [
-                'variableKey' => self::VAR_KEY,
-                'proj' => self::DEFAULT_PROJ,
-                'memsize' => self::DEFAULT_MEMSIZE,
-                'perm' => self::DEFAULT_PERM
-            ];
+            'variableKey' => self::VAR_KEY,
+            'proj' => self::DEFAULT_PROJ,
+            'memsize' => self::DEFAULT_MEMSIZE,
+            'perm' => self::DEFAULT_PERM
+        ];
         $this->items = [];
         $this->deferredItems = [];
         $this->sysvKey = ftok(__FILE__, $this->options['proj']);
     }
 
-    public function getItem($key)
+    /**
+     * @param mixed $key
+     * @return CacheItemInterface
+     */
+    public function getItem($key): CacheItemInterface
     {
         $this->loadItems();
-        return current($this->getItems([$key]));
+        return current($this->getItems([$key])); // @phpstan-ignore-line
     }
 
     /**
-     * {@inheritdoc}
+     * @param array<mixed> $keys
+     * @return iterable<CacheItemInterface>
      */
-    public function getItems(array $keys = [])
+    public function getItems(array $keys = []): iterable
     {
         $this->loadItems();
         $items = [];
+        $itemClass = \PHP_VERSION_ID >= 80000 ? TypedItem::class : Item::class;
         foreach ($keys as $key) {
             $items[$key] = $this->hasItem($key) ?
                 clone $this->items[$key] :
-                new Item($key);
+                new $itemClass($key);
         }
         return $items;
     }
@@ -115,7 +122,7 @@ class SysVCacheItemPool implements CacheItemPoolInterface
     /**
      * {@inheritdoc}
      */
-    public function hasItem($key)
+    public function hasItem($key): bool
     {
         $this->loadItems();
         return isset($this->items[$key]) && $this->items[$key]->isHit();
@@ -124,7 +131,7 @@ class SysVCacheItemPool implements CacheItemPoolInterface
     /**
      * {@inheritdoc}
      */
-    public function clear()
+    public function clear(): bool
     {
         $this->items = [];
         $this->deferredItems = [];
@@ -134,7 +141,7 @@ class SysVCacheItemPool implements CacheItemPoolInterface
     /**
      * {@inheritdoc}
      */
-    public function deleteItem($key)
+    public function deleteItem($key): bool
     {
         return $this->deleteItems([$key]);
     }
@@ -142,7 +149,7 @@ class SysVCacheItemPool implements CacheItemPoolInterface
     /**
      * {@inheritdoc}
      */
-    public function deleteItems(array $keys)
+    public function deleteItems(array $keys): bool
     {
         if (!$this->hasLoadedItems) {
             $this->loadItems();
@@ -157,7 +164,7 @@ class SysVCacheItemPool implements CacheItemPoolInterface
     /**
      * {@inheritdoc}
      */
-    public function save(CacheItemInterface $item)
+    public function save(CacheItemInterface $item): bool
     {
         if (!$this->hasLoadedItems) {
             $this->loadItems();
@@ -170,7 +177,7 @@ class SysVCacheItemPool implements CacheItemPoolInterface
     /**
      * {@inheritdoc}
      */
-    public function saveDeferred(CacheItemInterface $item)
+    public function saveDeferred(CacheItemInterface $item): bool
     {
         $this->deferredItems[$item->getKey()] = $item;
         return true;
@@ -179,7 +186,7 @@ class SysVCacheItemPool implements CacheItemPoolInterface
     /**
      * {@inheritdoc}
      */
-    public function commit()
+    public function commit(): bool
     {
         foreach ($this->deferredItems as $item) {
             if ($this->save($item) === false) {

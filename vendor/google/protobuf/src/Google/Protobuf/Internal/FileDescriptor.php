@@ -66,7 +66,7 @@ class FileDescriptor
 
     public function addEnumType($desc)
     {
-        $this->enum_type[] = $desc;
+        $this->enum_type[]= $desc;
     }
 
     public static function buildFromProto($proto)

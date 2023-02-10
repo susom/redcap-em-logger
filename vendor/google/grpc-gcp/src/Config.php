@@ -16,7 +16,6 @@
  * limitations under the License.
  *
  */
-
 namespace Grpc\Gcp;
 
 use Psr\Cache\CacheItemPoolInterface;
@@ -32,8 +31,8 @@ class Config
     private $supported_sapis = ['fpm-fcgi', 'cli-server'];
 
     /**
-     * @param string $target The target API we want to manage the connection.
-     * @param \Grpc\Gcp\ApiConfig $conf
+     * @param string  $target The target API we want to manage the connection.
+     * @param \Grpc\Gcp\ApiConfig   $conf
      * @param CacheItemPoolInterface $cacheItemPool A pool for storing configuration and channels
      *                                            cross requests within a single worker process.
      * @throws \RuntimeException When a failure occurs while attempting to attach to shared memory.

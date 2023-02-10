@@ -30,24 +30,23 @@ class Literal extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int $null_value
+     *     @type int $null_value
      *           null value.
-     * @type bool $bool_value
+     *     @type bool $bool_value
      *           boolean value.
-     * @type int|string $int64_value
+     *     @type int|string $int64_value
      *           int64 value.
-     * @type int|string $uint64_value
+     *     @type int|string $uint64_value
      *           uint64 value.
-     * @type float $double_value
+     *     @type float $double_value
      *           double value.
-     * @type string $string_value
+     *     @type string $string_value
      *           string value.
-     * @type string $bytes_value
+     *     @type string $bytes_value
      *           bytes value.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Beta1\Expr::initOnce();
         parent::__construct($data);
     }

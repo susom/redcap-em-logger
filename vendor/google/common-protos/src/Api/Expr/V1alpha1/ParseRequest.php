@@ -46,18 +46,17 @@ class ParseRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $cel_source
+     *     @type string $cel_source
      *           Required. Source text in CEL syntax.
-     * @type string $syntax_version
+     *     @type string $syntax_version
      *           Tag for version of CEL syntax, for future use.
-     * @type string $source_location
+     *     @type string $source_location
      *           File or resource for source text, used in [SourceInfo][google.api.expr.v1alpha1.SourceInfo].
-     * @type bool $disable_macros
+     *     @type bool $disable_macros
      *           Prevent macro expansion.  See "Macros" in Language Defiinition.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\ConformanceService::initOnce();
         parent::__construct($data);
     }

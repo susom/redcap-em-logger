@@ -25,6 +25,7 @@ namespace Grpc;
  *
  * DO NOT USE in production.
  */
+
 class ServerContext
 {
     public function __construct($event)
@@ -36,17 +37,14 @@ class ServerContext
     {
         return $this->event->metadata;
     }
-
     public function deadline()
     {
         return $this->event->absolute_deadline;
     }
-
     public function host()
     {
         return $this->event->host;
     }
-
     public function method()
     {
         return $this->event->method;

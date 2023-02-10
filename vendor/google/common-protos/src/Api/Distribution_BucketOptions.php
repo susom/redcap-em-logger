@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Api\Distribution\BucketOptions instead.
      * @deprecated
      */
-    class Distribution_BucketOptions
-    {
-    }
+    class Distribution_BucketOptions {}
 }
 class_exists(Distribution\BucketOptions::class);
 @trigger_error('Google\Api\Distribution_BucketOptions is deprecated and will be removed in the next major release. Use Google\Api\Distribution\BucketOptions instead', E_USER_DEPRECATED);

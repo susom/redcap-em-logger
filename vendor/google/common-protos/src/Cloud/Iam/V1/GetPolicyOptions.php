@@ -33,7 +33,7 @@ class GetPolicyOptions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int $requested_policy_version
+     *     @type int $requested_policy_version
      *           Optional. The policy format version to be returned.
      *           Valid values are 0, 1, and 3. Requests specifying an invalid value will be
      *           rejected.
@@ -42,8 +42,7 @@ class GetPolicyOptions extends \Google\Protobuf\Internal\Message
      *           leave the field unset.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Iam\V1\Options::initOnce();
         parent::__construct($data);
     }

@@ -22,7 +22,7 @@ class ResourceInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_type = 1;</code>
      */
-    private $resource_type = '';
+    protected $resource_type = '';
     /**
      * The name of the resource being accessed.  For example, a shared calendar
      * name: "example.com_4fghdhgsrgh&#64;group.calendar.google.com", if the current
@@ -30,7 +30,7 @@ class ResourceInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_name = 2;</code>
      */
-    private $resource_name = '';
+    protected $resource_name = '';
     /**
      * The owner of the resource (optional).
      * For example, "user:<owner email>" or "project:<Google developer project
@@ -38,7 +38,7 @@ class ResourceInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string owner = 3;</code>
      */
-    private $owner = '';
+    protected $owner = '';
     /**
      * Describes what error is encountered when accessing this resource.
      * For example, updating a cloud project may require the `writer` permission
@@ -46,7 +46,7 @@ class ResourceInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 4;</code>
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * Constructor.
@@ -54,26 +54,25 @@ class ResourceInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $resource_type
+     *     @type string $resource_type
      *           A name for the type of resource being accessed, e.g. "sql table",
      *           "cloud storage bucket", "file", "Google calendar"; or the type URL
      *           of the resource: e.g. "type.googleapis.com/google.pubsub.v1.Topic".
-     * @type string $resource_name
+     *     @type string $resource_name
      *           The name of the resource being accessed.  For example, a shared calendar
      *           name: "example.com_4fghdhgsrgh&#64;group.calendar.google.com", if the current
      *           error is [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED].
-     * @type string $owner
+     *     @type string $owner
      *           The owner of the resource (optional).
      *           For example, "user:<owner email>" or "project:<Google developer project
      *           id>".
-     * @type string $description
+     *     @type string $description
      *           Describes what error is encountered when accessing this resource.
      *           For example, updating a cloud project may require the `writer` permission
      *           on the developer console project.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Rpc\ErrorDetails::initOnce();
         parent::__construct($data);
     }

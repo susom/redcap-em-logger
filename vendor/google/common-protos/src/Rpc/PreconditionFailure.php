@@ -31,12 +31,11 @@ class PreconditionFailure extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Rpc\PreconditionFailure\Violation[]|\Google\Protobuf\Internal\RepeatedField $violations
+     *     @type \Google\Rpc\PreconditionFailure\Violation[]|\Google\Protobuf\Internal\RepeatedField $violations
      *           Describes all precondition violations.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Rpc\ErrorDetails::initOnce();
         parent::__construct($data);
     }

@@ -49,7 +49,7 @@ class EachPromise implements PromisorInterface
      *   creating a capped pool of promises. There is no limit by default.
      *
      * @param mixed $iterable Promises or values to iterate.
-     * @param array $config Configuration options
+     * @param array $config   Configuration options
      */
     public function __construct($iterable, array $config = [])
     {
@@ -79,20 +79,10 @@ class EachPromise implements PromisorInterface
             $this->createPromise();
             /** @psalm-assert Promise $this->aggregate */
             $this->iterable->rewind();
-            if (!$this->checkIfFinished()) {
-                $this->refillPending();
-            }
+            $this->refillPending();
         } catch (\Throwable $e) {
-            /**
-             * @psalm-suppress NullReference
-             * @phpstan-ignore-next-line
-             */
             $this->aggregate->reject($e);
         } catch (\Exception $e) {
-            /**
-             * @psalm-suppress NullReference
-             * @phpstan-ignore-next-line
-             */
             $this->aggregate->reject($e);
         }
 
@@ -107,6 +97,9 @@ class EachPromise implements PromisorInterface
     {
         $this->mutex = false;
         $this->aggregate = new Promise(function () {
+            if ($this->checkIfFinished()) {
+                return;
+            }
             reset($this->pending);
             // Consume a potentially fluctuating list of promises while
             // ensuring that indexes are maintained (precluding array_shift).
@@ -133,7 +126,7 @@ class EachPromise implements PromisorInterface
     {
         if (!$this->concurrency) {
             // Add all pending promises.
-            while ($this->addPending() && $this->advanceIterator()) ;
+            while ($this->addPending() && $this->advanceIterator());
             return;
         }
 
@@ -154,7 +147,7 @@ class EachPromise implements PromisorInterface
         // next value to yield until promise callbacks are called.
         while (--$concurrency
             && $this->advanceIterator()
-            && $this->addPending()) ;
+            && $this->addPending());
     }
 
     private function addPending()

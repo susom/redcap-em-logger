@@ -2,12 +2,10 @@
   "name": "grpc/grpc",
   "type": "library",
   "description": "gRPC library for PHP",
-  "keywords": [
-    "rpc"
-  ],
+  "keywords": ["rpc"],
   "homepage": "https://grpc.io",
   "license": "Apache-2.0",
-  "version": "1.39.0",
+  "version": "1.42.0",
   "require": {
     "php": ">=7.0.0"
   },

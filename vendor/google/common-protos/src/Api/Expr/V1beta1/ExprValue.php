@@ -23,9 +23,9 @@ class ExprValue extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\Expr\V1beta1\Value $value
+     *     @type \Google\Api\Expr\V1beta1\Value $value
      *           A concrete value.
-     * @type \Google\Api\Expr\V1beta1\ErrorSet $error
+     *     @type \Google\Api\Expr\V1beta1\ErrorSet $error
      *           The set of errors in the critical path of evalution.
      *           Only errors in the critical path are included. For example,
      *           `(<error1> || true) && <error2>` will only result in `<error2>`,
@@ -39,7 +39,7 @@ class ExprValue extends \Google\Protobuf\Internal\Message
      *           `foo(<error1>, <error2>)` may result in `<error1>`, `<error2>` or both.
      *           The exact subset of errors included for this case is unspecified and
      *           depends on the implementation details of the evaluator.
-     * @type \Google\Api\Expr\V1beta1\UnknownSet $unknown
+     *     @type \Google\Api\Expr\V1beta1\UnknownSet $unknown
      *           The set of unknowns in the critical path of evaluation.
      *           Unknown behaves identically to Error with regards to propagation.
      *           Specifically, only unknowns in the critical path are included, unknowns
@@ -60,8 +60,7 @@ class ExprValue extends \Google\Protobuf\Internal\Message
      *               foo(<unknown>, <error>) -> <error>
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Beta1\PBEval::initOnce();
         parent::__construct($data);
     }

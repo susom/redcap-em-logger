@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Protobuf\Internal\FieldDescriptorProto\Label instead.
      * @deprecated
      */
-    class FieldDescriptorProto_Label
-    {
-    }
+    class FieldDescriptorProto_Label {}
 }
 class_exists(FieldDescriptorProto\Label::class);
 @trigger_error('Google\Protobuf\Internal\FieldDescriptorProto_Label is deprecated and will be removed in the next major release. Use Google\Protobuf\Internal\FieldDescriptorProto\Label instead', E_USER_DEPRECATED);

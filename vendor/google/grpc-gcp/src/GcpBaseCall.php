@@ -16,7 +16,6 @@
  * limitations under the License.
  *
  */
-
 namespace Grpc\Gcp;
 
 abstract class GcpBaseCall
@@ -52,12 +51,12 @@ abstract class GcpBaseCall
     /**
      * Create a new Call wrapper object.
      *
-     * @param Channel $channel The channel to communicate on
-     * @param string $method The method to call on the
+     * @param Channel  $channel     The channel to communicate on
+     * @param string   $method      The method to call on the
      *                              remote server
      * @param callback $deserialize A callback function to deserialize
      *                              the response
-     * @param array $options Call options (optional)
+     * @param array    $options     Call options (optional)
      */
     public function __construct($channel, $method, $deserialize, $options)
     {

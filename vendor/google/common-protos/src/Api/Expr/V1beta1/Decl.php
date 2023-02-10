@@ -41,20 +41,19 @@ class Decl extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int $id
+     *     @type int $id
      *           The id of the declaration.
-     * @type string $name
+     *     @type string $name
      *           The name of the declaration.
-     * @type string $doc
+     *     @type string $doc
      *           The documentation string for the declaration.
-     * @type \Google\Api\Expr\V1beta1\IdentDecl $ident
+     *     @type \Google\Api\Expr\V1beta1\IdentDecl $ident
      *           An identifier declaration.
-     * @type \Google\Api\Expr\V1beta1\FunctionDecl $function
+     *     @type \Google\Api\Expr\V1beta1\FunctionDecl $function
      *           A function declaration.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Beta1\Decl::initOnce();
         parent::__construct($data);
     }

@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Cloud\Iam\V1\BindingDelta\Action instead.
      * @deprecated
      */
-    class BindingDelta_Action
-    {
-    }
+    class BindingDelta_Action {}
 }
 class_exists(BindingDelta\Action::class);
 @trigger_error('Google\Cloud\Iam\V1\BindingDelta_Action is deprecated and will be removed in the next major release. Use Google\Cloud\Iam\V1\BindingDelta\Action instead', E_USER_DEPRECATED);

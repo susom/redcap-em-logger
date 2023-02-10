@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 namespace Google\Cloud\Core\Logger;
 
 use Exception;
@@ -38,9 +37,9 @@ class AppEngineFlexHandlerFactory
      *        any writes.
      * @param resource|string|null $stream [optional]
      *
-     * @return AppEngineFlexHandler|AppEngineFlexHandlerV2
      * @throws Exception
      *
+     * @return AppEngineFlexHandler|AppEngineFlexHandlerV2|AppEngineFlexHandlerV3
      */
     public static function build(
         $level = Logger::INFO,
@@ -48,8 +47,7 @@ class AppEngineFlexHandlerFactory
         $filePermission = 0640,
         $useLocking = false,
         $stream = null
-    )
-    {
+    ) {
         $version = defined('Monolog\Logger::API') ? Logger::API : 1;
 
         switch ($version) {
@@ -57,6 +55,8 @@ class AppEngineFlexHandlerFactory
                 return new AppEngineFlexHandler($level, $bubble, $filePermission, $useLocking, $stream);
             case 2:
                 return new AppEngineFlexHandlerV2($level, $bubble, $filePermission, $useLocking, $stream);
+            case 3:
+                return new AppEngineFlexHandlerV3($level, $bubble, $filePermission, $useLocking, $stream);
             default:
                 throw new Exception('Version not supported');
         }

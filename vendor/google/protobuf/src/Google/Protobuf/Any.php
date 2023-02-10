@@ -28,7 +28,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *     if (any.is(Foo.class)) {
  *       foo = any.unpack(Foo.class);
  *     }
- *  Example 3: Pack and unpack a message in Python.
+ * Example 3: Pack and unpack a message in Python.
  *     foo = Foo(...)
  *     any = Any()
  *     any.Pack(foo)
@@ -36,7 +36,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *     if any.Is(Foo.DESCRIPTOR):
  *       any.Unpack(foo)
  *       ...
- *  Example 4: Pack and unpack a message in Go
+ * Example 4: Pack and unpack a message in Go
  *      foo := &pb.Foo{...}
  *      any, err := anypb.New(foo)
  *      if err != nil {
@@ -53,7 +53,6 @@ use Google\Protobuf\Internal\GPBUtil;
  * in the type URL, for example "foo.bar.com/x/y.z" will yield type
  * name "y.z".
  * JSON
- * ====
  * The JSON representation of an `Any` value uses the regular
  * representation of the deserialized, embedded message, with an
  * additional field `&#64;type` which contains the type URL. Example:
@@ -121,7 +120,7 @@ class Any extends \Google\Protobuf\Internal\AnyBase
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $type_url
+     *     @type string $type_url
      *           A URL/resource name that uniquely identifies the type of the serialized
      *           protocol buffer message. This string must contain at least
      *           one "/" character. The last segment of the URL's path must represent
@@ -145,12 +144,11 @@ class Any extends \Google\Protobuf\Internal\AnyBase
      *           type.googleapis.com.
      *           Schemes other than `http`, `https` (or the empty scheme) might be
      *           used with implementation specific semantics.
-     * @type string $value
+     *     @type string $value
      *           Must be a valid serialized protocol buffer of the above specified type.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Protobuf\Any::initOnce();
         parent::__construct($data);
     }

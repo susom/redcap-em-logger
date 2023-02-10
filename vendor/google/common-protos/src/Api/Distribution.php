@@ -97,27 +97,27 @@ class Distribution extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int|string $count
+     *     @type int|string $count
      *           The number of values in the population. Must be non-negative. This value
      *           must equal the sum of the values in `bucket_counts` if a histogram is
      *           provided.
-     * @type float $mean
+     *     @type float $mean
      *           The arithmetic mean of the values in the population. If `count` is zero
      *           then this field must be zero.
-     * @type float $sum_of_squared_deviation
+     *     @type float $sum_of_squared_deviation
      *           The sum of squared deviations from the mean of the values in the
      *           population. For values x_i this is:
      *               Sum[i=1..n]((x_i - mean)^2)
      *           Knuth, "The Art of Computer Programming", Vol. 2, page 323, 3rd edition
      *           describes Welford's method for accumulating this sum in one pass.
      *           If `count` is zero then this field must be zero.
-     * @type \Google\Api\Distribution\Range $range
+     *     @type \Google\Api\Distribution\Range $range
      *           If specified, contains the range of the population values. The field
      *           must not be present if the `count` is zero.
-     * @type \Google\Api\Distribution\BucketOptions $bucket_options
+     *     @type \Google\Api\Distribution\BucketOptions $bucket_options
      *           Defines the histogram bucket boundaries. If the distribution does not
      *           contain a histogram, then omit this field.
-     * @type int[]|string[]|\Google\Protobuf\Internal\RepeatedField $bucket_counts
+     *     @type int[]|string[]|\Google\Protobuf\Internal\RepeatedField $bucket_counts
      *           The number of values in each bucket of the histogram, as described in
      *           `bucket_options`. If the distribution does not have a histogram, then omit
      *           this field. If there is a histogram, then the sum of the values in
@@ -131,12 +131,11 @@ class Distribution extends \Google\Protobuf\Internal\Message
      *           count for the underflow bucket (number 0). The next N-2 values are the
      *           counts for the finite buckets (number 1 through N-2). The N'th value in
      *           `bucket_counts` is the count for the overflow bucket (number N-1).
-     * @type \Google\Api\Distribution\Exemplar[]|\Google\Protobuf\Internal\RepeatedField $exemplars
+     *     @type \Google\Api\Distribution\Exemplar[]|\Google\Protobuf\Internal\RepeatedField $exemplars
      *           Must be in increasing order of `value` field.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Distribution::initOnce();
         parent::__construct($data);
     }

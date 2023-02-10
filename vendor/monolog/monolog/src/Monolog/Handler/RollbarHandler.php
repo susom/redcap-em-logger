@@ -40,13 +40,13 @@ class RollbarHandler extends AbstractProcessingHandler
 
     /** @var string[] */
     protected $levelMap = [
-        Logger::DEBUG => 'debug',
-        Logger::INFO => 'info',
-        Logger::NOTICE => 'info',
-        Logger::WARNING => 'warning',
-        Logger::ERROR => 'error',
-        Logger::CRITICAL => 'critical',
-        Logger::ALERT => 'critical',
+        Logger::DEBUG     => 'debug',
+        Logger::INFO      => 'info',
+        Logger::NOTICE    => 'info',
+        Logger::WARNING   => 'warning',
+        Logger::ERROR     => 'error',
+        Logger::CRITICAL  => 'critical',
+        Logger::ALERT     => 'critical',
         Logger::EMERGENCY => 'critical',
     ];
 

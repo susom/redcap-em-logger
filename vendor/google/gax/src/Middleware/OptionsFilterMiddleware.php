@@ -29,15 +29,14 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 namespace Google\ApiCore\Middleware;
 
 use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\Call;
 
 /**
- * Middleware which filters the $options array.
- */
+* Middleware which filters the $options array.
+*/
 class OptionsFilterMiddleware
 {
     use ArrayTrait;
@@ -50,9 +49,8 @@ class OptionsFilterMiddleware
 
     public function __construct(
         callable $nextHandler,
-        array    $permittedOptions
-    )
-    {
+        array $permittedOptions
+    ) {
         $this->nextHandler = $nextHandler;
         $this->permittedOptions = $permittedOptions;
     }

@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Api\ResourceDescriptor\History instead.
      * @deprecated
      */
-    class ResourceDescriptor_History
-    {
-    }
+    class ResourceDescriptor_History {}
 }
 class_exists(ResourceDescriptor\History::class);
 @trigger_error('Google\Api\ResourceDescriptor_History is deprecated and will be removed in the next major release. Use Google\Api\ResourceDescriptor\History instead', E_USER_DEPRECATED);

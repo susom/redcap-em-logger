@@ -28,8 +28,7 @@ class CreateStruct extends \Google\Protobuf\Internal\Message
     /**
      * The entries in the creation expression.
      *
-     * Generated from protobuf field <code>repeated .google.api.expr.v1alpha1.Expr.CreateStruct.Entry entries =
-     * 2;</code>
+     * Generated from protobuf field <code>repeated .google.api.expr.v1alpha1.Expr.CreateStruct.Entry entries = 2;</code>
      */
     private $entries;
 
@@ -39,15 +38,14 @@ class CreateStruct extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $message_name
+     *     @type string $message_name
      *           The type name of the message to be created, empty when creating map
      *           literals.
-     * @type \Google\Api\Expr\V1alpha1\Expr\CreateStruct\Entry[]|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type \Google\Api\Expr\V1alpha1\Expr\CreateStruct\Entry[]|\Google\Protobuf\Internal\RepeatedField $entries
      *           The entries in the creation expression.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\Syntax::initOnce();
         parent::__construct($data);
     }
@@ -83,8 +81,7 @@ class CreateStruct extends \Google\Protobuf\Internal\Message
     /**
      * The entries in the creation expression.
      *
-     * Generated from protobuf field <code>repeated .google.api.expr.v1alpha1.Expr.CreateStruct.Entry entries =
-     * 2;</code>
+     * Generated from protobuf field <code>repeated .google.api.expr.v1alpha1.Expr.CreateStruct.Entry entries = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getEntries()
@@ -95,8 +92,7 @@ class CreateStruct extends \Google\Protobuf\Internal\Message
     /**
      * The entries in the creation expression.
      *
-     * Generated from protobuf field <code>repeated .google.api.expr.v1alpha1.Expr.CreateStruct.Entry entries =
-     * 2;</code>
+     * Generated from protobuf field <code>repeated .google.api.expr.v1alpha1.Expr.CreateStruct.Entry entries = 2;</code>
      * @param \Google\Api\Expr\V1alpha1\Expr\CreateStruct\Entry[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

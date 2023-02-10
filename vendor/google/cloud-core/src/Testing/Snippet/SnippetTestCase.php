@@ -20,7 +20,7 @@ namespace Google\Cloud\Core\Testing\Snippet;
 use Google\Cloud\Core\Testing\CheckForClassTrait;
 use Google\Cloud\Core\Testing\Snippet\Container;
 use Google\Cloud\Core\Testing\Snippet\Parser\Snippet;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * Provide helpers for Snippet tests.
@@ -43,7 +43,7 @@ class SnippetTestCase extends TestCase
      * @experimental
      * @internal
      */
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         self::$coverage = Container::$coverage;
         self::$parser = Container::$parser;
@@ -87,12 +87,12 @@ class SnippetTestCase extends TestCase
      */
     public static function snippetFromMagicMethod($class, $method, $indexOrName = 0)
     {
-        $name = $class . '::' . $method;
+        $name = $class .'::'. $method;
         $identifier = self::$parser->createIdentifier($name, $indexOrName);
 
         $snippet = self::$coverage->cache($identifier);
         if (!$snippet) {
-            throw new \Exception('Magic Method ' . $name . ' was not found');
+            throw new \Exception('Magic Method '. $name .' was not found');
         }
 
         self::$coverage->cover($identifier);
@@ -113,7 +113,7 @@ class SnippetTestCase extends TestCase
      */
     public static function snippetFromMethod($class, $method, $indexOrName = 0)
     {
-        $name = $class . '::' . $method;
+        $name = $class .'::'. $method;
         $identifier = self::$parser->createIdentifier($name, $indexOrName);
 
         $snippet = self::$coverage->cache($identifier);

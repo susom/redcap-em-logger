@@ -15,7 +15,7 @@ use Psr\Http\Message\ResponseInterface;
 class HandlerStack
 {
     /**
-     * @var null|callable(RequestInterface, array): PromiseInterface
+     * @var (callable(RequestInterface, array): PromiseInterface)|null
      */
     private $handler;
 
@@ -25,7 +25,7 @@ class HandlerStack
     private $stack = [];
 
     /**
-     * @var null|callable(RequestInterface, array): PromiseInterface
+     * @var (callable(RequestInterface, array): PromiseInterface)|null
      */
     private $cached;
 
@@ -40,8 +40,9 @@ class HandlerStack
      * The returned handler stack can be passed to a client in the "handler"
      * option.
      *
-     * @param null|callable(RequestInterface, array): PromiseInterface $handler HTTP handler function to use with the
-     *     stack. If no handler is provided, the best handler for your system will be utilized.
+     * @param (callable(RequestInterface, array): PromiseInterface)|null $handler HTTP handler function to use with the stack. If no
+     *                                                                            handler is provided, the best handler for your
+     *                                                                            system will be utilized.
      */
     public static function create(?callable $handler = null): self
     {
@@ -55,7 +56,7 @@ class HandlerStack
     }
 
     /**
-     * @param null|callable(RequestInterface, array): PromiseInterface $handler Underlying HTTP handler.
+     * @param (callable(RequestInterface, array): PromiseInterface)|null $handler Underlying HTTP handler.
      */
     public function __construct(callable $handler = null)
     {
@@ -121,14 +122,14 @@ class HandlerStack
      */
     public function hasHandler(): bool
     {
-        return $this->handler !== null;
+        return $this->handler !== null ;
     }
 
     /**
      * Unshift a middleware to the bottom of the stack.
      *
      * @param callable(callable): callable $middleware Middleware function
-     * @param string $name Name to register for this middleware.
+     * @param string                       $name       Name to register for this middleware.
      */
     public function unshift(callable $middleware, ?string $name = null): void
     {
@@ -140,7 +141,7 @@ class HandlerStack
      * Push a middleware to the top of the stack.
      *
      * @param callable(callable): callable $middleware Middleware function
-     * @param string $name Name to register for this middleware.
+     * @param string                       $name       Name to register for this middleware.
      */
     public function push(callable $middleware, string $name = ''): void
     {
@@ -151,9 +152,9 @@ class HandlerStack
     /**
      * Add a middleware before another middleware by name.
      *
-     * @param string $findName Middleware to find
+     * @param string                       $findName   Middleware to find
      * @param callable(callable): callable $middleware Middleware function
-     * @param string $withName Name to register for this middleware.
+     * @param string                       $withName   Name to register for this middleware.
      */
     public function before(string $findName, callable $middleware, string $withName = ''): void
     {
@@ -163,9 +164,9 @@ class HandlerStack
     /**
      * Add a middleware after another middleware by name.
      *
-     * @param string $findName Middleware to find
+     * @param string                       $findName   Middleware to find
      * @param callable(callable): callable $middleware Middleware function
-     * @param string $withName Name to register for this middleware.
+     * @param string                       $withName   Name to register for this middleware.
      */
     public function after(string $findName, callable $middleware, string $withName = ''): void
     {
@@ -179,6 +180,10 @@ class HandlerStack
      */
     public function remove($remove): void
     {
+        if (!is_string($remove) && !is_callable($remove)) {
+            trigger_deprecation('guzzlehttp/guzzle', '7.4', 'Not passing a callable or string to %s::%s() is deprecated and will cause an error in 8.0.', __CLASS__, __FUNCTION__);
+        }
+
         $this->cached = null;
         $idx = \is_callable($remove) ? 0 : 1;
         $this->stack = \array_values(\array_filter(
@@ -250,7 +255,7 @@ class HandlerStack
     /**
      * Provides a debug string for a given callable.
      *
-     * @param callable $fn Function to write as a string.
+     * @param callable|string $fn Function to write as a string.
      */
     private function debugCallable($fn): string
     {

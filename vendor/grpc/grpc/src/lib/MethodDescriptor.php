@@ -25,15 +25,15 @@ namespace Grpc;
  *
  * DO NOT USE in production.
  */
+
 class MethodDescriptor
 {
     public function __construct(
         object $service,
         string $method_name,
         string $request_type,
-        int    $call_type
-    )
-    {
+        int $call_type
+    ) {
         $this->service = $service;
         $this->method_name = $method_name;
         $this->request_type = $request_type;

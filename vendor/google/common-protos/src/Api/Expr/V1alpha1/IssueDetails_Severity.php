@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Api\Expr\V1alpha1\IssueDetails\Severity instead.
      * @deprecated
      */
-    class IssueDetails_Severity
-    {
-    }
+    class IssueDetails_Severity {}
 }
 class_exists(IssueDetails\Severity::class);
 @trigger_error('Google\Api\Expr\V1alpha1\IssueDetails_Severity is deprecated and will be removed in the next major release. Use Google\Api\Expr\V1alpha1\IssueDetails\Severity instead', E_USER_DEPRECATED);

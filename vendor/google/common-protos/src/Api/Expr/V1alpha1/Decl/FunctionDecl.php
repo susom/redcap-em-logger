@@ -22,8 +22,7 @@ class FunctionDecl extends \Google\Protobuf\Internal\Message
     /**
      * Required. List of function overloads, must contain at least one overload.
      *
-     * Generated from protobuf field <code>repeated .google.api.expr.v1alpha1.Decl.FunctionDecl.Overload overloads =
-     * 1;</code>
+     * Generated from protobuf field <code>repeated .google.api.expr.v1alpha1.Decl.FunctionDecl.Overload overloads = 1;</code>
      */
     private $overloads;
 
@@ -33,12 +32,11 @@ class FunctionDecl extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\Expr\V1alpha1\Decl\FunctionDecl\Overload[]|\Google\Protobuf\Internal\RepeatedField $overloads
+     *     @type \Google\Api\Expr\V1alpha1\Decl\FunctionDecl\Overload[]|\Google\Protobuf\Internal\RepeatedField $overloads
      *           Required. List of function overloads, must contain at least one overload.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\Checked::initOnce();
         parent::__construct($data);
     }
@@ -46,8 +44,7 @@ class FunctionDecl extends \Google\Protobuf\Internal\Message
     /**
      * Required. List of function overloads, must contain at least one overload.
      *
-     * Generated from protobuf field <code>repeated .google.api.expr.v1alpha1.Decl.FunctionDecl.Overload overloads =
-     * 1;</code>
+     * Generated from protobuf field <code>repeated .google.api.expr.v1alpha1.Decl.FunctionDecl.Overload overloads = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getOverloads()
@@ -58,8 +55,7 @@ class FunctionDecl extends \Google\Protobuf\Internal\Message
     /**
      * Required. List of function overloads, must contain at least one overload.
      *
-     * Generated from protobuf field <code>repeated .google.api.expr.v1alpha1.Decl.FunctionDecl.Overload overloads =
-     * 1;</code>
+     * Generated from protobuf field <code>repeated .google.api.expr.v1alpha1.Decl.FunctionDecl.Overload overloads = 1;</code>
      * @param \Google\Api\Expr\V1alpha1\Decl\FunctionDecl\Overload[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

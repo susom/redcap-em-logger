@@ -8,12 +8,11 @@ class Distribution
 {
     public static $is_initialized = false;
 
-    public static function initOnce()
-    {
+    public static function initOnce() {
         $pool = \Google\Protobuf\Internal\DescriptorPool::getGeneratedPool();
 
         if (static::$is_initialized == true) {
-            return;
+          return;
         }
         \GPBMetadata\Google\Protobuf\Any::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();

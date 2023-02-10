@@ -40,16 +40,15 @@ class ParsedExpr extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\Expr\V1beta1\Expr $expr
+     *     @type \Google\Api\Expr\V1beta1\Expr $expr
      *           The parsed expression.
-     * @type \Google\Api\Expr\V1beta1\SourceInfo $source_info
+     *     @type \Google\Api\Expr\V1beta1\SourceInfo $source_info
      *           The source info derived from input that generated the parsed `expr`.
-     * @type string $syntax_version
+     *     @type string $syntax_version
      *           The syntax version of the source, e.g. `cel1`.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Beta1\Expr::initOnce();
         parent::__construct($data);
     }

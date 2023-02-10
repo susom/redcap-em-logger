@@ -34,14 +34,13 @@ class Result extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\Expr\V1beta1\IdRef $expr
+     *     @type \Google\Api\Expr\V1beta1\IdRef $expr
      *           The expression this result is for.
-     * @type int $value
+     *     @type int $value
      *           The index in `values` of the resulting value.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Beta1\PBEval::initOnce();
         parent::__construct($data);
     }

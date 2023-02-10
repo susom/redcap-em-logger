@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Protobuf\Internal\FieldDescriptorProto\Type instead.
      * @deprecated
      */
-    class FieldDescriptorProto_Type
-    {
-    }
+    class FieldDescriptorProto_Type {}
 }
 class_exists(FieldDescriptorProto\Type::class);
 @trigger_error('Google\Protobuf\Internal\FieldDescriptorProto_Type is deprecated and will be removed in the next major release. Use Google\Protobuf\Internal\FieldDescriptorProto\Type instead', E_USER_DEPRECATED);

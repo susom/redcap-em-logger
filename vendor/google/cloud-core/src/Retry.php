@@ -53,9 +53,8 @@ class Retry
         $retries,
         callable $delayFunction,
         callable $retryFunction = null
-    )
-    {
-        $this->retries = $retries !== null ? (int)$retries : 3;
+    ) {
+        $this->retries = $retries !== null ? (int) $retries : 3;
         $this->delayFunction = $delayFunction;
         $this->retryFunction = $retryFunction;
     }

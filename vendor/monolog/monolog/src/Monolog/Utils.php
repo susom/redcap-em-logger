@@ -59,24 +59,22 @@ final class Utils
 
         // already absolute
         if (substr($streamUrl, 0, 1) === '/' || substr($streamUrl, 1, 1) === ':' || substr($streamUrl, 0, 2) === '\\\\') {
-            return $prefix . $streamUrl;
+            return $prefix.$streamUrl;
         }
 
         $streamUrl = getcwd() . '/' . $streamUrl;
 
-        return $prefix . $streamUrl;
+        return $prefix.$streamUrl;
     }
 
     /**
      * Return the JSON representation of a value
      *
-     * @param mixed $data
-     * @param int $encodeFlags flags to pass to json encode, defaults to DEFAULT_JSON_FLAGS
-     * @param bool $ignoreErrors whether to ignore encoding errors or to throw on error, when ignored and the encoding
-     *     fails, "null" is returned which is valid json for null
-     * @return string            when errors are ignored and the encoding fails, "null" is returned which is valid json
-     *     for null
+     * @param  mixed             $data
+     * @param  int               $encodeFlags  flags to pass to json encode, defaults to DEFAULT_JSON_FLAGS
+     * @param  bool              $ignoreErrors whether to ignore encoding errors or to throw on error, when ignored and the encoding fails, "null" is returned which is valid json for null
      * @throws \RuntimeException if encoding fails and errors are not ignored
+     * @return string            when errors are ignored and the encoding fails, "null" is returned which is valid json for null
      */
     public static function jsonEncode($data, ?int $encodeFlags = null, bool $ignoreErrors = false): string
     {
@@ -109,12 +107,11 @@ final class Utils
      * initial error is not encoding related or the input can't be cleaned then
      * raise a descriptive exception.
      *
-     * @param int $code return code of json_last_error function
-     * @param mixed $data data that was meant to be encoded
-     * @param int $encodeFlags flags to pass to json encode, defaults to JSON_UNESCAPED_SLASHES |
-     *     JSON_UNESCAPED_UNICODE | JSON_PRESERVE_ZERO_FRACTION
-     * @return string            JSON encoded data after error correction
+     * @param  int               $code        return code of json_last_error function
+     * @param  mixed             $data        data that was meant to be encoded
+     * @param  int               $encodeFlags flags to pass to json encode, defaults to JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRESERVE_ZERO_FRACTION
      * @throws \RuntimeException if failure can't be corrected
+     * @return string            JSON encoded data after error correction
      */
     public static function handleJsonError(int $code, $data, ?int $encodeFlags = null): string
     {
@@ -165,11 +162,11 @@ final class Utils
     /**
      * Throws an exception according to a given code with a customized message
      *
-     * @param int $code return code of json_last_error function
-     * @param mixed $data data that was meant to be encoded
-     * @return never
+     * @param  int               $code return code of json_last_error function
+     * @param  mixed             $data data that was meant to be encoded
      * @throws \RuntimeException
      *
+     * @return never
      */
     private static function throwEncodeError(int $code, $data): void
     {
@@ -190,7 +187,7 @@ final class Utils
                 $msg = 'Unknown error';
         }
 
-        throw new \RuntimeException('JSON encoding failed: ' . $msg . '. Encoding: ' . var_export($data, true));
+        throw new \RuntimeException('JSON encoding failed: '.$msg.'. Encoding: '.var_export($data, true));
     }
 
     /**
@@ -214,7 +211,7 @@ final class Utils
             $data = preg_replace_callback(
                 '/[\x80-\xFF]+/',
                 function ($m) {
-                    return utf8_encode($m[0]);
+                    return function_exists('mb_convert_encoding') ? mb_convert_encoding($m[0], 'UTF-8', 'ISO-8859-1') : utf8_encode($m[0]);
                 },
                 $data
             );
@@ -243,15 +240,15 @@ final class Utils
         }
 
         // support -1
-        if ((int)$val < 0) {
-            return (int)$val;
+        if ((int) $val < 0) {
+            return (int) $val;
         }
 
         if (!preg_match('/^\s*(?<val>\d+)(?:\.\d+)?\s*(?<unit>[gmk]?)\s*$/i', $val, $match)) {
             return false;
         }
 
-        $val = (int)$match['val'];
+        $val = (int) $match['val'];
         switch (strtolower($match['unit'] ?? '')) {
             case 'g':
                 $val *= 1024;
@@ -262,5 +259,26 @@ final class Utils
         }
 
         return $val;
+    }
+
+    /**
+     * @param array<mixed> $record
+     */
+    public static function getRecordMessageForException(array $record): string
+    {
+        $context = '';
+        $extra = '';
+        try {
+            if ($record['context']) {
+                $context = "\nContext: " . json_encode($record['context']);
+            }
+            if ($record['extra']) {
+                $extra = "\nExtra: " . json_encode($record['extra']);
+            }
+        } catch (\Throwable $e) {
+            // noop
+        }
+
+        return "\nThe exception occurred while attempting to log: " . $record['message'] . $context . $extra;
     }
 }

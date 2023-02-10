@@ -28,6 +28,7 @@ use google\protobuf\Struct;
  * used for REST.
  * @deprecated
  * @codeCoverageIgnore
+ * @internal
  */
 class PhpArray extends Protobuf\Codec\PhpArray
 {
@@ -132,8 +133,8 @@ class PhpArray extends Protobuf\Codec\PhpArray
         foreach ($data as $key => $v) {
             // Get the field by tag number or name
             $field = $this->useTagNumber
-                ? $descriptor->getField($key)
-                : $descriptor->getFieldByName($this->toSnakeCase($key));
+                   ? $descriptor->getField($key)
+                   : $descriptor->getFieldByName($this->toSnakeCase($key));
 
             // Unknown field found
             if (!$field) {

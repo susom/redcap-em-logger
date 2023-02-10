@@ -34,14 +34,13 @@ class PolicyDelta extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Cloud\Iam\V1\BindingDelta[]|\Google\Protobuf\Internal\RepeatedField $binding_deltas
+     *     @type \Google\Cloud\Iam\V1\BindingDelta[]|\Google\Protobuf\Internal\RepeatedField $binding_deltas
      *           The delta for Bindings between two policies.
-     * @type \Google\Cloud\Iam\V1\AuditConfigDelta[]|\Google\Protobuf\Internal\RepeatedField $audit_config_deltas
+     *     @type \Google\Cloud\Iam\V1\AuditConfigDelta[]|\Google\Protobuf\Internal\RepeatedField $audit_config_deltas
      *           The delta for AuditConfigs between two policies.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Iam\V1\Policy::initOnce();
         parent::__construct($data);
     }

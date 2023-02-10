@@ -102,8 +102,7 @@ class Sink
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks/delete projects.sinks delete API
-     *     documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks/delete projects.sinks delete API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.
@@ -111,8 +110,8 @@ class Sink
     public function delete(array $options = [])
     {
         $this->connection->deleteSink($options + [
-                'sinkName' => $this->formattedName
-            ]);
+            'sinkName' => $this->formattedName
+        ]);
     }
 
     /**
@@ -127,19 +126,17 @@ class Sink
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks/update projects.sinks update API
-     *     documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks/update projects.sinks update API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $metadata {
      *     The data to update.
      *
-     * @type string $destination The export destination. Please see
-     *           [Exporting Logs With
-     *     Sinks](https://cloud.google.com/logging/docs/api/tasks/exporting-logs#about_sinks)
+     *     @type string $destination The export destination. Please see
+     *           [Exporting Logs With Sinks](https://cloud.google.com/logging/docs/api/tasks/exporting-logs#about_sinks)
      *           for more information and examples.
-     * @type string $filter An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters).
-     * @type string $outputVersionFormat The log entry version to use for
+     *     @type string $filter An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters).
+     *     @type string $outputVersionFormat The log entry version to use for
      *           this sink's exported log entries. This version does not have
      *           to correspond to the version of the log entry when it was
      *           written to Stackdriver Logging. May be either `V1` or `V2`.
@@ -153,8 +150,8 @@ class Sink
         $options += $this->info($options);
 
         return $this->info = $this->connection->updateSink($options + [
-                'sinkName' => $this->formattedName
-            ]);
+            'sinkName' => $this->formattedName
+        ]);
     }
 
     /**
@@ -168,8 +165,7 @@ class Sink
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks#resource-logsink LogSink
-     *     resource API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks#resource-logsink LogSink resource API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.
@@ -195,8 +191,7 @@ class Sink
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks/get projects.sinks get API
-     *     documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks/get projects.sinks get API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.
@@ -205,8 +200,8 @@ class Sink
     public function reload(array $options = [])
     {
         return $this->info = $this->connection->getSink($options + [
-                'sinkName' => $this->formattedName
-            ]);
+            'sinkName' => $this->formattedName
+        ]);
     }
 
     /**

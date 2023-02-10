@@ -43,9 +43,9 @@ class MongoDBHandler extends AbstractProcessingHandler
     /**
      * Constructor.
      *
-     * @param Client|Manager $mongodb MongoDB library or driver client
-     * @param string $database Database name
-     * @param string $collection Collection name
+     * @param Client|Manager $mongodb    MongoDB library or driver client
+     * @param string         $database   Database name
+     * @param string         $collection Collection name
      */
     public function __construct($mongodb, string $database, string $collection, $level = Logger::DEBUG, bool $bubble = true)
     {

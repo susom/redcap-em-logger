@@ -48,20 +48,19 @@ class SourcePosition extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $location
+     *     @type string $location
      *           The soucre location name (e.g. file name).
-     * @type int $offset
+     *     @type int $offset
      *           The character offset.
-     * @type int $line
+     *     @type int $line
      *           The 1-based index of the starting line in the source text
      *           where the issue occurs, or 0 if unknown.
-     * @type int $column
+     *     @type int $column
      *           The 0-based index of the starting position within the line of source text
      *           where the issue occurs.  Only meaningful if line is nonzer..
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Beta1\Source::initOnce();
         parent::__construct($data);
     }

@@ -33,12 +33,11 @@ final class HttpFactory implements
 {
     public function createUploadedFile(
         StreamInterface $stream,
-        int             $size = null,
-        int             $error = \UPLOAD_ERR_OK,
-        string          $clientFilename = null,
-        string          $clientMediaType = null
-    ): UploadedFileInterface
-    {
+        int $size = null,
+        int $error = \UPLOAD_ERR_OK,
+        string $clientFilename = null,
+        string $clientMediaType = null
+    ): UploadedFileInterface {
         if ($size === null) {
             $size = $stream->getSize();
         }

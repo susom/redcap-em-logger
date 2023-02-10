@@ -51,12 +51,12 @@ class Exemplar extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type float $value
+     *     @type float $value
      *           Value of the exemplar point. This value determines to which bucket the
      *           exemplar belongs.
-     * @type \Google\Protobuf\Timestamp $timestamp
+     *     @type \Google\Protobuf\Timestamp $timestamp
      *           The observation (sampling) time of the above value.
-     * @type \Google\Protobuf\Any[]|\Google\Protobuf\Internal\RepeatedField $attachments
+     *     @type \Google\Protobuf\Any[]|\Google\Protobuf\Internal\RepeatedField $attachments
      *           Contextual information about the example value. Examples are:
      *             Trace ID: type.googleapis.com/google.devtools.cloudtrace.v1.Trace
      *             Literal string: type.googleapis.com/google.protobuf.StringValue
@@ -66,8 +66,7 @@ class Exemplar extends \Google\Protobuf\Internal\Message
      *           single exemplar, and this is enforced by the system.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Distribution::initOnce();
         parent::__construct($data);
     }

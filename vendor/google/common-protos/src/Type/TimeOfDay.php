@@ -50,20 +50,19 @@ class TimeOfDay extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int $hours
+     *     @type int $hours
      *           Hours of day in 24 hour format. Should be from 0 to 23. An API may choose
      *           to allow the value "24:00:00" for scenarios like business closing time.
-     * @type int $minutes
+     *     @type int $minutes
      *           Minutes of hour of day. Must be from 0 to 59.
-     * @type int $seconds
+     *     @type int $seconds
      *           Seconds of minutes of the time. Must normally be from 0 to 59. An API may
      *           allow the value 60 if it allows leap-seconds.
-     * @type int $nanos
+     *     @type int $nanos
      *           Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Type\Timeofday::initOnce();
         parent::__construct($data);
     }

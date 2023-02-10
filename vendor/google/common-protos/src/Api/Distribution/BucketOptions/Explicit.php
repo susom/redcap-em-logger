@@ -35,12 +35,11 @@ class Explicit extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type float[]|\Google\Protobuf\Internal\RepeatedField $bounds
+     *     @type float[]|\Google\Protobuf\Internal\RepeatedField $bounds
      *           The values must be monotonically increasing.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Distribution::initOnce();
         parent::__construct($data);
     }

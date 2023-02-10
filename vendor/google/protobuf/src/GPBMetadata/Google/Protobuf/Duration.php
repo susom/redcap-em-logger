@@ -8,23 +8,21 @@ class Duration
 {
     public static $is_initialized = false;
 
-    public static function initOnce()
-    {
+    public static function initOnce() {
         $pool = \Google\Protobuf\Internal\DescriptorPool::getGeneratedPool();
 
         if (static::$is_initialized == true) {
-            return;
+          return;
         }
         $pool->internalAddGeneratedFile(
             '
-ï¿½
+ë
 google/protobuf/duration.protogoogle.protobuf"*
 Duration
 seconds (
-nanos (Bï¿½
-com.google.protobufB
-DurationProtoPZ1google.golang.org/protobuf/types/known/durationpbï¿½ï¿½GPBï¿½Google.Protobuf.WellKnownTypesbproto3'
-            , true);
+nanos (Bƒ
+com.google.protobufBDurationProtoPZ1google.golang.org/protobuf/types/known/durationpbø¢GPBªGoogle.Protobuf.WellKnownTypesbproto3'
+        , true);
 
         static::$is_initialized = true;
     }

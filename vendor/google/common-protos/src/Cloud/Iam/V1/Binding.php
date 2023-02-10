@@ -57,10 +57,10 @@ class Binding extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $role
+     *     @type string $role
      *           Role that is assigned to `members`.
      *           For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
-     * @type string[]|\Google\Protobuf\Internal\RepeatedField $members
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $members
      *           Specifies the identities requesting access for a Cloud Platform resource.
      *           `members` can have the following values:
      *           * `allUsers`: A special identifier that represents anyone who is
@@ -75,15 +75,14 @@ class Binding extends \Google\Protobuf\Internal\Message
      *              For example, `admins&#64;example.com`.
      *           * `domain:{domain}`: The G Suite domain (primary) that represents all the
      *              users of that domain. For example, `google.com` or `example.com`.
-     * @type \Google\Type\Expr $condition
+     *     @type \Google\Type\Expr $condition
      *           The condition that is associated with this binding.
      *           NOTE: An unsatisfied condition will not allow user access via current
      *           binding. Different bindings, including their conditions, are examined
      *           independently.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Iam\V1\Policy::initOnce();
         parent::__construct($data);
     }

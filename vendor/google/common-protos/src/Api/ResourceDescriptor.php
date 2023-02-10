@@ -188,7 +188,7 @@ class ResourceDescriptor extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $type
+     *     @type string $type
      *           The resource type. It must be in the format of
      *           {service_name}/{resource_type_kind}. The `resource_type_kind` must be
      *           singular and must not include version numbers.
@@ -197,7 +197,7 @@ class ResourceDescriptor extends \Google\Protobuf\Internal\Message
      *           /[A-Za-z][a-zA-Z0-9]+/. It should start with an upper case character and
      *           should use PascalCase (UpperCamelCase). The maximum number of
      *           characters allowed for the `resource_type_kind` is 100.
-     * @type string[]|\Google\Protobuf\Internal\RepeatedField $pattern
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $pattern
      *           Optional. The relative resource name pattern associated with this resource
      *           type. The DNS prefix of the full resource name shouldn't be specified here.
      *           The path pattern must follow the syntax, which aligns with HTTP binding
@@ -212,10 +212,10 @@ class ResourceDescriptor extends \Google\Protobuf\Internal\Message
      *           hierarchy. It is expected that, if multiple patterns are provided,
      *           the same component name (e.g. "project") refers to IDs of the same
      *           type of resource.
-     * @type string $name_field
+     *     @type string $name_field
      *           Optional. The field on the resource that designates the resource name
      *           field. If omitted, this is assumed to be "name".
-     * @type int $history
+     *     @type int $history
      *           Optional. The historical or future-looking state of the resource pattern.
      *           Example:
      *               // The InspectTemplate message originally only supported resource
@@ -229,19 +229,18 @@ class ResourceDescriptor extends \Google\Protobuf\Internal\Message
      *                   history: ORIGINALLY_SINGLE_PATTERN
      *                 };
      *               }
-     * @type string $plural
+     *     @type string $plural
      *           The plural name used in the resource name, such as 'projects' for
      *           the name of 'projects/{project}'. It is the same concept of the `plural`
      *           field in k8s CRD spec
      *           https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/
-     * @type string $singular
+     *     @type string $singular
      *           The same concept of the `singular` field in k8s CRD spec
      *           https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/
      *           Such as "project" for the `resourcemanager.googleapis.com/Project` type.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Resource::initOnce();
         parent::__construct($data);
     }

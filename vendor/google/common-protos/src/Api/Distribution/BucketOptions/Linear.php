@@ -46,16 +46,15 @@ class Linear extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int $num_finite_buckets
+     *     @type int $num_finite_buckets
      *           Must be greater than 0.
-     * @type float $width
+     *     @type float $width
      *           Must be greater than 0.
-     * @type float $offset
+     *     @type float $offset
      *           Lower bound of the first bucket.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Distribution::initOnce();
         parent::__construct($data);
     }

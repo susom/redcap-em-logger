@@ -30,12 +30,11 @@ class CreateList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\Expr\V1alpha1\Expr[]|\Google\Protobuf\Internal\RepeatedField $elements
+     *     @type \Google\Api\Expr\V1alpha1\Expr[]|\Google\Protobuf\Internal\RepeatedField $elements
      *           The elements part of the list.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\Syntax::initOnce();
         parent::__construct($data);
     }

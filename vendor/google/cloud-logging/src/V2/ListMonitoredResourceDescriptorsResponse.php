@@ -18,8 +18,7 @@ class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal
     /**
      * A list of resource descriptors.
      *
-     * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor resource_descriptors =
-     * 1;</code>
+     * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor resource_descriptors = 1;</code>
      */
     private $resource_descriptors;
     /**
@@ -37,16 +36,15 @@ class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\MonitoredResourceDescriptor[]|\Google\Protobuf\Internal\RepeatedField $resource_descriptors
+     *     @type array<\Google\Api\MonitoredResourceDescriptor>|\Google\Protobuf\Internal\RepeatedField $resource_descriptors
      *           A list of resource descriptors.
-     * @type string $next_page_token
+     *     @type string $next_page_token
      *           If there might be more results than those appearing in this response, then
      *           `nextPageToken` is included.  To get the next set of results, call this
      *           method again using the value of `nextPageToken` as `pageToken`.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\Logging::initOnce();
         parent::__construct($data);
     }
@@ -54,8 +52,7 @@ class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal
     /**
      * A list of resource descriptors.
      *
-     * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor resource_descriptors =
-     * 1;</code>
+     * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor resource_descriptors = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getResourceDescriptors()
@@ -66,9 +63,8 @@ class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal
     /**
      * A list of resource descriptors.
      *
-     * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor resource_descriptors =
-     * 1;</code>
-     * @param \Google\Api\MonitoredResourceDescriptor[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor resource_descriptors = 1;</code>
+     * @param array<\Google\Api\MonitoredResourceDescriptor>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResourceDescriptors($var)

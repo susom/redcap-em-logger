@@ -23,46 +23,45 @@ class Type extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Protobuf\GPBEmpty $dyn
+     *     @type \Google\Protobuf\GPBEmpty $dyn
      *           Dynamic type.
-     * @type int $null
+     *     @type int $null
      *           Null value.
-     * @type int $primitive
+     *     @type int $primitive
      *           Primitive types: `true`, `1u`, `-2.0`, `'string'`, `b'bytes'`.
-     * @type int $wrapper
+     *     @type int $wrapper
      *           Wrapper of a primitive type, e.g. `google.protobuf.Int64Value`.
-     * @type int $well_known
+     *     @type int $well_known
      *           Well-known protobuf type such as `google.protobuf.Timestamp`.
-     * @type \Google\Api\Expr\V1alpha1\Type\ListType $list_type
+     *     @type \Google\Api\Expr\V1alpha1\Type\ListType $list_type
      *           Parameterized list with elements of `list_type`, e.g. `list<timestamp>`.
-     * @type \Google\Api\Expr\V1alpha1\Type\MapType $map_type
+     *     @type \Google\Api\Expr\V1alpha1\Type\MapType $map_type
      *           Parameterized map with typed keys and values.
-     * @type \Google\Api\Expr\V1alpha1\Type\FunctionType $function
+     *     @type \Google\Api\Expr\V1alpha1\Type\FunctionType $function
      *           Function type.
-     * @type string $message_type
+     *     @type string $message_type
      *           Protocol buffer message type.
      *           The `message_type` string specifies the qualified message type name. For
      *           example, `google.plus.Profile`.
-     * @type string $type_param
+     *     @type string $type_param
      *           Type param type.
      *           The `type_param` string specifies the type parameter name, e.g. `list<E>`
      *           would be a `list_type` whose element type was a `type_param` type
      *           named `E`.
-     * @type \Google\Api\Expr\V1alpha1\Type $type
+     *     @type \Google\Api\Expr\V1alpha1\Type $type
      *           Type type.
      *           The `type` value specifies the target type. e.g. int is type with a
      *           target type of `Primitive.INT`.
-     * @type \Google\Protobuf\GPBEmpty $error
+     *     @type \Google\Protobuf\GPBEmpty $error
      *           Error type.
      *           During type-checking if an expression is an error, its type is propagated
      *           as the `ERROR` type. This permits the type-checker to discover other
      *           errors present in the expression.
-     * @type \Google\Api\Expr\V1alpha1\Type\AbstractType $abstract_type
+     *     @type \Google\Api\Expr\V1alpha1\Type\AbstractType $abstract_type
      *           Abstract, application defined type.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\Checked::initOnce();
         parent::__construct($data);
     }

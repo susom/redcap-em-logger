@@ -18,8 +18,7 @@ class CheckRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parsed representation of the CEL program.
      *
-     * Generated from protobuf field <code>.google.api.expr.v1alpha1.ParsedExpr parsed_expr = 1
-     * [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.api.expr.v1alpha1.ParsedExpr parsed_expr = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parsed_expr = null;
     /**
@@ -38,8 +37,8 @@ class CheckRequest extends \Google\Protobuf\Internal\Message
      */
     private $container = '';
     /**
-     * If true, use only the declarations in [type_env][google.api.expr.v1alpha1.CheckRequest.type_env].  If false
-     * (default), add declarations for the standard definitions to the type environment.  See
+     * If true, use only the declarations in [type_env][google.api.expr.v1alpha1.CheckRequest.type_env].  If false (default),
+     * add declarations for the standard definitions to the type environment.  See
      * "Standard Definitions" in the Language Definition.
      *
      * Generated from protobuf field <code>bool no_std_env = 4;</code>
@@ -52,23 +51,22 @@ class CheckRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\Expr\V1alpha1\ParsedExpr $parsed_expr
+     *     @type \Google\Api\Expr\V1alpha1\ParsedExpr $parsed_expr
      *           Required. The parsed representation of the CEL program.
-     * @type \Google\Api\Expr\V1alpha1\Decl[]|\Google\Protobuf\Internal\RepeatedField $type_env
+     *     @type \Google\Api\Expr\V1alpha1\Decl[]|\Google\Protobuf\Internal\RepeatedField $type_env
      *           Declarations of types for external variables and functions.
      *           Required if program uses external variables or functions
      *           not in the default environment.
-     * @type string $container
+     *     @type string $container
      *           The protocol buffer context.  See "Name Resolution" in the
      *           Language Definition.
-     * @type bool $no_std_env
-     *           If true, use only the declarations in [type_env][google.api.expr.v1alpha1.CheckRequest.type_env].  If
-     *     false (default), add declarations for the standard definitions to the type environment.  See
+     *     @type bool $no_std_env
+     *           If true, use only the declarations in [type_env][google.api.expr.v1alpha1.CheckRequest.type_env].  If false (default),
+     *           add declarations for the standard definitions to the type environment.  See
      *           "Standard Definitions" in the Language Definition.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\ConformanceService::initOnce();
         parent::__construct($data);
     }
@@ -76,8 +74,7 @@ class CheckRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parsed representation of the CEL program.
      *
-     * Generated from protobuf field <code>.google.api.expr.v1alpha1.ParsedExpr parsed_expr = 1
-     * [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.api.expr.v1alpha1.ParsedExpr parsed_expr = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Api\Expr\V1alpha1\ParsedExpr
      */
     public function getParsedExpr()
@@ -88,8 +85,7 @@ class CheckRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parsed representation of the CEL program.
      *
-     * Generated from protobuf field <code>.google.api.expr.v1alpha1.ParsedExpr parsed_expr = 1
-     * [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.api.expr.v1alpha1.ParsedExpr parsed_expr = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Api\Expr\V1alpha1\ParsedExpr $var
      * @return $this
      */
@@ -160,8 +156,8 @@ class CheckRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, use only the declarations in [type_env][google.api.expr.v1alpha1.CheckRequest.type_env].  If false
-     * (default), add declarations for the standard definitions to the type environment.  See
+     * If true, use only the declarations in [type_env][google.api.expr.v1alpha1.CheckRequest.type_env].  If false (default),
+     * add declarations for the standard definitions to the type environment.  See
      * "Standard Definitions" in the Language Definition.
      *
      * Generated from protobuf field <code>bool no_std_env = 4;</code>
@@ -173,8 +169,8 @@ class CheckRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, use only the declarations in [type_env][google.api.expr.v1alpha1.CheckRequest.type_env].  If false
-     * (default), add declarations for the standard definitions to the type environment.  See
+     * If true, use only the declarations in [type_env][google.api.expr.v1alpha1.CheckRequest.type_env].  If false (default),
+     * add declarations for the standard definitions to the type environment.  See
      * "Standard Definitions" in the Language Definition.
      *
      * Generated from protobuf field <code>bool no_std_env = 4;</code>

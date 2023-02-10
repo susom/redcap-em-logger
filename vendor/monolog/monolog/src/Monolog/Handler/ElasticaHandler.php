@@ -47,7 +47,7 @@ class ElasticaHandler extends AbstractProcessingHandler
     protected $options = [];
 
     /**
-     * @param Client $client Elastica Client object
+     * @param Client  $client  Elastica Client object
      * @param mixed[] $options Handler configuration
      */
     public function __construct(Client $client, array $options = [], $level = Logger::DEBUG, bool $bubble = true)
@@ -56,9 +56,9 @@ class ElasticaHandler extends AbstractProcessingHandler
         $this->client = $client;
         $this->options = array_merge(
             [
-                'index' => 'monolog',      // Elastic index name
-                'type' => 'record',       // Elastic document type
-                'ignore_error' => false,          // Suppress Elastica exceptions
+                'index'          => 'monolog',      // Elastic index name
+                'type'           => 'record',       // Elastic document type
+                'ignore_error'   => false,          // Suppress Elastica exceptions
             ],
             $options
         );

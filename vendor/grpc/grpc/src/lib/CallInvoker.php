@@ -16,7 +16,6 @@
  * limitations under the License.
  *
  */
-
 namespace Grpc;
 
 /**
@@ -26,12 +25,8 @@ namespace Grpc;
 interface CallInvoker
 {
     public function createChannelFactory($hostname, $opts);
-
     public function UnaryCall($channel, $method, $deserialize, $options);
-
     public function ClientStreamingCall($channel, $method, $deserialize, $options);
-
     public function ServerStreamingCall($channel, $method, $deserialize, $options);
-
     public function BidiStreamingCall($channel, $method, $deserialize, $options);
 }

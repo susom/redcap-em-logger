@@ -17,18 +17,17 @@ class DeleteLogRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the log to delete:
-     *     "projects/[PROJECT_ID]/logs/[LOG_ID]"
-     *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
-     *     "folders/[FOLDER_ID]/logs/[LOG_ID]"
+     * * `projects/[PROJECT_ID]/logs/[LOG_ID]`
+     * * `organizations/[ORGANIZATION_ID]/logs/[LOG_ID]`
+     * * `billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]`
+     * * `folders/[FOLDER_ID]/logs/[LOG_ID]`
      * `[LOG_ID]` must be URL-encoded. For example,
      * `"projects/my-project-id/logs/syslog"`,
-     * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
+     * `"organizations/123/logs/cloudaudit.googleapis.com%2Factivity"`.
      * For more information about log names, see
      * [LogEntry][google.logging.v2.LogEntry].
      *
-     * Generated from protobuf field <code>string log_name = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string log_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $log_name = '';
 
@@ -38,39 +37,37 @@ class DeleteLogRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $log_name
+     *     @type string $log_name
      *           Required. The resource name of the log to delete:
-     *               "projects/[PROJECT_ID]/logs/[LOG_ID]"
-     *               "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
-     *               "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
-     *               "folders/[FOLDER_ID]/logs/[LOG_ID]"
+     *           * `projects/[PROJECT_ID]/logs/[LOG_ID]`
+     *           * `organizations/[ORGANIZATION_ID]/logs/[LOG_ID]`
+     *           * `billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]`
+     *           * `folders/[FOLDER_ID]/logs/[LOG_ID]`
      *           `[LOG_ID]` must be URL-encoded. For example,
      *           `"projects/my-project-id/logs/syslog"`,
-     *           `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
+     *           `"organizations/123/logs/cloudaudit.googleapis.com%2Factivity"`.
      *           For more information about log names, see
      *           [LogEntry][google.logging.v2.LogEntry].
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\Logging::initOnce();
         parent::__construct($data);
     }
 
     /**
      * Required. The resource name of the log to delete:
-     *     "projects/[PROJECT_ID]/logs/[LOG_ID]"
-     *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
-     *     "folders/[FOLDER_ID]/logs/[LOG_ID]"
+     * * `projects/[PROJECT_ID]/logs/[LOG_ID]`
+     * * `organizations/[ORGANIZATION_ID]/logs/[LOG_ID]`
+     * * `billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]`
+     * * `folders/[FOLDER_ID]/logs/[LOG_ID]`
      * `[LOG_ID]` must be URL-encoded. For example,
      * `"projects/my-project-id/logs/syslog"`,
-     * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
+     * `"organizations/123/logs/cloudaudit.googleapis.com%2Factivity"`.
      * For more information about log names, see
      * [LogEntry][google.logging.v2.LogEntry].
      *
-     * Generated from protobuf field <code>string log_name = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string log_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getLogName()
@@ -80,18 +77,17 @@ class DeleteLogRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the log to delete:
-     *     "projects/[PROJECT_ID]/logs/[LOG_ID]"
-     *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
-     *     "folders/[FOLDER_ID]/logs/[LOG_ID]"
+     * * `projects/[PROJECT_ID]/logs/[LOG_ID]`
+     * * `organizations/[ORGANIZATION_ID]/logs/[LOG_ID]`
+     * * `billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]`
+     * * `folders/[FOLDER_ID]/logs/[LOG_ID]`
      * `[LOG_ID]` must be URL-encoded. For example,
      * `"projects/my-project-id/logs/syslog"`,
-     * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
+     * `"organizations/123/logs/cloudaudit.googleapis.com%2Factivity"`.
      * For more information about log names, see
      * [LogEntry][google.logging.v2.LogEntry].
      *
-     * Generated from protobuf field <code>string log_name = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string log_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

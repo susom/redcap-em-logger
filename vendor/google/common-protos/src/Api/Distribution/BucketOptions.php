@@ -36,16 +36,15 @@ class BucketOptions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\Distribution\BucketOptions\Linear $linear_buckets
+     *     @type \Google\Api\Distribution\BucketOptions\Linear $linear_buckets
      *           The linear bucket.
-     * @type \Google\Api\Distribution\BucketOptions\Exponential $exponential_buckets
+     *     @type \Google\Api\Distribution\BucketOptions\Exponential $exponential_buckets
      *           The exponential buckets.
-     * @type \Google\Api\Distribution\BucketOptions\Explicit $explicit_buckets
+     *     @type \Google\Api\Distribution\BucketOptions\Explicit $explicit_buckets
      *           The explicit buckets.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Distribution::initOnce();
         parent::__construct($data);
     }
@@ -79,8 +78,7 @@ class BucketOptions extends \Google\Protobuf\Internal\Message
     /**
      * The exponential buckets.
      *
-     * Generated from protobuf field <code>.google.api.Distribution.BucketOptions.Exponential exponential_buckets =
-     * 2;</code>
+     * Generated from protobuf field <code>.google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
      * @return \Google\Api\Distribution\BucketOptions\Exponential
      */
     public function getExponentialBuckets()
@@ -91,8 +89,7 @@ class BucketOptions extends \Google\Protobuf\Internal\Message
     /**
      * The exponential buckets.
      *
-     * Generated from protobuf field <code>.google.api.Distribution.BucketOptions.Exponential exponential_buckets =
-     * 2;</code>
+     * Generated from protobuf field <code>.google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
      * @param \Google\Api\Distribution\BucketOptions\Exponential $var
      * @return $this
      */

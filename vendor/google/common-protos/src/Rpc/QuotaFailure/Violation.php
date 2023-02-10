@@ -23,7 +23,7 @@ class Violation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subject = 1;</code>
      */
-    private $subject = '';
+    protected $subject = '';
     /**
      * A description of how the quota check failed. Clients can use this
      * description to find more about the quota configuration in the service's
@@ -34,7 +34,7 @@ class Violation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * Constructor.
@@ -42,11 +42,11 @@ class Violation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $subject
+     *     @type string $subject
      *           The subject on which the quota check failed.
      *           For example, "clientip:<ip address of client>" or "project:<Google
      *           developer project id>".
-     * @type string $description
+     *     @type string $description
      *           A description of how the quota check failed. Clients can use this
      *           description to find more about the quota configuration in the service's
      *           public documentation, or find the relevant quota limit to adjust through
@@ -55,8 +55,7 @@ class Violation extends \Google\Protobuf\Internal\Message
      *           exceeded".
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Rpc\ErrorDetails::initOnce();
         parent::__construct($data);
     }

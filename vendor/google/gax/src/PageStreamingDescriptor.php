@@ -29,7 +29,6 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 namespace Google\ApiCore;
 
 use InvalidArgumentException;
@@ -44,16 +43,16 @@ class PageStreamingDescriptor
     /**
      * @param array $descriptor {
      *     Required.
-     * @type string $requestPageTokenGetMethod the get method for the page token in the request object.
-     * @type string $requestPageTokenSetMethod the set method for the page token in the request object.
-     * @type string $responsePageTokenGetMethod the get method for the page token in the response object.
-     * @type string resourcesGetMethod the get method for the resources in the response object.
+     *     @type string $requestPageTokenGetMethod the get method for the page token in the request object.
+     *     @type string $requestPageTokenSetMethod the set method for the page token in the request object.
+     *     @type string $responsePageTokenGetMethod the get method for the page token in the response object.
+     *     @type string resourcesGetMethod the get method for the resources in the response object.
      *
      *     Optional.
-     * @type string $requestPageSizeGetMethod the get method for the page size in the request object.
+     *     @type string $requestPageSizeGetMethod the get method for the page size in the request object.
      * }
      */
-    public function __construct($descriptor)
+    public function __construct(array $descriptor)
     {
         self::validate($descriptor);
         $this->descriptor = $descriptor;
@@ -63,16 +62,16 @@ class PageStreamingDescriptor
      * @param array $fields {
      *     Required.
      *
-     * @type string $requestPageTokenField the page token field in the request object.
-     * @type string $responsePageTokenField the page token field in the response object.
-     * @type string $resourceField the resource field in the response object.
+     *     @type string $requestPageTokenField the page token field in the request object.
+     *     @type string $responsePageTokenField the page token field in the response object.
+     *     @type string $resourceField the resource field in the response object.
      *
      *     Optional.
-     * @type string $requestPageSizeField the page size field in the request object.
+     *     @type string $requestPageSizeField the page size field in the request object.
      * }
      * @return PageStreamingDescriptor
      */
-    public static function createFromFields($fields)
+    public static function createFromFields(array $fields)
     {
         $requestPageToken = $fields['requestPageTokenField'];
         $responsePageToken = $fields['responsePageTokenField'];
@@ -94,12 +93,12 @@ class PageStreamingDescriptor
         return new PageStreamingDescriptor($descriptor);
     }
 
-    private static function getMethod($field)
+    private static function getMethod(string $field)
     {
         return 'get' . ucfirst($field);
     }
 
-    private static function setMethod($field)
+    private static function setMethod(string $field)
     {
         return 'set' . ucfirst($field);
     }
@@ -160,7 +159,7 @@ class PageStreamingDescriptor
         return $this->descriptor['requestPageSizeSetMethod'];
     }
 
-    private static function validate($descriptor)
+    private static function validate(array $descriptor)
     {
         $requiredFields = [
             'requestPageTokenGetMethod',

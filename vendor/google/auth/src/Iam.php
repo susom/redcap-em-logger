@@ -57,7 +57,7 @@ class Iam
      * @param string $email The service account email.
      * @param string $accessToken An access token from the service account.
      * @param string $stringToSign The string to be signed.
-     * @param array $delegates [optional] A list of service account emails to
+     * @param array<string> $delegates [optional] A list of service account emails to
      *        add to the delegate chain. If omitted, the value of `$email` will
      *        be used.
      * @return string The signed string, base64-encoded.
@@ -93,7 +93,7 @@ class Iam
         );
 
         $res = $httpHandler($request);
-        $body = json_decode((string)$res->getBody(), true);
+        $body = json_decode((string) $res->getBody(), true);
 
         return $body['signedBlob'];
     }

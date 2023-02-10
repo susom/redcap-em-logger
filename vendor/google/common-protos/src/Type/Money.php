@@ -46,12 +46,12 @@ class Money extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $currency_code
+     *     @type string $currency_code
      *           The 3-letter currency code defined in ISO 4217.
-     * @type int|string $units
+     *     @type int|string $units
      *           The whole units of the amount.
      *           For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
-     * @type int $nanos
+     *     @type int $nanos
      *           Number of nano (10^-9) units of the amount.
      *           The value must be between -999,999,999 and +999,999,999 inclusive.
      *           If `units` is positive, `nanos` must be positive or zero.
@@ -60,8 +60,7 @@ class Money extends \Google\Protobuf\Internal\Message
      *           For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Type\Money::initOnce();
         parent::__construct($data);
     }

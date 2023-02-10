@@ -19,8 +19,7 @@ class SetIamPolicyRequest extends \Google\Protobuf\Internal\Message
      * REQUIRED: The resource for which the policy is being specified.
      * See the operation documentation for the appropriate value for this field.
      *
-     * Generated from protobuf field <code>string resource = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string resource = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $resource = '';
     /**
@@ -29,8 +28,7 @@ class SetIamPolicyRequest extends \Google\Protobuf\Internal\Message
      * valid policy but certain Cloud Platform services (such as Projects)
      * might reject them.
      *
-     * Generated from protobuf field <code>.google.iam.v1.Policy policy = 2 [(.google.api.field_behavior) =
-     * REQUIRED];</code>
+     * Generated from protobuf field <code>.google.iam.v1.Policy policy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $policy = null;
 
@@ -40,18 +38,17 @@ class SetIamPolicyRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $resource
+     *     @type string $resource
      *           REQUIRED: The resource for which the policy is being specified.
      *           See the operation documentation for the appropriate value for this field.
-     * @type \Google\Cloud\Iam\V1\Policy $policy
+     *     @type \Google\Cloud\Iam\V1\Policy $policy
      *           REQUIRED: The complete policy to be applied to the `resource`. The size of
      *           the policy is limited to a few 10s of KB. An empty policy is a
      *           valid policy but certain Cloud Platform services (such as Projects)
      *           might reject them.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Iam\V1\IamPolicy::initOnce();
         parent::__construct($data);
     }
@@ -60,8 +57,7 @@ class SetIamPolicyRequest extends \Google\Protobuf\Internal\Message
      * REQUIRED: The resource for which the policy is being specified.
      * See the operation documentation for the appropriate value for this field.
      *
-     * Generated from protobuf field <code>string resource = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string resource = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getResource()
@@ -73,8 +69,7 @@ class SetIamPolicyRequest extends \Google\Protobuf\Internal\Message
      * REQUIRED: The resource for which the policy is being specified.
      * See the operation documentation for the appropriate value for this field.
      *
-     * Generated from protobuf field <code>string resource = 1 [(.google.api.field_behavior) = REQUIRED,
-     * (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string resource = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -92,8 +87,7 @@ class SetIamPolicyRequest extends \Google\Protobuf\Internal\Message
      * valid policy but certain Cloud Platform services (such as Projects)
      * might reject them.
      *
-     * Generated from protobuf field <code>.google.iam.v1.Policy policy = 2 [(.google.api.field_behavior) =
-     * REQUIRED];</code>
+     * Generated from protobuf field <code>.google.iam.v1.Policy policy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Iam\V1\Policy
      */
     public function getPolicy()
@@ -107,8 +101,7 @@ class SetIamPolicyRequest extends \Google\Protobuf\Internal\Message
      * valid policy but certain Cloud Platform services (such as Projects)
      * might reject them.
      *
-     * Generated from protobuf field <code>.google.iam.v1.Policy policy = 2 [(.google.api.field_behavior) =
-     * REQUIRED];</code>
+     * Generated from protobuf field <code>.google.iam.v1.Policy policy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Iam\V1\Policy $var
      * @return $this
      */

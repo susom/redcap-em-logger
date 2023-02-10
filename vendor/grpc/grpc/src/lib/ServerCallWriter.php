@@ -25,6 +25,7 @@ namespace Grpc;
  *
  * DO NOT USE in production.
  */
+
 class ServerCallWriter
 {
     public function __construct($call, $serverContext)
@@ -36,8 +37,7 @@ class ServerCallWriter
     public function start(
         $data = null,
         array $options = []
-    )
-    {
+    ) {
         $batch = [];
         $this->addSendInitialMetadataOpIfNotSent(
             $batch,
@@ -50,8 +50,7 @@ class ServerCallWriter
     public function write(
         $data,
         array $options = []
-    )
-    {
+    ) {
         $batch = [];
         $this->addSendInitialMetadataOpIfNotSent(
             $batch,
@@ -64,11 +63,10 @@ class ServerCallWriter
     public function finish(
         $data = null,
         array $options = []
-    )
-    {
+    ) {
         $batch = [
             OP_SEND_STATUS_FROM_SERVER =>
-                $this->serverContext_->status() ?? Status::ok(),
+            $this->serverContext_->status() ?? Status::ok(),
             OP_RECV_CLOSE_ON_SERVER => true,
         ];
         $this->addSendInitialMetadataOpIfNotSent(
@@ -84,8 +82,7 @@ class ServerCallWriter
     private function addSendInitialMetadataOpIfNotSent(
         array &$batch,
         array $initialMetadata = null
-    )
-    {
+    ) {
         if (!$this->initialMetadataSent_) {
             $batch[OP_SEND_INITIAL_METADATA] = $initialMetadata ?? [];
             $this->initialMetadataSent_ = true;
@@ -94,10 +91,9 @@ class ServerCallWriter
 
     private function addSendMessageOpIfHasData(
         array &$batch,
-              $data = null,
+        $data = null,
         array $options = []
-    )
-    {
+    ) {
         if ($data) {
             $message_array = ['message' => $data->serializeToString()];
             if (array_key_exists('flags', $options)) {

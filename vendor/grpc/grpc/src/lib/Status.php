@@ -48,7 +48,6 @@ class Status
     {
         return Status::status(STATUS_OK, 'OK', $metadata);
     }
-
     public static function unimplemented(): array
     {
         return Status::status(STATUS_UNIMPLEMENTED, 'UNIMPLEMENTED');

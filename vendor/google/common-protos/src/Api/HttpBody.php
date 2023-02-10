@@ -68,17 +68,16 @@ class HttpBody extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $content_type
+     *     @type string $content_type
      *           The HTTP Content-Type string representing the content type of the body.
-     * @type string $data
+     *     @type string $data
      *           HTTP body binary data.
-     * @type \Google\Protobuf\Any[]|\Google\Protobuf\Internal\RepeatedField $extensions
+     *     @type \Google\Protobuf\Any[]|\Google\Protobuf\Internal\RepeatedField $extensions
      *           Application specific response metadata. Must be set in the first response
      *           for streaming APIs.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Httpbody::initOnce();
         parent::__construct($data);
     }

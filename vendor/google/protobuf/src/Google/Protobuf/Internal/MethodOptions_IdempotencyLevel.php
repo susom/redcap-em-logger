@@ -9,9 +9,7 @@ if (false) {
      * This class is deprecated. Use Google\Protobuf\Internal\MethodOptions\IdempotencyLevel instead.
      * @deprecated
      */
-    class MethodOptions_IdempotencyLevel
-    {
-    }
+    class MethodOptions_IdempotencyLevel {}
 }
 class_exists(MethodOptions\IdempotencyLevel::class);
 @trigger_error('Google\Protobuf\Internal\MethodOptions_IdempotencyLevel is deprecated and will be removed in the next major release. Use Google\Protobuf\Internal\MethodOptions\IdempotencyLevel instead', E_USER_DEPRECATED);

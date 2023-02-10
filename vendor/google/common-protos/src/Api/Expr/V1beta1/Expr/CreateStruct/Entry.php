@@ -37,20 +37,19 @@ class Entry extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type int $id
+     *     @type int $id
      *           Required. An id assigned to this node by the parser which is unique
      *           in a given expression tree. This is used to associate type
      *           information and other attributes to the node.
-     * @type string $field_key
+     *     @type string $field_key
      *           The field key for a message creator statement.
-     * @type \Google\Api\Expr\V1beta1\Expr $map_key
+     *     @type \Google\Api\Expr\V1beta1\Expr $map_key
      *           The key expression for a map creation statement.
-     * @type \Google\Api\Expr\V1beta1\Expr $value
+     *     @type \Google\Api\Expr\V1beta1\Expr $value
      *           Required. The value assigned to the key.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Beta1\Expr::initOnce();
         parent::__construct($data);
     }

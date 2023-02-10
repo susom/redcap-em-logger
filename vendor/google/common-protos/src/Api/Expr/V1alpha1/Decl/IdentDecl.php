@@ -45,17 +45,16 @@ class IdentDecl extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type \Google\Api\Expr\V1alpha1\Type $type
+     *     @type \Google\Api\Expr\V1alpha1\Type $type
      *           Required. The type of the identifier.
-     * @type \Google\Api\Expr\V1alpha1\Constant $value
+     *     @type \Google\Api\Expr\V1alpha1\Constant $value
      *           The constant value of the identifier. If not specified, the identifier
      *           must be supplied at evaluation time.
-     * @type string $doc
+     *     @type string $doc
      *           Documentation string for the identifier.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Expr\V1Alpha1\Checked::initOnce();
         parent::__construct($data);
     }

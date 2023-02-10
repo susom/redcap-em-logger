@@ -32,7 +32,7 @@ class WriteLogEntriesPartialErrors extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type array|\Google\Protobuf\Internal\MapField $log_entry_errors
+     *     @type array|\Google\Protobuf\Internal\MapField $log_entry_errors
      *           When `WriteLogEntriesRequest.partial_success` is true, records the error
      *           status for entries that were not written due to a permanent error, keyed
      *           by the entry's zero-based index in `WriteLogEntriesRequest.entries`.
@@ -40,8 +40,7 @@ class WriteLogEntriesPartialErrors extends \Google\Protobuf\Internal\Message
      *           per-entry errors.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\Logging::initOnce();
         parent::__construct($data);
     }

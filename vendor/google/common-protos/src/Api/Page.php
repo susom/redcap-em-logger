@@ -56,7 +56,7 @@ class Page extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     * @type string $name
+     *     @type string $name
      *           The name of the page. It will be used as an identity of the page to
      *           generate URI of the page, text of the link to this page in navigation,
      *           etc. The full page name (start from the root page name to this page
@@ -71,16 +71,15 @@ class Page extends \Google\Protobuf\Internal\Message
      *           </code></pre>
      *           You can reference `Java` page using Markdown reference link syntax:
      *           `[Java][Tutorial.Java]`.
-     * @type string $content
+     *     @type string $content
      *           The Markdown content of the page. You can use <code>&#40;== include {path} ==&#41;</code>
      *           to include content from a Markdown file.
-     * @type \Google\Api\Page[]|\Google\Protobuf\Internal\RepeatedField $subpages
+     *     @type \Google\Api\Page[]|\Google\Protobuf\Internal\RepeatedField $subpages
      *           Subpages of this page. The order of subpages specified here will be
      *           honored in the generated docset.
      * }
      */
-    public function __construct($data = NULL)
-    {
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Documentation::initOnce();
         parent::__construct($data);
     }
