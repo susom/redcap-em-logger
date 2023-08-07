@@ -29,8 +29,8 @@ class emLogger extends \ExternalModules\AbstractExternalModule
     {
         parent::__construct();
 
-        $settings = $this->getSystemSettings('em_logger');
-        //$settings = $this->getSystemSettings();
+        //$settings = $this->getSystemSettings('em_logger');
+        $settings = $this->getSystemSettings();
 
         $this->ts_start = microtime(true);
 
