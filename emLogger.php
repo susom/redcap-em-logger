@@ -29,6 +29,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
     {
         parent::__construct();
 
+        // TEST COMMIT
         //$settings = $this->getSystemSettings('em_logger');
         $settings = $this->getSystemSettings();
 
