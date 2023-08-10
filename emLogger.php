@@ -40,8 +40,13 @@ class emLogger extends \ExternalModules\AbstractExternalModule
         $this->single_file = $settings['single-file']['system_value'];
         $this->base_server_path = $settings['base-server-path']['system_value'];
 
-        $this->gcp_project_id = $settings['gcp-project-id']['system_value'];
-        $this->gcp_logging_resources = json_decode($settings['gcp-logging-resources']['system_value'], true);
+        if(isset($settings['gcp-project-id'])){
+            $this->gcp_project_id = $settings['gcp-project-id']['system_value'];
+        }
+
+        if(isset($settings['gcp-logging-resources'])){
+            $this->gcp_logging_resources = json_decode($settings['gcp-logging-resources']['system_value'], true);
+        }
 
         if (!empty($this->gcp_project_id) && !empty($this->gcp_logging_resources)) {
             $this->gcpLogger = new LoggingClient([
