@@ -167,6 +167,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
                 "pid" => $pid,
                 "username" => $username,
                 "args" => $args_detail,
+                "message" => end($args_detail)['value'],
                 "file" => $file,
                 "line" => $line,
                 "function" => $function,
