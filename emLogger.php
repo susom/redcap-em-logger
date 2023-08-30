@@ -6,7 +6,7 @@ namespace Stanford\emLogger;
 require __DIR__ . '/vendor/autoload.php';
 
 # Imports the Google Cloud client library
-use Google\Cloud\Logging\LoggingClient;
+//use Google\Cloud\Logging\LoggingClient;
 
 // commit just to trigger travis build.
 
@@ -48,13 +48,13 @@ class emLogger extends \ExternalModules\AbstractExternalModule
             $this->gcp_logging_resources = json_decode($settings['gcp-logging-resources']['system_value'], true);
         }
 
-        if (!empty($this->gcp_project_id) && !empty($this->gcp_logging_resources)) {
-            $this->gcpLogger = new LoggingClient([
-                'projectId' => $this->gcp_project_id
-            ]);
-
-            $this->gcpLoggerResources = $this->gcp_logging_resources;
-        }
+//        if (!empty($this->gcp_project_id) && !empty($this->gcp_logging_resources)) {
+////            $this->gcpLogger = new LoggingClient([
+////                'projectId' => $this->gcp_project_id
+////            ]);
+////
+////            $this->gcpLoggerResources = $this->gcp_logging_resources;
+//        }
     }
 
 
@@ -294,43 +294,43 @@ class emLogger extends \ExternalModules\AbstractExternalModule
             throw new \Exception ("Unable to write emLogger to $filename - is the directory writable?");
         }
 
-        // Try GCP Cloud option if enabled
-        if (!empty($this->gcp_project_id)) {
-            try {
-                $name = $this->getFilePrefix($filename);
-                if ($this->log_tsv) {
-                    $rows = explode("\n", $data);
-
-                    foreach ($rows as $row) {
-                        if (!$row) {
-                            continue;
-                        }
-                        if (is_string($row) && $this->isJson($row)) {
-                            $entry = json_decode($data, true);
-                        } else {
-                            $entry = $row;
-                        }
-
-                        $this->gcpLoggerResources['severity'] = $type;
-                        $this->gcpLoggerResources['resource']['labels']['container_name'] = $name;
-                        $this->gcpLoggerResources['resource']['labels']['source'] = $this->getIP();
-                        $logger = $this->gcpLogger->logger($name, $this->gcpLoggerResources);
-                        $e = $logger->entry($entry, $this->gcpLoggerResources);
-                        $logger->write($e);
-                    }
-                } elseif ($this->log_json) {
-                    $entry = json_decode($data, true);
-                    $this->gcpLoggerResources['resource']['labels']['container_name'] = $name;
-                    $this->gcpLoggerResources['resource']['labels']['source'] = $this->getIP();
-                    $this->gcpLoggerResources['severity'] = $type;
-                    $logger = $this->gcpLogger->logger($name, $this->gcpLoggerResources);
-                    $entry = $logger->entry($entry, $this->gcpLoggerResources);
-                    $logger->write($entry);
-                }
-            } catch (\Exception $e) {
-                echo $e->getMessage();
-            }
-        }
+//        // Try GCP Cloud option if enabled
+//        if (!empty($this->gcp_project_id)) {
+//            try {
+//                $name = $this->getFilePrefix($filename);
+//                if ($this->log_tsv) {
+//                    $rows = explode("\n", $data);
+//
+//                    foreach ($rows as $row) {
+//                        if (!$row) {
+//                            continue;
+//                        }
+//                        if (is_string($row) && $this->isJson($row)) {
+//                            $entry = json_decode($data, true);
+//                        } else {
+//                            $entry = $row;
+//                        }
+//
+//                        $this->gcpLoggerResources['severity'] = $type;
+//                        $this->gcpLoggerResources['resource']['labels']['container_name'] = $name;
+//                        $this->gcpLoggerResources['resource']['labels']['source'] = $this->getIP();
+//                        $logger = $this->gcpLogger->logger($name, $this->gcpLoggerResources);
+//                        $e = $logger->entry($entry, $this->gcpLoggerResources);
+//                        $logger->write($e);
+//                    }
+//                } elseif ($this->log_json) {
+//                    $entry = json_decode($data, true);
+//                    $this->gcpLoggerResources['resource']['labels']['container_name'] = $name;
+//                    $this->gcpLoggerResources['resource']['labels']['source'] = $this->getIP();
+//                    $this->gcpLoggerResources['severity'] = $type;
+//                    $logger = $this->gcpLogger->logger($name, $this->gcpLoggerResources);
+//                    $entry = $logger->entry($entry, $this->gcpLoggerResources);
+//                    $logger->write($entry);
+//                }
+//            } catch (\Exception $e) {
+//                echo $e->getMessage();
+//            }
+//        }
     }
 
 
