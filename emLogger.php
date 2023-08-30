@@ -3,7 +3,7 @@
 namespace Stanford\emLogger;
 
 # Includes the autoloader for libraries installed with composer
-require __DIR__ . '/vendor/autoload.php';
+//require __DIR__ . '/vendor/autoload.php';
 
 # Imports the Google Cloud client library
 //use Google\Cloud\Logging\LoggingClient;
