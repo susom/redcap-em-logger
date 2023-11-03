@@ -165,6 +165,14 @@ class emLogger extends \ExternalModules\AbstractExternalModule
                 $i++;
             }
 
+            $temp_message = '';
+            foreach ($args_detail as $item){
+                $temp_message .= $item['value'] . ' ,';
+            }
+
+            $temp_message = rtrim($temp_message, ',');
+
+            
             $entry = array(
                 "date" => $date,
                 "process" => getmypid(),
@@ -172,7 +180,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
                 "pid" => $pid,
                 "username" => $username,
                 "args" => $args_detail,
-                "message" => end($args_detail)['value'],
+                "message" => $temp_message,
                 "file" => $file,
                 "line" => $line,
                 "function" => $function,
