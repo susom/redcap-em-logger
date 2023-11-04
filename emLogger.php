@@ -167,7 +167,11 @@ class emLogger extends \ExternalModules\AbstractExternalModule
 
             $temp_message = '';
             foreach ($args_detail as $item){
-                $temp_message .= $item['value'] . ' ,';
+                if(gettype($item['value']) == 'object' || gettype($item['value']) == 'array'){
+                    $temp_message .= json_encode($item['value']) . ' ,';
+                }else{
+                    $temp_message .= $item['value'] . ' ,';
+                }
             }
 
             $temp_message = rtrim($temp_message, ',');
