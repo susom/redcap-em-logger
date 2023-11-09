@@ -165,8 +165,10 @@ class emLogger extends \ExternalModules\AbstractExternalModule
                 $i++;
             }
 
+            // if log has multiple messages loop over each element and concat the value to message attribute.
             $temp_message = '';
             foreach ($args_detail as $item){
+                // serialize stdClass and array.
                 if(gettype($item['value']) == 'object' || gettype($item['value']) == 'array'){
                     $temp_message .= json_encode($item['value']) . ' ,';
                 }else{
