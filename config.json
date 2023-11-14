@@ -98,11 +98,10 @@
     "crons": [
         {
             "cron_name": "truncate_logs_cron",
-            "cron_description": "A weekly cron to clear out the log file every Sunday at midnight",
+            "cron_description": "A cron to clear out the log file every week.",
             "method": "truncateLogsCron",
-            "cron_hour": 0,
-            "cron_minute": 0,
-            "cron_weekday": 0
+            "cron_frequency": "604800",
+            "cron_max_run_time": "3600"
         }
     ]
 }
