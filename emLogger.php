@@ -4,7 +4,8 @@ namespace Stanford\emLogger;
 
 
 
-// commit just to trigger travis build.
+// test commit to trigger Github actions build for all branches.
+
 
 class emLogger extends \ExternalModules\AbstractExternalModule
 {
