@@ -2,6 +2,8 @@
 
 namespace Stanford\emLogger;
 
+# test commit to trigger Github actions build for all branches.
+
 # Includes the autoloader for libraries installed with composer
 //require __DIR__ . '/vendor/autoload.php';
 
