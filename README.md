@@ -1,15 +1,12 @@
 # emLogger Utility
 
-This is a utility logging external module.  It is intended to be enabled on your server and configured with a physical
- directory where the log files will be saved.  We use this on many of our external modules so we can easily track logs
-  without clogging the REDCap logs.
+This is a utility logging external module.  It is intended to be enabled on your server and configured by setting the file path to a physical directory where the log files will be saved.  Many external modules we have written will then use this module to centrally record logs.  This is helpful for debugging and for log analysis.
 
-A module that uses the emLogger should 'fail gracefully' - meaning that if you do not have this module enabled on your
- server, it should behave as it normally would but just not log.
+A module that uses the emLogger should 'fail gracefully' - meaning that if you do not have this module enabled on your server, it should behave as it normally would but just not log and entries.
 
 ## Configuring
 
-Upon enabling this external module you must configure it with:
+Upon enabling this external module you must configure it on the system level with:
   * path where all logs will be stored (e.g. `/var/log/redcap/`)
   * turn on/off TSV logging
   * turn on/off json logging
@@ -20,6 +17,12 @@ You must enable either TSV or JSON logging or else no logs will be created.
 To support easy scraping of log files using fluentd with kubernetes, we added an option that aggregates all log entries
 into a single file with a new prefix attribute.  Optionally, if you use this mode, you can also enable a weekly cron
 task that will erase your logs on a weekly basis.
+
+### Enable Weekly Log Clearing
+If checked and using single-file mode, a cron will clear out the log every sunday at midnight to prevent it from growing too large.  This is also designed for cases where you are shipping the logs to another server (e.g. splunk)
+
+### GCP Logging
+<< Documentation required >>
 
 ## Usage
 
@@ -88,7 +91,7 @@ emLog and emError are always written to log file.  If you wish to enable 'debug'
 
 The intention was to use emDebug for most logging when writing a new module.  When you move to production or release the module, these will not be turned on be default.  If there is an issue in the future, you can turn debug logging back on and you have all of your data...
 
-### Future Ideas
+## Future Ideas
 
 * In the future, I've thought about added an email alert if any emError log entries are posted to notify the super user.
 * Currently each EM is making its own instance of this - it really should be shared but haven't gotten that far...
