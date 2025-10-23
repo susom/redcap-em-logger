@@ -25,6 +25,11 @@ class emLogger extends \ExternalModules\AbstractExternalModule
     private $gcpLogger;             // Google logger client if enabled
     private $gcpLoggerResources;
 
+    /**
+     * array for EMs to set custom logs attributes
+     * @var array
+     */
+    public $em_logger_custom_attributes = [];
     private $first_message = true;
 
     function __construct()
@@ -180,7 +185,7 @@ class emLogger extends \ExternalModules\AbstractExternalModule
 
             $temp_message = rtrim($temp_message, ',');
 
-            
+
             $entry = array(
                 "date" => $date,
                 "process" => getmypid(),
@@ -195,7 +200,8 @@ class emLogger extends \ExternalModules\AbstractExternalModule
                 "sourceIP" => $this->getIP(),
                 "runtime" => $runtime,
                 "desc" => "external_module",
-                "external_module_name" => $this->getFilePrefix($filename)
+                "external_module_name" => $this->getFilePrefix($filename),
+                "custom_attributes" => $this->em_logger_custom_attributes,
             );
 
             // Add the prefix in single-file mode
