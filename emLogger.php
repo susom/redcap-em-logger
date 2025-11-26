@@ -10,7 +10,7 @@ namespace Stanford\emLogger;
 # Imports the Google Cloud client library
 //use Google\Cloud\Logging\LoggingClient;
 
-// commit just to trigger travis build.
+// commit just to trigger travis build again.
 
 class emLogger extends \ExternalModules\AbstractExternalModule
 {
